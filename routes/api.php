@@ -1,5 +1,5 @@
 <?php
-
+//fichero api.php
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\PostController;
