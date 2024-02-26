@@ -16,5 +16,6 @@ class jugadores extends Model
         'nacionalidad',
         'valoracion',
         'carta'
+        //aa
     ];
 }
