@@ -12,11 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('categoria_noticias', function (Blueprint $table) {
-            // $table->integer("id_noticia");
-            // $table->integer("id_categoria");
-            $table->foreign('id_noticia')->references('id')->on('noticia');
-            $table->foreign('id_categoria')->references('id')->on('categoria');
-
+            $table->foreign('id_noticia')->references('id')->on('noticias');
+            $table->foreign('id_categoria')->references('id')->on('categorias');
         });
     }
 
