@@ -33,5 +33,5 @@ class UserResetPasswordNotification extends ResetPasswordNotification
         return [
             //
         ];
-    }
+    } 
 }
