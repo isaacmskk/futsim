@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class jugadores extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id',
+        'nombre',
+        'apellido',
+        'posicion',
+        'nacionalidad',
+        'valoracion',
+        'carta'
+    ];
 }
