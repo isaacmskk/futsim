@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
+            $table->string("comentario");
+            $table->integer("id_usuario");
+            $table->dateTime("time");
+            $table->integer("id_noticia");
             $table->timestamps();
         });
     }

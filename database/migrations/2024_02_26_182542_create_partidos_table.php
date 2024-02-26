@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('partidos', function (Blueprint $table) {
             $table->id();
+            $table->integer("id_plantilla1");
+            $table->string("usuario1");
+            $table->integer("goles1");
+            $table->dateTime("fecha");
+            $table->integer("goles2");
+            $table->string("usuario2");
+            $table->integer("id_plantilla2");
             $table->timestamps();
         });
     }
