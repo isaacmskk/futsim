@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class plantillas extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id',
+        'nombre',
+        'id_usuario',
+        'grl'
+    ];
 }
