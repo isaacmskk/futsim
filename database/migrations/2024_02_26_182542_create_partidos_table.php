@@ -13,13 +13,21 @@ return new class extends Migration
     {
         Schema::create('partidos', function (Blueprint $table) {
             $table->id();
-            $table->integer("id_plantilla1");
-            $table->string("usuario1");
+            $table->unsignedBigInteger("id_plantilla1");
+            $table->foreign('id_plantilla1')->references('id')->on('plantillas')->onDelete('cascade');
+
+            $table->unsignedBigInteger("usuario1");
+            $table->foreign('usuario1')->references('id')->on('users')->onDelete('cascade');
+
             $table->integer("goles1");
             $table->dateTime("fecha");
             $table->integer("goles2");
-            $table->string("usuario2");
-            $table->integer("id_plantilla2");
+
+            $table->unsignedBigInteger("usuario2");
+            $table->foreign('usuario2')->references('id')->on('users')->onDelete('cascade');
+
+            $table->unsignedBigInteger("id_plantilla2");
+            $table->foreign('id_plantilla2')->references('id')->on('plantillas')->onDelete('cascade');
             $table->timestamps();
         });
     }

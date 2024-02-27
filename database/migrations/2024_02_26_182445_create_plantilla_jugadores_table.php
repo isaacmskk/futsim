@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('plantilla_jugadores', function (Blueprint $table) {
-            $table->integer("id_plantilla");
-            $table->integer("id_jugador");
+            $table->unsignedBigInteger('id_plantilla');
+            $table->foreign('id_plantilla')->references('id')->on('plantillas')->onDelete('cascade');
+
+            
+            $table->unsignedBigInteger('id_jugador');
+            $table->foreign('id_jugador')->references('id')->on('jugadores')->onDelete('cascade');
+
             $table->integer("valoracion");
         });
     }

@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('plantillas', function (Blueprint $table) {
             $table->id();
             $table->string("nombre");
-            $table->integer("id_usuario");
+            $table->unsignedBigInteger('id_usuario');
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
             $table->integer("grl");
         });
     }
