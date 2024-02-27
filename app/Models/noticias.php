@@ -12,7 +12,6 @@ class noticias extends Model
         'id',
         'contenido',
         'publicado',
-        'categoria',
         'foto'
     ];
 

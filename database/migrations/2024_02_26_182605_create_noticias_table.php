@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string("contenido");
             $table->dateTime("publicado");
-            $table->integer("categoria");//revisar
             $table->string("foto");
             $table->timestamps();
         });
