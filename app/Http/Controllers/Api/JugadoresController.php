@@ -44,10 +44,10 @@ class JugadoresController extends Controller
         $jugador = jugadores::find($id);
 
         $request->validate([
-            'posicion' => 'required',
-            'nacionalidad' => 'required',
-            'valoracion' => 'required|max:2',
-            'carta' => 'required',
+            'posicion',
+            'nacionalidad',
+            'valoracion',
+            'carta',
         ]);
 
         $dataToUpdate = $request->all();
