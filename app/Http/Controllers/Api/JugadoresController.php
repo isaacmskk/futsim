@@ -25,11 +25,15 @@ class JugadoresController extends Controller
     {
 
         $request->validate([
-            'name' => 'required|max:5',
-            'description' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'posicion' => 'required',
+            'nacionalidad' => 'required',
+            'valoracion' => 'required|max:2',
+            'carta' => 'required',
         ]);
-        $task = $request->all();
-        $tarea = Task::create($task);
+        $jugador = $request->all();
+        $tarea = jugadores::create($jugador);
 
 
         return response()->json(['success' => true, 'data' => $tarea]);
@@ -37,24 +41,26 @@ class JugadoresController extends Controller
 
     public function update($id, Request $request)
     {
-        $task = Task::find($id);
+        $jugador = jugadores::find($id);
 
         $request->validate([
-            'name' => 'required|max:5',
-            'description' => 'required',
+            'posicion' => 'required',
+            'nacionalidad' => 'required',
+            'valoracion' => 'required|max:2',
+            'carta' => 'required',
         ]);
 
         $dataToUpdate = $request->all();
-        $task->update($dataToUpdate);
+        $jugador->update($dataToUpdate);
 
 
-        return response()->json(['success' => true, 'data' => $task]);
+        return response()->json(['success' => true, 'data' => $jugador]);
     }
 
     public function destroy($id)
     {
-        $task = Task::find($id);
-        $task->delete();
+        $jugador = jugadores::find($id);
+        $jugador->delete();
 
         return response()->json(['success' => true, 'data' => 'Tarea eliminida']);
     }
