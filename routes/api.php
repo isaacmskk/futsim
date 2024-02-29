@@ -25,7 +25,7 @@ Route::put('tasks/update/{id}',[TaskController::class,'update']);
 Route::delete('tasks/{id}',[TaskController::class,'destroy']);
 
 Route::get('jugadores', [JugadoresController::class, 'index']);
-Route::post('jugadores/create', [JugadoresController::class, 'store']);
+Route::post('jugadores/', [JugadoresController::class, 'store']);
 Route::put('jugadores/update/{id}', [JugadoresController::class, 'update']);
 Route::delete('jugadores/{id}', [JugadoresController::class, 'destroy']);
 

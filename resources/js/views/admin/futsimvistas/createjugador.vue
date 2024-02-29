@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between pb-2 mb-2">
-                <h5 class="card-title">Añade una tarea nueva</h5>
+                <h5 class="card-title">Añade un nuevo jugador</h5>
             </div>
 
 
@@ -16,7 +16,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 <strong>{{ strError }}</strong>
             </div>
-            {{ task }}
+            {{ jugadores }}
             <form @submit.prevent="crearJugador">
                 <div class="form-group mb-2">
                     <label>Nombre</label><span class="text-danger"> *</span>
@@ -26,27 +26,27 @@
 
                 <div class="form-group mb-2">
                     <label>Apellido</label><span class="text-danger"> *</span>
-                    <input v-model="jugadores.apellido" class="form-control" rows="3" placeholder="Descripción">
+                    <input v-model="jugadores.apellido" class="form-control" placeholder="Apellido" name="Apellido">
                 </div>
 
 
                 <div class="form-gorup mb-2">
-                    <label>Fecha inicio</label><span class="text-danger">*</span>
-                    <input v-model="jugadores.posicion" class="form-control" type="datetime-local" name="date_open" />
+                    <label>Posicion</label><span class="text-danger">*</span>
+                    <input v-model="jugadores.posicion" class="form-control" placeholder="Posicion" name="Posicion" />
                 </div>
 
 
                 <div class="form-gorup mb-2">
-                    <label>Fecha fin</label><span class="text-danger">*</span>
-                    <input v-model="jugadores.nacionalidad" class="form-control" type="datetime-local" name="date_close" />
+                    <label>Nacionalidad</label><span class="text-danger">*</span>
+                    <input v-model="jugadores.nacionalidad" class="form-control" placeholder="Nacionalidad" name="Nacionalidad" />
                 </div>
                 <div class="form-group mb-2">
-                    <label>Nombre</label><span class="text-danger"> *</span>
-                    <input v-model="jugadores.valoracion" type="text" class="form-control" placeholder="Nombre tarea">
+                    <label>Valoracion</label><span class="text-danger"> *</span>
+                    <input v-model="jugadores.valoracion" type="text" class="form-control" placeholder="Valoracion" name="Valoracion" >
                 </div>
                 <div class="form-group mb-2">
-                    <label>Nombre</label><span class="text-danger"> *</span>
-                    <input v-model="jugadores.carta" type="text" class="form-control" placeholder="Nombre tarea">
+                    <label>Carta</label><span class="text-danger"> *</span>
+                    <input v-model="jugadores.carta" type="text" class="form-control" placeholder="Carta" name="Carta">
                 </div>
 
                 <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir Jugador</button>
@@ -63,13 +63,13 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
-const task = ref({});
+const jugadores = ref({});
 const strError = ref();
 const strSuccess = ref();
 
 
 function crearJugador(){
-axios.post('/api/tasks', task.value)
+axios.post('/api/jugadores', jugadores.value)
     .then(response => {
 
         console.log(response);
