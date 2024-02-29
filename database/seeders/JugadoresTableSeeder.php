@@ -20,9 +20,9 @@ class JugadoresTableSeeder extends Seeder
             [
             'nombre' => 'nombre',
             'apellido' => 'apellido',
-            'posicion' => 'posicion',
+            'posicion' => 'adada',
             'nacionalidad' => 'nacionalidad',
-            'valoracion' => 4,
+            'valoracion' => 5,
             'carta' => 'carta'
             ],
             [
