@@ -14,9 +14,10 @@ const TasksList = () => import('../views/admin/tasks/index.vue');
 const TasksCreate = () => import('../views/admin/tasks/create.vue');
 const TasksUpdate = () => import('../views/admin/tasks/update.vue');
 
-// const JugadorUpdate = () => import('../views/admin/futsimvistas/updatejugador.vue');
 const JugadorList = () => import('../views/admin/futsimvistas/indexjugador.vue');
 const JugadorCreate = () => import('../views/admin/futsimvistas/createjugador.vue');
+const JugadorUpdate = () => import('../views/admin/futsimvistas/updatejugador.vue');
+
 // const JugadorElimiar = () => import('../views/admin/futsimvistas/eliminarjugador.vue');
 
 
@@ -187,28 +188,22 @@ export default [
                         name: 'futsimvistas.indexjugador',
                         path: '',
                         component: JugadorList,
-                        meta: { breadCrumb: 'Listar jugadores' }
+                        meta: { breadCrumb: 'Listar Jugadores' }
                     },
                     {
                         name: 'futsimvistas.createjugador',
                         path: 'createjugador',
                         component: JugadorCreate,
-                        meta: { breadCrumb: 'Crear jugadores' }
+                        meta: { breadCrumb: 'Crear Jugador' }
+                    }, {
+                        name: 'futsimvistas.updatejugador',
+                        path: 'updatejugador/:id',
+                        component: JugadorUpdate,
+                        meta: {
+                            breadCrumb: 'Modificar Jugador',
+                            linked: false,
+                        }
                     }
-                    // {
-                    //     name: 'tasks.create',
-                    //     path: 'create',
-                    //     component: TasksCreate,
-                    //     meta: { breadCrumb: 'Crear jugador' }
-                    // }, {
-                    //     name: 'tasks.update',
-                    //     path: 'update/:id',
-                    //     component: TasksUpdate,
-                    //     meta: {
-                    //         breadCrumb: 'Updatear jugador',
-                    //         linked: false,
-                    //     }
-                    // }
                 ]
             },
 

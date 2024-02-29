@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between pb-2 mb-2">
-                <h5 class="card-title">Añade una tarea nueva</h5>
+                <h5 class="card-title">Update un nuevo jugador</h5>
             </div>
 
 
@@ -18,36 +18,40 @@
             </div>
 
 
-            <form @submit.prevent="saveTask">
+            <form @submit.prevent="saveJugador">
 
 
                 <div class="form-group mb-2">
-                    <label>Nombre</label><span class="text-danger"> *</span>
-                    <input type="text" class="form-control" v-model="task.name" placeholder="Nombre tarea">
+                    <label>Posicion</label><span class="text-danger"> *</span>
+                    <input type="text" class="form-control" v-model="jugador.posicion" placeholder="Posicion Jugador">
                     <div class="text-danger mt-1">
-                        {{ errors.name }}
+                        {{ errors.posicion }}
                     </div>
                 </div>
 
 
                 <div class="form-group mb-2">
                     <label>Descripción</label><span class="text-danger"> *</span>
-                    <textarea class="form-control" rows="3" v-model="task.description" placeholder="Descripción"></textarea>
+                    <textarea class="form-control" rows="3" v-model="jugador.description" placeholder="Descripción"></textarea>
                 </div>
 
 
                 <div class="form-gorup mb-2">
-                    <label>Fecha inicio</label><span class="text-danger">*</span>
-                    <input class="form-control" type="datetime-local" v-model="task.date_open" name="date_open" />
+                    <label>Nacionalidad</label><span class="text-danger">*</span>
+                    <input class="form-control" type="datetime-local" v-model="jugador.nacionalidad" name="nacionalidad" />
                 </div>
        
                 <div class="form-gorup mb-2">
-                    <label>Fecha fin</label><span class="text-danger">*</span>
-                    <input class="form-control" type="datetime-local" v-model="task.date_close" name="date_close" />
+                    <label>Valoracion</label><span class="text-danger">*</span>
+                    <input class="form-control" type="datetime-local" v-model="jugador.valoracion" name="valoracion" />
                 </div>
 
+                <div class="form-group mb-2">
+                    <label>Carta</label><span class="text-danger"> *</span>
+                    <textarea class="form-control" rows="3" v-model="jugador.carta" placeholder="Carta"></textarea>
+                </div>
 
-                <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir Tarea</button>
+                <button type="submit" class="btn btn-primary mt-4 mb-4">Modificar Jugador</button>
 
 
             </form>
@@ -68,7 +72,7 @@ import { setLocale } from 'yup';
 
 
 const schema =  yup.object({
-    name: yup.string().required().label('Nombre'),
+    name: yup.string().required().label('nombre'),
 })
 
 
@@ -81,17 +85,17 @@ setLocale(es);
 
 
 
-const { value: name } = useField('name', null, { initialValue: '' });
-const { value: description } = useField('description', null, { initialValue: '' });
-const { value: date_open } = useField('date_open', null, { initialValue: '' });
-const { value: date_close } = useField('date_close', null, { initialValue: '' });
+const { value: posicion } = useField('posicion', null, { initialValue: '' });
+const { value: nacionalidad } = useField('nacionalidad', null, { initialValue: '' });
+const { value: valoracion } = useField('valoracion', null, { initialValue: '' });
+const { value: carta } = useField('carta', null, { initialValue: '' });
 
 
-const task = reactive({
-    name,
-    description,
-    date_open,
-    date_close
+const jugador = reactive({
+    posicion,
+    nacionalidad,
+    valoracion,
+    carta
 })
 
 
@@ -100,12 +104,12 @@ const strError = ref();
 
 
 onMounted(() => {
-    axios.get('/api/tasks/' + route.params.id)
+    axios.get('/api/jugadores/' + route.params.id)
     .then(response => {
-        task.name = response.data.name;
-        task.description = response.data.description;
-        task.date_open = response.data.date_open;
-        task.date_close = response.data.date_close;
+        jugador.posicion = response.data.posicion;
+        jugador.nacionalidad = response.data.nacionalidad;
+        jugador.valoracion = response.data.valoracion;
+        jugador.carta = response.data.carta;
     })
     .catch(function(error) {
         console.log(error);
@@ -113,12 +117,12 @@ onMounted(() => {
 })
 
 
-function saveTask() {
-    validate().then(form => { if (form.valid) TasksUpdate(tasks) })
+function saveJugador() {
+    validate().then(form => { if (form.valid) JugadorUpdate(jugadores) })
     }
         console.log('validate');
         if (form.valid){
-            axios.post('/api/tasks/update/'+route.params.id, task)
+            axios.post('/api/jugadores/update/'+route.params.id, jugador)
             .then(response => {
                 strError.value = ""
                 strSuccess.value = response.data.success
