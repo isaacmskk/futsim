@@ -6,7 +6,8 @@
                     <div class="d-flex justify-content-between pb-2 mb-2">
                         <h5 class="card-title">Todos los jugadores</h5>
                         <div>
-                            <router-link :to="{ name: 'futsimvistas.createjugador' }" class="btn btn-success">Nuevo Jugador</router-link>
+                            <router-link :to="{ name: 'futsimvistas.createjugador' }" class="btn btn-success">Nuevo
+                                Jugador</router-link>
                         </div>
                     </div>
 
@@ -32,8 +33,8 @@
                                 <td>{{ jugadores.valoracion }}</td>
                                 <td>{{ jugadores.carta }}</td>
                                 <td class="text-center">
-                                    <!-- <router-link :to="{ name: 'jugadores.update' }" class="btn btn-success">Updatear Tarea</router-link> -->
-                                    <!-- <button class="btn btn-danger" @click="deleteTask(task.id, index)">Delete</button> -->
+
+                                    <button class="btn btn-danger" @click="deleteJugador(jugadores.id, index)">Delete</button>
                                 </td>
 
                             </tr>
@@ -61,6 +62,38 @@ onMounted(() => {
             console.log(response.data);
         })
 });
+
+const deleteJugador = (id, index) => {
+    swal({
+        title: 'Quieres eliminar el jugador?',
+        text: 'Esta acción no es reversible!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        confirmButtonColor: '#ef4444',
+        timer: 20000,
+        timerProgressBar: true,
+        reverseButtons: true
+    })
+        .then(result => {
+            axios.delete('/api/jugadores/' + id)
+                .then(response => {
+                    jugadores.value.splice(index, 1)
+                    swal({
+                        icon: 'success',
+                        title: 'Jugador eliminado correctamente'
+                    })
+
+                }).catch(error => {
+                    swal({
+                        icon: 'error',
+                        title: 'No se ha podido eliminar el jugador'
+                    })
+
+                });
+
+        })
+}
 
 </script>
 
