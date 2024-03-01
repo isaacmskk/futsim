@@ -9,7 +9,7 @@
                             <router-link :to="{ name: 'futsimvistas.createjugador' }" class="btn btn-success">Nuevo
                                 Jugador</router-link>
                         </div>
-                        
+
                     </div>
 
                     <table class="table table-hover table-sm">
@@ -25,17 +25,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(jugadores, index) in jugadores">
+                            <tr v-for="(jugador, index) in jugadores">
                                 <td class="text-center">{{ jugadores.id }}</td>
-                                <td>{{ jugadores.nombre }}</td>
-                                <td>{{ jugadores.apellido }}</td>
-                                <td>{{ jugadores.posicion }}</td>
-                                <td>{{ jugadores.nacionalidad }}</td>
-                                <td>{{ jugadores.valoracion }}</td>
-                                <td>{{ jugadores.carta }}</td>
+                                <td>{{ jugador.nombre }}</td>
+                                <td>{{ jugador.apellido }}</td>
+                                <td>{{ jugador.posicion }}</td>
+                                <td>{{ jugador.nacionalidad }}</td>
+                                <td>{{ jugador.valoracion }}</td>
+                                <td>{{ jugador.carta }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-danger"
-                                        @click="deleteJugador(jugadores.id, index)">Delete</button>
+                                    <router-link :to="{ name: 'jugadores.updatejugador/:id' }" class="btn btn-danger">Nuevo Jugador</router-link>
+                                    <button class="btn btn-danger" @click="deleteJugador(jugador.id, index)">Delete</button>
                                 </td>
 
                             </tr>
