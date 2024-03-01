@@ -6,8 +6,7 @@
                     <div class="d-flex justify-content-between pb-2 mb-2">
                         <h5 class="card-title">Todas las noticias</h5>
                         <div>
-                            <router-link :to="{ name: 'futsimvistas.createnoticia' }" class="btn btn-success">Nueva
-                                Noticia</router-link>
+                            <router-link :to="{ name: 'futsimvistas.createnoticia' }" class="btn btn-success">Nueva Noticia</router-link>
                         </div>
 
                     </div>
@@ -49,7 +48,7 @@
 <script setup>
 import axios from "axios";
 import { ref, onMounted, inject } from "vue"
-const jugadores = ref();
+const noticias = ref();
 const swal = inject('$swal');
 
 
@@ -77,16 +76,16 @@ const deleteNoticia = (id, index) => {
         .then(result => {
             axios.delete('/api/noticias/' + id)
                 .then(response => {
-                    jugadores.value.splice(index, 1)
+                    noticias.value.splice(index, 1)
                     swal({
                         icon: 'success',
-                        title: 'Jugador eliminado correctamente'
+                        title: 'Noticia eliminada correctamente'
                     })
 
                 }).catch(error => {
                     swal({
                         icon: 'error',
-                        title: 'No se ha podido eliminar el jugador'
+                        title: 'No se ha podido eliminar la noticia'
                     })
 
                 });

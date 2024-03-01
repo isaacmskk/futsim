@@ -18,7 +18,7 @@ const JugadorList = () => import('../views/admin/futsimvistas/indexjugador.vue')
 const JugadorCreate = () => import('../views/admin/futsimvistas/createjugador.vue');
 const JugadorUpdate = () => import('../views/admin/futsimvistas/updatejugador.vue');
 
-const NoticiasList = () => import('../views/admin/futsimvistas/noticias.vue');
+const NoticiasList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const NoticiasCreate = () => import('../views/admin/futsimvistas/createnoticias.vue');
 
 
@@ -213,7 +213,7 @@ export default [
                 meta: { breadCrumb: 'Noticias' },
                 children: [
                     {
-                        name: 'futsimvistas.noticias',
+                        name: 'futsimvistas.indexnoticia',
                         path: 'noticias',
                         component: NoticiasList,
                         meta: {
