@@ -187,13 +187,13 @@ export default [
                 children: [
                     {
                         name: 'futsimvistas.indexjugador',
-                        path: '',
+                        path: 'jugadores',
                         component: JugadorList,
                         meta: { breadCrumb: 'Listar Jugadores' }
                     },
                     {
                         name: 'futsimvistas.createjugador',
-                        path: 'createjugador',
+                        path: 'jugadores/createjugador',
                         component: JugadorCreate,
                         meta: { breadCrumb: 'Crear Jugador' }
                     }, {
@@ -223,7 +223,7 @@ export default [
                     },
                     {
                         name: 'futsimvistas.createnoticia',
-                        path: 'createnoticia',
+                        path: 'noticias/createnoticia',
                         component: NoticiasCreate,
                         meta: { breadCrumb: 'Crear Noticia' }
                     }

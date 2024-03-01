@@ -26,7 +26,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="(jugador, index) in jugadores">
-                                <td class="text-center">{{ jugadores.id }}</td>
+                                <td class="text-center">{{ jugador.id }}</td>
                                 <td>{{ jugador.nombre }}</td>
                                 <td>{{ jugador.apellido }}</td>
                                 <td>{{ jugador.posicion }}</td>
@@ -34,7 +34,7 @@
                                 <td>{{ jugador.valoracion }}</td>
                                 <td>{{ jugador.carta }}</td>
                                 <td class="text-center">
-                                    <router-link :to="{ name: 'jugadores.updatejugador/:id' }" class="btn btn-danger">Nuevo Jugador</router-link>
+                                    <!-- <router-link :to="{ name: 'jugadores.updatejugador/:id' }" class="btn btn-danger">Nuevo Jugador</router-link> -->
                                     <button class="btn btn-danger" @click="deleteJugador(jugador.id, index)">Delete</button>
                                 </td>
 
