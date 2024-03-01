@@ -18,7 +18,7 @@ const JugadorList = () => import('../views/admin/futsimvistas/indexjugador.vue')
 const JugadorCreate = () => import('../views/admin/futsimvistas/createjugador.vue');
 const JugadorUpdate = () => import('../views/admin/futsimvistas/updatejugador.vue');
 
-// const JugadorElimiar = () => import('../views/admin/futsimvistas/eliminarjugador.vue');
+const NoticiasList = () => import('../views/admin/futsimvistas/noticias.vue');
 
 
 
@@ -180,7 +180,7 @@ export default [
                 ]
             },
             {
-                name: 'futsimvistas',
+                name: 'jugadores',
                 path: 'futsimvistas',
                 meta: { breadCrumb: 'Jugadores' },
                 children: [
@@ -201,6 +201,22 @@ export default [
                         component: JugadorUpdate,
                         meta: {
                             breadCrumb: 'Modificar Jugador',
+                            linked: false,
+                        }
+                    }
+                ]
+            },
+            {
+                name: 'noticias',
+                path: 'futsimvistas',
+                meta: { breadCrumb: 'Noticias' },
+                children: [
+                    {
+                        name: 'futsimvistas.noticias',
+                        path: 'noticias',
+                        component: NoticiasList,
+                        meta: {
+                            breadCrumb: '',
                             linked: false,
                         }
                     }

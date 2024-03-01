@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\JugadoresController;
+use App\Http\Controllers\api\NoticiasController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,8 @@ Route::get('jugadores', [JugadoresController::class, 'index']);
 Route::post('jugadores/', [JugadoresController::class, 'store']);
 Route::put('jugadores/update/{id}', [JugadoresController::class, 'update']);
 Route::delete('jugadores/{id}', [JugadoresController::class, 'destroy']);
+
+Route::get('noticias', [NoticiasController::class, 'index']);
 
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
