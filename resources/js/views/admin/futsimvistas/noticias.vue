@@ -75,7 +75,7 @@ const deleteNoticia = (id, index) => {
         reverseButtons: true
     })
         .then(result => {
-            axios.delete('/api/jugadores/' + id)
+            axios.delete('/api/noticias/' + id)
                 .then(response => {
                     jugadores.value.splice(index, 1)
                     swal({

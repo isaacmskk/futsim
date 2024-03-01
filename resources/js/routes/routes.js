@@ -217,7 +217,7 @@ export default [
                         path: 'noticias',
                         component: NoticiasList,
                         meta: {
-                            breadCrumb: '',
+                            breadCrumb: 'Listar Noticias',
                             linked: false,
                         }
                     },

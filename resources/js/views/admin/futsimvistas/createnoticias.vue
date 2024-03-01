@@ -17,7 +17,7 @@
                 <strong>{{ strError }}</strong>
             </div>
             {{ noticia }}
-            <form @submit.prevent="addTask">
+            <form @submit.prevent="addNoticia">
                 <div class="form-group mb-2">
                     <label>Titulo</label><span class="text-danger"> *</span>
                     <input v-model="noticia.titulo" type="text" class="form-control" placeholder="Titulo Noticia">
@@ -66,7 +66,7 @@ const strError = ref();
 const strSuccess = ref();
 
 
-function addTask(){
+function addNoticia(){
 axios.post('/api/noticias', noticia.value)
     .then(response => {
 
