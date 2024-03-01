@@ -4,10 +4,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between pb-2 mb-2">
-                        <h5 class="card-title">Todos los jugadores</h5>
+                        <h5 class="card-title">Noticias</h5>
                         <div>
-                            <router-link :to="{ name: 'futsimvistas.createjugador' }" class="btn btn-success">Nuevo
-                                Jugador</router-link>
+                            <router-link :to="{ name: 'noticias.createnoticias' }" class="btn btn-success">Nueva Noticia</router-link>
                         </div>
                         
                     </div>

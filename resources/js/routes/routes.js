@@ -19,6 +19,7 @@ const JugadorCreate = () => import('../views/admin/futsimvistas/createjugador.vu
 const JugadorUpdate = () => import('../views/admin/futsimvistas/updatejugador.vue');
 
 const NoticiasList = () => import('../views/admin/futsimvistas/noticias.vue');
+const NoticiasCreate = () => import('../views/admin/futsimvistas/createnoticias.vue');
 
 
 
@@ -180,7 +181,7 @@ export default [
                 ]
             },
             {
-                name: 'jugadores',
+                name: 'futsimvistas',
                 path: 'futsimvistas',
                 meta: { breadCrumb: 'Jugadores' },
                 children: [
@@ -207,7 +208,7 @@ export default [
                 ]
             },
             {
-                name: 'noticias',
+                name: 'Noticias',
                 path: 'futsimvistas',
                 meta: { breadCrumb: 'Noticias' },
                 children: [
@@ -219,6 +220,12 @@ export default [
                             breadCrumb: '',
                             linked: false,
                         }
+                    },
+                    {
+                        name: 'futsimvistas.createnoticia',
+                        path: 'createnoticia',
+                        component: NoticiasCreate,
+                        meta: { breadCrumb: 'Crear Noticia' }
                     }
                 ]
             },

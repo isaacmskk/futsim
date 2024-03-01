@@ -31,6 +31,8 @@ Route::put('jugadores/update/{id}', [JugadoresController::class, 'update']);
 Route::delete('jugadores/{id}', [JugadoresController::class, 'destroy']);
 
 Route::get('noticias', [NoticiasController::class, 'index']);
+Route::get('noticias/', [NoticiasController::class, 'store']);
+Route::get('noticias/{id}', [NoticiasController::class, 'destroy']);
 
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
