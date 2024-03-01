@@ -9,6 +9,7 @@
                             <router-link :to="{ name: 'futsimvistas.createjugador' }" class="btn btn-success">Nuevo
                                 Jugador</router-link>
                         </div>
+                        
                     </div>
 
                     <table class="table table-hover table-sm">
@@ -33,8 +34,8 @@
                                 <td>{{ jugadores.valoracion }}</td>
                                 <td>{{ jugadores.carta }}</td>
                                 <td class="text-center">
-
-                                    <button class="btn btn-danger" @click="deleteJugador(jugadores.id, index)">Delete</button>
+                                    <button class="btn btn-danger"
+                                        @click="deleteJugador(jugadores.id, index)">Delete</button>
                                 </td>
 
                             </tr>

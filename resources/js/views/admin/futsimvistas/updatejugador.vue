@@ -32,7 +32,7 @@
 
                 <div class="form-group mb-2">
                     <label>Descripción</label><span class="text-danger"> *</span>
-                    <textarea class="form-control" rows="3" v-model="jugador.description" placeholder="Descripción"></textarea>
+                    <textarea class="form-control" rows="3" v-model="jugador.descripcion" placeholder="Descripción"></textarea>
                 </div>
 
 
