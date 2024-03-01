@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\noticias;
 use Illuminate\Http\Request;
+use App\Models\noticias;
 
 class NoticiasController extends Controller
 {
@@ -24,15 +24,14 @@ class NoticiasController extends Controller
     {
 
         $request->validate([
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'posicion' => 'required',
-            'nacionalidad' => 'required',
-            'valoracion' => 'required|max:2',
-            'carta' => 'required',
+            'titulo' => 'required|max:75',
+            'subtitulo' => 'required|max:125',
+            'contenido' => 'required',
+            'publicado' => 'required',
+            'foto' => 'required',
         ]);
-        $jugador = $request->all();
-        $tarea = jugadores::create($jugador);
+        $noticia = $request->all();
+        $tarea = noticias::create($noticia);
 
 
         return response()->json(['success' => true, 'data' => $tarea]);
@@ -42,9 +41,9 @@ class NoticiasController extends Controller
 
     public function destroy($id)
     {
-        $jugador = jugadores::find($id);
-        $jugador->delete();
+        $noticia = noticias::find($id);
+        $noticia->delete();
 
-        return response()->json(['success' => true, 'data' => 'Tarea eliminida']);
+        return response()->json(['success' => true, 'data' => 'Noticia eliminida']);
     }
 }
