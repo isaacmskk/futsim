@@ -1,55 +1,122 @@
 <template>
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
-            <router-link to="/" class="navbar-brand">FUTSIM</router-link>
-            <a class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mt-2 mt-lg-0 me-auto mb-2 mb-lg-0">
-                    <LocaleSwitcher />
-                </ul>
-                <ul class="navbar-nav mt-2 mt-lg-0 ms-auto">
-                        <li class="nav-item">
-                            <router-link to="/" class="nav-link" aria-current="page">{{ $t('home') }}</router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="{ name : 'public-posts.index'}" class="nav-link">Blog</router-link>
-                        </li>
-                    <template v-if="!user?.name">
-                        <li class="nav-item">
-                            <router-link class="nav-link" to="/login"
-                            >{{ $t('login') }}</router-link
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <router-link class="nav-link" to="/register">{{ $t('register') }}</router-link>
-                        </li>
-                    </template>
-                    <li v-if="user?.name" class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ user.name }}
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><router-link class="dropdown-item" to="/admin">Admin</router-link></li>
-                            <li><router-link to="/admin/posts" class="dropdown-item">Post</router-link></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="javascript:void(0)" @click="logout">Logout</a></li>
-                        </ul>
+    <div class="layout-topbar">
+        <router-link to="/" class="layout-topbar-logo">
+            <img src="/images/logo1.jpg" alt="logo" />
+            <span>FUTSIM</span>
+        </router-link>
+
+        <div class="d-flex justify-content-between pb-2 mb-2">
+            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
+                <router-link :to="{ name: 'futsimvistas.indexnoticia' }">
+                    <i class="pi pi-megaphone"></i>
+                </router-link>
+            </button>
+
+        </div>
+        <div class="layout-topbar-menu" :class="topbarMenuClasses">
+            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
+                data-bs-toggle="dropdown">
+
+
+                <i class="pi pi-user"></i>
+
+            </button>
+        </div>
+        <div class="layout-topbar-menu" :class="topbarMenuClasses">
+            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
+                data-bs-toggle="dropdown">
+
+
+                <i class="pi pi-user"></i>
+
+            </button>
+        </div>
+        <div class="layout-topbar-menu" :class="topbarMenuClasses">
+            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
+                data-bs-toggle="dropdown">
+
+
+                <i class="pi pi-user"></i>
+
+            </button>
+        </div>
+        <div class="layout-topbar-menu" :class="topbarMenuClasses">
+            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
+                data-bs-toggle="dropdown">
+
+
+
+                <i class="pi pi-user"></i>
+                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
+                    <li>
+                        <router-link :to="{ name: 'profile.index' }" class="dropdown-item">Perfil</router-link>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
+                            href="javascript:void(0)" @click="logout">Cerrar sessión</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
+                            href="javascript:void(0)" @click="logout">Cerrar sessión</a>
                     </li>
                 </ul>
-            </div>
+
+                <span class="nav-link dropdown-toggle ms-3 me-2" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Hola {{ user.name }}
+                </span>
+            </button>
         </div>
-    </nav>
+    </div>
 </template>
 
 <script setup>
-import { useStore} from "vuex";
+import { useStore } from "vuex";
 import useAuth from "@/composables/auth";
-import {computed} from "vue";
+import { computed } from "vue";
 import LocaleSwitcher from "../components/LocaleSwitcher.vue";
 
-    const store = useStore();
-    const user = computed(() => store.getters["auth/user"])
-    const { processing, logout } = useAuth();
+const store = useStore();
+const user = computed(() => store.getters["auth/user"])
+const { processing, logout } = useAuth();
 </script>
+
+<!-- <script setup>
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import { useLayout } from '../composables/layout';
+import { useStore } from 'vuex';
+import useAuth from "@/composables/auth";
+
+const { onMenuToggle } = useLayout();
+const store = useStore();
+const user = computed(() => store.state.auth.user)
+const { processing, logout } = useAuth();
+
+const topbarMenuActive = ref(false);
+
+const onTopBarMenuButton = () => {
+    topbarMenuActive.value = !topbarMenuActive.value;
+};
+
+const topbarMenuClasses = computed(() => {
+    return {
+        'layout-topbar-menu-mobile-active': topbarMenuActive.value
+    };
+});
+
+
+</script> -->
+
+<style lang="scss" scoped>
+.layout-topbar-button-c,
+.layout-topbar-button-c:hover {
+    width: auto;
+    background-color: rgb(255, 255, 255, 0);
+    border: 0;
+    border-radius: 0%;
+    padding: 1em;
+}
+</style>

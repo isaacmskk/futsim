@@ -38,9 +38,9 @@ const model = ref([
         ]
     },
     {
-        label: 'Posts',
+        label: 'Noticias',
         items: [
-            { label: 'Posts', icon: 'pi pi-fw pi-id-card', to: '/admin/posts', permision: 'post-list' }
+            { label: 'Noticias', icon: 'pi pi-fw pi-megaphone', to: '/admin/futsimvistas/noticias', permision: 'post-list' }
         ]
     }
 ]);

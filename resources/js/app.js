@@ -116,9 +116,9 @@ import ToastService from 'primevue/toastservice';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import 'vue-select/dist/vue-select.css';
 
-import "primeflex/primeflex.css";
+//import "primeflex/primeflex.css";
 import '../css/theme.css';
-//import "primevue/resources/themes/aura-dark-green/theme.css";
+import "primevue/resources/themes/aura-dark-green/theme.css";
 //import "primevue/resources/themes/viva-light/theme.css";
 import "primeicons/primeicons.css";
 
