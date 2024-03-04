@@ -37,7 +37,7 @@
                                     <button class="btn btn-danger"
                                         @click="deleteNoticia(noticia.id, index)">Delete</button>
                                         <div>
-                            <router-link :to="{ name: 'futsimvistas.createcomentario' }" class="btn btn-success">Hacer Comentario</router-link>
+                                            <router-link :to="{ name: 'futsimvistas.createcomentario', params: { id_noticia: noticia.id } }" class="btn btn-success">Hacer Comentario</router-link>
                         </div>
                                         <!-- <button class="btn btn-success"
                                         @click="crearComentario(comentario.id, store)">Crear Comentario</button> -->

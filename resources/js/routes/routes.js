@@ -249,8 +249,9 @@ export default [
                     },
                     {
                         name: 'futsimvistas.createcomentario',
-                        path: 'noticias/createcomentario',
+                        path: 'noticias/createcomentario/:id_noticia',
                         component: ComentariosCreate,
+                        props: true,
                         meta: {
                             breadCrumb: 'Listar Noticias',
                             linked: false,

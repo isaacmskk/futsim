@@ -16,11 +16,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 <strong>{{ strError }}</strong>
             </div>
-            {{ jugadores }}
+            {{ comentarios }}
             <form @submit.prevent="crearComentario">
+
                 <div class="form-group mb-2">
-                    <label>Nombre</label><span class="text-danger"> *</span>
-                    <input v-model="jugadores.nombre" type="text" class="form-control" placeholder="Nombre tarea">
+                    <input v-model="comentarios.id_noticia" type="text" class="form-control" placeholder="ID_NOTICIA" hidden>
+                </div>
+                <div class="form-group mb-2">
+                    <label>Comentario:</label><span class="text-danger"> *</span>
+                    <input v-model="comentarios.comentario" type="text" class="form-control" placeholder="Comentario">
+                </div>
+                <div class="form-group mb-2">
+                    <label>id_usuario</label><span class="text-danger"> *</span>
+                    <input v-model="comentarios.id_usuario" type="text" class="form-control" placeholder="Nombre tarea">
+                </div>
+                <div class="form-group mb-2">
+                    <input v-model="comentarios.time" type="text" class="form-control" placeholder="Nombre tarea" hidden>
                 </div>
 
 
@@ -35,29 +46,34 @@
     </div>
 </template>
 
-
 <script setup>
+import { ref, onMounted, watch, defineProps } from "vue";
 import axios from "axios";
-import { ref } from "vue";
+
+const { id_noticia } = defineProps(['id_noticia']);
+
 const comentarios = ref({});
 const strError = ref();
 const strSuccess = ref();
 
+onMounted(() => {
+  comentarios.value.id_noticia = id_noticia;
+});
 
-function crearComentario(){
-axios.post('/api/comentarios', comentarios.value)
+const crearComentario = () => {
+  axios.post('/api/comentarios', comentarios.value)
     .then(response => {
-
-        console.log(response);
-        strSuccess.value = response.data.success;
-        strError.value = "";
-    }).catch(error => {
-        console.log(error);
-        strSuccess.value = "";
-        strError.value = error.response.data.message;
-
+      console.log(response);
+      strSuccess.value = response.data.success;
+      strError.value = "";
+    })
+    .catch(error => {
+      console.log(error);
+      strSuccess.value = "";
+      strError.value = error.response.data.message;
     });
-}
+};
+
 
 </script>
 
