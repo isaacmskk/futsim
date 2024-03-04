@@ -16,4 +16,9 @@ class comentarios extends Model
         'id_noticia'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_usuario');
+    }
+
 }

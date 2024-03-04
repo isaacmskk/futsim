@@ -21,6 +21,10 @@ const JugadorUpdate = () => import('../views/admin/futsimvistas/updatejugador.vu
 const NoticiasList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const NoticiasCreate = () => import('../views/admin/futsimvistas/createnoticias.vue');
 
+const ComentariosList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
+const ComentariosCreate = () => import('../views/admin/futsimvistas/createcomentario.vue');
+
+
 
 
 
@@ -225,7 +229,32 @@ export default [
                         name: 'futsimvistas.createnoticia',
                         path: 'noticias/createnoticia',
                         component: NoticiasCreate,
-                        meta: { breadCrumb: 'Crear Noticia' }
+                        meta: { breadCrumb: 'Listar Noticias' }
+                    }
+                ]
+            },
+            {
+                name: 'Comentarios',
+                path: 'futsimvistas',
+                meta: { breadCrumb: 'Noticias' },
+                children: [
+                    {
+                        name: 'futsimvistas.indexnoticia',
+                        path: 'noticias',
+                        component: ComentariosList,
+                        meta: {
+                            breadCrumb: 'Listar Noticias',
+                            linked: false,
+                        }
+                    },
+                    {
+                        name: 'futsimvistas.createcomentario',
+                        path: 'noticias/createcomentario',
+                        component: ComentariosCreate,
+                        meta: {
+                            breadCrumb: 'Listar Noticias',
+                            linked: false,
+                        }
                     }
                 ]
             },

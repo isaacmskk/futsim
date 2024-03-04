@@ -6,7 +6,8 @@
                     <div class="d-flex justify-content-between pb-2 mb-2">
                         <h5 class="card-title">Todas las noticias</h5>
                         <div>
-                            <router-link :to="{ name: 'futsimvistas.createnoticia' }" class="btn btn-success">Nueva Noticia</router-link>
+                            <router-link :to="{ name: 'futsimvistas.createnoticia' }" class="btn btn-success">Nueva
+                                Noticia</router-link>
                         </div>
 
                     </div>
@@ -31,10 +32,16 @@
                                 <td>{{ noticia.publicado }}</td>
                                 <td>{{ noticia.foto }}</td>
                                 <td class="text-center">
-                                    <!-- <router-link :to="{ name: 'jugadores.updatejugador/:id' }" class="btn btn-danger">Nuevo Jugador</router-link> -->
-                                    <button class="btn btn-danger" @click="deleteNoticia(noticia.id, index)">Delete</button>
-                                </td>
 
+
+                                    <button class="btn btn-danger"
+                                        @click="deleteNoticia(noticia.id, index)">Delete</button>
+                                        <div>
+                            <router-link :to="{ name: 'futsimvistas.createcomentario' }" class="btn btn-success">Hacer Comentario</router-link>
+                        </div>
+                                        <!-- <button class="btn btn-success"
+                                        @click="crearComentario(comentario.id, store)">Crear Comentario</button> -->
+                                </td>
                             </tr>
                         </tbody>
                     </table>
