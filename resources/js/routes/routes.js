@@ -14,9 +14,9 @@ const TasksList = () => import('../views/admin/tasks/index.vue');
 const TasksCreate = () => import('../views/admin/tasks/create.vue');
 const TasksUpdate = () => import('../views/admin/tasks/update.vue');
 
-const JugadorList = () => import('../views/admin/futsimvistas/indexjugador.vue');
-const JugadorCreate = () => import('../views/admin/futsimvistas/createjugador.vue');
-const JugadorUpdate = () => import('../views/admin/futsimvistas/indexjugador.vue');
+const JugadorList = () => import('../views/admin/jugadoresadmin/indexjugador.vue');
+const JugadorCreate = () => import('../views/admin/jugadoresadmin/createjugador.vue');
+const JugadorUpdate = () => import('../views/admin/jugadoresadmin/indexjugador.vue');
 
 const NoticiasList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const NoticiasCreate = () => import('../views/admin/futsimvistas/createnoticias.vue');
@@ -185,23 +185,23 @@ export default [
                 ]
             },
             {
-                name: 'futsimvistas',
-                path: 'futsimvistas',
+                name: 'jugadoresadmin',
+                path: 'jugadoresadmin',
                 meta: { breadCrumb: 'Jugadores' },
                 children: [
                     {
-                        name: 'futsimvistas.indexjugador',
+                        name: 'jugadoresadmin.indexjugador',
                         path: 'jugadores',
                         component: JugadorList,
                         meta: { breadCrumb: 'Listar Jugadores' }
                     },
                     {
-                        name: 'futsimvistas.createjugador',
+                        name: 'jugadoresadmin.createjugador',
                         path: 'jugadores/createjugador',
                         component: JugadorCreate,
                         meta: { breadCrumb: 'Crear Jugador' }
                     }, {
-                        name: 'futsimvistas.updatejugador',
+                        name: 'jugadoresadmin.updatejugador',
                         path: 'indexjugador/:id',
                         component: JugadorUpdate,
                         meta: {

@@ -20,7 +20,7 @@
 
         </div>
         <div class="layout-topbar-menu" :class="topbarMenuClasses">
-            <router-link :to="{ name: 'futsimvistas.indexjugador' }" class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
+            <router-link :to="{ name: 'jugadoresadmin.indexjugador' }" class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
                 <i class="pi pi-user-plus"> Jugadores</i>
             </router-link>
 
