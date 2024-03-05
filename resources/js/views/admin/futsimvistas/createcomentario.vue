@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group mb-2">
                     <label>id_usuario</label><span class="text-danger"> *</span>
-                    <input v-model="comentarios.id_usuario" type="text" class="form-control" placeholder="Nombre tarea">
+                    <input v-model="comentarios.id_usuario" type="text" class="form-control" placeholder="Nombre tarea" hidden>
                 </div>
                 <div class="form-group mb-2">
                     <input v-model="comentarios.time" type="text" class="form-control" placeholder="Nombre tarea" hidden>

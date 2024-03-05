@@ -9,9 +9,7 @@
                             <router-link :to="{ name: 'futsimvistas.createjugador' }" class="btn btn-success">Nuevo
                                 Jugador</router-link>
                         </div>
-
                     </div>
-
                     <table class="table table-hover table-sm">
                         <thead class="bg-dark text-light">
                             <tr>
@@ -36,8 +34,8 @@
                                 <td class="text-center">
                                     <!-- <router-link :to="{ name: 'jugadores.updatejugador/:id' }" class="btn btn-danger">Nuevo Jugador</router-link> -->
                                     <button class="btn btn-danger" @click="deleteJugador(jugador.id, index)">Delete</button>
+                                    <button class="btn btn-success" @click="updateJugador(jugador.id, index)">Update</button> 
                                 </td>
-
                             </tr>
                         </tbody>
                     </table>
@@ -46,7 +44,6 @@
         </div>
     </div>
 </template>
-
 
 <script setup>
 import axios from "axios";
@@ -95,6 +92,65 @@ const deleteJugador = (id, index) => {
 
         })
 }
+
+const updateJugador = (id, index) => {
+
+const currentData = jugadores.value[index];
+
+swal({
+    title: 'Editar publicación',
+    html:
+        '<input id="swal-input1" class="swal2-input" placeholder="" value="' + currentData.id + '">' +
+        '<input id="swal-input2" class="swal2-input" placeholder="" value="' + currentData.nombre + '">' +
+        '<input id="swal-input3" class="swal2-input" placeholder="" value="' + currentData.apellido + '">' +
+        '<input id="swal-input4" class="swal2-input" placeholder="" value="' + currentData.posicion + '">' +
+        '<input id="swal-input5" class="swal2-input" placeholder="" value="' + currentData.nacionalidad + '">' +
+        '<input id="swal-input6" class="swal2-input" placeholder="" value="' + currentData.valoracion + '">' +
+        '<input id="swal-input7" class="swal2-input" placeholder="" value="' + currentData.carta + '">',
+
+    focusConfirm: false,
+    preConfirm: () => {
+        return [
+            document.getElementById('swal-input1').value,
+            document.getElementById('swal-input2').value,
+            document.getElementById('swal-input3').value,
+            document.getElementById('swal-input4').value,
+            document.getElementById('swal-input5').value,
+            document.getElementById('swal-input6').value,
+            document.getElementById('swal-input7').value
+
+
+        ]
+    }
+}).then(result => {
+    if (result.isConfirmed) {
+        const updatedData = {
+            id: result.value[0],
+            nombre: result.value[1],
+            apellido: result.value[2],
+            posicion: result.value[3],
+            nacionalidad: result.value[4],
+            valoracion: result.value[5],
+            carta: result.value[6]
+
+        };
+
+        axios.put('/api/jugadores/update/' + id, updatedData)
+            .then(response => {
+                jugadores.value.splice(index, 1, updatedData);
+                swal({
+                    icon: 'success',
+                    title: 'Jugador actualizado correctamente'
+                });
+            }).catch(error => {
+                swal({
+                    icon: 'error',
+                    title: 'No se ha podido actualizar el jugador'
+                });
+            });
+    }
+});
+};
 
 </script>
 

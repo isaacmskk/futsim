@@ -16,7 +16,7 @@ const TasksUpdate = () => import('../views/admin/tasks/update.vue');
 
 const JugadorList = () => import('../views/admin/futsimvistas/indexjugador.vue');
 const JugadorCreate = () => import('../views/admin/futsimvistas/createjugador.vue');
-const JugadorUpdate = () => import('../views/admin/futsimvistas/updatejugador.vue');
+const JugadorUpdate = () => import('../views/admin/futsimvistas/indexjugador.vue');
 
 const NoticiasList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const NoticiasCreate = () => import('../views/admin/futsimvistas/createnoticias.vue');
@@ -202,7 +202,7 @@ export default [
                         meta: { breadCrumb: 'Crear Jugador' }
                     }, {
                         name: 'futsimvistas.updatejugador',
-                        path: 'updatejugador/:id',
+                        path: 'indexjugador/:id',
                         component: JugadorUpdate,
                         meta: {
                             breadCrumb: 'Modificar Jugador',
