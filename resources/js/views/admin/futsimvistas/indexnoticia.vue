@@ -24,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(noticia, index) in noticias">
+                            <tr v-for="(noticia, index) in noticias" :key="noticia.id">
                                 <td class="text-center">{{ noticia.id }}</td>
                                 <td>{{ noticia.titulo }}</td>
                                 <td>{{ noticia.subtitulo }}</td>
@@ -32,15 +32,30 @@
                                 <td>{{ noticia.publicado }}</td>
                                 <td>{{ noticia.foto }}</td>
                                 <td class="text-center">
+                                    <button class="btn btn-danger" @click="deleteNoticia(noticia.id, index)">Delete</button>
+                                    <div>
+                                        <router-link :to="{ name: 'futsimvistas.createcomentario', params: { id_noticia: noticia.id } }" class="btn btn-success">Hacer Comentario</router-link>
+                                    </div>
 
-
-                                    <button class="btn btn-danger"
-                                        @click="deleteNoticia(noticia.id, index)">Delete</button>
-                                        <div>
-                                            <router-link :to="{ name: 'futsimvistas.createcomentario', params: { id_noticia: noticia.id } }" class="btn btn-success">Hacer Comentario</router-link>
-                        </div>
-                                        <!-- <button class="btn btn-success"
-                                        @click="crearComentario(comentario.id, store)">Crear Comentario</button> -->
+                                    <!-- Mostrar comentarios solo para la noticia actual -->
+                                    <table v-if="comentariosPorNoticia[noticia.id]" class="table table-hover table-sm">
+                                        <thead class="bg-dark text-light">
+                                            <tr>
+                                                <th width="50" class="text-center">#</th>
+                                                <th>Comentario</th>
+                                                <th>ID Usuario</th>
+                                                <th>Fecha y Hora</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(comentario, index) in comentariosPorNoticia[noticia.id]" :key="comentario.id">
+                                                <td class="text-center">{{ comentario.id }}</td>
+                                                <td>{{ comentario.comentario }}</td>
+                                                <td>{{ comentario.id_usuario }}</td>
+                                                <td>{{ comentario.time }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </td>
                             </tr>
                         </tbody>
@@ -51,22 +66,40 @@
     </div>
 </template>
 
-
 <script setup>
 import axios from "axios";
 import { ref, onMounted, inject } from "vue"
 const noticias = ref();
 const swal = inject('$swal');
-
+const comentariosPorNoticia = ref({});
 
 onMounted(() => {
-    // console.log('Mi vista esta montada'); 
     axios.get('/api/noticias')
         .then(response => {
             noticias.value = response.data;
-            console.log(response.data);
-        })
+        });
 });
+
+onMounted(() => {
+    axios.get('/api/comentarios')
+        .then(response => {
+            // Organizar comentarios por noticia
+            comentariosPorNoticia.value = groupComentariosPorNoticia(response.data);
+        });
+});
+
+// Función para organizar comentarios por noticia
+const groupComentariosPorNoticia = (comentarios) => {
+    const groupedComentarios = {};
+    comentarios.forEach((comentario) => {
+        const idNoticia = comentario.id_noticia;
+        if (!groupedComentarios[idNoticia]) {
+            groupedComentarios[idNoticia] = [];
+        }
+        groupedComentarios[idNoticia].push(comentario);
+    });
+    return groupedComentarios;
+};
 
 const deleteNoticia = (id, index) => {
     swal({
@@ -99,8 +132,6 @@ const deleteNoticia = (id, index) => {
 
         })
 }
-
 </script>
-
 
 <style></style>

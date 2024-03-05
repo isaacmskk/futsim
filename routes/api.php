@@ -35,7 +35,7 @@ Route::get('noticias', [NoticiasController::class, 'index']);
 Route::post('noticias/', [NoticiasController::class, 'store']);
 Route::delete('noticias/{id}', [NoticiasController::class, 'destroy']);
 
-
+Route::get('comentarios', [ComentariosController::class, 'index']);
 
 Route::post('comentarios/', [ComentariosController::class, 'store']);
 

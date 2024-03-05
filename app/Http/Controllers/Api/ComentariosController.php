@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\comentarios;
+use App\Models\noticias;
 
 class ComentariosController extends Controller
 {
@@ -24,6 +25,7 @@ class ComentariosController extends Controller
 {
     $request->validate([
         'comentario' => 'required',
+        'id_noticia' => 'required|exists:noticias,id', // Asegurar que la noticia exista
     ]);
 
     // Obtener el usuario autenticado
@@ -40,7 +42,11 @@ class ComentariosController extends Controller
         'time' => now(),
     ]);
 
-    return response()->json(['success' => true, 'data' => $comentario]);
+    // Obtener la noticia asociada al comentario
+    $noticia = noticias::find($noticiaId);
+
+    return response()->json(['success' => true, 'data' => $comentario, 'noticia' => $noticia]);
 }
+
 
 }
