@@ -1,7 +1,6 @@
 <?php
 //fichero api.php
 use App\Http\Controllers\Api\CategoryController;
-use App\Http\Controllers\api\ComentariosController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\ExerciseController;
@@ -10,7 +9,8 @@ use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\JugadoresController;
-use App\Http\Controllers\api\NoticiasController;
+use App\Http\Controllers\Api\NoticiasController;
+use App\Http\Controllers\api\ComentariosController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,7 +36,6 @@ Route::post('noticias/', [NoticiasController::class, 'store']);
 Route::delete('noticias/{id}', [NoticiasController::class, 'destroy']);
 
 Route::get('comentarios', [ComentariosController::class, 'index']);
-
 Route::post('comentarios/', [ComentariosController::class, 'store']);
 
 
