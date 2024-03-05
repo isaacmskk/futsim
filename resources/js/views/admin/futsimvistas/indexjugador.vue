@@ -32,7 +32,6 @@
                                 <td>{{ jugador.valoracion }}</td>
                                 <td>{{ jugador.carta }}</td>
                                 <td class="text-center">
-                                    <!-- <router-link :to="{ name: 'jugadores.updatejugador/:id' }" class="btn btn-danger">Nuevo Jugador</router-link> -->
                                     <button class="btn btn-danger" @click="deleteJugador(jugador.id, index)">Delete</button>
                                     <button class="btn btn-success" @click="updateJugador(jugador.id, index)">Update</button> 
                                 </td>
