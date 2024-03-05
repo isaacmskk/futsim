@@ -5,12 +5,16 @@
             <span>FUTSIM</span>
         </router-link>
 
-        <div class="d-flex justify-content-between pb-2 mb-2">
-            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
-                <router-link :to="{ name: 'futsimvistas.indexnoticia' }">
-                    <i class="pi pi-megaphone"></i>
-                </router-link>
-            </button>
+        <div class="layout-topbar-menu" :class="topbarMenuClasses">
+            <router-link :to="{ name: 'futsimvistas.indexnoticia' }" class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
+                <i class="pi pi-megaphone"> Noticias</i>
+            </router-link>
+
+        </div>
+        <div class="layout-topbar-menu" :class="topbarMenuClasses">
+            <router-link :to="{ name: 'futsimvistas.indexjugador' }" class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
+                <i class="pi pi-user-plus"> Jugadores</i>
+            </router-link>
 
         </div>
         <div class="layout-topbar-menu" :class="topbarMenuClasses">
@@ -32,14 +36,16 @@
             </button>
         </div>
         <div class="layout-topbar-menu" :class="topbarMenuClasses">
-            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
-                data-bs-toggle="dropdown">
-
-
-                <i class="pi pi-user"></i>
-
-            </button>
+            <template v-if="!user?.name">
+                <li>
+                    <router-link class="nav-link" to="/login">{{ $t('login') }}</router-link>
+                </li>
+                <li>
+                    <router-link class="nav-link" to="/register">{{ $t('register') }}</router-link>
+                </li>
+            </template>
         </div>
+
         <div class="layout-topbar-menu" :class="topbarMenuClasses">
             <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
                 data-bs-toggle="dropdown">
@@ -48,6 +54,7 @@
 
                 <i class="pi pi-user"></i>
                 <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
+
                     <li>
                         <router-link :to="{ name: 'profile.index' }" class="dropdown-item">Perfil</router-link>
                     </li>
@@ -82,33 +89,9 @@ import LocaleSwitcher from "../components/LocaleSwitcher.vue";
 const store = useStore();
 const user = computed(() => store.getters["auth/user"])
 const { processing, logout } = useAuth();
+
+
 </script>
-
-<!-- <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
-import { useLayout } from '../composables/layout';
-import { useStore } from 'vuex';
-import useAuth from "@/composables/auth";
-
-const { onMenuToggle } = useLayout();
-const store = useStore();
-const user = computed(() => store.state.auth.user)
-const { processing, logout } = useAuth();
-
-const topbarMenuActive = ref(false);
-
-const onTopBarMenuButton = () => {
-    topbarMenuActive.value = !topbarMenuActive.value;
-};
-
-const topbarMenuClasses = computed(() => {
-    return {
-        'layout-topbar-menu-mobile-active': topbarMenuActive.value
-    };
-});
-
-
-</script> -->
 
 <style lang="scss" scoped>
 .layout-topbar-button-c,
@@ -119,4 +102,5 @@ const topbarMenuClasses = computed(() => {
     border-radius: 0%;
     padding: 1em;
 }
+
 </style>

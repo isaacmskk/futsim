@@ -23,11 +23,11 @@ const model = ref([
         items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/admin', permision: 'all'}]
     },
     {
-        label: 'Usuarios',
+        label: 'Jugar',
         items: [
-            { label: 'Users', icon: 'pi pi-fw pi-id-card', to: '/admin/users', permision: 'user-list' },
-            { label: 'Roles', icon: 'pi pi-fw pi-check-square', to: '/admin/roles', permision:'role-list' },
-            { label: 'Permisos', icon: 'pi pi-fw pi-bookmark', to: '/admin/permissions', permision:'permission-list' }
+            { label: 'Jugadores', icon: 'pi pi-fw pi-user-plus', to: '/admin/futsimvistas/jugadores', permision: 'user-list' },
+            { label: 'Plantillas', icon: 'pi pi-fw pi-check-square', to: '/admin/roles', permision:'role-list' },
+            { label: 'Partidos', icon: 'pi pi-fw pi-bookmark', to: '/admin/permissions', permision:'permission-list' }
         ]
     },
     {

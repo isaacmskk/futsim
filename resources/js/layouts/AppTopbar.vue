@@ -14,6 +14,47 @@
         </button>
 
         <div class="layout-topbar-menu" :class="topbarMenuClasses">
+            <router-link :to="{ name: 'futsimvistas.indexnoticia' }" class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
+                <i class="pi pi-megaphone"> Noticias</i>
+            </router-link>
+
+        </div>
+        <div class="layout-topbar-menu" :class="topbarMenuClasses">
+            <router-link :to="{ name: 'futsimvistas.indexjugador' }" class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
+                <i class="pi pi-user-plus"> Jugadores</i>
+            </router-link>
+
+        </div>
+        <div class="layout-topbar-menu" :class="topbarMenuClasses">
+            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
+                data-bs-toggle="dropdown">
+
+
+                <i class="pi pi-user"></i>
+
+            </button>
+        </div>
+        <div class="layout-topbar-menu" :class="topbarMenuClasses">
+            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
+                data-bs-toggle="dropdown">
+
+
+                <i class="pi pi-user"></i>
+
+            </button>
+        </div>
+        <div class="layout-topbar-menu" :class="topbarMenuClasses">
+            <template v-if="!user?.name">
+                <li>
+                    <router-link class="nav-link" to="/login">{{ $t('login') }}</router-link>
+                </li>
+                <li>
+                    <router-link class="nav-link" to="/register">{{ $t('register') }}</router-link>
+                </li>
+            </template>
+        </div>
+
+        <div class="layout-topbar-menu" :class="topbarMenuClasses">
 
             <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
                 data-bs-toggle="dropdown">
