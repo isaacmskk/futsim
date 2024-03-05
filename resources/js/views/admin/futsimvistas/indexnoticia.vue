@@ -33,6 +33,7 @@
                                 <td>{{ noticia.foto }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-danger" @click="deleteNoticia(noticia.id, index)">Delete</button>
+                                    <button class="btn btn-success" @click="mostrarFormularioComentario(noticia.id)">Comentar</button>
                                     <div>
                                         <router-link :to="{ name: 'futsimvistas.createcomentario', params: { id_noticia: noticia.id } }" class="btn btn-success">Hacer Comentario</router-link>
                                     </div>
@@ -132,6 +133,45 @@ const deleteNoticia = (id, index) => {
 
         })
 }
+const mostrarFormularioComentario = (idNoticia) => {
+    swal({
+        title: 'Agregar Comentario',
+        html:
+            '<input id="swal-comentario" class="swal2-input" placeholder="Comentario">',
+        focusConfirm: false,
+        preConfirm: () => {
+            return {
+                comentario: document.getElementById('swal-comentario').value
+            };
+        }
+    }).then(result => {
+        if (result.isConfirmed) {
+            const nuevoComentario = {
+                id_noticia: idNoticia,
+                comentario: result.value.comentario
+            };
+            crearComentario(nuevoComentario);
+        }
+    });
+};
+// Dentro de la función crearComentario
+const crearComentario = (nuevoComentario) => {
+    axios.post('/api/comentarios', nuevoComentario)
+        .then(response => {
+            strSuccess.value = response.data.success;
+            strError.value = "";
+            // Agregar el nuevo comentario a la lista local de comentarios
+            if (!comentariosPorNoticia.value[nuevoComentario.id_noticia]) {
+                comentariosPorNoticia.value[nuevoComentario.id_noticia] = [];
+            }
+            comentariosPorNoticia.value[nuevoComentario.id_noticia].push(response.data);
+        })
+        .catch(error => {
+            strSuccess.value = "";
+            strError.value = error.response.data.message;
+        });
+};
+
 </script>
 
 <style></style>

@@ -22,7 +22,7 @@ const NoticiasList = () => import('../views/admin/futsimvistas/indexnoticia.vue'
 const NoticiasCreate = () => import('../views/admin/futsimvistas/createnoticias.vue');
 
 const ComentariosList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
-const ComentariosCreate = () => import('../views/admin/futsimvistas/createcomentario.vue');
+const ComentariosCreate = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 
 
 
@@ -249,7 +249,7 @@ export default [
                     },
                     {
                         name: 'futsimvistas.createcomentario',
-                        path: 'noticias/createcomentario/:id_noticia',
+                        path: 'noticias/indexnoticia/:id_noticia',
                         component: ComentariosCreate,
                         props: true,
                         meta: {
