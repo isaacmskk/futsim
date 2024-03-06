@@ -45,7 +45,9 @@
                 </div>
                 <div class="form-group mb-2">
                     <label>Carta</label><span class="text-danger"> *</span>
-                    <input v-model="jugadores.carta" type="text" class="form-control" placeholder="Carta" name="Carta">
+                    <!-- <input v-model="jugadores.carta" type="text" class="form-control" placeholder="Carta" name="Carta"> -->
+                    <DropZone v-model="jugadores.carta"/>
+
                 </div>
 
                 <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir Jugador</button>
