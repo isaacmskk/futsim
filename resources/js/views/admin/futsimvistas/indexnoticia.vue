@@ -32,11 +32,13 @@
                                 <td>{{ noticia.publicado }}</td>
                                 <td>{{ noticia.foto }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-danger" @click="deleteNoticia(noticia.id, index)">Delete</button>
-                                    <button class="btn btn-success" @click="mostrarFormularioComentario(noticia.id)">Comentar</button>
-                                    <div>
+                                    <button class="btn btn-danger"
+                                        @click="deleteNoticia(noticia.id, index)">Delete</button>
+                                    <button class="btn btn-success"
+                                        @click="mostrarFormularioComentario(noticia.id)">Comentar</button>
+                                    <!-- <div>
                                         <router-link :to="{ name: 'futsimvistas.createcomentario', params: { id_noticia: noticia.id } }" class="btn btn-success">Hacer Comentario</router-link>
-                                    </div>
+                                    </div> -->
 
                                     <!-- Mostrar comentarios solo para la noticia actual -->
                                     <table v-if="comentariosPorNoticia[noticia.id]" class="table table-hover table-sm">
@@ -49,7 +51,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="(comentario, index) in comentariosPorNoticia[noticia.id]" :key="comentario.id">
+                                            <tr v-for="(comentario, index) in comentariosPorNoticia[noticia.id]"
+                                                :key="comentario.id">
                                                 <td class="text-center">{{ comentario.id }}</td>
                                                 <td>{{ comentario.comentario }}</td>
                                                 <td>{{ comentario.id_usuario }}</td>
@@ -154,17 +157,22 @@ const mostrarFormularioComentario = (idNoticia) => {
         }
     });
 };
-// Dentro de la función crearComentario
 const crearComentario = (nuevoComentario) => {
     axios.post('/api/comentarios', nuevoComentario)
         .then(response => {
-            strSuccess.value = response.data.success;
-            strError.value = "";
+
             // Agregar el nuevo comentario a la lista local de comentarios
             if (!comentariosPorNoticia.value[nuevoComentario.id_noticia]) {
                 comentariosPorNoticia.value[nuevoComentario.id_noticia] = [];
             }
-            comentariosPorNoticia.value[nuevoComentario.id_noticia].push(response.data);
+            
+            comentariosPorNoticia.value[nuevoComentario.id_noticia].push(response.data.data);
+            // console.log(response.data);
+            // console.log( comentariosPorNoticia.value[nuevoComentario.id_noticia]);
+            swal({
+                    icon: 'success',
+                    title: 'Comentado correctamente :-)'
+                });
         })
         .catch(error => {
             strSuccess.value = "";
