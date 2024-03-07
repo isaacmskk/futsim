@@ -17,15 +17,24 @@ class jugadores extends Model implements HasMedia
         'apellido',
         'posicion',
         'nacionalidad',
-        'valoracion',
-        'carta'
+        'valoracion'
     ];
 
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('storage/exercises')
-            ->useFallbackUrl('/storage/placeholder.jpg')
-            ->useFallbackPath(public_path('/storage/placeholder.jpg'));
+        $this->addMediaCollection('images/jugadores')
+            ->useFallbackUrl('/images/placeholder.jpg')
+            ->useFallbackPath(public_path('/images/placeholder.jpg'));
     }
+
+    // public function registerMediaConversions(Media $media = null): void
+    // {
+    //     if (env('RESIZE_IMAGE') === true) {
+
+    //         $this->addMediaConversion('resized-image')
+    //             ->width(env('IMAGE_WIDTH', 300))
+    //             ->height(env('IMAGE_HEIGHT', 300));
+    //     }
+    // }
 }

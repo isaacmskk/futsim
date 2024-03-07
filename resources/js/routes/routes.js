@@ -156,6 +156,34 @@ export default [
                         meta: { breadCrumb: 'View' }
                     }
                 ]
+            },{
+                name: 'exercises',
+                path: 'exercises',
+                meta: { breadCrumb: 'Exercises'},
+                children: [
+                    {
+                        name: 'exercises.index',
+                        path: '',
+                        component: ExercisesIndex,
+                        meta: { breadCrumb: 'View' }
+                    },
+                    {
+                        name: 'exercises.create',
+                        path: 'create',
+                        component: ExercisesCreate,
+                        meta: { breadCrumb: 'Add new exercise' ,
+                        linked: false, }
+                    },
+                    {
+                        name: 'exercises.edit',
+                        path: 'edit/:id',
+                        component: ExercisesEdit,
+                        meta: {
+                            breadCrumb: 'Edit exercise',
+                            linked: false,
+                        }
+                    }
+                ]
             },
             {
                 name: 'tasks',

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string("posicion");
             $table->string("nacionalidad");
             $table->integer("valoracion");
-            $table->string("carta");
             $table->timestamps();
         });
     }

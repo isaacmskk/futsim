@@ -3,11 +3,17 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\Request;
 use App\Models\jugadores;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class JugadoresController extends Controller
+class JugadoresController extends Controller implements HasMedia
 {
+    use HasFactory, InteractsWithMedia;
     public function index()
     {
         // return "Hola";
@@ -29,13 +35,14 @@ class JugadoresController extends Controller
             'apellido' => 'required',
             'posicion' => 'required',
             'nacionalidad' => 'required',
-            'valoracion' => 'required|max:2',
-            'carta' => 'required',
+            'valoracion' => 'required|max:2'
         ]);
         $jugador = $request->all();
         $tarea = jugadores::create($jugador);
 
-
+        if ($request->hasFile('thumbnail')) {
+            $tarea->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-jugadores');
+        }
         return response()->json(['success' => true, 'data' => $tarea]);
     }
 

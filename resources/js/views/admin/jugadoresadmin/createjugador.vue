@@ -37,18 +37,20 @@
 
                 <div class="form-gorup mb-2">
                     <label>Nacionalidad</label><span class="text-danger">*</span>
-                    <input v-model="jugadores.nacionalidad" class="form-control" placeholder="Nacionalidad" name="Nacionalidad" />
+                    <input v-model="jugadores.nacionalidad" class="form-control" placeholder="Nacionalidad"
+                        name="Nacionalidad" />
                 </div>
                 <div class="form-group mb-2">
                     <label>Valoracion</label><span class="text-danger"> *</span>
-                    <input v-model="jugadores.valoracion" type="text" class="form-control" placeholder="Valoracion" name="Valoracion" >
+                    <input v-model="jugadores.valoracion" type="text" class="form-control" placeholder="Valoracion"
+                        name="Valoracion">
                 </div>
                 <div class="form-group mb-2">
-                    <label>Carta</label><span class="text-danger"> *</span>
-                    <!-- <input v-model="jugadores.carta" type="text" class="form-control" placeholder="Carta" name="Carta"> -->
-                    <DropZone v-model="jugadores.carta"/>
+                    <h6>Carta</h6><span class="text-danger"> *</span>
 
+                    <DropZone v-model="jugadores.thumbnail" />
                 </div>
+
 
                 <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir Jugador</button>
 
@@ -64,24 +66,40 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
-const jugadores = ref({});
+import DropZone from "@/components/DropZone.vue";
+
+// const jugadores = ref({});
+const jugadores = ref({
+        nombre: '',
+        apellido: '',
+        posicion: '',
+        nacionalidad:'',
+        valoracion:'',
+        thumbnail: ''
+    })
 const strError = ref();
 const strSuccess = ref();
 
+function crearJugador() {
+    let serializedJugador = new FormData()
+    for (let item in jugadores) {
+        if (jugadores.hasOwnProperty(item)) {
+            serializedJugador.append(item, jugadores[item])
+        }
+    }
 
-function crearJugador(){
-axios.post('/api/jugadores', jugadores.value)
-    .then(response => {
+    axios.post('/api/jugadores', jugadores.value)
+        .then(response => {
 
-        console.log(response);
-        strSuccess.value = response.data.success;
-        strError.value = "";
-    }).catch(error => {
-        console.log(error);
-        strSuccess.value = "";
-        strError.value = error.response.data.message;
+            console.log(response);
+            strSuccess.value = response.data.success;
+            strError.value = "";
+        }).catch(error => {
+            console.log(error);
+            strSuccess.value = "";
+            strError.value = error.response.data.message;
 
-    });
+        });
 }
 </script>
 
