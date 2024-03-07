@@ -36,10 +36,8 @@
                                         @click="deleteNoticia(noticia.id, index)">Delete</button>
                                     <button class="btn btn-success"
                                         @click="mostrarFormularioComentario(noticia.id)">Comentar</button>
-                                    <!-- <div>
-                                        <router-link :to="{ name: 'futsimvistas.createcomentario', params: { id_noticia: noticia.id } }" class="btn btn-success">Hacer Comentario</router-link>
-                                    </div> -->
-
+                                    
+                                        <button class="btn btn-success" @click="detallenoticia(noticia.id)">Ver noticia</button>
                                     <!-- Mostrar comentarios solo para la noticia actual -->
                                     <table v-if="comentariosPorNoticia[noticia.id]" class="table table-hover table-sm">
                                         <thead class="bg-dark text-light">
@@ -73,10 +71,12 @@
 <script setup>
 import axios from "axios";
 import { ref, onMounted, inject } from "vue"
+import { useRouter } from 'vue-router';
+
 const noticias = ref();
 const swal = inject('$swal');
 const comentariosPorNoticia = ref({});
-
+const router = useRouter();
 onMounted(() => {
     axios.get('/api/noticias')
         .then(response => {
@@ -179,6 +179,11 @@ const crearComentario = (nuevoComentario) => {
             strError.value = error.response.data.message;
         });
 };
+const detallenoticia = (idNoticia) => {
+    // Use router.push to navigate to the individual news page
+    console.log(idNoticia);
+    router.push({ name: 'futsimvistas.indexnoticiaindividual', params: { id: idNoticia } });
+}
 
 </script>
 
