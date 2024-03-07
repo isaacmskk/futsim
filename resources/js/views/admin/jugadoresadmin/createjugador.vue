@@ -16,6 +16,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 <strong>{{ strError }}</strong>
             </div>
+            {{jugadores}}
             <form @submit.prevent="crearJugador">
                 <div class="form-group mb-2">
                     <label>Nombre</label><span class="text-danger"> *</span>
@@ -65,11 +66,11 @@
 
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
+import { ref,reactive } from "vue";
 import DropZone from "@/components/DropZone.vue";
 
 // const jugadores = ref({});
-const jugadores = ref({
+const jugadores = reactive({
         nombre: '',
         apellido: '',
         posicion: '',
@@ -82,13 +83,18 @@ const strSuccess = ref();
 
 function crearJugador() {
     let serializedJugador = new FormData()
+
     for (let item in jugadores) {
         if (jugadores.hasOwnProperty(item)) {
             serializedJugador.append(item, jugadores[item])
         }
     }
-
-    axios.post('/api/jugadores', jugadores.value)
+    
+    axios.post('/api/jugadores', serializedJugador, {
+            headers: {
+                "content-type": "multipart/form-data"
+            }
+        })
         .then(response => {
 
             console.log(response);

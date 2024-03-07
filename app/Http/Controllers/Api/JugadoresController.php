@@ -29,7 +29,7 @@ class JugadoresController extends Controller implements HasMedia
 
     public function store(Request $request)
     {
-
+  
         $request->validate([
             'nombre' => 'required',
             'apellido' => 'required',
@@ -39,7 +39,7 @@ class JugadoresController extends Controller implements HasMedia
         ]);
         $jugador = $request->all();
         $tarea = jugadores::create($jugador);
-
+        
         if ($request->hasFile('thumbnail')) {
             $tarea->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-jugadores');
         }
