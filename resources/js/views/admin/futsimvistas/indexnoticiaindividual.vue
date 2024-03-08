@@ -27,32 +27,12 @@
                                 <td>{{ noticias.contenido }}</td>
                                 <td>{{ noticias.publicado }}</td>
                                 <td>{{ noticias.foto }}</td>
-                            
+
                                 <td class="text-center">
                                     <button class="btn btn-danger"
                                         @click="deleteNoticia(noticias.id, index)">Delete</button>
                                     <button class="btn btn-success"
                                         @click="mostrarFormularioComentario(noticias.id)">Comentar</button>
-                                    <!-- Mostrar comentarios solo para la noticia actual -->
-                                    <!-- <table v-if="comentariosPorNoticia[noticia.id]" class="table table-hover table-sm">
-                                        <thead class="bg-dark text-light">
-                                            <tr>
-                                                <th width="50" class="text-center">#</th>
-                                                <th>Comentario</th>
-                                                <th>ID Usuario</th>
-                                                <th>Fecha y Hora</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="(comentario, index) in comentariosPorNoticia[noticia.id]"
-                                                :key="comentario.id">
-                                                <td class="text-center">{{ comentario.id }}</td>
-                                                <td>{{ comentario.comentario }}</td>
-                                                <td>{{ comentario.id_usuario }}</td>
-                                                <td>{{ comentario.time }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table> -->
                                 </td>
                             </tr>
                         </tbody>
@@ -65,8 +45,9 @@
 
 <script setup>
 import axios from 'axios';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, inject } from 'vue';
 import { useRoute } from 'vue-router';
+const swal = inject('$swal');
 
 const route = useRoute();
 const noticias = ref([]);
@@ -80,4 +61,29 @@ onMounted(() => {
             console.error('Error fetching news data:', error);
         });
 });
+const deleteNoticia = (id, index) => {
+    swal({
+        title: 'Quieres eliminar el jugador?',
+        text: 'Esta acción no es reversible!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        confirmButtonColor: '#ef4444',
+        timer: 20000,
+        timerProgressBar: true,
+        reverseButtons: true
+    })
+        .then(result => {
+            axios.delete('/api/noticias/' + id)
+                .then(response => {
+                    noticias.value.splice(index, 1)
+                    swal({
+                        icon: 'success',
+                        title: 'Jugador eliminado correctamente'
+                    })
+
+                })
+
+        })
+}
 </script>

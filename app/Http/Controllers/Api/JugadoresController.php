@@ -5,12 +5,11 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\Request;
-use App\Models\jugadores;
+use App\Models\Jugadores;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-
 class JugadoresController extends Controller implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
@@ -29,22 +28,25 @@ class JugadoresController extends Controller implements HasMedia
 
     public function store(Request $request)
     {
-  
         $request->validate([
             'nombre' => 'required',
             'apellido' => 'required',
             'posicion' => 'required',
             'nacionalidad' => 'required',
-            'valoracion' => 'required|max:2'
+            'valoracion' => 'required|max:2',
+            'thumbnail' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Ajusta los tipos de archivo y el tamaño según tus necesidades
         ]);
+
         $jugador = $request->all();
-        $tarea = jugadores::create($jugador);
-        
+        $nuevoJugador = Jugadores::create($jugador);
+
         if ($request->hasFile('thumbnail')) {
-            $tarea->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-jugadores');
+            $nuevoJugador->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-jugadores');
         }
-        return response()->json(['success' => true, 'data' => $tarea]);
+
+        return response()->json(['success' => true, 'data' => $nuevoJugador]);
     }
+
 
     public function update($id, Request $request)
     {

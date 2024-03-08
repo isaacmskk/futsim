@@ -30,7 +30,9 @@
                                 <td>{{ jugador.posicion }}</td>
                                 <td>{{ jugador.nacionalidad }}</td>
                                 <td>{{ jugador.valoracion }}</td>
-                                <td>{{ jugador.carta }}</td>
+                                <td>            
+                                    <img :src="`http://localhost:8000/storage/3/12A_0705.jpg`" alt="Imagen Jugador" class="image-table">
+                                </td>
                                 <td class="text-center">
                                     <button class="btn btn-danger" @click="deleteJugador(jugador.id, index)">Delete</button>
                                     <button class="btn btn-success" @click="updateJugador(jugador.id, index)">Update</button> 
