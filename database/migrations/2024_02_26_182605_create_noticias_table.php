@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string("subtitulo");
             $table->string("contenido");
             $table->dateTime("publicado");
-            $table->string("foto");
             $table->timestamps();
         });
     }
