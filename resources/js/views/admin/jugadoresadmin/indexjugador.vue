@@ -108,8 +108,7 @@ swal({
         '<input id="swal-input3" class="swal2-input" placeholder="" value="' + currentData.apellido + '">' +
         '<input id="swal-input4" class="swal2-input" placeholder="" value="' + currentData.posicion + '">' +
         '<input id="swal-input5" class="swal2-input" placeholder="" value="' + currentData.nacionalidad + '">' +
-        '<input id="swal-input6" class="swal2-input" placeholder="" value="' + currentData.valoracion + '">' +
-        '<input id="swal-input7" class="swal2-input" placeholder="" value="' + currentData.carta + '">',
+        '<input id="swal-input6" class="swal2-input" placeholder="" value="' + currentData.valoracion + '">',
 
     focusConfirm: false,
     preConfirm: () => {
@@ -120,7 +119,6 @@ swal({
             document.getElementById('swal-input4').value,
             document.getElementById('swal-input5').value,
             document.getElementById('swal-input6').value,
-            document.getElementById('swal-input7').value
 
 
         ]

@@ -26,12 +26,14 @@
 
                 <div class="form-group mb-2">
                     <label>Subtitulo</label><span class="text-danger"> *</span>
-                    <textarea v-model="noticia.subtitulo" class="form-control" rows="3" placeholder="Subtitulo Noticia"></textarea>
+                    <textarea v-model="noticia.subtitulo" class="form-control" rows="3"
+                        placeholder="Subtitulo Noticia"></textarea>
                 </div>
 
                 <div class="form-group mb-2">
                     <label>Contenido</label><span class="text-danger"> *</span>
-                    <textarea v-model="noticia.contenido" class="form-control" rows="3" placeholder="Contenido Noticia"></textarea>
+                    <textarea v-model="noticia.contenido" class="form-control" rows="3"
+                        placeholder="Contenido Noticia"></textarea>
                 </div>
 
 
@@ -43,7 +45,7 @@
 
                 <div class="form-gorup mb-2">
                     <label>Fecha fin</label><span class="text-danger">*</span>
-                    <input v-model="noticia.foto" class="form-control" rows="3" placeholder="Foto Noticia" />
+                    <DropZone v-model="noticia.thumbnail" />
                 </div>
 
 
@@ -60,25 +62,40 @@
 
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
-const noticia = ref({});
+import { ref, reactive } from "vue";
+import DropZone from "@/components/DropZone.vue";
+
+const noticia = reactive({
+    id: '',
+    titulo: '',
+    subtitulo: '',
+    contenido: '',
+    publicado: '',
+    thumbnail: ''
+});
 const strError = ref();
 const strSuccess = ref();
 
 
-function addNoticia(){
-axios.post('/api/noticias', noticia.value)
-    .then(response => {
+function addNoticia() {
+    let serializedNoticia = new FormData()
+    for (let item in noticia) {
+        if (noticia.hasOwnProperty(item)) {
+            serializedNoticia.append(item, noticia[item])
+        }
+    }
+    axios.post('/api/noticias', serializedNoticia)
+        .then(response => {
 
-        console.log(response);
-        strSuccess.value = response.data.success;
-        strError.value = "";
-    }).catch(error => {
-        console.log(error);
-        strSuccess.value = "";
-        strError.value = error.response.data.message;
+            console.log(response);
+            strSuccess.value = response.data.success;
+            strError.value = "";
+        }).catch(error => {
+            console.log(error);
+            strSuccess.value = "";
+            strError.value = error.response.data.message;
 
-    });
+        });
 }
 </script>
 

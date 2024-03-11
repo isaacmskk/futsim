@@ -5,13 +5,19 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\noticias;
-
-class NoticiasController extends Controller
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+class NoticiasController extends Controller implements HasMedia
 {
+    use HasFactory, InteractsWithMedia;
+
     public function index()
     {
         // return "Hola";
-        $noticias = noticias::all()->toArray();
+        $noticias = noticias::with('media')->get();
         return $noticias;
     }
 
@@ -28,12 +34,14 @@ class NoticiasController extends Controller
             'subtitulo' => 'required|max:125',
             'contenido' => 'required',
             'publicado' => 'required',
-            'foto' => 'required',
+            'thumbnail' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Ajusta los tipos de archivo y el tamaño según tus necesidades
         ]);
         $noticia = $request->all();
         $tarea = noticias::create($noticia);
 
-
+        if ($request->hasFile('thumbnail')) {
+            $tarea->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-jugadores');
+        }
         return response()->json(['success' => true, 'data' => $tarea]);
     }
 

@@ -30,7 +30,9 @@
                                 <td>{{ noticia.subtitulo }}</td>
                                 <td>{{ noticia.contenido }}</td>
                                 <td>{{ noticia.publicado }}</td>
-                                <td>{{ noticia.foto }}</td>
+                                <td>            
+                                    <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia" class="image-table">
+                                </td>
                                 <td class="text-center">
                                     <button class="btn btn-danger"
                                         @click="deleteNoticia(noticia.id, index)">Delete</button>
