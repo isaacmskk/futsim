@@ -11,7 +11,6 @@
                         </div>
                     </div>
 
-                    {{ jugadores }}
                     <table class="table table-hover table-sm">
                         <thead class="bg-dark text-light">
                             <tr>
