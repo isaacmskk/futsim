@@ -16,7 +16,7 @@ class JugadoresController extends Controller implements HasMedia
     public function index()
     {
         // return "Hola";
-        $jugadores = jugadores::all()->toArray();
+        $jugadores = jugadores::with('media')->get();
         return $jugadores;
     }
 

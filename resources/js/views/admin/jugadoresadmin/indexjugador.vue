@@ -10,6 +10,8 @@
                                 Jugador</router-link>
                         </div>
                     </div>
+
+                    {{ jugadores }}
                     <table class="table table-hover table-sm">
                         <thead class="bg-dark text-light">
                             <tr>
@@ -23,6 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             <tr v-for="(jugador, index) in jugadores">
                                 <td class="text-center">{{ jugador.id }}</td>
                                 <td>{{ jugador.nombre }}</td>
@@ -31,7 +34,7 @@
                                 <td>{{ jugador.nacionalidad }}</td>
                                 <td>{{ jugador.valoracion }}</td>
                                 <td>            
-                                    <img :src="`http://localhost:8000/storage/3/12A_0705.jpg`" alt="Imagen Jugador" class="image-table">
+                                    <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="image-table">
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-danger" @click="deleteJugador(jugador.id, index)">Delete</button>

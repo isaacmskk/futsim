@@ -82,15 +82,15 @@ onMounted(() => {
         .then(response => {
             noticias.value = response.data;
         });
-});
 
-onMounted(() => {
-    axios.get('/api/comentarios')
+        axios.get('/api/comentarios')
         .then(response => {
             // Organizar comentarios por noticia
             comentariosPorNoticia.value = groupComentariosPorNoticia(response.data);
         });
 });
+
+
 
 // Función para organizar comentarios por noticia
 const groupComentariosPorNoticia = (comentarios) => {
