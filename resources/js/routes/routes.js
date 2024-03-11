@@ -14,9 +14,13 @@ const TasksList = () => import('../views/admin/tasks/index.vue');
 const TasksCreate = () => import('../views/admin/tasks/create.vue');
 const TasksUpdate = () => import('../views/admin/tasks/update.vue');
 
-const JugadorList = () => import('../views/admin/jugadoresadmin/indexjugador.vue');
-const JugadorCreate = () => import('../views/admin/jugadoresadmin/createjugador.vue');
-const JugadorUpdate = () => import('../views/admin/jugadoresadmin/indexjugador.vue');
+const JugadorListAdmin = () => import('../views/admin/jugadoresadmin/indexjugador.vue');
+const JugadorCreateAdmin = () => import('../views/admin/jugadoresadmin/createjugador.vue');
+const JugadorUpdateAdmin = () => import('../views/admin/jugadoresadmin/indexjugador.vue');
+
+const JugadorList = () => import('../views/admin/jugadores/indexjugador.vue');
+// const JugadorCreate = () => import('../views/auth/jugadores/createjugador.vue');
+// const JugadorUpdate = () => import('../views/auth/jugadores/indexjugador.vue');
 
 const NoticiasList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const NoticiasCreate = () => import('../views/admin/futsimvistas/createnoticias.vue');
@@ -55,6 +59,9 @@ function guest(to, from, next) {
 
 export default [
     {
+        // redirect: {
+        //     name: 'admin.index'
+        // },
         path: '/',
         // redirect: { name: 'login' },
         component: GuestLayout,
@@ -221,22 +228,35 @@ export default [
                     {
                         name: 'jugadoresadmin.indexjugador',
                         path: 'jugadores',
-                        component: JugadorList,
+                        component: JugadorListAdmin,
                         meta: { breadCrumb: 'Listar Jugadores' }
                     },
                     {
                         name: 'jugadoresadmin.createjugador',
                         path: 'jugadores/createjugador',
-                        component: JugadorCreate,
+                        component: JugadorCreateAdmin,
                         meta: { breadCrumb: 'Crear Jugador' }
                     }, {
                         name: 'jugadoresadmin.updatejugador',
                         path: 'indexjugador/:id',
-                        component: JugadorUpdate,
+                        component: JugadorUpdateAdmin,
                         meta: {
                             breadCrumb: 'Modificar Jugador',
                             linked: false,
                         }
+                    }
+                ]
+            },
+            {
+                name: 'jugadores',
+                path: 'jugadores',
+                meta: { breadCrumb: 'Jugadores' },
+                children: [
+                    {
+                        name: 'jugadores.indexjugador',
+                        path: '/admin/jugadores',
+                        component: JugadorList,
+                        meta: { breadCrumb: 'Listar Jugadores' }
                     }
                 ]
             },
