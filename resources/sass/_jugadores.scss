@@ -1,8 +1,12 @@
-img{
-    width: 190px;
-    height: 300px;
+.imgJugador{
+    width: 240px;
+    height: 350px;
 }
 
 .cartJugadores{
     padding: auto;
+}
+
+.card:last-child{
+    margin-bottom: auto!important;
 }
