@@ -41,14 +41,14 @@ const model = ref([
     {
         label: 'Noticias',
         items: [
-            { label: 'Noticias', icon: 'pi pi-fw pi-megaphone', to: '/admin/futsimvistas/noticias', permision: 'all' }
+            { label: 'Noticias', icon: 'pi pi-fw pi-check-square', to: '/admin/noticias', permision:'role-list'  }
         ]
     },
     {
         label: 'Panel Usuario',
         items: [
             { label: 'Modificar Jugadores', icon: 'pi pi-fw pi-user-plus', to: '/admin/jugadoresadmin/jugadores', permision: 'user-list' },
-            { label: 'Modificar Noticias', icon: 'pi pi-fw pi-check-square', to: '/admin/roles', permision:'role-list' },
+            { label: 'Modificar Noticias', icon: 'pi pi-fw pi-megaphone', to: '/admin/futsimvistas/noticias', permision: 'all'},
             { label: 'Personal', icon: 'pi pi-fw pi-bookmark', to: '/admin/permissions', permision:'all' }
         ]
     },

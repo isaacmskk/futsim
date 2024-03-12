@@ -22,12 +22,17 @@ const JugadorList = () => import('../views/admin/jugadores/indexjugador.vue');
 // const JugadorCreate = () => import('../views/auth/jugadores/createjugador.vue');
 // const JugadorUpdate = () => import('../views/auth/jugadores/indexjugador.vue');
 
-const NoticiasList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
+const NoticiasListAdmin = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const NoticiasCreate = () => import('../views/admin/futsimvistas/createnoticias.vue');
 const NoticiasIndividual = () => import('../views/admin/futsimvistas/indexnoticiaindividual.vue');
 
+const NoticiasList = () => import('../views/admin/noticias/indexnoticia.vue');
+
+
 const ComentariosList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const ComentariosCreate = () => import('../views/admin/futsimvistas/indexnoticia.vue');
+
+
 
 
 
@@ -261,14 +266,14 @@ export default [
                 ]
             },
             {
-                name: 'Noticias',
+                name: 'NoticiasAdmin',
                 path: 'futsimvistas',
                 meta: { breadCrumb: 'Noticias' },
                 children: [
                     {
                         name: 'futsimvistas.indexnoticia',
                         path: 'noticias',
-                        component: NoticiasList,
+                        component: NoticiasListAdmin,
                         meta: {
                             breadCrumb: 'Listar Noticias',
                             linked: false,
@@ -287,6 +292,18 @@ export default [
                         meta: { breadCrumb: 'Listar Noticias' }
                     }
                     
+                ]
+            },{
+                name: 'Noticias',
+                path: 'noticias',
+                meta: { breadCrumb: 'Noticias' },
+                children: [
+                    {
+                        name: 'noticias.indexnoticia',
+                        path: '/admin/noticias',
+                        component: NoticiasList,
+                        meta: { breadCrumb: 'Listar Noticias' }
+                    }
                 ]
             },
             {

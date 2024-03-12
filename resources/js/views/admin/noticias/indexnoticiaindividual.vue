@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between pb-2 mb-2">
-                        <h5 class="card-title text-light">Noticia</h5>
+                        <h5 class="card-title">Todas las noticias</h5>
                     </div>
 
                     <table class="table table-hover table-sm">
