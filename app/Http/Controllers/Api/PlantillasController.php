@@ -16,19 +16,25 @@ class PlantillasController extends Controller
     }
     public function store(Request $request)
     {
-
         $request->validate([
             'nombre' => 'required',
-            'id_usuario' => 'required',
             'grl' => 'required',
-
+            'jugadores' => 'array',
+            'jugadores.*' => 'exists:jugadores,id', // Ensure players exist in the database
         ]);
+    
+        // Get the authenticated user
+        $usuario = auth()->user();
+    
+        // Create the plantilla
         $plantilla = $request->all();
+        $plantilla['id_usuario'] = $usuario->id;
+    
         $tarea = plantillas::create($plantilla);
-
-
+    
         return response()->json(['success' => true, 'data' => $tarea]);
     }
+    
 
     public function show($id)
     {
