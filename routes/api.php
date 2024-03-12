@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\JugadoresController;
 use App\Http\Controllers\Api\NoticiasController;
 use App\Http\Controllers\api\ComentariosController;
+use App\Http\Controllers\api\PlantillasController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,8 @@ Route::get('noticias/{id}', [NoticiasController::class, 'show']);
 Route::get('comentarios', [ComentariosController::class, 'index']);
 Route::post('comentarios/', [ComentariosController::class, 'store']);
 
+Route::get('plantillas', [PlantillasController::class, 'index']);
+Route::post('plantillas/', [PlantillasController::class, 'store']);
 
 
 Route::group(['middleware' => 'auth:sanctum'], function() {

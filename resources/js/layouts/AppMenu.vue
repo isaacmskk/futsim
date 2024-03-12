@@ -26,7 +26,7 @@ const model = ref([
         label: 'Jugar',
         items: [
             { label: 'Jugadores', icon: 'pi pi-fw pi-user-plus', to: '/admin/jugadores', permision: 'all' },
-            { label: 'Plantillas', icon: 'pi pi-fw pi-check-square', to: '/admin/roles', permision:'all' },
+            { label: 'Plantillas', icon: 'pi pi-fw pi-check-square', to: '/admin/plantillas', permision:'all' },
             { label: 'Partidos', icon: 'pi pi-fw pi-bookmark', to: '/admin/permissions', permision:'all' }
         ]
     },

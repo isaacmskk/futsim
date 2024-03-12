@@ -32,6 +32,7 @@ const NoticiasList = () => import('../views/admin/noticias/indexnoticia.vue');
 const ComentariosList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const ComentariosCreate = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 
+const PlantillasCreate = () => import('../views/admin/plantillas/indexplantillas.vue');
 
 
 
@@ -332,7 +333,15 @@ export default [
                     }
                 ]
             },
-
+            {
+                name: 'plantillas.create',
+                path: 'plantillas',
+                component: PlantillasCreate,
+                meta: {
+                  breadCrumb: 'Crear Plantilla',
+                  linked: false,
+                }
+              },              
             {
                 name: 'categories',
                 path: 'categories',
