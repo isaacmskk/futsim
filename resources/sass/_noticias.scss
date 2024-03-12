@@ -1,12 +1,24 @@
 .imgNoticias{
-    width: 295px;
-    height: 200px;
+    width: 335px;
+    height: 225px;
 }
 
-// .cartJugadores{
-//     padding: auto;
-// }
+.button{
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    background-color: var(--bs-body-color);
+}
 
 .card:last-child{
     margin-bottom: auto!important;
+}
+
+.card {
+    background: var(--surface-card);
+    border: 1px solid var(--surface-border)!important;
+    padding: 1rem!important;
+    margin-bottom: 2rem!important;
+    box-shadow: var(--card-shadow)!important;
+    border-radius: 12px!important;
 }
