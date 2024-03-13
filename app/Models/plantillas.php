@@ -12,6 +12,5 @@ class plantillas extends Model
         'id',
         'nombre',
         'id_usuario',
-        'grl'
     ];
 }

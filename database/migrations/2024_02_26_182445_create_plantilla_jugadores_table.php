@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_jugador');
             $table->foreign('id_jugador')->references('id')->on('jugadores')->onDelete('cascade');
 
-            $table->integer("valoracion");
             $table->timestamps();
         });
     }
