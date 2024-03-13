@@ -9,7 +9,7 @@
 
                     </div>
                         <tbody class="row">
-                            <tr v-for="(noticia, index) in noticias" :key="noticia.id" class="card col-4 text-center">
+                            <tr v-for="(noticia, index) in noticias" :key="noticia.id" class="card col-12 col-lg-4 text-center">
                                 <button @click="detallenoticia(noticia.id)" class="button">
                                 <td>
                                     <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia" class="imgNoticias" >
