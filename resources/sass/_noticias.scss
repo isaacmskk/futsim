@@ -1,5 +1,5 @@
 .imgNoticias{
-    width: 335px;
+    width: 336px;
     height: 225px;
 }
 
@@ -7,7 +7,7 @@
     padding: 0px;
     margin: 0px;
     border: 0px;
-    background-color: var(--bs-body-color);
+    background-color:#18181b;
 }
 
 .card:last-child{
@@ -16,7 +16,7 @@
 
 .card {
     background: var(--surface-card);
-    border: 1px solid var(--surface-border)!important;
+    border: 0px solid var(--surface-border)!important;
     padding: 1rem!important;
     margin-bottom: 2rem!important;
     box-shadow: var(--card-shadow)!important;
