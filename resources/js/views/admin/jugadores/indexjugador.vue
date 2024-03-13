@@ -10,7 +10,7 @@
             </div>
           </div>
             <tbody class="row">
-              <tr v-for="(jugador, index) in jugadores" :key="index" class="card col-3 cartJugadores text-center">
+              <tr v-for="(jugador, index) in jugadores" :key="index" class="card col-12 col-lg-3 cartJugadores text-center">
                 <td class="p-2">
                   <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
                 </td>
