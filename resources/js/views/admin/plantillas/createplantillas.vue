@@ -21,12 +21,6 @@
                     <input v-model="plantilla.nombre" type="text" class="form-control"
                         placeholder="Nombre de la plantilla">
                 </div>
-
-                <div class="form-group mb-2">
-                    <label>GRL</label><span class="text-danger"> *</span>
-                    <input v-model="plantilla.grl" type="text" class="form-control" placeholder="GRL">
-                </div>
-
                 <button type="submit" class="btn btn-primary mt-4 mb-4">Crear Plantilla</button>
             </form>
         </div>

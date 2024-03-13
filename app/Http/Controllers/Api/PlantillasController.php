@@ -18,7 +18,6 @@ class PlantillasController extends Controller
     {
         $request->validate([
             'nombre' => 'required',
-            'grl' => 'required',
             'jugadores' => 'array',
             'jugadores.*' => 'exists:jugadores,id', // Ensure players exist in the database
         ]);
