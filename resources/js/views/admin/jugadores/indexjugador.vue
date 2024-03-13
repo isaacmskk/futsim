@@ -9,16 +9,16 @@
               <button class="btn btn-primary" @click="guardarJugadoresSeleccionados">Guardar Jugadores Seleccionados</button>
             </div>
           </div>
-            <tbody class="row">
-              <tr v-for="(jugador, index) in jugadores" :key="index" class="card col-12 col-lg-3 cartJugadores text-center">
-                <td class="p-2">
-                  <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
-                </td>
-                <td class="text-center">
-                  <button class="btn btn-success" @click="seleccionarJugador(jugador.id)">Seleccionar</button>
-                </td>
-              </tr>
-            </tbody>
+          <tbody class="row">
+            <tr v-for="(jugador, index) in jugadores" :key="index" class="card col-3 cartJugadores text-center">
+              <td class="p-2">
+                <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
+              </td>
+              <td class="text-center">
+                <button class="btn btn-success" @click="seleccionarJugador(jugador.id)">Seleccionar</button>
+              </td>
+            </tr>
+          </tbody>
         </div>
       </div>
     </div>
@@ -28,7 +28,9 @@
 <script setup>
 import axios from "axios";
 import { ref, onMounted, inject } from "vue";
-
+import { useRoute, useRouter } from 'vue-router';
+const route = useRoute();
+const router = useRouter();
 const jugadores = ref([]);
 const jugadoresSeleccionados = ref([]);
 const swal = inject("$swal");
@@ -46,7 +48,6 @@ const seleccionarJugador = (jugadorId) => {
       jugadoresSeleccionados.value.push(jugadorId);
       console.log("Jugador seleccionado:", jugadorId);
     } else {
-      // Si ya fue seleccionado, deseleccionarlo
       jugadoresSeleccionados.value = jugadoresSeleccionados.value.filter((id) => id !== jugadorId);
       console.log("Jugador deseleccionado:", jugadorId);
     }
@@ -56,24 +57,18 @@ const seleccionarJugador = (jugadorId) => {
 };
 
 const guardarJugadoresSeleccionados = () => {
-  axios.post("/api/plantillas", { jugadores: jugadoresSeleccionados.value })
+  const plantillaNombre = "Plantilla";
+
+  axios.post("/api/plantillas", { nombre: plantillaNombre, jugadores: jugadoresSeleccionados.value })
     .then(response => {
-      console.log("Jugadores guardados en la base de datos:", response.data);
+      const plantillaId = response.data.data.id;
+
+      router.push({ name: 'plantillas.indexplantillas', params: { idPlantilla: plantillaId } });
+
       swal.fire("¡Éxito!", "Jugadores guardados en la base de datos.", "success");
     })
     .catch(error => {
       console.error("Error al guardar jugadores:", error);
-      if (error.response) {
-        // La solicitud fue hecha y el servidor respondió con un código de estado que no está en el rango de 2xx
-        console.error("Estado de respuesta:", error.response.status);
-        console.error("Datos de respuesta:", error.response.data);
-      } else if (error.request) {
-        // La solicitud fue hecha pero no se recibió ninguna respuesta
-        console.error("No hay respuesta del servidor.");
-      } else {
-        // Algo sucedió en la configuración de la solicitud que provocó que se lanzara un error
-        console.error("Error durante la solicitud:", error.message);
-      }
       swal.fire("Error", "Hubo un problema al guardar los jugadores.", "error");
     });
 };
@@ -81,5 +76,4 @@ const guardarJugadoresSeleccionados = () => {
 </script>
 
 <style>
-/* Estilos opcionales */
 </style>

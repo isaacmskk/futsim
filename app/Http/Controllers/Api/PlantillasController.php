@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Jugadores;
 use Illuminate\Http\Request;
 use App\Models\plantillas;
+use App\Models\plantilla_jugadores;
+use App\Models\User;
 
 class PlantillasController extends Controller
 {
     public function index()
     {
-        // return "Hola";
-        $plantillas = plantillas::all()->toArray();
+        $plantillas = plantillas::with('jugadores')->get();
         return $plantillas;
     }
     public function store(Request $request)
@@ -45,6 +46,22 @@ class PlantillasController extends Controller
     return response()->json($plantilla);
 }
     
+public function obtenerJugadoresSeleccionados($idPlantilla)
+{
+    $jugadoresSeleccionados = plantilla_jugadores::where('id_plantilla', $idPlantilla)
+        ->join('jugadores', 'plantilla_jugadores.id_jugador', '=', 'jugadores.id')
+        ->select('jugadores.*')
+        ->get();
+
+    return response()->json($jugadoresSeleccionados);
+}
+
+public function indexUsuario()
+{
+    $usuario = auth()->user();
+    $plantillasUsuario = $usuario->misPlantillas()->with('jugadores')->get();
+    return $plantillasUsuario;
+}
     public function destroy($id)
     {
         $plantilla = plantillas::find($id);

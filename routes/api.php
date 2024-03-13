@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\NoticiasController;
 use App\Http\Controllers\api\ComentariosController;
 use App\Http\Controllers\api\PlantillasController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,7 @@ Route::get('jugadores', [JugadoresController::class, 'index']);
 Route::post('jugadores/', [JugadoresController::class, 'store']);
 Route::put('jugadores/update/{id}', [JugadoresController::class, 'update']);
 Route::delete('jugadores/{id}', [JugadoresController::class, 'destroy']);
+Route::get('/api/jugadores/seleccionados', [JugadoresController::class, 'obtenerJugadoresSeleccionados']);
 
 Route::get('noticias', [NoticiasController::class, 'index']);
 Route::post('noticias/', [NoticiasController::class, 'store']);
@@ -42,6 +44,12 @@ Route::post('comentarios/', [ComentariosController::class, 'store']);
 
 Route::get('plantillas', [PlantillasController::class, 'index']);
 Route::post('plantillas/', [PlantillasController::class, 'store']);
+Route::get('/plantillas-usuario', [PlantillasController::class, 'indexUsuario']);
+
+
+Route::get('/api/plantillas/{idPlantilla}/jugadores/seleccionados', [PlantillasController::class, 'obtenerJugadoresSeleccionados']);
+
+
 
 
 Route::group(['middleware' => 'auth:sanctum'], function() {

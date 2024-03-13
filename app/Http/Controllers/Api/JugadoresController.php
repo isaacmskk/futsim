@@ -15,7 +15,6 @@ class JugadoresController extends Controller implements HasMedia
     use HasFactory, InteractsWithMedia;
     public function index()
     {
-        // return "Hola";
         $jugadores = jugadores::with('media')->get();
         return $jugadores;
     }
