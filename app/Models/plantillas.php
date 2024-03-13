@@ -13,4 +13,8 @@ class plantillas extends Model
         'nombre',
         'id_usuario',
     ];
+    public function jugadores()
+{
+    return $this->belongsToMany(Jugadores::class, 'plantilla_jugadores', 'id_plantilla', 'id_jugador');
+}
 }

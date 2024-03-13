@@ -12,13 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('plantilla_jugadores', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_plantilla');
-            $table->foreign('id_plantilla')->references('id')->on('plantillas')->onDelete('cascade');
-
-            
-            $table->unsignedBigInteger('id_jugador');
-            $table->foreign('id_jugador')->references('id')->on('jugadores')->onDelete('cascade');
-
+            $table->foreignId('id_plantilla')->constrained('plantillas');
+            $table->foreignId('id_jugador')->constrained('jugadores');
             $table->timestamps();
         });
     }
