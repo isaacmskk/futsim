@@ -19,6 +19,20 @@
                 <button class="btn btn-success" @click="seleccionarJugador(jugador.id)">Seleccionar</button>
               </div>
             </div>
+<<<<<<< HEAD
+  
+            <tbody class="row">
+              <tr v-for="(jugador, index) in jugadores" :key="index" class="card col-3 cartJugadores text-center">
+                <td class="p-2">
+                  <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-success" @click="seleccionarJugador(jugador.id)">Seleccionar</button>
+                </td>
+              </tr>
+            </tbody>
+=======
+>>>>>>> e66e515ea611da1eb5efcd0c034604efa49cb720
           </div>
         </div>
       </div>
