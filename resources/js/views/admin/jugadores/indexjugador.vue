@@ -10,13 +10,13 @@
             </div>
           </div>
           <tbody class="row">
-            <tr v-for="(jugador, index) in jugadores" :key="index" class="card col-3 cartJugadores text-center">
+            <tr v-for="(jugador, index) in jugadores" :key="index" class="card col-12 col-lg-3 cartJugadores text-center">
               <td class="p-2">
                 <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
               </td>
               <td class="text-center">
                 <input type="checkbox" id="index" class="_checkbox" v-model="jugador.checked">
-                <label @click="seleccionarJugador(jugador)" for="{{ jugador.id }}">
+                <label class="labeljugadores" @click="seleccionarJugador(jugador)" for="{{ jugador.id }}">
                   <div class="tick_mark"></div>
                 </label>
               </td>
