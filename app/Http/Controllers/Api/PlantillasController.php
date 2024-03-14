@@ -13,7 +13,7 @@ class PlantillasController extends Controller
 {
     public function index()
     {
-        $plantillas = plantillas::with('jugadores')->get();
+        $plantillas = plantillas::with('jugadores.media')->get(); // Incluir la relación con las imágenes de los jugadores
         return $plantillas;
     }
     public function store(Request $request)
