@@ -6,7 +6,7 @@
                     <div class="d-flex justify-content-between pb-2 mb-2">
                         <h5 class="card-title">Todas las noticias</h5>
                         <div>
-                            <router-link :to="{ name: 'futsimvistas.createnoticia' }" class="btn btn-success">Nueva
+                            <router-link :to="{ name: 'futsimvistas.createnoticia' }" class="botonCrearNoticia">Nueva
                                 Noticia</router-link>
                         </div>
 

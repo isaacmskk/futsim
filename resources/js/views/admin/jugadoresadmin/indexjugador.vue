@@ -6,7 +6,7 @@
                     <div class="d-flex justify-content-between pb-2 mb-2">
                         <h5 class="card-title">Todos los jugadores</h5>
                         <div>
-                            <router-link :to="{ name: 'jugadoresadmin.createjugador' }" class="btn btn-success">Nuevo
+                            <router-link :to="{ name: 'jugadoresadmin.createjugador' }" class="botonCrearJugador">Nuevo
                                 Jugador</router-link>
                         </div>
                     </div>
