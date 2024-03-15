@@ -23,7 +23,7 @@ class NoticiasController extends Controller implements HasMedia
 
     public function show($id)
     {
-        $noticia = noticias::find($id);
+        $noticia = noticias::find($id)->with('media')->get();
         return response()->json($noticia);
     }
     public function store(Request $request)
