@@ -20,6 +20,8 @@
                         </thead>
 
                         <tbody>
+
+                            
                             <tr v-for="(noticia, index) in noticias" :key="noticia.id">
                                 <td>{{ noticia.id }}</td>
                                 <td>{{ noticia.titulo }}</td>

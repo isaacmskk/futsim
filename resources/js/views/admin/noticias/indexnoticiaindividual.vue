@@ -12,7 +12,8 @@
                             <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia" class="img-fluid">
                         </div>
                         <div class="col-lg-6">
-                            <p>{{ noticia.subtitulo }}</p>
+                            {{ noticia }}
+                            <p>{{ noticia.subtitulo }} {{ noticia }}</p>
                             <p>{{ noticia.contenido }}</p>
                             <p>{{ noticia.publicado }}</p>
                             
@@ -58,7 +59,7 @@ onMounted(() => {
     axios.get('/api/noticias/' + route.params.id)
         .then(response => {
             noticia.value = response.data;
-            console.log(response.data);
+            console.log('Datos de la noticia:', noticia);
         })
         .catch(error => {
             console.error('Error fetching news data:', error);
@@ -69,6 +70,8 @@ onMounted(() => {
             // Organizar comentarios por noticia
             comentariosPorNoticia.value = groupComentariosPorNoticia(response.data);
         });
+        console.log(noticia)
+
 });
 // Función para organizar comentarios por noticia
 const groupComentariosPorNoticia = (comentarios) => {
