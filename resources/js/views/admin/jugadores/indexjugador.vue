@@ -6,7 +6,7 @@
           <div class="d-flex justify-content-between pb-2 mb-2">
             <h5 class="card-title text-light">Todos los jugadores</h5>
             <div>
-              <button class="btn btn-primary" @click="mostrarPromptNombrePlantilla">Guardar Jugadores Seleccionados</button>
+              <button class="botonCrearPlantilla" @click="mostrarPromptNombrePlantilla">Crea Plantilla</button>
             </div>
           </div>
           <tbody class="row">

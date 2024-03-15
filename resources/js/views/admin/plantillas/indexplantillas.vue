@@ -1,41 +1,51 @@
 <template>
-  <div>
+  <div class="d-flex justify-content-between pb-2 mb-2">
+    <h2 class="card-title">Mis Plantillas</h2>
 
-    <h2>Mis Plantillas</h2>
-    <div v-if="plantillasUsuario.length === 0">
-      <p>No tienes plantillas creadas.</p>
-    </div>
-    <div v-for="plantilla in plantillasTodas" :key="plantilla.id">
-      <!-- Mostrar el nombre de la plantilla -->
-      <h3>{{ plantilla.nombre }}</h3>
+  </div>
+  <div class="grid" v-for="plantilla in plantillasTodas" :key="plantilla.id" style="margin-bottom: 20px;">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
 
-      <!-- Iterar sobre los jugadores asociados con esta plantilla -->
-      <ul>
-        <li v-for="jugador in plantilla.jugadores" :key="jugador.id">
 
-          <!-- Mostrar el nombre y valoración del jugador -->
-          {{ jugador.nombre }} - Valoración: {{ jugador.valoracion }}
-          <!-- Mostrar la imagen del jugador -->
+          <div v-if="plantillasUsuario.length === 0" class="d-flex justify-content-between pb-2 mb-2">
+            <p>No tienes plantillas creadas.</p>
+          </div>
+          <tbody class="row">
 
-          <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
+            <!-- Mostrar el nombre de la plantilla -->
+            <h3>{{ plantilla.nombre }}</h3>
 
-        </li>
-      </ul>
-    </div>
+            <tr v-for="jugador in plantilla.jugadores" :key="jugador.id"
+              class="card col-12 col-lg-3 cartJugadores text-center">
 
-    <h2>Todas las Plantillas</h2>
-    <div v-for="plantilla in plantillasTodas" :key="plantilla.id">
-      <h3>{{ plantilla.nombre }}</h3>
-      <ul>
-        <li v-for="jugador in plantilla.jugadores" :key="jugador.id">
-          {{ jugador.nombre }} - Valoración: {{ jugador.valoracion }}
-          <!-- Mostrar la imagen del jugador -->
-          <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
+              <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
 
-        </li>
-      </ul>
+            </tr>
+            <!-- </tr> -->
+          </tbody>
+
+          <!-- Iterar sobre los jugadores asociados con esta plantilla -->
+          <ul>
+
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
+  <!-- <h2>Todas las Plantillas</h2>
+    <div v-for="plantilla in plantillasTodas" :key="plantilla.id">
+      <h3>{{ plantilla.nombre }}</h3>
+      <ul>
+        <li v-for="jugador in plantilla.jugadores" :key="jugador.id">
+          {{ jugador.nombre }} - Valoración: {{ jugador.valoracion }} -->
+  <!-- Mostrar la imagen del jugador -->
+  <!-- <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
+
+        </li>
+      </ul>
+    </div> -->
 </template>
 
 <script setup>
