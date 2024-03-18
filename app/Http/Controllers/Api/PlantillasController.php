@@ -16,6 +16,13 @@ class PlantillasController extends Controller
         $plantillas = plantillas::with('jugadores.media')->get(); // Incluir la relación con las imágenes de los jugadores
         return $plantillas;
     }
+
+    public function plantillaJugador()
+    {
+        $usuario = auth()->user();
+        $plantillas = plantillas::with('jugadores.media')->where('id_usuario', $usuario->id)->get();
+        return $plantillas;
+    }
     public function store(Request $request)
 {
     $request->validate([

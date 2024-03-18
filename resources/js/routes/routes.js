@@ -35,7 +35,7 @@ const ComentariosCreate = () => import('../views/admin/futsimvistas/indexnoticia
 const PlantillasList = () => import('../views/admin/plantillas/indexplantillas.vue');
 const PlantillasListDetalles = () => import('../views/admin/plantillas/detalleplantillas.vue');
 
-const PartidosList = () => import('../views/admin/partidos/indexpartidos.vue');
+// const PartidosList = () => import('../views/admin/partidos/indexpartidos.vue');
 
 
 
@@ -363,24 +363,24 @@ export default [
                     }
                 ]
             },
-            {
-                name: 'partidos',
-                path: 'partidos',
-                meta: {
-                    breadCrumb: 'Plantillas Rivales',
-                },
-                children: [
-                    {
-                        name: 'partidos.indexpartido',
-                        path: '/admin/partidos',
-                        component: PartidosList,
-                        meta: {
-                            breadCrumb: 'Partidos',
-                            linked: false,
-                        }
-                    },
-                ]
-            },
+            // {
+            //     name: 'partidos',
+            //     path: 'partidos',
+            //     meta: {
+            //         breadCrumb: 'Plantillas Rivales',
+            //     },
+            //     children: [
+            //         {
+            //             name: 'partidos.indexpartido',
+            //             path: '/admin/partidos',
+            //             component: PartidosList,
+            //             meta: {
+            //                 breadCrumb: 'Partidos',
+            //                 linked: false,
+            //             }
+            //         },
+            //     ]
+            // },
 
             {
                 name: 'categories',
