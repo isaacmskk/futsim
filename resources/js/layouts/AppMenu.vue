@@ -26,8 +26,8 @@ const model = ref([
         label: 'Jugar',
         items: [
             { label: 'Jugadores', icon: 'pi pi-fw pi-user-plus', to: '/admin/jugadores', permision: 'all' },
-            { label: 'Plantillas', icon: 'pi pi-fw pi-check-square', to: '/admin/plantillas', permision:'all' },
-            { label: 'Partidos', icon: 'pi pi-fw pi-bookmark', to: '/admin/permissions', permision:'all' }
+            { label: 'Plantillas', icon: 'pi pi-fw pi-check-square', to: '/admin/plantillas/misplantillas', permision:'all' },
+            { label: 'Partidos', icon: 'pi pi-fw pi-bookmark', to: '/admin/plantillas', permision:'all' }
         ]
     },
     //,
@@ -41,14 +41,14 @@ const model = ref([
     {
         label: 'Noticias',
         items: [
-            { label: 'Noticias', icon: 'pi pi-fw pi-check-square', to: '/admin/noticias', permision:'role-list'  }
+            { label: 'Noticias', icon: 'pi pi-fw pi-check-square', to: '/admin/noticias', permision:'all'  }
         ]
     },
     {
         label: 'Panel Usuario',
         items: [
             { label: 'Modificar Jugadores', icon: 'pi pi-fw pi-user-plus', to: '/admin/jugadoresadmin/jugadores', permision: 'user-list' },
-            { label: 'Modificar Noticias', icon: 'pi pi-fw pi-megaphone', to: '/admin/futsimvistas/noticias', permision: 'all'},
+            { label: 'Modificar Noticias', icon: 'pi pi-fw pi-megaphone', to: '/admin/futsimvistas/noticias', permision: 'role-list'},
             { label: 'Personal', icon: 'pi pi-fw pi-bookmark', to: '/admin/permissions', permision:'all' }
         ]
     },
