@@ -43,8 +43,9 @@ Route::get('comentarios', [ComentariosController::class, 'index']);
 Route::post('comentarios/', [ComentariosController::class, 'store']);
 
 Route::get('plantillas', [PlantillasController::class, 'index']);
-Route::get('/misplantillas', [PlantillasController::class, 'plantillaJugador']);
 Route::post('plantillas/', [PlantillasController::class, 'store']);
+Route::delete('/misplantillas/{id}', [PlantillasController::class, 'destroy']);
+Route::get('/misplantillas', [PlantillasController::class, 'plantillaJugador']);
 
 Route::get('/api/plantillas/{idPlantilla}/jugadores/seleccionados', [PlantillasController::class, 'obtenerJugadoresSeleccionados']);
 

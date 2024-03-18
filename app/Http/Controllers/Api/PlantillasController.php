@@ -24,51 +24,51 @@ class PlantillasController extends Controller
         return $plantillas;
     }
     public function store(Request $request)
-{
-    $request->validate([
-        'nombre' => 'required',
-        'jugadores' => 'array',
-        'jugadores.*' => 'exists:jugadores,id', // Ensure players exist in the database
-    ]);
+    {
+        $request->validate([
+            'nombre' => 'required',
+            'jugadores' => 'array',
+            'jugadores.*' => 'exists:jugadores,id', // Ensure players exist in the database
+        ]);
 
-    // Get the authenticated user
-    $usuario = auth()->user();
+        // Get the authenticated user
+        $usuario = auth()->user();
 
-    // Create the plantilla
-    $plantilla = $request->all();
-    $plantilla['id_usuario'] = $usuario->id;
+        // Create the plantilla
+        $plantilla = $request->all();
+        $plantilla['id_usuario'] = $usuario->id;
 
-    $nuevaPlantilla = plantillas::create($plantilla);
+        $nuevaPlantilla = plantillas::create($plantilla);
 
-    // Sync jugadores with the newly created plantilla
-    $nuevaPlantilla->jugadores()->sync($request->input('jugadores'));
+        // Sync jugadores with the newly created plantilla
+        $nuevaPlantilla->jugadores()->sync($request->input('jugadores'));
 
-    return response()->json(['success' => true, 'data' => $nuevaPlantilla]);
-}
-    
+        return response()->json(['success' => true, 'data' => $nuevaPlantilla]);
+    }
+
 
     public function show($id)
-{
-    $plantilla = plantillas::with('jugadores')->find($id);
-    return response()->json($plantilla);
-}
-    
-public function obtenerJugadoresSeleccionados($idPlantilla)
-{
-    $jugadoresSeleccionados = plantilla_jugadores::where('id_plantilla', $idPlantilla)
-        ->join('jugadores', 'plantilla_jugadores.id_jugador', '=', 'jugadores.id')
-        ->select('jugadores.*')
-        ->get();
+    {
+        $plantilla = plantillas::with('jugadores')->find($id);
+        return response()->json($plantilla);
+    }
 
-    return response()->json($jugadoresSeleccionados);
-}
+    public function obtenerJugadoresSeleccionados($idPlantilla)
+    {
+        $jugadoresSeleccionados = plantilla_jugadores::where('id_plantilla', $idPlantilla)
+            ->join('jugadores', 'plantilla_jugadores.id_jugador', '=', 'jugadores.id')
+            ->select('jugadores.*')
+            ->get();
 
-public function indexUsuario()
-{
-    $usuario = auth()->user();
-    $plantillasUsuario = $usuario->misPlantillas()->with('jugadores')->get();
-    return $plantillasUsuario;
-}
+        return response()->json($jugadoresSeleccionados);
+    }
+
+    public function indexUsuario()
+    {
+        $usuario = auth()->user();
+        $plantillasUsuario = $usuario->misPlantillas()->with('jugadores')->get();
+        return $plantillasUsuario;
+    }
     public function destroy($id)
     {
         $plantilla = plantillas::find($id);

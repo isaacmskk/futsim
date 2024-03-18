@@ -11,32 +11,34 @@
 
             <!-- Mostrar el nombre de la plantilla -->
             <h3>{{ plantilla.nombre }}</h3>
+            <button class="btn btn-danger" @click="deletePlantilla(plantilla.id, index)">Delete</button>
 
             <!-- Iterar sobre los jugadores asociados con esta plantilla -->
             <div v-if="plantilla.jugadores.length === 0">
               <p>No tienes jugadores asociados a esta plantilla.</p>
             </div>
-            <div v-else>
-              <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
-                class="card col-12 col-lg-3 cartJugadores text-center">
-                <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
-              </div>
+            <!-- <div v-else> -->
+            <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
+              class="card col-12 col-lg-3 cartJugadores text-center">
+              <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
             </div>
+            <!-- </div> -->
           </tbody>
         </div>
       </div>
     </div>
   </div>
 
-  <div v-if="plantillasUsuario.length === 0" class="d-flex justify-content-between pb-2 mb-2">
+  <!-- <div v-if="plantillasUsuario.length === 0" class="d-flex justify-content-between pb-2 mb-2">
     <p>No tienes plantillas creadas.</p>
-  </div>
+  </div> -->
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import { ref, onMounted, inject } from "vue"
 
+const swal = inject('$swal');
 const plantillasUsuario = ref([]);
 
 onMounted(() => {
@@ -45,6 +47,37 @@ onMounted(() => {
     plantillasUsuario.value = response.data;
   });
 });
+
+const deletePlantilla = (id, index) => {
+  swal({
+    title: 'Quieres eliminar esta plantilla?',
+    text: 'Esta acción no es reversible!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, eliminar',
+    confirmButtonColor: '#ef4444',
+    timer: 20000,
+    timerProgressBar: true,
+    reverseButtons: true
+  })
+    .then(result => {
+      axios.delete('/api/misplantillas/'  + id)
+        .then((response) => {
+          plantillasUsuario.value.splice(index, 1)
+          swal({
+            icon: 'success',
+            title: 'Plantilla eliminada correctamente'
+          })
+
+        }).catch(error => {
+          swal({
+            icon: 'error',
+            title: 'No se ha podido eliminar la plantilla'
+          })
+        });
+
+    })
+}
 </script>
 
 <style>
