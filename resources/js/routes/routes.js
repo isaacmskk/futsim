@@ -32,9 +32,10 @@ const NoticiasList = () => import('../views/admin/noticias/indexnoticia.vue');
 const ComentariosList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const ComentariosCreate = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 
-const PlantillasList = () => import('../views/admin/plantillas/detalleplantillas.vue');
-// const PlantillasCreate = () => import('../views/admin/plantillas/createplantillas.vue');
+const PlantillasList = () => import('../views/admin/plantillas/indexplantillas.vue');
+const PlantillasListDetalles = () => import('../views/admin/plantillas/detalleplantillas.vue');
 
+const PartidosList = () => import('../views/admin/partidos/indexpartidos.vue');
 
 
 
@@ -171,10 +172,10 @@ export default [
                         meta: { breadCrumb: 'View' }
                     }
                 ]
-            },{
+            }, {
                 name: 'exercises',
                 path: 'exercises',
-                meta: { breadCrumb: 'Exercises'},
+                meta: { breadCrumb: 'Exercises' },
                 children: [
                     {
                         name: 'exercises.index',
@@ -186,8 +187,10 @@ export default [
                         name: 'exercises.create',
                         path: 'create',
                         component: ExercisesCreate,
-                        meta: { breadCrumb: 'Add new exercise' ,
-                        linked: false, }
+                        meta: {
+                            breadCrumb: 'Add new exercise',
+                            linked: false,
+                        }
                     },
                     {
                         name: 'exercises.edit',
@@ -293,9 +296,9 @@ export default [
                         component: NoticiasIndividual,
                         meta: { breadCrumb: 'Listar Noticias' }
                     }
-                    
+
                 ]
-            },{
+            }, {
                 name: 'Noticias',
                 path: 'noticias',
                 meta: { breadCrumb: 'Noticias' },
@@ -339,19 +342,46 @@ export default [
                 path: 'plantillas',
                 meta: {
                     breadCrumb: 'Listar Plantilla',
-                }, 
+                },
                 children: [
                     {
                         name: 'plantillas.detalleplantillas',
+                        path: '/admin/plantillas/misplantillas',
+                        component: PlantillasListDetalles,
+                        meta: {
+                            breadCrumb: 'Mis Plantillas',
+                            linked: false,
+                        }
+                    }, {
+                        name: 'plantillas.indexplantillas',
                         path: '/admin/plantillas',
                         component: PlantillasList,
                         meta: {
-                            breadCrumb: 'Plantilla',
+                            breadCrumb: 'Plantillas Rivales',
                             linked: false,
                         }
                     }
                 ]
-            },            
+            },
+            {
+                name: 'partidos',
+                path: 'partidos',
+                meta: {
+                    breadCrumb: 'Plantillas Rivales',
+                },
+                children: [
+                    {
+                        name: 'partidos.indexpartido',
+                        path: '/admin/partidos',
+                        component: PartidosList,
+                        meta: {
+                            breadCrumb: 'Partidos',
+                            linked: false,
+                        }
+                    },
+                ]
+            },
+
             {
                 name: 'categories',
                 path: 'categories',
