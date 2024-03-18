@@ -47,3 +47,22 @@
     width: 100%;
     filter: drop-shadow(0 0 23px var(--animation-color))
   }
+
+
+.layout-menu ul a:hover {
+  display: flex;
+  align-items: center;
+  position: relative;
+  outline: 0 none;
+  color: #ffff;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  transition: background-color 0.4s, box-shadow 0.2s;
+  background-color: #37FF8B;
+}
+
+.layout-menu ul a.active-route {
+  font-weight: 700;
+  color: #37FF8B;
+}
