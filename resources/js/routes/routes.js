@@ -32,8 +32,8 @@ const NoticiasList = () => import('../views/admin/noticias/indexnoticia.vue');
 const ComentariosList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const ComentariosCreate = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 
-const PlantillasList = () => import('../views/admin/plantillas/indexplantillas.vue');
-const PlantillasCreate = () => import('../views/admin/plantillas/createplantillas.vue');
+const PlantillasList = () => import('../views/admin/plantillas/detalleplantillas.vue');
+// const PlantillasCreate = () => import('../views/admin/plantillas/createplantillas.vue');
 
 
 
@@ -342,20 +342,11 @@ export default [
                 }, 
                 children: [
                     {
-                        name: 'plantillas.indexplantillas',
+                        name: 'plantillas.detalleplantillas',
                         path: '/admin/plantillas',
                         component: PlantillasList,
                         meta: {
                             breadCrumb: 'Plantilla',
-                            linked: false,
-                        }
-                    },
-                    {
-                        name: 'plantillas.createplantillas',
-                        path: 'plantillas/createplantillas',
-                        component: PlantillasCreate,
-                        meta: {
-                            breadCrumb: 'Crear Plantilla',
                             linked: false,
                         }
                     }

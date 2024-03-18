@@ -1,73 +1,56 @@
 <template>
-  <div class="d-flex justify-content-between pb-2 mb-2">
-    <h2 class="card-title">Mis Plantillas</h2>
-
-  </div>
-  <div class="grid" v-for="plantilla in plantillasTodas" :key="plantilla.id" style="margin-bottom: 20px;">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-
-
-          <div v-if="plantillasUsuario.length === 0" class="d-flex justify-content-between pb-2 mb-2">
-            <p>No tienes plantillas creadas.</p>
-          </div>
-          <tbody class="row">
-
-            <!-- Mostrar el nombre de la plantilla -->
-            <h3>{{ plantilla.nombre }}</h3>
-
-            <tr v-for="jugador in plantilla.jugadores" :key="jugador.id"
-              class="card col-12 col-lg-3 cartJugadores text-center">
-
-              <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
-
-            </tr>
-            <!-- </tr> -->
-          </tbody>
-
-          <!-- Iterar sobre los jugadores asociados con esta plantilla -->
-          <ul>
-
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- <h2>Todas las Plantillas</h2>
-    <div v-for="plantilla in plantillasTodas" :key="plantilla.id">
-      <h3>{{ plantilla.nombre }}</h3>
+    <div>
+      <h2>Detalles de la Plantilla</h2>
+      <p>Nombre: {{ plantilla.nombre }}</p>
+      <p>GRL: {{ plantilla.grl }}</p>
+  
+      <h3>Jugadores Seleccionados</h3>
       <ul>
-        <li v-for="jugador in plantilla.jugadores" :key="jugador.id">
-          {{ jugador.nombre }} - Valoración: {{ jugador.valoracion }} -->
-  <!-- Mostrar la imagen del jugador -->
-  <!-- <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
-
+        <li v-for="jugador in jugadoresSeleccionados" :key="jugador.id">
+          {{ jugador.nombre }} - Valoración: {{ jugador.valoracion }}
         </li>
       </ul>
-    </div> -->
-</template>
-
-<script setup>
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
-
-const plantillasUsuario = ref([]);
-const plantillasTodas = ref([]);
-
-onMounted(() => {
-  // Cargar todas las plantillas al montar el componente
-  axios.get('/api/plantillas').then((response) => {
-    plantillasTodas.value = response.data;
+    </div>
+  </template>
+  
+  <script setup>
+  import axios from "axios";
+  import { ref, onMounted } from "vue";
+  import { useRouter } from "vue-router";
+  
+  const plantilla = ref({});
+  const jugadoresSeleccionados = ref([]);
+  const router = useRouter();
+  
+  onMounted(() => {
+    cargarDetallesPlantilla();
   });
-
-  // Cargar las plantillas del usuario autenticado
-  axios.get('/api/plantillas-usuario').then((response) => {
-    plantillasUsuario.value = response.data;
-  });
-});
-</script>
-
-<style>
-/* Estilos opcionales */
-</style>
+  
+  const cargarDetallesPlantilla = () => {
+    const plantillaId = router.params.id;
+    axios.get(`/api/plantillas/${plantillaId}`)
+      .then(response => {
+        plantilla.value = response.data;
+        cargarJugadoresSeleccionados();
+      })
+      .catch(error => {
+        console.error("Error al cargar detalles de la plantilla:", error);
+      });
+  };
+  
+  const cargarJugadoresSeleccionados = () => {
+    const plantillaId = router.params.id;
+    axios.get(`/api/plantillas/${plantillaId}/jugadores`)
+      .then(response => {
+        jugadoresSeleccionados.value = response.data;
+      })
+      .catch(error => {
+        console.error("Error al cargar jugadores seleccionados:", error);
+      });
+  };
+  </script>
+  
+  <style>
+  /* Estilos opcionales */
+  </style>
+  

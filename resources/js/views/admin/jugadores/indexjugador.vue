@@ -86,7 +86,7 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
   axios.post("/api/plantillas", { nombre: nombrePlantilla, jugadores: jugadoresSeleccionados.value.map(jugador => jugador.id) })
     .then(response => {
       const plantillaId = response.data.data.id;
-      router.push({ name: 'plantillas.indexplantillas', params: { idPlantilla: plantillaId } });
+      router.push({ name: 'plantillas.detalleplantillas', params: { idPlantilla: plantillaId } });
       swal.fire("¡Éxito!", "Jugadores guardados en la base de datos.", "success");
     })
     .catch(error => {
