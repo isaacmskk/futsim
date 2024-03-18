@@ -62,13 +62,6 @@ class PlantillasController extends Controller
 
         return response()->json($jugadoresSeleccionados);
     }
-
-    public function indexUsuario()
-    {
-        $usuario = auth()->user();
-        $plantillasUsuario = $usuario->misPlantillas()->with('jugadores')->get();
-        return $plantillasUsuario;
-    }
     public function destroy($id)
     {
         $plantilla = plantillas::find($id);

@@ -47,20 +47,24 @@ onMounted(() => {
 
 const seleccionarJugador = (jugador) => {
   jugador.checked = !jugador.checked;
-  if (jugadoresSeleccionados.value.length >= 4) {
-    swal.fire("¡Alerta!", "Ya has seleccionado 4 jugadores.", "warning");
-    return;
-  }
-
-  const jugadorIndex = jugadoresSeleccionados.value.findIndex(selected => selected.id === jugador.id);
-  if (jugadorIndex === -1) {
+  if (jugador.checked) {
+    // Si se marca un jugador, verificar si se han seleccionado más de 4 jugadores
+    if (jugadoresSeleccionados.value.length > 3) {
+      // Desmarcar el jugador más antiguo seleccionado
+      const jugadorDesmarcar = jugadoresSeleccionados.value.shift();
+      jugadorDesmarcar.checked = false;
+    }
+    // Agregar el nuevo jugador seleccionado
     jugadoresSeleccionados.value.push(jugador);
-    console.log("Jugador seleccionado:", jugador.id);
   } else {
-    jugadoresSeleccionados.value.splice(jugadorIndex, 1);
-    console.log("Jugador deseleccionado:", jugador.id);
+    // Si se desmarca un jugador, eliminarlo de la lista de jugadores seleccionados
+    const index = jugadoresSeleccionados.value.findIndex(selected => selected.id === jugador.id);
+    if (index !== -1) {
+      jugadoresSeleccionados.value.splice(index, 1);
+    }
   }
 };
+
 
 const mostrarPromptNombrePlantilla = () => {
   swal.fire({
