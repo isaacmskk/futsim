@@ -8,7 +8,9 @@
       <div class="card cardFondo">
         <div class="card-body">
           <tbody class="row">
-
+            <div v-if="plantillasUsuario.length === 0" class="d-flex justify-content-between pb-2 mb-2">
+              <p>No tienes plantillas creadas.</p>
+            </div>
             <!-- Mostrar el nombre de la plantilla -->
             <h3>{{ plantilla.nombre }}</h3>
             <button class="btn btn-danger" @click="deletePlantilla(plantilla.id, index)">Delete</button>
@@ -29,9 +31,7 @@
     </div>
   </div>
 
-  <!-- <div v-if="plantillasUsuario.length === 0" class="d-flex justify-content-between pb-2 mb-2">
-    <p>No tienes plantillas creadas.</p>
-  </div> -->
+
 </template>
 
 <script setup>
@@ -61,7 +61,7 @@ const deletePlantilla = (id, index) => {
     reverseButtons: true
   })
     .then(result => {
-      axios.delete('/api/misplantillas/'  + id)
+      axios.delete('/api/misplantillas/' + id)
         .then((response) => {
           plantillasUsuario.value.splice(index, 1)
           swal({
