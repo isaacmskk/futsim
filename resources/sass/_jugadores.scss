@@ -2,6 +2,7 @@
 .imgJugador{
     width: 240px;
     height: 350px;
+    margin: auto;
 }
 
 .cartJugadores{
@@ -10,6 +11,15 @@
 
 .card:last-child{
     margin-bottom: auto!important;
+}
+
+.card{
+  
+  background-image: url(../../public/images/fondoDivs.png)!important;
+  // background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% auto!important;
+  // background-position: bottom;
 }
 
 /*CHECK PARA SELECCIONAR JUGADORES*/

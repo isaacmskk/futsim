@@ -19,7 +19,7 @@
             </div>
             <!-- <div v-else> -->
             <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
-              class="card col-12 col-lg-3 cartJugadores text-center">
+              class="col-12 col-lg-3 cartJugadores text-center">
               <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
             </div>
             <!-- </div> -->
