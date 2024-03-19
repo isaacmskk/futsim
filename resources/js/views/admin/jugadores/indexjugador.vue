@@ -1,7 +1,7 @@
 <template>
   <div class="grid">
     <div class="col-12">
-      <div class="card">
+      <div class="card cardFondo">
         <div class="card-body">
           <div class="d-flex justify-content-between pb-2 mb-2">
             <h5 class="card-title text-light">Todos los jugadores</h5>
@@ -10,7 +10,7 @@
             </div>
           </div>
           <tbody class="row">
-            <tr v-for="(jugador, index) in jugadores" :key="index" class="col-12 col-lg-3 cartJugadores text-center">
+            <tr v-for="(jugador, index) in jugadores" :key="index" class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
               <td class="p-2">
                 <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
               </td>

@@ -5,7 +5,7 @@
 
   <div class="grid" v-for="plantilla in plantillasUsuario" :key="plantilla.id" style="margin-bottom: 20px;">
     <div class="col-12">
-      <div class="card">
+      <div class="card cardFondo">
         <div class="card-body">
           <tbody class="row">
 
@@ -19,7 +19,7 @@
             </div>
             <!-- <div v-else> -->
             <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
-              class="col-12 col-lg-3 cartJugadores text-center">
+              class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
               <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
             </div>
             <!-- </div> -->
