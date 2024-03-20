@@ -10,9 +10,10 @@ use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\JugadoresController;
 use App\Http\Controllers\Api\NoticiasController;
-use App\Http\Controllers\api\ComentariosController;
-use App\Http\Controllers\api\PlantillasController;
+use App\Http\Controllers\Api\ComentariosController;
+use App\Http\Controllers\Api\PlantillasController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Api\PartidosController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,8 @@ Route::get('/misplantillas', [PlantillasController::class, 'plantillaJugador']);
 
 Route::get('/api/plantillas/{idPlantilla}/jugadores/seleccionados', [PlantillasController::class, 'obtenerJugadoresSeleccionados']);
 
+
+Route::get('/api/partidos/{plantillaId}/jugadores', [PartidosController::class, 'obtenerJugadoresPorPlantilla']);
 
 
 

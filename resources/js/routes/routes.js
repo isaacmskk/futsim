@@ -35,7 +35,7 @@ const ComentariosCreate = () => import('../views/admin/futsimvistas/indexnoticia
 const PlantillasList = () => import('../views/admin/plantillas/indexplantillas.vue');
 const PlantillasListDetalles = () => import('../views/admin/plantillas/detalleplantillas.vue');
 
-// const PartidosList = () => import('../views/admin/partidos/indexpartidos.vue');
+const PartidosList = () => import('../views/admin/partidos/indexpartido.vue');
 
 
 
@@ -352,7 +352,8 @@ export default [
                             breadCrumb: 'Mis Plantillas',
                             linked: false,
                         }
-                    }, {
+                    }, 
+                    {
                         name: 'plantillas.indexplantillas',
                         path: '/admin/plantillas',
                         component: PlantillasList,
@@ -363,25 +364,16 @@ export default [
                     }
                 ]
             },
-            // {
-            //     name: 'partidos',
-            //     path: 'partidos',
-            //     meta: {
-            //         breadCrumb: 'Plantillas Rivales',
-            //     },
-            //     children: [
-            //         {
-            //             name: 'partidos.indexpartido',
-            //             path: '/admin/partidos',
-            //             component: PartidosList,
-            //             meta: {
-            //                 breadCrumb: 'Partidos',
-            //                 linked: false,
-            //             }
-            //         },
-            //     ]
-            // },
-
+            {
+                name: 'partidos.indexpartido',
+                path: '/admin/partidos/:plantillaId/:plantillaSeleccionadaId',
+                component: PartidosList,
+                meta: {
+                    breadCrumb: 'Partidos',
+                    linked: false,
+                }
+            },
+            
             {
                 name: 'categories',
                 path: 'categories',
