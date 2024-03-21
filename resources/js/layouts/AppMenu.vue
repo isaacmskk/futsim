@@ -20,36 +20,28 @@ const vela = "pepe";
 const model = ref([
     {
         label: 'Home',
-        items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/admin', permision: 'all'}]
+        items: [{ label: 'Home', icon: 'pi pi-fw pi-home pi-Lateral', to: '/admin', permision: 'all'}]
     },
     {
         label: 'Jugar',
         items: [
-            { label: 'Jugadores', icon: 'pi pi-fw pi-user-plus', to: '/admin/jugadores', permision: 'all' },
-            { label: 'Plantillas', icon: 'pi pi-fw pi-check-square', to: '/admin/plantillas/misplantillas', permision:'all' },
-            { label: 'Partidos', icon: 'pi pi-fw pi-bookmark', to: '/admin/plantillas', permision:'all' }
+            { label: 'Jugadores', icon: 'pi pi-fw pi-users pi-Lateral', to: '/admin/jugadores', permision: 'all' },
+            { label: 'Plantillas', icon: 'pi pi-fw pi-sitemap pi-Lateral', to: '/admin/plantillas/misplantillas', permision:'all' },
+            { label: 'Partidos', icon: 'pi pi-fw pi-bolt pi-Lateral', to: '/admin/plantillas', permision:'all' }
         ]
     },
-    //,
-    // {
-    //     label: 'Ejercicios',
-    //     items: [
-    //         { label: 'Ejercicios', icon: 'pi pi-fw pi-id-card', to: '/admin/exercises', permision: 'all' },
-    //         { label: 'Categorias', icon: 'pi pi-fw pi-id-card', to: '/admin/categories', permision: 'all' }
-    //     ]
-    // },
     {
         label: 'Noticias',
         items: [
-            { label: 'Noticias', icon: 'pi pi-fw pi-check-square', to: '/admin/noticias', permision:'all'  }
+            { label: 'Noticias', icon: 'pi pi-fw pi-id-card pi-Lateral', to: '/admin/noticias', permision:'all'  }
         ]
     },
     {
         label: 'Panel Usuario',
         items: [
-            { label: 'Modificar Jugadores', icon: 'pi pi-fw pi-user-plus', to: '/admin/jugadoresadmin/jugadores', permision: 'user-list' },
-            { label: 'Modificar Noticias', icon: 'pi pi-fw pi-megaphone', to: '/admin/futsimvistas/noticias', permision: 'role-list'},
-            { label: 'Personal', icon: 'pi pi-fw pi-bookmark', to: '/admin/permissions', permision:'all' }
+            { label: 'Crear Jugadores', icon: 'pi pi-fw pi-user-plus pi-Lateral', to: '/admin/jugadoresadmin/jugadores', permision: 'user-list' },
+            { label: 'Crear Noticias', icon: 'pi pi-fw pi-megaphone pi-Lateral', to: '/admin/futsimvistas/noticias', permision: 'role-list'},
+            { label: 'Personal', icon: 'pi pi-fw pi-cog pi-Lateral', to: '/admin/permissions', permision:'all' }
         ]
     },
 ]);

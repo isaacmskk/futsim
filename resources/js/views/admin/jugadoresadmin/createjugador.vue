@@ -52,7 +52,7 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir Jugador</button>
+                <button type="submit" class="botonGeneral">Añadir Jugador</button>
 
 
             </form>

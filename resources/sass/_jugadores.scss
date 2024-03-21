@@ -122,7 +122,7 @@
 }
 
 /*BOTON CREAR PLANTILLAS*/
-.botonCrearPlantilla {
+.botonGeneral {
     --green: #37FF8B;
     font-size: 15px;
     padding: 0.7em 2.7em;
@@ -131,30 +131,33 @@
     font-family: inherit;
     border-radius: 1em;
     overflow: hidden;
-    transition: all 0.3s;
+    transition: all 0.5s;
     line-height: 1.4em;
     border: 2px solid var(--green);
     background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%,transparent 60% , rgba(27, 253, 156, 0.1) 100%);
     color: var(--green);
     box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
+    font-weight: bold;
   }
   
-  .botonCrearPlantilla:hover {
-    color: #fff;
-    box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+  .botonGeneral:hover {
+    font-weight: bold;
+    color: black;
+    box-shadow: inset 0 500px 10px rgba(27, 253, 156, 1), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+    // background: linear-gradient(to right, rgba(27, 253, 156, 1) 100%, transparent 100%,transparent 100% , rgba(27, 253, 156, 0.1) 100%);
   }
   
-  .botonCrearPlantilla:before {
-    content: "";
-    position: absolute;
-    left: 0.1em;
-    width: 1em;
-    height: 100%;
-    top: 0;
-    transition: transform .4s ease-in-out;
-    background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%,rgba(27, 253, 156, 0.1) 60% , transparent 100%);
-  }
+  // .botonGeneral:before {
+  //   content: "";
+  //   position: absolute;
+  //   left: 0.1em;
+  //   width: 1em;
+  //   height: 100%;
+  //   top: 0;
+  //   // transition: transform .4s ease-in-out;
+  //   background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%,rgba(27, 253, 156, 0.1) 60% , transparent 100%);
+  // }
   
-  .botonCrearPlantilla:hover:before {
+  .botonGeneral:hover:before {
     transform: translateX(11em);
   }

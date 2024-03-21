@@ -49,7 +49,7 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir Noticia</button>
+                <button type="submit" class="botonGeneral">Añadir Noticia</button>
 
 
             </form>

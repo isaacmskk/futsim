@@ -1,7 +1,7 @@
 <template>
     <div class="layout-topbar">
         <router-link to="/" class="layout-topbar-logo">
-            <img src="/images/logoFutsim.png" alt="logo" />
+            <img src="/images/FUTSIM.svg" alt="logo" />
             <button class="button" data-text="Awesome">
                 <span class="actual-text">&nbsp;FUTSIM&nbsp;</span>
                 <span aria-hidden="true" class="hover-text">&nbsp;FUTSIM&nbsp;</span>

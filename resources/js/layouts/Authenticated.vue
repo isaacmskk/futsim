@@ -4,26 +4,26 @@
         <div class="layout-sidebar">
             <app-sidebar></app-sidebar>
         </div>
-        
+
         <div class="layout-main-container ">
-            <Breadcrumb :home="home" :model="crumbs" class="mb-2">
-                    <template #item="{ item, props }">
-                        <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
-                            <a :href="href" v-bind="props.action" class="btn btn-link"   @click="navigate">
-                                <span :class="[item.icon, 'text-color']" />
-                                <span class="text-primary font-semibold">{{ item.label }}</span>
-                            </a>
-                        </router-link>
-                        <a v-else :href="item.url" :target="item.target" v-bind="props.action">
-                            <span class="text-color">{{ item.label }}</span>
+            <!-- <Breadcrumb :home="home" :model="crumbs" class="mb-2">
+                <template #item="{ item, props }">
+                    <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
+                        <a :href="href" v-bind="props.action" class="btn btn-link" @click="navigate">
+                            <span :class="[item.icon, 'text-color']" />
+                            <span class="text-primary font-semibold">{{ item.label }}</span>
                         </a>
-                    </template>
-                </Breadcrumb>
+                    </router-link>
+                    <a v-else :href="item.url" :target="item.target" v-bind="props.action">
+                        <span class="text-color">{{ item.label }}</span>
+                    </a>
+                </template>
+            </Breadcrumb> -->
             <div class="layout-main">
-                
+
 
                 <Suspense>
-                <router-view></router-view>
+                    <router-view></router-view>
                 </Suspense>
             </div>
             <app-footer></app-footer>
@@ -33,7 +33,7 @@
     </div>
 </template>
 
-<!--template>
+        <!--template>
     <AdminNavbar />
     <div class="d-flex align-items-stretch w-100">
         <AdminSidebar />
@@ -51,7 +51,7 @@
     </div>
 </template-->
 
-<script setup>
+        <script setup>
 import { computed, watch, ref } from 'vue';
 import { useRoute } from "vue-router";
 import Breadcrumb from 'primevue/breadcrumb';
@@ -144,22 +144,22 @@ const isOutsideClicked = (event) => {
 
 </script>
 
-<style lang="scss" scoped>
-.p-breadcrumb .p-breadcrumb-list {
-    margin: 0 !important; 
-    padding: 0;
-    list-style-type: none;
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-}
+        <style lang="scss" scoped>
+            .p-breadcrumb .p-breadcrumb-list {
+                margin: 0 !important;
+                padding: 0;
+                list-style-type: none;
+                display: flex;
+                align-items: center;
+                flex-wrap: nowrap;
+            }
 
-ol {
-    margin: 0 !important; 
-    padding: 0;
-    list-style-type: none;
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-}
-</style>
+            ol {
+                margin: 0 !important;
+                padding: 0;
+                list-style-type: none;
+                display: flex;
+                align-items: center;
+                flex-wrap: nowrap;
+            }
+        </style>
