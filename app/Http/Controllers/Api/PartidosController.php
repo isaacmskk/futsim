@@ -9,35 +9,22 @@ use App\Models\partidos;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\plantilla_jugadores;
+
 
 
 class PartidosController extends Controller 
 {
-    public function index(Request $request)
+    public function obtenerJugadoresPorPlantilla($plantillaId, $plantillaSeleccionadaId)
     {
-        // Recupera los IDs de las plantillas seleccionadas de la ruta o el estado
-        $plantillaId = $request->route('plantillaId');
-        $plantillaSeleccionadaId = $request->route('plantillaSeleccionadaId');
+        // Obtener los IDs de los jugadores asociados a la plantilla seleccionada
+        $jugadoresPlantillaSeleccionadaIds = plantilla_jugadores::where('id_plantilla', $plantillaSeleccionadaId)
+            ->pluck('id_jugador');
 
-        // Ejemplo de búsqueda de jugadores de la plantilla 1
-        $jugadoresPlantilla1 = Jugadores::where('plantilla_id', $plantillaId)->get();
+        // Obtener los jugadores asociados a la plantilla seleccionada
+        $jugadoresPlantillaSeleccionada = Jugadores::whereIn('id', $jugadoresPlantillaSeleccionadaIds)->get();
 
-        // Ejemplo de búsqueda de jugadores de la plantilla 2
-        $jugadoresPlantilla2 = Jugadores::where('plantilla_id', $plantillaSeleccionadaId)->get();
-
-        // Luego puedes pasar los jugadores a la vista o realizar cualquier otra acción necesaria
-        return view('partidos.indexpartido', [
-            'jugadoresPlantilla1' => $jugadoresPlantilla1,
-            'jugadoresPlantilla2' => $jugadoresPlantilla2,
-        ]);
+        // Devolver los jugadores en formato JSON
+        return response()->json($jugadoresPlantillaSeleccionada);
     }
-    public function obtenerJugadoresPorPlantilla($plantillaId)
-{
-    // Obtener jugadores de la plantilla
-    $jugadores = Jugadores::where('plantilla_id', $plantillaId)->get();
-
-    // Devolver los jugadores en formato JSON
-    return response()->json($jugadores);
-}
-
 }

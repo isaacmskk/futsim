@@ -24,8 +24,8 @@ const JugadorList = () => import('../views/admin/jugadores/indexjugador.vue');
 
 const NoticiasListAdmin = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const NoticiasCreate = () => import('../views/admin/futsimvistas/createnoticias.vue');
+const NoticiasIndividualAdmin = () => import('../views/admin/futsimvistas/indexnoticiaindividual.vue');
 const NoticiasIndividual = () => import('../views/admin/noticias/indexnoticiaindividual.vue');
-
 const NoticiasList = () => import('../views/admin/noticias/indexnoticia.vue');
 
 
@@ -293,7 +293,7 @@ export default [
                     {
                         name: 'noticias.indexnoticiaindividual',
                         path: 'noticias/noticiaindividual/:id',
-                        component: NoticiasIndividual,
+                        component: NoticiasIndividualAdmin,
                         meta: { breadCrumb: 'Listar Noticias' }
                     }
 
@@ -307,6 +307,12 @@ export default [
                         name: 'noticias.indexnoticia',
                         path: '/admin/noticias',
                         component: NoticiasList,
+                        meta: { breadCrumb: 'Listar Noticias' }
+                    },
+                    {
+                        name: 'noticias.indexnoticiaindividual',
+                        path: 'noticiaindividual/:id',
+                        component: NoticiasIndividual,
                         meta: { breadCrumb: 'Listar Noticias' }
                     }
                 ]
