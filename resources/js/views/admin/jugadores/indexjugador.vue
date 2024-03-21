@@ -12,13 +12,7 @@
           <tbody class="row">
             <tr v-for="(jugador, index) in jugadores" :key="index" class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
               <td class="p-2">
-                <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
-              </td>
-              <td class="text-center">
-                <input type="checkbox" id="index" class="_checkbox" v-model="jugador.checked">
-                <label class="labeljugadores" @click="seleccionarJugador(jugador)" for="{{ jugador.id }}">
-                  <div class="tick_mark"></div>
-                </label>
+                <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador imgJugadorSeleccion" @click="toggleSeleccion(jugador)" :class="{ 'seleccionado': jugador.checked }">
               </td>
             </tr>
           </tbody>
@@ -45,26 +39,21 @@ onMounted(() => {
   });
 });
 
-const seleccionarJugador = (jugador) => {
+const toggleSeleccion = (jugador) => {
   jugador.checked = !jugador.checked;
   if (jugador.checked) {
-    // Si se marca un jugador, verificar si se han seleccionado más de 4 jugadores
     if (jugadoresSeleccionados.value.length > 3) {
-      // Desmarcar el jugador más antiguo seleccionado
       const jugadorDesmarcar = jugadoresSeleccionados.value.shift();
       jugadorDesmarcar.checked = false;
     }
-    // Agregar el nuevo jugador seleccionado
     jugadoresSeleccionados.value.push(jugador);
   } else {
-    // Si se desmarca un jugador, eliminarlo de la lista de jugadores seleccionados
     const index = jugadoresSeleccionados.value.findIndex(selected => selected.id === jugador.id);
     if (index !== -1) {
       jugadoresSeleccionados.value.splice(index, 1);
     }
   }
 };
-
 
 const mostrarPromptNombrePlantilla = () => {
   swal.fire({
@@ -101,4 +90,18 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
 </script>
 
 <style>
+.imgJugadorSeleccion {
+  cursor: pointer;
+  transition: box-shadow 0.3s ease; /* Transición para el efecto de sombra */
+  border-radius: 14px;
+}
+
+.imgJugadorSeleccion:hover {
+  box-shadow: 0px 0px 15px 5px rgba(55, 255, 139, 0.7); /* Sombras difuminadas */
+}
+
+.seleccionado {
+  box-shadow: 0px 0px 15px 5px rgba(55, 255, 139, 0.7); /* Sombras difuminadas para jugador seleccionado */
+}
 </style>
+
