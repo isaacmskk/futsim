@@ -20,7 +20,10 @@ class Jugadores extends Model implements HasMedia
         'valoracion',
         // Agrega otros campos si es necesario
     ];
-
+    public function plantillas()
+    {
+        return $this->belongsToMany(plantillas::class, 'plantilla_jugadores', 'id_jugador', 'id_plantilla');
+    }
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('images/jugadores')

@@ -32,12 +32,11 @@ import { useRouter } from 'vue-router';
 
 const noticias = ref();
 const swal = inject('$swal');
-const comentariosPorNoticia = ref({});
 const router = useRouter();
 onMounted(() => {
     axios.get('/api/noticias')
         .then(response => {
-            noticias.value = response.data;
+            noticias.value = response.data; // Asignar la noticia individual
         });
 });
 

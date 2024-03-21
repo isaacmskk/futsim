@@ -13,7 +13,7 @@
                                 <h6 class="card-subtitle mb-2 text-muted">{{ noticia.subtitulo }}</h6>
                                 <p class="card-text">{{ noticia.contenido }}</p>
                                 <p class="card-text"><small class="text-muted">{{ noticia.publicado }}</small></p>
-                                <button class="btn btn-success"
+                                <button class="botonGeneral"
                                     @click="mostrarFormularioComentario(noticia.id)">Comentar</button>
                                 <table v-if="comentariosPorNoticia[noticia.id]" class="table table-hover table-sm mt-3">
                                     <thead class="bg-dark text-light">

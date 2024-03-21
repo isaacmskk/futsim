@@ -51,7 +51,7 @@ Route::get('/misplantillas', [PlantillasController::class, 'plantillaJugador']);
 Route::get('/api/plantillas/{idPlantilla}/jugadores/seleccionados', [PlantillasController::class, 'obtenerJugadoresSeleccionados']);
 
 
-Route::get('/api/partidos/{plantillaId}/jugadores', [PartidosController::class, 'obtenerJugadoresPorPlantilla']);
+Route::get('/api/partidos/{plantillaId}/{plantillaSeleccionadaId}', [PartidosController::class, 'obtenerJugadoresPorPlantilla']);
 
 
 

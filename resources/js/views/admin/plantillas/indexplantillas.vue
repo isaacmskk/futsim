@@ -12,15 +12,14 @@
             <h3>{{ plantilla.nombre }}</h3>
 
             <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
-              class="col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;"
->
+              class="col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
               <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
             </div>
           </tbody>
 
           <!-- Botón para seleccionar plantilla -->
           <div class="text-center">
-            <button class="btn btn-success" @click="mostrarPlantillasUsuario(plantilla.id)">Seleccionar
+            <button class="botonGeneral" @click="mostrarPlantillasUsuario(plantilla.id)">Seleccionar
               Plantilla</button>
           </div>
 
@@ -31,8 +30,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, inject } from 'vue';
 import axios from 'axios';
+import { ref, onMounted, inject } from 'vue';
 import { useRouter } from 'vue-router';
 
 const plantillasUsuario = ref([]);
@@ -44,6 +43,7 @@ onMounted(() => {
   // Cargar todas las plantillas al montar el componente
   axios.get('/api/plantillas').then((response) => {
     plantillasTodas.value = response.data;
+    console.log(response.data);
   });
 
   // Cargar las plantillas del usuario autenticado
