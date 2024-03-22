@@ -14,27 +14,30 @@ const TasksList = () => import('../views/admin/tasks/index.vue');
 const TasksCreate = () => import('../views/admin/tasks/create.vue');
 const TasksUpdate = () => import('../views/admin/tasks/update.vue');
 
+/*GESTIONAR JUGADORES*/
 const JugadorListAdmin = () => import('../views/admin/jugadoresadmin/indexjugador.vue');
 const JugadorCreateAdmin = () => import('../views/admin/jugadoresadmin/createjugador.vue');
 const JugadorUpdateAdmin = () => import('../views/admin/jugadoresadmin/indexjugador.vue');
 
+/*VER JUGADORES*/
 const JugadorList = () => import('../views/admin/jugadores/indexjugador.vue');
-// const JugadorCreate = () => import('../views/auth/jugadores/createjugador.vue');
-// const JugadorUpdate = () => import('../views/auth/jugadores/indexjugador.vue');
 
+/*GESTIONAR NOTICIAS*/
 const NoticiasListAdmin = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const NoticiasCreate = () => import('../views/admin/futsimvistas/createnoticias.vue');
 const NoticiasIndividualAdmin = () => import('../views/admin/futsimvistas/indexnoticiaindividual.vue');
 const NoticiasIndividual = () => import('../views/admin/noticias/indexnoticiaindividual.vue');
 const NoticiasList = () => import('../views/admin/noticias/indexnoticia.vue');
 
-
+/*GESTIONAR COMENTARIOS*/
 const ComentariosList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const ComentariosCreate = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 
+/*GESTIONAR PLANTILLAS*/
 const PlantillasList = () => import('../views/admin/plantillas/indexplantillas.vue');
 const PlantillasListDetalles = () => import('../views/admin/plantillas/detalleplantillas.vue');
 
+/*LISTAR PARTIDOS*/
 const PartidosList = () => import('../views/admin/partidos/indexpartido.vue');
 
 

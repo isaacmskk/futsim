@@ -54,6 +54,8 @@ const comentariosPorNoticia = ref({});
 const route = useRoute();
 const noticias = ref([]);
 onMounted(() => {
+
+    console.log('/api/noticias/' + route.params.id);
     axios.get('/api/noticias/' + route.params.id)
         .then(response => {
             console.log(response.data);
