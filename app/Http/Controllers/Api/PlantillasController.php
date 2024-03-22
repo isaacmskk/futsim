@@ -62,11 +62,14 @@ class PlantillasController extends Controller
 
         return response()->json($jugadoresSeleccionados);
     }
-    public function destroy($id)
-    {
-        $plantilla = plantillas::find($id);
-        $plantilla->delete();
-
-        return response()->json(['success' => true, 'data' => 'Plantilla eliminida']);
+    public function destroyByIndex($index) {
+        $plantilla = plantillas::all()->get($index);
+        if($plantilla) {
+            $plantilla->delete();
+            return response()->json(['message' => 'Plantilla eliminada correctamente'], 200);
+        } else {
+            return response()->json(['message' => 'No se encontró la plantilla'], 404);
+        }
     }
+    
 }

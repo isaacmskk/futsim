@@ -3,7 +3,7 @@
     <h2 class="card-title">Mis Plantillas</h2>
   </div>
 
-  <div class="grid" v-for="plantilla in plantillasUsuario" :key="plantilla.id" style="margin-bottom: 20px;">
+  <div v-for="(plantilla, index) in plantillasUsuario" :key="plantilla.id" style="margin-bottom: 20px;">
     <div class="col-12">
       <div class="card cardFondo">
         <div class="card-body">
@@ -21,12 +21,10 @@
             <div v-if="plantilla.jugadores.length === 0">
               <p>No tienes jugadores asociados a esta plantilla.</p>
             </div>
-            <!-- <div v-else> -->
             <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
               class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
               <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
             </div>
-            <!-- </div> -->
           </tbody>
         </div>
       </div>
@@ -52,8 +50,8 @@ onMounted(() => {
 
 const deletePlantilla = (id, index) => {
   swal({
-    title: 'Quieres eliminar esta plantilla?',
-    text: 'Esta acción no es reversible!',
+    title: '¿Quieres eliminar esta plantilla?',
+    text: 'Esta acción no es reversible',
     icon: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Sí, eliminar',
@@ -61,25 +59,25 @@ const deletePlantilla = (id, index) => {
     timer: 20000,
     timerProgressBar: true,
     reverseButtons: true
-  })
-    .then(result => {
-      axios.delete('/api/misplantillas/' + id)
+  }).then(result => {
+    if (result.isConfirmed) {
+      axios.delete('/api/misplantillas/' + index)
         .then((response) => {
           plantillasUsuario.value.splice(index, 1)
           swal({
             icon: 'success',
             title: 'Plantilla eliminada correctamente'
           })
-
         }).catch(error => {
           swal({
             icon: 'error',
             title: 'No se ha podido eliminar la plantilla'
           })
         });
-
-    })
+    }
+  })
 }
+
 
 const updateJugador = (id, index) => {
 

@@ -45,13 +45,13 @@ Route::post('comentarios/', [ComentariosController::class, 'store']);
 
 Route::get('plantillas', [PlantillasController::class, 'index']);
 Route::post('plantillas/', [PlantillasController::class, 'store']);
-Route::delete('/misplantillas/{id}', [PlantillasController::class, 'destroy']);
+Route::delete('/misplantillas/{index}', [PlantillasController::class, 'destroyByIndex']);
 Route::get('/misplantillas', [PlantillasController::class, 'plantillaJugador']);
 
 Route::get('/api/plantillas/{idPlantilla}/jugadores/seleccionados', [PlantillasController::class, 'obtenerJugadoresSeleccionados']);
 
 
-Route::get('/api/partidos/{plantillaId}/{plantillaSeleccionadaId}', [PartidosController::class, 'obtenerJugadoresPorPlantilla']);
+Route::get('/partidos/{plantillaId}/{plantillaSeleccionadaId}', [PartidosController::class, 'obtenerJugadoresPorPlantilla']);
 
 
 
