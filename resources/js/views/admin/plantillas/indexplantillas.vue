@@ -55,7 +55,6 @@ onMounted(() => {
 const mostrarPlantillasUsuario = (plantillaId) => {
   // Construye un array de opciones con los nombres de las plantillas del usuario
   const opciones = plantillasUsuario.value.map(plantilla => ({ id: plantilla.id, nombre: plantilla.nombre }));
-  console.log("IDs de todas las plantillas del usuario:", plantillaId);
 
   // Muestra el SweetAlert con la lista desplegable
   swal.fire({
@@ -67,27 +66,31 @@ const mostrarPlantillasUsuario = (plantillaId) => {
     }, {}),
     showCancelButton: true,
     confirmButtonText: 'Seleccionar',
-    cancelButtonText: 'Cancelar'
+    cancelButtonText: 'Cancelar',
+    customClass: {
+      popup: 'my-custom-popup-class', // Clase para el cuadro de diálogo
+      confirmButton: 'my-custom-success-popup-class', // Clase para el botón de confirmar
+      cancelButton: 'my-custom-popup-class', // Clase para el botón de cancelar
+    }
   }).then((response) => {
-    console.log("ID de la plantilla seleccionada:", response.value);
-
     // Verifica si se seleccionó una opción
     if (response.isConfirmed) {
       // Obtiene el ID de la plantilla seleccionada
       const plantillaSeleccionadaId = response.value;
-router.push({ 
-    name: 'partidos.indexpartido', 
-    params: { 
-        plantillaId: plantillaId,
-        plantillaSeleccionadaId: plantillaSeleccionadaId // Añadir el ID de la plantilla seleccionada
-    },
-    state: {
-        plantillaSeleccionadaId: plantillaSeleccionadaId
-    }
-});
+      router.push({
+        name: 'partidos.indexpartido',
+        params: {
+          plantillaId: plantillaId,
+          plantillaSeleccionadaId: plantillaSeleccionadaId // Añadir el ID de la plantilla seleccionada
+        },
+        state: {
+          plantillaSeleccionadaId: plantillaSeleccionadaId
+        }
+      });
     }
   });
 };
+
 
 </script>
 

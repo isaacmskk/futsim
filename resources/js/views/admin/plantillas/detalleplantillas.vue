@@ -56,9 +56,16 @@ const deletePlantilla = (id, index) => {
     showCancelButton: true,
     confirmButtonText: 'Sí, eliminar',
     confirmButtonColor: '#ef4444',
-    timer: 20000,
+    cancelButtonText: 'No, cancelar', // Texto para el botón de cancelar
+    cancelButtonColor: '#6b7280', // Color del botón de cancelar
+    // timer: 20000,
     timerProgressBar: true,
-    reverseButtons: true
+    reverseButtons: true,
+    customClass: {
+      popup: 'my-custom-popup-class', // Clase para el cuadro de diálogo
+      confirmButton: 'my-custom-confirm-button-class', // Clase para el botón de confirmar
+      cancelButton: 'my-custom-cancel-button-class', // Clase para el botón de cancelar
+    }
   }).then(result => {
     if (result.isConfirmed) {
       axios.delete('/api/misplantillas/' + index)
@@ -66,17 +73,28 @@ const deletePlantilla = (id, index) => {
           plantillasUsuario.value.splice(index, 1)
           swal({
             icon: 'success',
-            title: 'Plantilla eliminada correctamente'
+            title: 'Plantilla eliminada correctamente',
+            customClass: {
+              popup: 'my-custom-success-popup-class', // Clase para el cuadro de diálogo de éxito
+              title: 'my-custom-success-title-class', // Clase para el título de éxito
+            }
           })
         }).catch(error => {
           swal({
             icon: 'error',
-            title: 'No se ha podido eliminar la plantilla'
+            title: 'No se ha podido eliminar la plantilla',
+            customClass: {
+              popup: 'my-custom-error-popup-class', // Clase para el cuadro de diálogo de error
+              title: 'my-custom-error-title-class', // Clase para el título de error
+            }
           })
         });
     }
   })
 }
+
+
+
 
 
 const updateJugador = (id, index) => {

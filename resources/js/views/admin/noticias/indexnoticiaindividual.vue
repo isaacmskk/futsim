@@ -95,6 +95,11 @@ const mostrarFormularioComentario = (idNoticia) => {
             return {
                 comentario: document.getElementById('swal-comentario').value
             };
+        },
+        customClass: {
+            popup: 'my-custom-popup-class', // Clase para el cuadro de diálogo
+            confirmButton: 'my-custom-success-popup-class', // Clase para el botón de confirmar
+            cancelButton: 'my-custom-cancel-button-class', // Clase para el botón de cancelar
         }
     }).then(result => {
         if (result.isConfirmed) {
@@ -118,14 +123,30 @@ const crearComentario = (nuevoComentario) => {
             comentariosPorNoticia.value[nuevoComentario.id_noticia].push(response.data.data);
             swal({
                 icon: 'success',
-                title: 'Comentado correctamente :-)'
+                title: 'Comentado correctamente :-)',
+                customClass: {
+                    popup: 'my-custom-success-popup-class', // Clase para el cuadro de diálogo de éxito
+                    title: 'my-custom-success-title-class', // Clase para el título de éxito
+                }
             });
         })
         .catch(error => {
             strSuccess.value = "";
             strError.value = error.response.data.message;
+            swal({
+                icon: 'error',
+                title: 'No se ha podido eliminar la plantilla',
+                customClass: {
+                    popup: 'my-custom-error-popup-class', // Clase para el cuadro de diálogo de error
+                    title: 'my-custom-error-title-class', // Clase para el título de error
+                    confirmButton: 'my-custom-success-popup-class', // Clase para el botón de OK
+                }
+            });
         });
 };
+
+
+
 </script>
 
 <style scoped>

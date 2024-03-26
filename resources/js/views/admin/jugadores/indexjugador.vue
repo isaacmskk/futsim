@@ -9,6 +9,11 @@
               <button class="botonGeneral" @click="mostrarPromptNombrePlantilla">Crear Plantilla</button>
             </div>
           </div>
+          <div>
+              <!-- Agregar botones para ordenar -->
+              <button class="botonGeneral" @click="ordenarPorValoracion('desc')">Valoración Ascendente</button>
+              <button class="botonGeneral" @click="ordenarPorValoracion('asc')">Valoración Descendente</button>
+            </div>
           <tbody class="row">
             <tr v-for="(jugador, index) in jugadores" :key="index" class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
               <td class="p-2">
@@ -32,9 +37,30 @@ const jugadores = ref([]);
 const jugadoresSeleccionados = ref([]);
 const swal = inject("$swal");
 
+// Definir la función ordenarPorValoracion para ordenar los jugadores por su valoración
+const ordenarPorValoracion = (tipo) => {
+  // Lógica para ordenar los jugadores por valoración ascendente o descendente
+  if (tipo === 'asc') {
+    jugadores.value.sort((a, b) => a.valoracion - b.valoracion);
+  } else if (tipo === 'desc') {
+    jugadores.value.sort((a, b) => b.valoracion - a.valoracion);
+  }
+};
+
 onMounted(() => {
   axios.get("/api/jugadores").then((response) => {
     jugadores.value = response.data;
+    console.log(response.data);
+  });
+});
+
+const jugadoresFiltrados = ref([]);
+
+onMounted(() => {
+  axios.get("/api/jugadores").then((response) => {
+    jugadores.value = response.data;
+    // Al cargar los jugadores, inicializamos jugadoresFiltrados con la misma lista
+    jugadoresFiltrados.value = response.data;
     console.log(response.data);
   });
 });
@@ -61,12 +87,17 @@ const mostrarPromptNombrePlantilla = () => {
     input: 'text',
     inputLabel: 'Introduce el nombre de la plantilla',
     showCancelButton: true,
-    confirmButtonText: 'Guardar',
+    confirmButtonText: 'Crear',
     cancelButtonText: 'Cancelar',
     inputValidator: (value) => {
       if (!value) {
         return 'Debes ingresar un nombre para la plantilla';
       }
+    },
+    customClass: {
+      popup: 'my-custom-popup-class',
+      // confirmButton: 'my-custom-confirm-button-class',
+      // cancelButton: 'my-custom-cancel-button-class',
     },
   }).then((result) => {
     if (result.isConfirmed) {
@@ -80,13 +111,32 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
     .then(response => {
       const plantillaId = response.data.data.id;
       router.push({ name: 'plantillas.detalleplantillas', params: { idPlantilla: plantillaId } });
-      swal.fire("¡Éxito!", "Jugadores guardados en la base de datos.", "success");
+      swal.fire({
+        title: '¡Éxito!',
+        text: 'Jugadores guardados en la base de datos.',
+        icon: 'success',
+        customClass: {
+          popup: 'my-custom-success-popup-class',
+          title: 'my-custom-success-title-class',
+          content: 'my-custom-success-content-class',
+        }
+      });
     })
     .catch(error => {
       console.error("Error al guardar jugadores:", error);
-      swal.fire("Error", "Hubo un problema al guardar los jugadores.", "error");
+      swal.fire({
+        title: 'Error',
+        text: 'Hubo un problema al guardar los jugadores.',
+        icon: 'error',
+        customClass: {
+          popup: 'my-custom-error-popup-class',
+          title: 'my-custom-error-title-class',
+          content: 'my-custom-error-content-class',
+        }
+      });
     });
 };
+
 </script>
 
 <style>

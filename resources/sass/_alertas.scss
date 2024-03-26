@@ -1,0 +1,103 @@
+/*Estilo del recuadro de las alertas*/
+.my-custom-popup-class {
+    border-radius: 15px;
+    border: 2px solid #37ff8bb3;
+    background-color: #18181b;
+    color: white;
+    font-family: 'Tahoma' !important;
+  }
+
+  /*Estilo para confirmar el nombre de la plantilla*/
+  .my-custom-popup-class .swal2-confirm {
+      background-color: #37ff8a00;
+      color: white;
+      border: 1px solid #37ff8bb3;
+      border-radius: 14px;
+      font-family: 'Tahoma' !important;
+  }
+  .my-custom-popup-class .swal2-confirm:hover {
+    background-color: #37ff8bb3;
+}
+  /*Estilo para cancelar el nombre de la plantilla*/
+  .my-custom-popup-class .swal2-cancel {
+    background-color: #dc354600;
+    color: white;
+    border: 1px solid #dc3545;
+    border-radius: 14px;
+    font-family: 'Tahoma' !important;
+  }
+  .my-custom-popup-class .swal2-cancel:hover {
+    background-color: #dc3545;
+  }
+  
+  
+  
+  /* Estilos para alerta de éxito */
+  .my-custom-success-popup-class {
+    border-radius: 15px;
+    border: 2px solid #37ff8bb3;
+    background-color: #18181b;
+    color: white;
+    font-family: 'Tahoma' !important;
+  }
+  .my-custom-success-title-class {
+    color: white;
+  }
+  
+  /* Modificar color del tick */
+  .my-custom-success-popup-class .swal2-icon.swal2-success .swal2-success-ring {
+    background-color: #37ff8bb3;
+  }
+  
+  .my-custom-success-popup-class .swal2-icon.swal2-success .swal2-success-line {
+    background-color: #37ff8bb3;
+  }
+  
+  
+  /* Estilos para alerta de error */
+  .my-custom-error-popup-class {
+    border-radius: 15px;
+    border: 2px solid #dc3545;
+    background-color: #18181b;
+    color: white;
+    font-family: 'Tahoma' !important;
+  }
+  .my-custom-error-title-class {
+    color: #dc3545;
+  }
+
+
+  /* Estilos para botón de confirmar el eliminar plantilla*/
+  .my-custom-confirm-button-class {
+    background-color: #dc354600!important;
+    color: white;
+    border: 1px solid #dc3545!important;
+    font-family: 'Tahoma' !important;
+  }
+  .my-custom-confirm-button-class:hover {
+    background-color: #dc3545!important;
+  }
+  
+  /* Estilos para botón de cancelar el eliminar plantilla*/
+  .my-custom-cancel-button-class {
+    background-color: #6b728000!important;
+    color: white;
+    border: 1px solid white!important;
+  }
+  .my-custom-cancel-button-class:hover {
+    background-color: #6b7280!important;
+  }
+  
+  /* Estilos para botón de OK en la alerta de éxito */
+  .my-custom-success-popup-class .swal2-confirm {
+    background-color: #37ff8a00;
+    border: 1px solid #37ff8bb3;
+  }
+  .my-custom-success-popup-class .swal2-confirm:hover {
+    background-color: #37ff8bb3;
+  }
+  /* Estilos para botón de OK en la alerta de error */
+  .my-custom-error-popup-class .swal2-confirm {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+  }
