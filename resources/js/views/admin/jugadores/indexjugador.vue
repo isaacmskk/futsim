@@ -10,14 +10,23 @@
             </div>
           </div>
           <div>
-              <!-- Agregar botones para ordenar -->
-              <button class="botonGeneral" @click="ordenarPorValoracion('desc')">Valoración Ascendente</button>
-              <button class="botonGeneral" @click="ordenarPorValoracion('asc')">Valoración Descendente</button>
-            </div>
+            <!-- Agregar botones para ordenar -->
+            <button class="botonGeneral" @click="ordenarPorValoracion('desc')">
+              <i class="pi pi-fw pi-sort-amount-down-alt pi-Lateral asc-desc"></i>
+            </button>
+
+            <button class="botonGeneral" @click="ordenarPorValoracion('asc')">
+              <i class="pi pi-fw pi-sort-amount-up pi-Lateral asc-desc"></i>
+
+            </button>
+          </div>
           <tbody class="row">
-            <tr v-for="(jugador, index) in jugadores" :key="index" class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
+            <tr v-for="(jugador, index) in jugadores" :key="index"
+              class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
               <td class="p-2">
-                <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador imgJugadorSeleccion" @click="toggleSeleccion(jugador)" :class="{ 'seleccionado': jugador.checked }">
+                <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
+                  class="imgJugador imgJugadorSeleccion" @click="toggleSeleccion(jugador)"
+                  :class="{ 'seleccionado': jugador.checked }">
               </td>
             </tr>
           </tbody>
@@ -40,9 +49,9 @@ const swal = inject("$swal");
 // Definir la función ordenarPorValoracion para ordenar los jugadores por su valoración
 const ordenarPorValoracion = (tipo) => {
   // Lógica para ordenar los jugadores por valoración ascendente o descendente
-  if (tipo === 'asc') {
+  if (tipo === 'desc') {
     jugadores.value.sort((a, b) => a.valoracion - b.valoracion);
-  } else if (tipo === 'desc') {
+  } else if (tipo === 'asc') {
     jugadores.value.sort((a, b) => b.valoracion - a.valoracion);
   }
 };
@@ -142,16 +151,22 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
 <style>
 .imgJugadorSeleccion {
   cursor: pointer;
-  transition: box-shadow 0.3s ease; /* Transición para el efecto de sombra */
+  transition: box-shadow 0.3s ease;
+  /* Transición para el efecto de sombra */
   border-radius: 14px;
 }
 
 .imgJugadorSeleccion:hover {
-  box-shadow: 0px 0px 15px 5px rgba(55, 255, 139, 0.7); /* Sombras difuminadas */
+  box-shadow: 0px 0px 15px 5px rgba(55, 255, 139, 0.7);
+  /* Sombras difuminadas */
 }
 
 .seleccionado {
-  box-shadow: 0px 0px 15px 5px rgba(55, 255, 139, 0.7); /* Sombras difuminadas para jugador seleccionado */
+  box-shadow: 0px 0px 15px 5px rgba(55, 255, 139, 0.7);
+  /* Sombras difuminadas para jugador seleccionado */
+}
+
+.asc-desc {
+  color: #37ff8bb3;
 }
 </style>
-
