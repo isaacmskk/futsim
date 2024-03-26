@@ -42,26 +42,26 @@ class PartidosController extends Controller
 
         ]);
     }
-    public function store($plantillaId, $plantillaSeleccionadaId)
+    public function store($plantillaId, $plantillaSeleccionadaId, $golesEquipo1, $golesEquipo2)
     {
         $usuarioActual = Auth::user();
         $usuarioRival = plantillas::findOrFail($plantillaId)->user;
-        // Obtener el usuario asociado a la plantilla seleccionada
-
+    
         // Crear una nueva instancia de Partidos y asignar los valores recibidos
         $partido = new Partidos();
         $partido->id_plantilla1 = $plantillaId;
         $partido->usuario1 = $usuarioRival->id; // ID del usuario asociado a la plantilla 2
-        $partido->goles1 = random_int(0, 5); // Generar goles aleatorios
+        $partido->goles1 = $golesEquipo1; // Utilizar los goles recibidos como parámetro
         $partido->fecha = now(); // Fecha y hora actuales
         $partido->id_plantilla2 = $plantillaSeleccionadaId;
         $partido->usuario2 = $usuarioActual->id; // ID del usuario actual
-        $partido->goles2 = random_int(0, 5); // Generar goles aleatorios
-
+        $partido->goles2 = $golesEquipo2; // Utilizar los goles recibidos como parámetro
+    
         // Guardar el partido en la base de datos
         $partido->save();
-
+    
         // Devolver una respuesta JSON con el partido creado
         return response()->json($partido, 201);
     }
+    
 }
