@@ -13,7 +13,7 @@ class PlantillasController extends Controller
 {
     public function index()
     {
-        $plantillas = plantillas::with('jugadores.media')->get(); // Incluir la relación con las imágenes de los jugadores
+        $plantillas = plantillas::with('jugadores.media', 'user')->get(); // Cargar también la relación con el usuario
         return $plantillas;
     }
 
@@ -28,7 +28,7 @@ class PlantillasController extends Controller
         $request->validate([
             'nombre' => 'required',
             'jugadores' => 'array',
-            'jugadores.*' => 'exists:jugadores,id', // Ensure players exist in the database
+            'jugadores.*' => 'exists:jugadores,id',
         ]);
 
         // Get the authenticated user
@@ -39,8 +39,6 @@ class PlantillasController extends Controller
         $plantilla['id_usuario'] = $usuario->id;
 
         $nuevaPlantilla = plantillas::create($plantilla);
-
-        // Sync jugadores with the newly created plantilla
         $nuevaPlantilla->jugadores()->sync($request->input('jugadores'));
 
         return response()->json(['success' => true, 'data' => $nuevaPlantilla]);
