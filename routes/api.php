@@ -47,6 +47,7 @@ Route::get('plantillas', [PlantillasController::class, 'index']);
 Route::post('plantillas/', [PlantillasController::class, 'store']);
 Route::delete('/misplantillas/{index}', [PlantillasController::class, 'destroyByIndex']);
 Route::get('/misplantillas', [PlantillasController::class, 'plantillaJugador']);
+Route::put('plantillas/update/{id}', [PlantillasController::class, 'update']);
 
 Route::get('/api/plantillas/{idPlantilla}/jugadores/seleccionados', [PlantillasController::class, 'obtenerJugadoresSeleccionados']);
 

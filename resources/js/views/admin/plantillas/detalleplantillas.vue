@@ -9,7 +9,7 @@
         <div class="card-body">
           <h3>{{ plantilla.nombre }}</h3>
           <button class="btn btn-danger" @click="deletePlantilla(plantilla.id, index)">Delete</button>
-          <button class="botonGeneral" @click="mostrarPromptNombrePlantilla">Crea Plantilla</button>
+          <button class="botonGeneral" @click="updateJugador(plantilla.id, index)">Editar nombre</button>
           <tbody class="row">
             <div v-if="plantillasUsuario.length === 0" class="d-flex justify-content-between pb-2 mb-2">
               <p>No tienes plantillas creadas.</p>
@@ -37,7 +37,8 @@
 <script setup>
 import axios from 'axios';
 import { ref, onMounted, inject } from "vue"
-
+import { useRouter } from 'vue-router'; // Importar el enrutador
+const router = useRouter(); 
 const swal = inject('$swal');
 const plantillasUsuario = ref([]);
 
@@ -93,50 +94,46 @@ const deletePlantilla = (id, index) => {
   })
 }
 
-
-
-
-
 const updateJugador = (id, index) => {
-
   const currentData = plantillasUsuario.value[index];
-  swal.fire({
-    title: 'Nombre de la plantilla',
-    input: 'text',
-    inputLabel: 'Introduce el nombre de la plantilla',
+
+  swal({
+    title: 'Editar nombre de la plantilla',
+    html:
+      '<input id="swal-input1" class="swal2-input" placeholder="Nombre de la plantilla" value="' + currentData.nombre + '">',
     showCancelButton: true,
     confirmButtonText: 'Guardar',
     cancelButtonText: 'Cancelar',
     preConfirm: () => {
       return [
         document.getElementById('swal-input1').value
-      ]
+      ];
     }
+  }).then(result => {
+    if (result.isConfirmed) {
+      const updatedData = {
+        nombre: result.value[0]
+      };
 
-  }).
-    then(result => {
-      if (result.isConfirmed) {
-        const updatedData = {
-          nombre: result.value[0]
-
-        };
-
-        axios.put('/api/plantillas/update/' + id, updatedData)
-          .then(response => {
-            plantillasUsuario.value.splice(index, 1, updatedData);
-            swal({
-              icon: 'success',
-              title: 'Nombre actualizado'
-            });
-          }).catch(error => {
-            swal({
-              icon: 'error',
-              title: 'No se ha podido actualizar el nombre de la plantilla'
-            });
+      axios.put('/api/plantillas/update/' + id, updatedData)
+        .then(response => {
+          plantillasUsuario.value.splice(index, 1, updatedData);
+          swal({
+            icon: 'success',
+            title: 'Nombre de la plantilla actualizado correctamente'
           });
-      }
-    });
+          router.push({ name: 'plantillas.indexplantillas' });
+
+        }).catch(error => {
+          swal({
+            icon: 'error',
+            title: 'No se ha podido actualizar el nombre de la plantilla'
+          });
+        });
+    }
+  });
 };
+
 </script>
 
 <style>

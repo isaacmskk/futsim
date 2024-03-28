@@ -70,4 +70,26 @@ class PlantillasController extends Controller
         }
     }
     
+    public function update(Request $request, $id)
+{
+    $plantilla = plantillas::find($id);
+    
+    if(!$plantilla) {
+        return response()->json(['message' => 'No se encontró la plantilla'], 404);
+    }
+    
+    $request->validate([
+        'nombre' => 'required',
+        'jugadores' => 'array',
+        'jugadores.*' => 'exists:jugadores,id',
+    ]);
+
+    $plantilla->nombre = $request->nombre;
+    $plantilla->save();
+    
+    // Si necesitas actualizar los jugadores asociados a la plantilla, puedes hacerlo aquí
+    
+    return response()->json(['success' => true, 'data' => $plantilla]);
+}
+
 }
