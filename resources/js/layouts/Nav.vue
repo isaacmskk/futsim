@@ -7,44 +7,16 @@
                 <span aria-hidden="true" class="hover-text">&nbsp;FUTSIM&nbsp;</span>
             </button>
         </router-link>
-
-        <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
-            <i class="pi pi-bars"></i>
-        </button>
-
-        <div class="layout-topbar-menu" :class="topbarMenuClasses">
-            <router-link :to="{ name: 'futsimvistas.indexnoticia' }"
+        <router-link :to="{ name: 'futsimvistas.indexnoticia' }"
                 class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
                 <i class="pi pi-megaphone"> </i>
-                <!-- <p>Noticias</p> -->
             </router-link>
 
-        </div>
-        <div class="layout-topbar-menu" :class="topbarMenuClasses">
-            <router-link :to="{ name: 'jugadoresadmin.indexjugador' }"
-                class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
-                <i class="pi pi-user-plus"> Jugadores</i>
-            </router-link>
+        <button class="p-link layout-topbar-menu-button layout-topbar-button" @click="onTopBarMenuButton()">
+            <i class="pi pi-ellipsis-v"></i>
+        </button>
 
-        </div>
-        <div class="layout-topbar-menu" :class="topbarMenuClasses">
-            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
-                data-bs-toggle="dropdown">
-
-
-                <i class="pi pi-user"></i>
-
-            </button>
-        </div>
-        <div class="layout-topbar-menu" :class="topbarMenuClasses">
-            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
-                data-bs-toggle="dropdown">
-
-
-                <i class="pi pi-user"></i>
-
-            </button>
-        </div>
+        
         <div class="layout-topbar-menu" :class="topbarMenuClasses">
             <template v-if="!user?.name">
                 <li>

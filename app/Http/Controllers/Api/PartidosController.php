@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Jugadores;
 use App\Models\plantillas;
 use App\Models\partidos;
+use App\Models\usuario_partido;
+
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -41,12 +43,11 @@ class PartidosController extends Controller
             'jugadoresPlantilla2' => $jugadoresPlantilla2,
 
         ]);
-    }
-    public function store($plantillaId, $plantillaSeleccionadaId, $golesEquipo1, $golesEquipo2)
+    }public function store($plantillaId, $plantillaSeleccionadaId, $golesEquipo1, $golesEquipo2,$puntosequipo)
     {
         $usuarioActual = Auth::user();
         $usuarioRival = plantillas::findOrFail($plantillaId)->user;
-    
+        $puntos = $puntosequipo;
         // Crear una nueva instancia de Partidos y asignar los valores recibidos
         $partido = new Partidos();
         $partido->id_plantilla1 = $plantillaId;
@@ -56,12 +57,20 @@ class PartidosController extends Controller
         $partido->id_plantilla2 = $plantillaSeleccionadaId;
         $partido->usuario2 = $usuarioActual->id; // ID del usuario actual
         $partido->goles2 = $golesEquipo2; // Utilizar los goles recibidos como parámetro
-    
+
         // Guardar el partido en la base de datos
         $partido->save();
+    
+        // Guardar el resultado en la tabla usuario_partido
+        usuario_partido::create([
+            'id_partido' => $partido->id,
+            'id_usuario' => $usuarioActual->id,
+            'resultado' => $puntos,
+        ]);
     
         // Devolver una respuesta JSON con el partido creado
         return response()->json($partido, 201);
     }
+    
     
 }

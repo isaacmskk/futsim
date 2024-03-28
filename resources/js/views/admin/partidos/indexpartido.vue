@@ -16,26 +16,33 @@
           </div>
         </div>
       </div>
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>{{ nombrePlantilla1 }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="jugador in jugadoresPlantilla1" :key="jugador.id">
+              <td>{{ jugador.nombre }}</td>
+              <td>{{ jugador.valoracion }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div>
       <button class="btn btn-primary" @click="jugarPartido">Jugar</button>
     </div>
     <div v-if="juegoIniciado" class="temporizador">
-    <p>Temporizador: {{ tiempo }}</p>
-    <div v-if="juegoIniciado" class="resultados">
-    <p>{{ golesEquipo1Parcial }} - {{ golesEquipo2Parcial }}</p>
+      <p>{{ tiempo }}</p>
+      <div v-if="juegoIniciado" class="resultados">
+        <p>{{ golesEquipo1Parcial }} - {{ golesEquipo2Parcial }}</p>
+      </div>
 
-    <div v-if="minutos >= 45">
-      <p>{{ nombrePlantilla1 }}: {{ golesEquipo1Parcial }} goles</p>
-      <p>{{ nombrePlantilla2 }}: {{ golesEquipo2Parcial }} goles</p>
     </div>
 
-    <div v-if="minutos >= 90">
-      <p>Resultados finales del partido: {{ golesEquipo1 }} - {{ golesEquipo2 }}</p>
-      <p>{{ nombrePlantilla1 }}: {{ golesEquipo1 }} goles</p>
-      <p>{{ nombrePlantilla2 }}: {{ golesEquipo2 }} goles</p>
-    </div>
-  </div>  </div>
     <!-- Mostrar jugadores de la plantilla 2 -->
     <div class="col-12">
       <div class="card">
@@ -49,6 +56,21 @@
           </div>
         </div>
       </div>
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>{{ nombrePlantilla2 }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="jugador in jugadoresPlantilla2" :key="jugador.id">
+              <td>{{ jugador.nombre }}</td>
+              <td>{{ jugador.valoracion }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -56,8 +78,6 @@
     <p>No se han seleccionado plantillas.</p>
   </div>
 
-  <!-- Agregar el temporizador de PrimeVue -->
-  
 </template>
 
 <script setup>
@@ -118,12 +138,10 @@ const jugarPartido = () => {
       golesEquipo2Parcial = Math.floor(Math.random() * 4);
 
       Swal.fire({
-        title: 'Resultados parciales al minuto 45',
+        title: 'Descanso. Primera Parte Acabada',
         html: `
-          <p>${nombrePlantilla1.value}: ${golesEquipo1Parcial} goles</p>
-          <p>${nombrePlantilla2.value}: ${golesEquipo2Parcial} goles</p>
+          <p>${nombrePlantilla1.value} ${golesEquipo1Parcial} - ${golesEquipo2Parcial} ${nombrePlantilla2.value}</p>
         `,
-        icon: 'info'
       }).then(() => {
         intervalo = setInterval(avanzarTiempo, 1);
       });
@@ -133,14 +151,20 @@ const jugarPartido = () => {
       clearInterval(intervalo);
       const golesEquipo1 = golesEquipo1Parcial + Math.floor(Math.random() * 3);
       const golesEquipo2 = golesEquipo2Parcial + Math.floor(Math.random() * 3);
-
+      let win = '';
+      if (golesEquipo1 < golesEquipo2) {
+        win = 'Has ganado!!!'
+      } else if (golesEquipo1 > golesEquipo2) {
+        win = 'Has perdido'
+      } else {
+        win = 'Has empatado'
+      }
       Swal.fire({
-        title: 'Resultados finales del partido',
+        title: win,
         html: `
-          <p>${nombrePlantilla1.value}: ${golesEquipo1} goles</p>
-          <p>${nombrePlantilla2.value}: ${golesEquipo2} goles</p>
+        
+          <p>${nombrePlantilla1.value} ${golesEquipo1} ${nombrePlantilla2.value} ${golesEquipo2}goles</p>
         `,
-        icon: 'info'
       }).then(() => {
         guardarResultadosPartido(golesEquipo1, golesEquipo2);
       });
@@ -150,14 +174,24 @@ const jugarPartido = () => {
   };
 
   intervalo = setInterval(avanzarTiempo, 1);
+
+
 };
 
 // Función para guardar los resultados del partido
 const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
   const plantillaId1 = route.params.plantillaId;
   const plantillaId2 = route.params.plantillaSeleccionadaId;
-
-  axios.post(`/api/partidos/${plantillaId1}/${plantillaId2}/${golesEquipo1}/${golesEquipo2}`, {
+  let puntosequipo = 0;
+  if (golesEquipo1 < golesEquipo2) {
+    puntosequipo = 3
+  } else if (golesEquipo1 > golesEquipo2) {
+    puntosequipo = 0
+  } else {
+    puntosequipo = 1
+  }
+  console.log(puntosequipo)
+  axios.post(`/api/partidos/${plantillaId1}/${plantillaId2}/${golesEquipo1}/${golesEquipo2}/${puntosequipo}`, {
     id_plantilla1: plantillaId1,
     usuario1: '',
     goles1: golesEquipo1,
@@ -170,6 +204,7 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
     console.error('Error al guardar el partido:', error);
   });
 };
+
 </script>
 
 <style>
@@ -179,5 +214,41 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
   color: white;
   padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+.table {
+  width: auto;
+  /* Para que la tabla se ajuste al contenido */
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table thead {
+  background-color: transparent;
+  /* Sin fondo */
+}
+
+.table th,
+.table td {
+  padding: 8px 10px;
+  /* Ajusta el padding según sea necesario */
+  text-align: left;
+  color: black;
+  /* Texto blanco */
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: transparent;
+  /* Sin fondo */
+}
+
+.table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Cambia el color al pasar el cursor */
 }
 </style>

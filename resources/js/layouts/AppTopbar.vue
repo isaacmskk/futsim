@@ -16,7 +16,7 @@
             <i class="pi pi-ellipsis-v"></i>
         </button>
 
-        <div class="layout-topbar-menu" :class="topbarMenuClasses">
+        <!-- <div class="layout-topbar-menu" :class="topbarMenuClasses">
             <router-link :to="{ name: 'futsimvistas.indexnoticia' }" class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
                 <i class="pi pi-megaphone"> Noticias</i>
             </router-link>
@@ -45,7 +45,7 @@
                 <i class="pi pi-user"></i>
 
             </button>
-        </div>
+        </div> -->
         <div class="layout-topbar-menu" :class="topbarMenuClasses">
             <template v-if="!user?.name">
                 <li>
