@@ -3,14 +3,12 @@
     <h2 class="card-title">Partido {{ nombrePlantilla1 }} vs {{ nombrePlantilla2 }}</h2>
   </div>
   <div class="grid" v-if="jugadoresPlantilla1.length > 0 && jugadoresPlantilla2.length > 0">
-    <!-- Mostrar jugadores de la plantilla 1 -->
     <div class="col-12">
       <div class="card">
         <div class="card-body">
           <h3>{{ nombrePlantilla1 }}</h3>
           <div class="row">
-            <div v-for="jugador in jugadoresPlantilla1" :key="jugador.id"
-              class="col-12 col-lg-3 cartJugadores text-center">
+            <div v-for="jugador in jugadoresPlantilla1" :key="jugador.id" class="col-12 col-lg-3 cartJugadores text-center">
               <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
             </div>
           </div>
@@ -37,20 +35,16 @@
     </div>
     <div v-if="juegoIniciado" class="temporizador">
       <p>{{ tiempo }}</p>
-      <div v-if="juegoIniciado" class="resultados">
-        <p>{{ golesEquipo1Parcial }} - {{ golesEquipo2Parcial }}</p>
+      <div class="resultados">
+        <p>{{ golesEquipo1 }} - {{ golesEquipo2 }}</p>
       </div>
-
     </div>
-
-    <!-- Mostrar jugadores de la plantilla 2 -->
     <div class="col-12">
       <div class="card">
         <div class="card-body">
           <h3>{{ nombrePlantilla2 }}</h3>
           <div class="row">
-            <div v-for="jugador in jugadoresPlantilla2" :key="jugador.id"
-              class="col-12 col-lg-3 cartJugadores text-center">
+            <div v-for="jugador in jugadoresPlantilla2" :key="jugador.id" class="col-12 col-lg-3 cartJugadores text-center">
               <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
             </div>
           </div>
@@ -73,11 +67,9 @@
       </div>
     </div>
   </div>
-
   <div v-else>
     <p>No se han seleccionado plantillas.</p>
   </div>
-
 </template>
 
 <script setup>
@@ -86,21 +78,19 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useRoute } from 'vue-router';
 
-// Declaración de variables reactivas
 const nombrePlantilla1 = ref('');
 const nombrePlantilla2 = ref('');
 const jugadoresPlantilla1 = ref([]);
 const jugadoresPlantilla2 = ref([]);
 const route = useRoute();
-const juegoIniciado = ref(false); // Indica si el juego está en curso
-const tiempo = ref('00:00'); // Tiempo en formato de cadena (minutos:segundos)
-let golesEquipo1Parcial = 0; // Goles acumulados hasta el minuto 45
-let golesEquipo2Parcial = 0; // Goles acumulados hasta el minuto 45
-let minutos = ref(0); // Variable para almacenar los minutos del partido
-let golesEquipo1 = ref(0); // Goles totales del equipo 1 al final del partido
-let golesEquipo2 = ref(0); // Goles totales del equipo 2 al final del partido
+const juegoIniciado = ref(false);
+const tiempo = ref('00:00');
+let minutos = ref(0);
+let segundos = ref(0);
+let golesEquipo1 = ref(0);
+let golesEquipo2 = ref(0);
+let intervalo;
 
-// Función para obtener los datos de las plantillas
 onMounted(() => {
   const plantillaId = route.params.plantillaId;
   const plantillaSeleccionadaId = route.params.plantillaSeleccionadaId;
@@ -119,66 +109,79 @@ onMounted(() => {
   });
 });
 
-// Función para jugar el partido
 const jugarPartido = () => {
   juegoIniciado.value = true;
-  let segundos = 0;
-  let intervalo;
-
-  const avanzarTiempo = () => {
-    segundos += 1;
-    if (segundos === 60) {
-      minutos.value++;
-      segundos = 0;
-    }
-
-    if (minutos.value === 45 && segundos === 0) {
-      clearInterval(intervalo);
-      golesEquipo1Parcial = Math.floor(Math.random() * 4);
-      golesEquipo2Parcial = Math.floor(Math.random() * 4);
-
-      Swal.fire({
-        title: 'Descanso. Primera Parte Acabada',
-        html: `
-          <p>${nombrePlantilla1.value} ${golesEquipo1Parcial} - ${golesEquipo2Parcial} ${nombrePlantilla2.value}</p>
-        `,
-      }).then(() => {
-        intervalo = setInterval(avanzarTiempo, 1);
-      });
-    }
-
-    if (minutos.value === 90) {
-      clearInterval(intervalo);
-      const golesEquipo1 = golesEquipo1Parcial + Math.floor(Math.random() * 3);
-      const golesEquipo2 = golesEquipo2Parcial + Math.floor(Math.random() * 3);
-      let win = '';
-      if (golesEquipo1 < golesEquipo2) {
-        win = 'Has ganado!!!'
-      } else if (golesEquipo1 > golesEquipo2) {
-        win = 'Has perdido'
-      } else {
-        win = 'Has empatado'
-      }
-      Swal.fire({
-        title: win,
-        html: `
-        
-          <p>${nombrePlantilla1.value} ${golesEquipo1} ${nombrePlantilla2.value} ${golesEquipo2}goles</p>
-        `,
-      }).then(() => {
-        guardarResultadosPartido(golesEquipo1, golesEquipo2);
-      });
-    }
-
-    tiempo.value = `${String(minutos.value).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
-  };
-
-  intervalo = setInterval(avanzarTiempo, 1);
-
-
+  avanzarTiempo();
 };
 
-// Función para guardar los resultados del partido
+const avanzarTiempo = () => {
+  intervalo = setInterval(() => {
+    segundos.value++;
+    if (segundos.value === 60) {
+      minutos.value++;
+      segundos.value = 0;
+    }
+    if (minutos.value === 45 && segundos.value === 0) {
+      pausarPartido();
+    }
+    if (minutos.value === 90 && segundos.value === 0) {
+      clearInterval(intervalo);
+      terminarPartido();
+    }
+
+    tiempo.value = `${String(minutos.value).padStart(2, '0')}:${String(segundos.value).padStart(2, '0')}`;
+    
+    if (Math.random() < 0.001) {
+      golesEquipo1.value++;
+      mostrarGol(nombrePlantilla1.value);
+    }
+    if (Math.random() < 0.001) {
+      golesEquipo2.value++;
+      mostrarGol(nombrePlantilla2.value);
+    }
+  }, 10);
+};
+
+const pausarPartido = () => {
+  clearInterval(intervalo);
+  Swal.fire({
+    title: '¡Descanso!',
+    text: '¿Quieres reanudar el partido?',
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonText: 'Sí',
+    cancelButtonText: 'No'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      avanzarTiempo();
+    }
+  });
+};
+
+const terminarPartido = () => {
+  Swal.fire({
+    title: '¡Fin del partido!',
+    text: '¡El partido ha terminado!',
+    icon: 'info',
+    confirmButtonText: 'Aceptar'
+  }).then(() => {
+    guardarResultadosPartido(golesEquipo1.value, golesEquipo2.value);
+  });
+};
+
+const mostrarGol = (equipo) => {
+  Swal.fire({
+    title: '¡Gol!',
+    text: `¡Gol de ${equipo}!`,
+    icon: 'success',
+    timer: 1500,
+    timerProgressBar: true,
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false
+  });
+};
+
 const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
   const plantillaId1 = route.params.plantillaId;
   const plantillaId2 = route.params.plantillaSeleccionadaId;
@@ -204,7 +207,6 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
     console.error('Error al guardar el partido:', error);
   });
 };
-
 </script>
 
 <style>
@@ -222,7 +224,6 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
 
 .table {
   width: auto;
-  /* Para que la tabla se ajuste al contenido */
   border-collapse: collapse;
   border-radius: 8px;
   overflow: hidden;
@@ -230,25 +231,20 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
 
 .table thead {
   background-color: transparent;
-  /* Sin fondo */
 }
 
 .table th,
 .table td {
   padding: 8px 10px;
-  /* Ajusta el padding según sea necesario */
   text-align: left;
   color: black;
-  /* Texto blanco */
 }
 
 .table tbody tr:nth-child(even) {
   background-color: transparent;
-  /* Sin fondo */
 }
 
 .table tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  /* Cambia el color al pasar el cursor */
 }
 </style>
