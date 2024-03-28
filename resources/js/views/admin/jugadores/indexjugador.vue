@@ -45,6 +45,7 @@ const router = useRouter();
 const jugadores = ref([]);
 const jugadoresSeleccionados = ref([]);
 const swal = inject("$swal");
+const jugadoresFiltrados = ref([]);
 
 // Definir la función ordenarPorValoracion para ordenar los jugadores por su valoración
 const ordenarPorValoracion = (tipo) => {
@@ -59,16 +60,6 @@ const ordenarPorValoracion = (tipo) => {
 onMounted(() => {
   axios.get("/api/jugadores").then((response) => {
     jugadores.value = response.data;
-    console.log(response.data);
-  });
-});
-
-const jugadoresFiltrados = ref([]);
-
-onMounted(() => {
-  axios.get("/api/jugadores").then((response) => {
-    jugadores.value = response.data;
-    // Al cargar los jugadores, inicializamos jugadoresFiltrados con la misma lista
     jugadoresFiltrados.value = response.data;
     console.log(response.data);
   });

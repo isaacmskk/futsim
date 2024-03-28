@@ -19,5 +19,8 @@ class partidos extends Model
         'id_plantilla2'
 
     ];
-
+    public function usuarioPartidos()
+    {
+        return $this->hasMany(usuario_partido::class, 'id_partido');
+    }
 }
