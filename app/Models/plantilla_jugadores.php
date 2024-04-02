@@ -11,5 +11,6 @@ class plantilla_jugadores extends Model
     protected $fillable = [
         'id_plantilla',
         'id_jugador',
+        'fichaje'
     ];
 }

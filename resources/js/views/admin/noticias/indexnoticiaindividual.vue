@@ -6,7 +6,7 @@
                     <div v-for="(noticia, index) in noticias" :key="noticia.id">
                         <div class="row">
                             <div class="col-md-4">
-                                <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia" class="img-fluid" >
+                                <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia" class="img-fluid">
                             </div>
                             <div class="col-md-8">
                                 <h5 class="card-title">{{ noticia.titulo }}</h5>

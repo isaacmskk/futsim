@@ -42,11 +42,19 @@
                     <input v-model="noticia.publicado" class="form-control" type="datetime-local" name="publicado" />
                 </div>
 
-
+                <div class="form-group mb-2">
+                    <label>Categoría</label><span class="text-danger">*</span>
+                    <select v-model="noticia.categoria_id" class="form-control">
+                        <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.id">{{
+                                categoria.categoria }}
+                        </option>
+                    </select>
+                </div>
                 <div class="form-gorup mb-2">
-                    <label>Fecha fin</label><span class="text-danger">*</span>
+                    <label>FOTO</label><span class="text-danger">*</span>
                     <DropZone v-model="noticia.thumbnail" />
                 </div>
+
 
 
                 <button type="submit" class="botonGeneral">Añadir Noticia</button>
@@ -62,7 +70,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import DropZone from "@/components/DropZone.vue";
 
 const noticia = reactive({
@@ -71,8 +79,23 @@ const noticia = reactive({
     subtitulo: '',
     contenido: '',
     publicado: '',
-    thumbnail: ''
+    thumbnail: '',
+    categoria_id: '' // Nueva propiedad para almacenar el ID de la categoría seleccionada
 });
+
+const categorias = ref([]);
+
+onMounted(() => {
+    // Cargar categorías disponibles al cargar la página
+    axios.get('/api/categorias')
+        .then(response => {
+            console.log(response.data); // Verifica los datos de respuesta
+            categorias.value = response.data;
+        }).catch(error => {
+            console.error(error);
+        });
+});
+
 const strError = ref();
 const strSuccess = ref();
 

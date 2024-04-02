@@ -10,6 +10,8 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use App\Models\categorias;
+
 class NoticiasController extends Controller implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
@@ -32,24 +34,29 @@ class NoticiasController extends Controller implements HasMedia
     return response()->json([$noticia]);
 }
 
-    public function store(Request $request)
-    {
+public function store(Request $request)
+{
+    $request->validate([
+        'titulo' => 'required|max:75',
+        'subtitulo' => 'required|max:125',
+        'contenido' => 'required',
+        'publicado' => 'required',
+        'thumbnail' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'categoria_id' => 'required|exists:categorias,id' // Verifica que el ID de la categoría exista en la tabla categorias
+    ]);
 
-        $request->validate([
-            'titulo' => 'required|max:75',
-            'subtitulo' => 'required|max:125',
-            'contenido' => 'required',
-            'publicado' => 'required',
-            'thumbnail' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Ajusta los tipos de archivo y el tamaño según tus necesidades
-        ]);
-        $noticia = $request->all();
-        $tarea = noticias::create($noticia);
+    $noticia = noticias::create($request->all());
 
-        if ($request->hasFile('thumbnail')) {
-            $tarea->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-jugadores');
-        }
-        return response()->json(['success' => true, 'data' => $tarea]);
+    // Agregar la relación a la tabla categoria_noticia
+    $noticia->categorias()->attach($request->categoria_id);
+
+    if ($request->hasFile('thumbnail')) {
+        $noticia->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-jugadores');
     }
+
+    return response()->json(['success' => true, 'data' => $noticia]);
+}
+
 
 
 

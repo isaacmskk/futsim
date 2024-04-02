@@ -24,4 +24,8 @@ class noticias extends Model implements HasMedia
             ->useFallbackUrl('/images/placeholder.jpg')
             ->useFallbackPath(public_path('/images/placeholder.jpg'));
     }
+    public function categorias()
+    {
+        return $this->belongsToMany(categorias::class, 'categoria_noticias', 'id_noticia', 'id_categoria');
+    }
 }

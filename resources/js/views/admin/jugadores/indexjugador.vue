@@ -107,8 +107,14 @@ const mostrarPromptNombrePlantilla = () => {
 };
 
 const guardarJugadoresSeleccionados = (nombrePlantilla) => {
-  axios.post("/api/plantillas", { nombre: nombrePlantilla, jugadores: jugadoresSeleccionados.value.map(jugador => jugador.id) })
-    .then(response => {
+  const data = {
+    nombre: nombrePlantilla,
+    jugadores: jugadoresSeleccionados.value.map(jugador => jugador.id),
+    fichaje: new Date().toISOString().slice(0, 19).replace('T', ' ') // Formatear la fecha y hora correctamente
+  };
+  console.log(data);
+axios.post("/api/plantillas", data)
+  .then(response => {
       const plantillaId = response.data.data.id;
       router.push({ name: 'plantillas.detalleplantillas', params: { idPlantilla: plantillaId } });
       swal.fire({

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\api;
-
 use App\Http\Controllers\Controller;
 use App\Models\Jugadores;
 use Illuminate\Http\Request;
@@ -29,22 +28,27 @@ class PlantillasController extends Controller
             'nombre' => 'required',
             'jugadores' => 'array',
             'jugadores.*' => 'exists:jugadores,id',
+            'fichaje' => 'required' // Verifica que esto esté presente
         ]);
-
-        // Get the authenticated user
+    
+        // Obtener el usuario autenticado
         $usuario = auth()->user();
-
-        // Create the plantilla
+    
+        // Crear la plantilla
         $plantilla = $request->all();
         $plantilla['id_usuario'] = $usuario->id;
-
+    
+        // Asignar la fecha de fichaje
+        $plantilla['fichaje'] = $request->fichaje; // Asegúrate de asignar correctamente el valor de 'fichaje'
+    
+        // Crear la nueva plantilla_jugadores
         $nuevaPlantilla = plantillas::create($plantilla);
         $nuevaPlantilla->jugadores()->sync($request->input('jugadores'));
-
+    
         return response()->json(['success' => true, 'data' => $nuevaPlantilla]);
     }
-
-
+    
+    
     public function show($id)
     {
         $plantilla = plantillas::with('jugadores')->find($id);
@@ -82,6 +86,8 @@ class PlantillasController extends Controller
         'nombre' => 'required',
         'jugadores' => 'array',
         'jugadores.*' => 'exists:jugadores,id',
+        'fichaje' => now() // Verifica que esto esté presente
+
     ]);
 
     $plantilla->nombre = $request->nombre;

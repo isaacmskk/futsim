@@ -1,28 +1,29 @@
 <template>
     <div class="row">
-    <div class="grid">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between pb-2 mb-2">
-                        <h5 class="card-title text-light">Todas las noticias</h5>
-
-                    </div>
+        <div class="grid">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between pb-2 mb-2">
+                            <h5 class="card-title text-light">Todas las noticias</h5>
+                        </div>
                         <tbody class="row">
-                            <tr v-for="(noticia, index) in noticias" :key="noticia.id" class="card col-12 col-lg-4 text-center">
+                            <tr v-for="(noticia, index) in noticias" :key="noticia.id"
+                                class="card col-12 col-lg-4 text-center">
                                 <button @click="detallenoticia(noticia.id)" class="button">
-                                <td>
-                                    <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia" class="imgNoticias" >
-                                </td>
-                                <h3 >{{ noticia.titulo }}</h3>
-                            </button>
+                                    <td>
+                                        <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia"
+                                            class="imgNoticias">
+                                    </td>
+                                    <h3>{{ noticia.titulo }}</h3>
+                                </button>
                             </tr>
                         </tbody>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </template>
 
 <script setup>
