@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\usuario_partido;
 use Illuminate\Support\Facades\DB;
 
 class RankingController extends Controller
 {
     public function index()
     {
-        // Obtener los usuarios con sus puntos totales
+        // Obtener los usuarios con sus puntos totales y nombres
         $usuarios = DB::table('usuario_partidos')
-                        ->select('id_usuario', DB::raw('SUM(resultado) as total_puntos'))
-                        ->groupBy('id_usuario')
+                        ->select('usuario_partidos.id_usuario', 'users.name', DB::raw('SUM(resultado) as total_puntos'))
+                        ->join('users', 'usuario_partidos.id_usuario', '=', 'users.id')
+                        ->groupBy('usuario_partidos.id_usuario', 'users.name')
                         ->orderByDesc('total_puntos')
                         ->get();
 
@@ -27,4 +26,5 @@ class RankingController extends Controller
         return response()->json($usuarios);
     }
 }
+
 

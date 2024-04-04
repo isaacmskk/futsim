@@ -28,7 +28,7 @@ const model = ref([
     },
     {
         label: 'Ranking',
-        items: [{ label: 'Ranking', icon: 'pi pi-fw pi-star pi-Lateral', to: '/admin/ranking', permision: 'all'}]
+        items: [{ label: 'Ranking', icon: 'pi pi-fw pi-trophy pi-Lateral', to: '/admin/ranking', permision: 'all'}]
     },
     {
         label: 'Noticias',

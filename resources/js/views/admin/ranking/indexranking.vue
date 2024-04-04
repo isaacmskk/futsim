@@ -18,7 +18,7 @@
               <tbody>
                 <tr v-for="(usuario, index) in ranking" :key="usuario.id_usuario">
                   <td class="text-center">{{ usuario.posicion }}</td>
-                  <td class="text-center">{{ usuario.nombre }}</td>
+                  <td class="text-center">{{ usuario.name }}</td>
                   <td class="text-center">{{ usuario.total_puntos }}</td>
                 </tr>
               </tbody>
