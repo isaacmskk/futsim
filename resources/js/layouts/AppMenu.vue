@@ -19,16 +19,16 @@ const vela = "pepe";
 
 const model = ref([
     {
-        label: 'Home',
-        items: [{ label: 'Home', icon: 'pi pi-fw pi-home pi-Lateral', to: '/admin', permision: 'all'}]
-    },
-    {
         label: 'Jugar',
         items: [
             { label: 'Jugadores', icon: 'pi pi-fw pi-users pi-Lateral', to: '/admin/jugadores', permision: 'all' },
             { label: 'Plantillas', icon: 'pi pi-fw pi-sitemap pi-Lateral', to: '/admin/plantillas/misplantillas', permision:'all' },
             { label: 'Partidos', icon: 'pi pi-fw pi-bolt pi-Lateral', to: '/admin/plantillas', permision:'all' }
         ]
+    },
+    {
+        label: 'Ranking',
+        items: [{ label: 'Ranking', icon: 'pi pi-fw pi-star pi-Lateral', to: '/admin/ranking', permision: 'all'}]
     },
     {
         label: 'Noticias',

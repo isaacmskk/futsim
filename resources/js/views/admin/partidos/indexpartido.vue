@@ -76,13 +76,14 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useRoute } from 'vue-router';
+import { routerKey, useRoute, useRouter} from 'vue-router';
 
 const nombrePlantilla1 = ref('');
 const nombrePlantilla2 = ref('');
 const jugadoresPlantilla1 = ref([]);
 const jugadoresPlantilla2 = ref([]);
 const route = useRoute();
+const router = useRouter();
 const juegoIniciado = ref(false);
 const tiempo = ref('00:00');
 let minutos = ref(0);
@@ -111,10 +112,10 @@ onMounted(() => {
 
 const jugarPartido = () => {
   juegoIniciado.value = true;
-  avanzarTiempo();
+  avanzarTiempo(router);
 };
 
-const avanzarTiempo = () => {
+const avanzarTiempo = (router) => {
   intervalo = setInterval(() => {
     segundos.value++;
     if (segundos.value === 60) {
@@ -131,15 +132,15 @@ const avanzarTiempo = () => {
 
     tiempo.value = `${String(minutos.value).padStart(2, '0')}:${String(segundos.value).padStart(2, '0')}`;
     
-    if (Math.random() < 0.001) {
+    if (Math.random() < 0.0001) {
       golesEquipo1.value++;
       mostrarGol(nombrePlantilla1.value);
     }
-    if (Math.random() < 0.001) {
+    if (Math.random() < 0.0001) {
       golesEquipo2.value++;
       mostrarGol(nombrePlantilla2.value);
     }
-  }, 10);
+  }, 1);
 };
 
 const pausarPartido = () => {
@@ -152,7 +153,7 @@ const pausarPartido = () => {
     confirmButtonText: 'Sí',
   }).then((result) => {
     if (result.isConfirmed) {
-      avanzarTiempo();
+      avanzarTiempo(router);
     }
   });
 };
@@ -165,6 +166,8 @@ const terminarPartido = () => {
     confirmButtonText: 'Aceptar'
   }).then(() => {
     guardarResultadosPartido(golesEquipo1.value, golesEquipo2.value);
+    router.push('/admin/ranking');
+
   });
 };
 
