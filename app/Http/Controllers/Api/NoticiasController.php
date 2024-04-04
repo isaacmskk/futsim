@@ -42,14 +42,16 @@ public function store(Request $request)
         'contenido' => 'required',
         'publicado' => 'required',
         'thumbnail' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'categoria_id' => 'required|exists:categorias,id' // Verifica que el ID de la categoría exista en la tabla categorias
+        'categorias' => 'required|string', // Cambia el tipo a 'string'
+        'categorias.*' => 'exists:categorias,id',
     ]);
+    $categoriasIds = explode(',', $request->categorias);
+    $noticia = noticias::create($request->except('categorias')); 
 
-    $noticia = noticias::create($request->all());
+    // Guarda las categorías asociadas
+    $noticia->categorias()->sync($categoriasIds);
 
-    // Agregar la relación a la tabla categoria_noticia
-    $noticia->categorias()->attach($request->categoria_id);
-
+    // Agregar la imagen asociada si se proporciona
     if ($request->hasFile('thumbnail')) {
         $noticia->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-jugadores');
     }
@@ -58,6 +60,15 @@ public function store(Request $request)
 }
 
 
+
+public function filtrarPorCategoria($categoria)
+{
+    $noticias = noticias::whereHas('categorias', function ($query) use ($categoria) {
+        $query->where('categoria', $categoria);
+    })->with('media')->get();
+
+    return response()->json($noticias);
+}
 
 
     public function destroy($id)

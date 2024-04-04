@@ -31,7 +31,7 @@
                                 <td>{{ noticia.contenido }}</td>
                                 <td>{{ noticia.publicado }}</td>
                                 <td>            
-                                    <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia" class="image-table">
+                                    <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia" class="imgJugador">
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-danger"

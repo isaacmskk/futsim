@@ -43,6 +43,8 @@ Route::delete('noticias/{id}', [NoticiasController::class, 'destroy']);
 Route::get('noticias/{id}', [NoticiasController::class, 'show']);
 Route::get('/categorias', [CategoriasController::class, 'index']);
 
+Route::get('noticias/filtrar/{categoria}', 'App\Http\Controllers\Api\NoticiasController@filtrarPorCategoria');
+
 Route::get('comentarios', [ComentariosController::class, 'index']);
 Route::post('comentarios/', [ComentariosController::class, 'store']);
 

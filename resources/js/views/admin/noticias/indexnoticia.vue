@@ -8,6 +8,11 @@
                             <h5 class="card-title text-light">Todas las noticias</h5>
                         </div>
                         <tbody class="row">
+                            <select v-model="categoriaSeleccionada" @change="filtrarNoticias">
+                                <option value="">Todas las categorías</option>
+                                <option v-for="categoria in categorias" :value="categoria.categoria">{{
+                                categoria.categoria }}</option>
+                            </select>
                             <tr v-for="(noticia, index) in noticias" :key="noticia.id"
                                 class="card col-12 col-lg-4 text-center">
                                 <button @click="detallenoticia(noticia.id)" class="button">
@@ -34,6 +39,9 @@ import { useRouter } from 'vue-router';
 const noticias = ref();
 const swal = inject('$swal');
 const router = useRouter();
+const categorias = ref([]);
+const categoriaSeleccionada = ref('');
+
 onMounted(() => {
     axios.get('/api/noticias')
         .then(response => {
@@ -41,11 +49,33 @@ onMounted(() => {
         });
 });
 
+onMounted(() => {
+    // Obtener todas las categorías
+    axios.get('/api/categorias')
+        .then(response => {
+            categorias.value = response.data;
+        });
+});
 const detallenoticia = (idNoticia) => {
     // Use router.push to navigate to the individual news page
     console.log(idNoticia);
     router.push({ name: 'noticias.indexnoticiaindividual', params: { id: idNoticia } });
 }
+const filtrarNoticias = () => {
+    if (categoriaSeleccionada.value === '') {
+        // Si no se selecciona ninguna categoría, obtener todas las noticias
+        axios.get('/api/noticias')
+            .then(response => {
+                noticias.value = response.data;
+            });
+    } else {
+        // Si se selecciona una categoría, filtrar las noticias por esa categoría
+        axios.get(`/api/noticias/filtrar/${categoriaSeleccionada.value}`)
+            .then(response => {
+                noticias.value = response.data;
+            });
+    }
+};
 
 </script>
 

@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between pb-2 mb-2">
-                <h5 class="card-title">Añade una tarea nueva</h5>
+                <h5 class="card-title">Añade una noticia nueva</h5>
             </div>
 
 
@@ -16,7 +16,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 <strong>{{ strError }}</strong>
             </div>
-            {{ noticia }}
             <form @submit.prevent="addNoticia">
                 <div class="form-group mb-2">
                     <label>Titulo</label><span class="text-danger"> *</span>
@@ -36,7 +35,6 @@
                         placeholder="Contenido Noticia"></textarea>
                 </div>
 
-
                 <div class="form-gorup mb-2">
                     <label>Fecha inicio</label><span class="text-danger">*</span>
                     <input v-model="noticia.publicado" class="form-control" type="datetime-local" name="publicado" />
@@ -44,25 +42,19 @@
 
                 <div class="form-group mb-2">
                     <label>Categoría</label><span class="text-danger">*</span>
-                    <select v-model="noticia.categoria_id" class="form-control">
-                        <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.id">{{
-                                categoria.categoria }}
+                    <select v-model="noticia.categorias" class="form-control" multiple>
+                        <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.id">
+                            {{ categoria.categoria }}
                         </option>
                     </select>
+
                 </div>
                 <div class="form-gorup mb-2">
                     <label>FOTO</label><span class="text-danger">*</span>
-                    <DropZone v-model="noticia.thumbnail" />
+                    <DropZone v-model="noticia.thumbnail" class="imgJugador" />
                 </div>
-
-
-
                 <button type="submit" class="botonGeneral">Añadir Noticia</button>
-
-
             </form>
-
-
         </div>
     </div>
 </template>
