@@ -40,11 +40,8 @@ const PlantillasListDetalles = () => import('../views/admin/plantillas/detallepl
 /*LISTAR PARTIDOS*/
 const PartidosList = () => import('../views/admin/partidos/indexpartido.vue');
 
-
-
-
-
-
+/*LISTAR RANKING*/
+const RankingList = () => import('../views/admin/ranking/indexranking.vue');
 
 function requireLogin(to, from, next) {
     let isLogin = false;
@@ -382,7 +379,24 @@ export default [
                     linked: false,
                 }
             },
-            
+            {
+                name: 'ranking',
+                path: 'ranking',
+                meta: {
+                    breadCrumb: 'Ranking',
+                },
+                children: [
+                    {
+                        name: 'ranking.indexranking',
+                        path: '/admin/ranking',
+                        component: RankingList,
+                        meta: {
+                            breadCrumb: 'Ranking',
+                            linked: false,
+                        }
+                    }
+                ]
+            },
             {
                 name: 'categories',
                 path: 'categories',

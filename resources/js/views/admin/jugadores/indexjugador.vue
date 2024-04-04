@@ -96,8 +96,6 @@ const mostrarPromptNombrePlantilla = () => {
     },
     customClass: {
       popup: 'my-custom-popup-class',
-      // confirmButton: 'my-custom-confirm-button-class',
-      // cancelButton: 'my-custom-cancel-button-class',
     },
   }).then((result) => {
     if (result.isConfirmed) {

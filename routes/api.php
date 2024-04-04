@@ -15,8 +15,7 @@ use App\Http\Controllers\Api\PlantillasController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\PartidosController;
 use App\Http\Controllers\Api\CategoriasController;
-
-
+use App\Http\Controllers\api\RankingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +59,7 @@ Route::get('/api/plantillas/{idPlantilla}/jugadores/seleccionados', [PlantillasC
 Route::get('/partidos/{plantillaId}/{plantillaSeleccionadaId}', [PartidosController::class, 'obtenerJugadoresPorPlantilla']);
 Route::post('/partidos/{plantillaId}/{plantillaSeleccionadaId}/{golesEquipo1}/{golesEquipo2}/{puntosequipo}', [PartidosController::class, 'store']);
 
+Route::get('ranking', [RankingController::class, 'index']);
 
 
 Route::group(['middleware' => 'auth:sanctum'], function() {

@@ -146,11 +146,10 @@ const pausarPartido = () => {
   clearInterval(intervalo);
   Swal.fire({
     title: '¡Descanso!',
-    text: '¿Quieres reanudar el partido?',
+    text: '¿Reanudar el partido?',
     icon: 'info',
     showCancelButton: true,
     confirmButtonText: 'Sí',
-    cancelButtonText: 'No'
   }).then((result) => {
     if (result.isConfirmed) {
       avanzarTiempo();
