@@ -27,7 +27,7 @@ import PrimeVue from "primevue/config";
 //import Card from 'primevue/card';
 //import Chart from 'primevue/chart';
 //import CascadeSelect from 'primevue/cascadeselect';
-//import Carousel from 'primevue/carousel';
+import Carousel from 'primevue/carousel';
 //import Checkbox from 'primevue/checkbox';
 //import Chip from 'primevue/chip';
 //import Chips from 'primevue/chips';
