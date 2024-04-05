@@ -132,11 +132,11 @@ const avanzarTiempo = (router) => {
 
     tiempo.value = `${String(minutos.value).padStart(2, '0')}:${String(segundos.value).padStart(2, '0')}`;
     
-    if (Math.random() < 0.0001) {
+    if (Math.random() < 0.001) {
       golesEquipo1.value++;
       mostrarGol(nombrePlantilla1.value);
     }
-    if (Math.random() < 0.0001) {
+    if (Math.random() < 0.001) {
       golesEquipo2.value++;
       mostrarGol(nombrePlantilla2.value);
     }

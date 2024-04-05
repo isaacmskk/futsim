@@ -10,10 +10,11 @@ use App\Models\noticias;
 class ComentariosController extends Controller
 {
     public function index()
-    {
-        $comentarios = comentarios::all()->toArray();
-        return $comentarios;
-    }
+{
+    $comentarios = comentarios::with('user')->get()->toArray();
+    return $comentarios;
+}
+
 
     public function show($id)
     {
