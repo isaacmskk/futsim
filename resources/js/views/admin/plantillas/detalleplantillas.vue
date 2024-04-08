@@ -36,7 +36,7 @@
 import axios from 'axios';
 import { ref, onMounted, inject } from "vue"
 import { useRouter } from 'vue-router'; // Importar el enrutador
-const router = useRouter(); 
+const router = useRouter();
 const swal = inject('$swal');
 const plantillasUsuario = ref([]);
 
@@ -102,11 +102,15 @@ const updateJugador = (id, index) => {
     showCancelButton: true,
     confirmButtonText: 'Guardar',
     cancelButtonText: 'Cancelar',
+
     preConfirm: () => {
       return [
         document.getElementById('swal-input1').value
       ];
-    }
+    },
+    customClass: {
+      popup: 'my-custom-popup-class',
+    },
   }).then(result => {
     if (result.isConfirmed) {
       const updatedData = {
@@ -118,14 +122,24 @@ const updateJugador = (id, index) => {
           plantillasUsuario.value.splice(index, 1, updatedData);
           swal({
             icon: 'success',
-            title: 'Nombre de la plantilla actualizado correctamente'
+            title: 'Nombre de la plantilla actualizado correctamente',
+            customClass: {
+              popup: 'my-custom-success-popup-class',
+              title: 'my-custom-success-title-class',
+              content: 'my-custom-success-content-class',
+            }
           });
           router.push({ name: 'plantillas.indexplantillas' });
 
         }).catch(error => {
           swal({
             icon: 'error',
-            title: 'No se ha podido actualizar el nombre de la plantilla'
+            title: 'No se ha podido actualizar el nombre de la plantilla',
+            customClass: {
+              popup: 'my-custom-error-popup-class',
+              title: 'my-custom-error-title-class',
+              content: 'my-custom-error-content-class',
+            }
           });
         });
     }

@@ -4,7 +4,7 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex justify-content-between pb-2 mb-2">
-              <h5 class="card-title">RANKING</h5>
+              <h2 class="card-title">RANKING</h2>
             </div>
   
             <table class="table table-hover table-sm">

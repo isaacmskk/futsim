@@ -5,6 +5,9 @@
     background-color: #18181b;
     color: white;
     font-family: 'Tahoma' !important;
+    width: 420px!important;
+    margin-left: -15px;
+    
   }
 
   /*Estilo para confirmar el nombre de la plantilla*/
@@ -39,6 +42,8 @@
     background-color: #18181b;
     color: white;
     font-family: 'Tahoma' !important;
+    width: 420px!important;
+    margin-left: -15px;
   }
   .my-custom-success-title-class {
     color: white;
@@ -61,6 +66,8 @@
     background-color: #18181b;
     color: white;
     font-family: 'Tahoma' !important;
+    width: 420px!important;
+    margin-left: -15px;
   }
   .my-custom-error-title-class {
     color: #dc3545;
@@ -101,3 +108,18 @@
     background-color: #dc3545;
     border: 1px solid #dc3545;
   }
+
+  .swal2-select select {
+    width: 100%; /* Ancho del desplegable al 100% del contenedor */
+    padding: 5px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 4px; /* Borde redondeado */
+    background-color: transparent; /* Elimina el color de fondo */
+    color: white; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    font-family: 'Tahoma' !important; /* Tipo de fuente */
+}
+.my-custom-container-class .swal2-select {
+  color: white;
+  background-color: #18181b;
+}

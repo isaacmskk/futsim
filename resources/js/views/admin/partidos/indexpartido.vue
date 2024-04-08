@@ -8,7 +8,8 @@
         <div class="card-body">
           <h3>{{ nombrePlantilla1 }}</h3>
           <div class="row">
-            <div v-for="jugador in jugadoresPlantilla1" :key="jugador.id" class="col-12 col-lg-3 cartJugadores text-center">
+            <div v-for="jugador in jugadoresPlantilla1" :key="jugador.id"
+              class="col-12 col-lg-3 cartJugadores text-center">
               <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
             </div>
           </div>
@@ -31,8 +32,9 @@
       </div>
     </div>
     <div>
-      <button class="btn btn-primary" @click="jugarPartido">Jugar</button>
+      <button v-if="!juegoIniciado" class="botonGeneral" @click="jugarPartido">Jugar</button>
     </div>
+
     <div v-if="juegoIniciado" class="temporizador">
       <p>{{ tiempo }}</p>
       <div class="resultados">
@@ -44,7 +46,8 @@
         <div class="card-body">
           <h3>{{ nombrePlantilla2 }}</h3>
           <div class="row">
-            <div v-for="jugador in jugadoresPlantilla2" :key="jugador.id" class="col-12 col-lg-3 cartJugadores text-center">
+            <div v-for="jugador in jugadoresPlantilla2" :key="jugador.id"
+              class="col-12 col-lg-3 cartJugadores text-center">
               <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
             </div>
           </div>
@@ -76,7 +79,7 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { routerKey, useRoute, useRouter} from 'vue-router';
+import { routerKey, useRoute, useRouter } from 'vue-router';
 
 const nombrePlantilla1 = ref('');
 const nombrePlantilla2 = ref('');
@@ -131,12 +134,12 @@ const avanzarTiempo = (router) => {
     }
 
     tiempo.value = `${String(minutos.value).padStart(2, '0')}:${String(segundos.value).padStart(2, '0')}`;
-    
-    if (Math.random() < 0.001) {
+
+    if (Math.random() < 0.0001) {
       golesEquipo1.value++;
       mostrarGol(nombrePlantilla1.value);
     }
-    if (Math.random() < 0.001) {
+    if (Math.random() < 0.0001) {
       golesEquipo2.value++;
       mostrarGol(nombrePlantilla2.value);
     }
@@ -148,9 +151,10 @@ const pausarPartido = () => {
   Swal.fire({
     title: '¡Descanso!',
     text: '¿Reanudar el partido?',
-    icon: 'info',
-    showCancelButton: true,
     confirmButtonText: 'Sí',
+    customClass: {
+      popup: 'my-custom-popup-class',
+    },
   }).then((result) => {
     if (result.isConfirmed) {
       avanzarTiempo(router);
@@ -159,24 +163,39 @@ const pausarPartido = () => {
 };
 
 const terminarPartido = () => {
+  let resultadoMensaje = '';
+  if (golesEquipo1.value > golesEquipo2.value) {
+    resultadoMensaje = `Has Perdido`;
+  } else if (golesEquipo1.value < golesEquipo2.value) {
+    resultadoMensaje = `Has Ganado`;
+  } else {
+    resultadoMensaje = 'Has Empatado';
+  }
+
   Swal.fire({
     title: '¡Fin del partido!',
-    text: '¡El partido ha terminado!',
+    text: `¡El partido ha terminado! ${resultadoMensaje}`,
+    text:`${resultadoMensaje}`,
     icon: 'info',
-    confirmButtonText: 'Aceptar'
+    confirmButtonText: 'Aceptar',
+    customClass: {
+      popup: 'my-custom-success-popup-class',
+      title: 'my-custom-success-title-class',
+      content: 'my-custom-success-content-class',
+    }
   }).then(() => {
     guardarResultadosPartido(golesEquipo1.value, golesEquipo2.value);
     router.push('/admin/ranking');
-
   });
 };
+
 
 const mostrarGol = (equipo) => {
   Swal.fire({
     title: '¡Gol!',
     text: `¡Gol de ${equipo}!`,
     icon: 'success',
-    timer: 1500,
+    timer: 2000,
     timerProgressBar: true,
     toast: true,
     position: 'top-end',

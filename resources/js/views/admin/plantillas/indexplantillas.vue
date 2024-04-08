@@ -69,8 +69,9 @@ const mostrarPlantillasUsuario = (plantillaId) => {
     cancelButtonText: 'Cancelar',
     customClass: {
       popup: 'my-custom-popup-class', // Clase para el cuadro de diálogo
-      confirmButton: 'my-custom-success-popup-class', // Clase para el botón de confirmar
-      cancelButton: 'my-custom-popup-class', // Clase para el botón de cancelar
+      confirmButton: '', // Clase para el botón de confirmar
+      cancelButton: '', // Clase para el botón de cancelar
+      container: 'my-custom-container-class' // Clase para el contenedor del select
     }
   }).then((response) => {
     // Verifica si se seleccionó una opción
@@ -90,6 +91,7 @@ const mostrarPlantillasUsuario = (plantillaId) => {
     }
   });
 };
+
 
 
 </script>

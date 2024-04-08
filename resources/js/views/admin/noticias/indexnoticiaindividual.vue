@@ -6,13 +6,16 @@
           <div class="noticia-header">
             <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia" class="img-fluid">
             <p class="text-secondary">{{ new Date(noticia.publicado).toLocaleString() }}</p>
-            <h2>{{ noticia.titulo }}</h2>
+            <h3>{{ noticia.titulo }}</h3>
             <h4>{{ noticia.subtitulo }}</h4>
             <p class="noticia-content">{{ noticia.contenido }}</p>
+            
           </div>
         </div>
         <div class="col-12 col-lg-6">
-          <button @click="mostrarFormularioComentario(noticia.id)" class="botoncomentar">Comentar</button>
+          <div class="text-center">
+            <button @click="mostrarFormularioComentario(noticia.id)" class="botoncomentar">Comentar</button>
+          </div>
           <div v-if="comentariosPorNoticia[noticia.id]" class="p-mt-2 comentarios-container">
             <div v-for="(comentario, index) in comentariosPorNoticia[noticia.id]" :key="comentario.id"
               class="chat-message">
@@ -65,13 +68,16 @@ const groupComentariosPorNoticia = (comentarios) => {
 const mostrarFormularioComentario = (idNoticia) => {
   swal({
     title: 'Agregar Comentario',
-    html: '<input id="swal-comentario" class="swal2-input" placeholder="Comentario">',
+    html: '<textarea id="swal-comentario" class="swal2-textarea" style = "width: 295px">',
     focusConfirm: false,
     preConfirm: () => {
       return {
         comentario: document.getElementById('swal-comentario').value
       };
-    }
+    },
+    customClass: {
+      popup: 'my-custom-popup-class',
+    },
   }).then(result => {
     if (result.isConfirmed) {
       const nuevoComentario = {
@@ -86,82 +92,43 @@ const mostrarFormularioComentario = (idNoticia) => {
 const crearComentario = (nuevoComentario) => {
   axios.post('/api/comentarios', nuevoComentario)
     .then(response => {
+      // Agregar el nuevo comentario a la lista local de comentarios
       if (!comentariosPorNoticia.value[nuevoComentario.id_noticia]) {
         comentariosPorNoticia.value[nuevoComentario.id_noticia] = [];
       }
-
       comentariosPorNoticia.value[nuevoComentario.id_noticia].push(response.data.data);
-      swal({
+
+      // Recargar los comentarios de la API para reflejar los cambios
+      axios.get('/api/comentarios')
+        .then(response => {
+          comentariosPorNoticia.value = groupComentariosPorNoticia(response.data);
+        });
+        swal({
         icon: 'success',
-        title: 'Comentado correctamente'
+        title: 'Comentado correctamente',
+
+        customClass: {
+          popup: 'my-custom-success-popup-class',
+          title: 'my-custom-success-title-class',
+          content: 'my-custom-success-content-class',
+
+        }
       });
     })
     .catch(error => {
       swal({
         icon: 'error',
-        title: 'No se ha podido agregar el comentario'
+        title: 'No se ha podido agregar el comentario',
+        customClass: {
+          popup: 'my-custom-error-popup-class',
+          title: 'my-custom-error-title-class',
+          content: 'my-custom-error-content-class',
+        }
       });
     });
 };
+
 </script>
 
 <style scoped>
-* {
-  font-family: Tahoma !important;
-
-}
-
-.img-fluid {
-  max-width: 100%;
-  height: auto;
-}
-
-.noticia-content {
-  color: white;
-}
-
-.noticia-container {
-  margin-bottom: 20px;
-}
-
-.noticia-header h2 {
-  color: white;
-  margin: 0;
-  font-size: 25px;
-  font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
-.noticia-header h4 {
-  color: white;
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
-.smaller-image {
-  max-width: 100px;
-  height: auto;
-}
-
-.chat-message {
-  margin-bottom: 10px;
-}
-
-.chat-message-text {
-  background-color: #cacaca;
-  padding: 10px;
-  border-radius: 5px;
-  overflow-wrap: break-word;
-  /* Cambia a overflow-wrap */
-
-}
-
-.chat-message-time {
-  color: #f0f0f07b;
-  font-size: 12px;
-}
 </style>
