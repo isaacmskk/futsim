@@ -7,10 +7,7 @@
                 <span aria-hidden="true" class="hover-text">&nbsp;FUTSIM&nbsp;</span>
             </button>
         </router-link>
-        <router-link :to="{ name: 'futsimvistas.indexnoticia' }"
-                class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
-                <i class="pi pi-megaphone"> </i>
-            </router-link>
+        
 
         <button class="p-link layout-topbar-menu-button layout-topbar-button" @click="onTopBarMenuButton()">
             <i class="pi pi-ellipsis-v"></i>

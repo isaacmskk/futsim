@@ -21,7 +21,14 @@
   background-size: 100% auto!important;
   // background-attachment: fixed;
   // background-position: bottom;
-  // background-position: bottom;
+  // background-position: right!important;
+}
+
+.cardFondoGrande{
+  background-image: url(../../public/images/fondoDivs.svg)!important;
+  // background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 50% auto!important;
 }
 
 /*CHECK PARA SELECCIONAR JUGADORES*/
