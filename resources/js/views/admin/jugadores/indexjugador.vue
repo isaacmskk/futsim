@@ -4,7 +4,7 @@
       <div class="card cardFondo">
         <div class="card-body">
           <div class="d-flex justify-content-between pb-2 mb-2">
-            <h5 class="card-title text-light">Todos los jugadores</h5>
+            <h2>Todos los jugadores</h2>
             <div>
               <button v-if="jugadoresSeleccionados.length === 4" class="botonGeneral" @click="mostrarPromptNombrePlantilla">Crear Plantilla</button>
             </div>

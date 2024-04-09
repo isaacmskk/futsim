@@ -13,20 +13,15 @@
     margin-bottom: auto!important;
 }
 
-.cardFondo{
+.cardFondoPequeño{
   
   background-image: url(../../public/images/fondoDivs.svg)!important;
-  // background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: 100% auto!important;
-  // background-attachment: fixed;
-  // background-position: bottom;
-  // background-position: right!important;
 }
 
-.cardFondoGrande{
+.cardFondo{
   background-image: url(../../public/images/fondoDivs.svg)!important;
-  // background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: 50% auto!important;
 }
