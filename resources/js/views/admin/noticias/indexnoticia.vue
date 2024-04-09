@@ -4,9 +4,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between pb-2 mb-2">
-                            <h5 class="card-title text-light">Todas las noticias</h5>
-                        </div>
+                            <h2>Todas las noticias</h2>
                         <tbody class="row">
                             <select v-model="categoriaSeleccionada" @change="filtrarNoticias">
                                 <option value="">Todas las categorías</option>

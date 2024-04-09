@@ -1,31 +1,29 @@
 <template>
-  <div class="d-flex justify-content-between pb-2 mb-2">
-    <h2 class="card-title">Mis Plantillas</h2>
-  </div>
-
   <div v-for="(plantilla, index) in plantillasUsuario" :key="plantilla.id" style="margin-bottom: 20px;">
     <div class="col-12">
       <div class="card cardFondo">
         <div class="card-body">
-          <h3>{{ plantilla.nombre }}</h3>
-          <button class="btn btn-danger" @click="deletePlantilla(plantilla.id, index)">Delete</button>
-          <button class="botonGeneral" @click="updateJugador(plantilla.id, index)">Editar nombre</button>
-          <tbody class="row">
-            <div v-if="plantillasUsuario.length === 0" class="d-flex justify-content-between pb-2 mb-2">
-              <p>No tienes plantillas creadas.</p>
-            </div>
-            <!-- Mostrar el nombre de la plantilla -->
 
+          <h2>Mis Plantillas</h2>
 
-            <!-- Iterar sobre los jugadores asociados con esta plantilla -->
-            <div v-if="plantilla.jugadores.length === 0">
-              <p>No tienes jugadores asociados a esta plantilla.</p>
-            </div>
-            <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
-              class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
-              <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
-            </div>
-          </tbody>
+          <div class="card-body">
+            <h3>{{ plantilla.nombre }}</h3>
+            <button class="btn btn-danger" @click="deletePlantilla(plantilla.id, index)">Delete</button>
+            <button class="botonGeneral" @click="updateJugador(plantilla.id, index)">Editar nombre</button>
+            <tbody class="row">
+              <div v-if="plantillasUsuario.length === 0" class="d-flex justify-content-between pb-2 mb-2">
+                <p>No tienes plantillas creadas.</p>
+              </div>
+
+              <div v-if="plantilla.jugadores.length === 0">
+                <p>No tienes jugadores asociados a esta plantilla.</p>
+              </div>
+              <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
+                class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
+                <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
+              </div>
+            </tbody>
+          </div>
         </div>
       </div>
     </div>
@@ -35,13 +33,12 @@
 <script setup>
 import axios from 'axios';
 import { ref, onMounted, inject } from "vue"
-import { useRouter } from 'vue-router'; // Importar el enrutador
+import { useRouter } from 'vue-router';
 const router = useRouter();
 const swal = inject('$swal');
 const plantillasUsuario = ref([]);
 
 onMounted(() => {
-  // Cargar las plantillas del usuario autenticado
   axios.get('/api/misplantillas').then((response) => {
     plantillasUsuario.value = response.data;
   });
@@ -55,15 +52,14 @@ const deletePlantilla = (id, index) => {
     showCancelButton: true,
     confirmButtonText: 'Sí, eliminar',
     confirmButtonColor: '#ef4444',
-    cancelButtonText: 'No, cancelar', // Texto para el botón de cancelar
-    cancelButtonColor: '#6b7280', // Color del botón de cancelar
-    // timer: 20000,
+    cancelButtonText: 'No, cancelar',
+    cancelButtonColor: '#6b7280',
     timerProgressBar: true,
     reverseButtons: true,
     customClass: {
-      popup: 'my-custom-popup-class', // Clase para el cuadro de diálogo
-      confirmButton: 'my-custom-confirm-button-class', // Clase para el botón de confirmar
-      cancelButton: 'my-custom-cancel-button-class', // Clase para el botón de cancelar
+      popup: 'my-custom-popup-class',
+      confirmButton: 'my-custom-confirm-button-class',
+      cancelButton: 'my-custom-cancel-button-class',
     }
   }).then(result => {
     if (result.isConfirmed) {
@@ -74,8 +70,8 @@ const deletePlantilla = (id, index) => {
             icon: 'success',
             title: 'Plantilla eliminada correctamente',
             customClass: {
-              popup: 'my-custom-success-popup-class', // Clase para el cuadro de diálogo de éxito
-              title: 'my-custom-success-title-class', // Clase para el título de éxito
+              popup: 'my-custom-success-popup-class',
+              title: 'my-custom-success-title-class',
             }
           })
         }).catch(error => {
@@ -83,8 +79,8 @@ const deletePlantilla = (id, index) => {
             icon: 'error',
             title: 'No se ha podido eliminar la plantilla',
             customClass: {
-              popup: 'my-custom-error-popup-class', // Clase para el cuadro de diálogo de error
-              title: 'my-custom-error-title-class', // Clase para el título de error
+              popup: 'my-custom-error-popup-class',
+              title: 'my-custom-error-title-class',
             }
           })
         });
@@ -148,6 +144,4 @@ const updateJugador = (id, index) => {
 
 </script>
 
-<style>
-/* Estilos opcionales */
-</style>
+<style></style>

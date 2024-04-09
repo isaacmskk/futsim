@@ -1,8 +1,8 @@
 <template>
     <div class="card">
-        <div class="card-body">
+        <div class="card cardFondo">
             <div class="d-flex justify-content-between pb-2 mb-2">
-                <h5 class="card-title">Añade una noticia nueva</h5>
+                <h2>Añade una noticia nueva</h2>
             </div>
 
 
@@ -35,7 +35,7 @@
                         placeholder="Contenido Noticia"></textarea>
                 </div>
 
-                <div class="form-gorup mb-2">
+                <div class="form-group mb-2">
                     <label>Fecha inicio</label><span class="text-danger">*</span>
                     <input v-model="noticia.publicado" class="form-control" type="datetime-local" name="publicado" />
                 </div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-gorup mb-2">
                     <label>FOTO</label><span class="text-danger">*</span>
-                    <DropZone v-model="noticia.thumbnail" class="imgJugador" />
+                    <DropZone v-model="noticia.thumbnail" class="" />
                 </div>
                 <button type="submit" class="botonGeneral">Añadir Noticia</button>
             </form>
@@ -72,7 +72,7 @@ const noticia = reactive({
     contenido: '',
     publicado: '',
     thumbnail: '',
-    categoria_id: '' // Nueva propiedad para almacenar el ID de la categoría seleccionada
+    categoria_id: '' 
 });
 
 const categorias = ref([]);
@@ -115,4 +115,8 @@ function addNoticia() {
 </script>
 
 
-<style></style>
+<style>
+label{
+    color: rgb(171, 168, 168);
+}
+</style>

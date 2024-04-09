@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between pb-2 mb-2">
-                        <h5 class="card-title">Todos los jugadores</h5>
+                        <h2>Todos los jugadores(Admin)</h2>
                         <div>
                             <router-link :to="{ name: 'jugadoresadmin.createjugador' }" class="botonGeneral">Nuevo
                                 Jugador</router-link>
@@ -14,7 +14,7 @@
                     <table class="table table-hover table-sm">
                         <thead class="bg-dark text-light">
                             <tr>
-                                <th width="50" class="text-center">#</th>
+                                <th width="50" class="text-center">ID</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Posicion</th>
@@ -33,11 +33,11 @@
                                 <td>{{ jugador.nacionalidad }}</td>
                                 <td>{{ jugador.valoracion }}</td>
                                 <td>            
-                                    <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="image-table">
+                                    <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-danger" @click="deleteJugador(jugador.id, index)">Delete</button>
-                                    <button class="btn btn-success" @click="updateJugador(jugador.id, index)">Update</button> 
+                                    <i class="pi pi-fw pi-trash" @click="deleteJugador(jugador.id, index)"></i>
+                                    <i class="pi pi-fw pi-pencil" @click="updateJugador(jugador.id, index)"></i> 
                                 </td>
                             </tr>
                         </tbody>

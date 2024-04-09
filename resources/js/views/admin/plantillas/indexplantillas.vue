@@ -1,28 +1,23 @@
 <template>
-  <div class="d-flex justify-content-between pb-2 mb-2">
-    <h2 class="card-title">Todas las plantillas</h2>
-  </div>
-
   <div class="grid" v-for="plantilla in plantillasTodas" :key="plantilla.id" style="margin-bottom: 20px;">
     <div class="col-12">
       <div class="card cardFondo">
         <div class="card-body">
-          <tbody class="row">
-            <!-- Mostrar el nombre de la plantilla -->
-            <h3>{{ plantilla.nombre }}</h3>
 
-            <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
-              class="col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
-              <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
+          <h2>Todas las plantillas</h2>
+          <div class="card-body">
+            <tbody class="row">
+              <h3>{{ plantilla.nombre }}</h3>
+              <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
+                class="col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
+                <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
+              </div>
+            </tbody>
+            <div class="text-center">
+              <button class="botonGeneral" @click="mostrarPlantillasUsuario(plantilla.id)">Seleccionar
+                Plantilla</button>
             </div>
-          </tbody>
-
-          <!-- Botón para seleccionar plantilla -->
-          <div class="text-center">
-            <button class="botonGeneral" @click="mostrarPlantillasUsuario(plantilla.id)">Seleccionar
-              Plantilla</button>
           </div>
-
         </div>
       </div>
     </div>
@@ -68,10 +63,10 @@ const mostrarPlantillasUsuario = (plantillaId) => {
     confirmButtonText: 'Seleccionar',
     cancelButtonText: 'Cancelar',
     customClass: {
-      popup: 'my-custom-popup-class', // Clase para el cuadro de diálogo
-      confirmButton: '', // Clase para el botón de confirmar
-      cancelButton: '', // Clase para el botón de cancelar
-      container: 'my-custom-container-class' // Clase para el contenedor del select
+      popup: 'my-custom-popup-class',
+      confirmButton: '',
+      cancelButton: '',
+      container: 'my-custom-container-class'
     }
   }).then((response) => {
     // Verifica si se seleccionó una opción
@@ -82,7 +77,7 @@ const mostrarPlantillasUsuario = (plantillaId) => {
         name: 'partidos.indexpartido',
         params: {
           plantillaId: plantillaId,
-          plantillaSeleccionadaId: plantillaSeleccionadaId // Añadir el ID de la plantilla seleccionada
+          plantillaSeleccionadaId: plantillaSeleccionadaId
         },
         state: {
           plantillaSeleccionadaId: plantillaSeleccionadaId
@@ -91,8 +86,6 @@ const mostrarPlantillasUsuario = (plantillaId) => {
     }
   });
 };
-
-
 
 </script>
 

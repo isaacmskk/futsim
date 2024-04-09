@@ -1,11 +1,7 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <div class="d-flex justify-content-between pb-2 mb-2">
-                <h5 class="card-title">Añade un nuevo jugador</h5>
-            </div>
-
-
+                <h2>Añade un nuevo jugador</h2>
             <div v-if="strSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 <strong>{{ strSuccess }}</strong>
@@ -16,38 +12,37 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 <strong>{{ strError }}</strong>
             </div>
-            {{ jugadores }}
             <form @submit.prevent="crearJugador">
                 <div class="form-group mb-2">
                     <label>Nombre</label><span class="text-danger"> *</span>
-                    <input v-model="jugadores.nombre" type="text" class="form-control" placeholder="Nombre tarea">
+                    <input v-model="jugadores.nombre" type="text" class="form-control" placeholder="Nombre Jugador">
                 </div>
 
 
                 <div class="form-group mb-2">
                     <label>Apellido</label><span class="text-danger"> *</span>
-                    <input v-model="jugadores.apellido" class="form-control" placeholder="Apellido" name="Apellido">
+                    <input v-model="jugadores.apellido" class="form-control" placeholder="Apellido" name="Apellido Jugador">
                 </div>
 
 
                 <div class="form-gorup mb-2">
                     <label>Posicion</label><span class="text-danger">*</span>
-                    <input v-model="jugadores.posicion" class="form-control" placeholder="Posicion" name="Posicion" />
+                    <input v-model="jugadores.posicion" class="form-control" placeholder="Posicion" name="Posicion Jugador" />
                 </div>
 
 
                 <div class="form-gorup mb-2">
                     <label>Nacionalidad</label><span class="text-danger">*</span>
-                    <input v-model="jugadores.nacionalidad" class="form-control" placeholder="Nacionalidad"
+                    <input v-model="jugadores.nacionalidad" class="form-control" placeholder="Nacionalidad Jugador"
                         name="Nacionalidad" />
                 </div>
                 <div class="form-group mb-2">
                     <label>Valoracion</label><span class="text-danger"> *</span>
-                    <input v-model="jugadores.valoracion" type="text" class="form-control" placeholder="Valoracion"
+                    <input v-model="jugadores.valoracion" type="text" class="form-control" placeholder="Valoracion Jugador"
                         name="Valoracion">
                 </div>
                 <div class="form-group mb-2">
-                    <h6>Carta</h6><span class="text-danger"> *</span>
+                    <label>Carta</label><span class="text-danger"> *</span>
                     <DropZone v-model="jugadores.thumbnail" />
                 </div>
 
@@ -109,4 +104,9 @@ function crearJugador() {
 </script>
 
 
-<style></style>
+<style>
+label{
+    color: rgb(171, 168, 168);
+}
+
+</style>

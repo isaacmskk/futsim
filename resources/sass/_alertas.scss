@@ -33,18 +33,37 @@
     background-color: #dc3545;
   }
   
-  
-  
+
   /* Estilos para alerta de éxito */
   .my-custom-success-popup-class {
     border-radius: 15px;
     border: 2px solid #37ff8bb3;
-    background-color: #18181b;
+    background-color: #18181b!important;
     color: white;
     font-family: 'Tahoma' !important;
     width: 420px!important;
     margin-left: -15px;
   }
+  .my-custom-success-popup-class2 {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    border-radius: 15px;
+    border: 2px solid #37ff8bb3;
+    background-color: #18181b!important;
+    color: white;
+    font-family: 'Tahoma' !important;
+    width: 420px!important;
+    height: 80px;
+    font-size: 20px;
+}
+
+.my-custom-success-popup-class2 .icon {
+  margin-bottom: 100px!important; /* Mueve el icono hacia arriba */
+}
+
+
+
   .my-custom-success-title-class {
     color: white;
   }

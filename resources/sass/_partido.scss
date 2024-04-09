@@ -1,53 +1,38 @@
-// .temporizador {
-//     font-size: 24px;
-//     font-weight: bold;
-//     color: white;
-//     padding: 10px 20px;
-//     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-//   }
-  
-//   .table-container {
-//     margin-top: 20px;
-//   }
-  
-//   .table {
-//     width: auto;
-//     /* Para que la tabla se ajuste al contenido */
-//     border-collapse: collapse;
-//     border-radius: 8px;
-//     overflow: hidden;
-//   }
-  
-//   .table thead {
-//     background-color: transparent;
-//     /* Sin fondo */
-//   }
-  
-//   .table th,
-//   .table td {
-//     padding: 8px 10px;
-//     /* Ajusta el padding según sea necesario */
-//     text-align: left;
-//     color: black;
-//     /* Texto blanco */
-//   }
-  
-//   .table tbody tr:nth-child(even) {
-//     background-color: transparent;
-//     /* Sin fondo */
-//   }
-  
-//   .table tbody tr:hover {
-//     background-color: rgba(255, 255, 255, 0.1);
-//     /* Cambia el color al pasar el cursor */
-//   }
+.temporizador {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
 .table-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .table {
-    flex: 0 0 45%; /* Establece el ancho deseado para las tablas */
-  }
+  margin-top: 20px;
+}
+
+.table {
+  width: auto;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table thead {
+  background-color: transparent;
+}
+
+.table th,
+.table td {
+  padding: 8px 10px;
+  text-align: left;
+  color: black;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: transparent;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
   

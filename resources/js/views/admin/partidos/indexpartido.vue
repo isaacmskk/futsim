@@ -135,11 +135,11 @@ const avanzarTiempo = (router) => {
 
     tiempo.value = `${String(minutos.value).padStart(2, '0')}:${String(segundos.value).padStart(2, '0')}`;
 
-    if (Math.random() < 0.0001) {
+    if (Math.random() < 0.0006) {
       golesEquipo1.value++;
       mostrarGol(nombrePlantilla1.value);
     }
-    if (Math.random() < 0.0001) {
+    if (Math.random() < 0.0006) {
       golesEquipo2.value++;
       mostrarGol(nombrePlantilla2.value);
     }
@@ -192,16 +192,20 @@ const terminarPartido = () => {
 
 const mostrarGol = (equipo) => {
   Swal.fire({
-    title: '¡Gol!',
-    text: `¡Gol de ${equipo}!`,
+    title: `<i class="pi pi-fw pi-trophy"></i> ¡Gol de ${equipo}!`, // Aquí agregamos el icono dentro del título
     icon: 'success',
     timer: 2000,
     timerProgressBar: true,
     toast: true,
-    position: 'top-end',
-    showConfirmButton: false
+    position: 'top', // Centra la alerta en la pantalla
+    showConfirmButton: false,
+    customClass: {
+      popup: 'my-custom-success-popup-class2',
+      title: 'my-custom-title-class' // Agregamos una clase de estilo personalizada para el título
+    }
   });
 };
+
 
 const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
   const plantillaId1 = route.params.plantillaId;
@@ -231,41 +235,4 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
 </script>
 
 <style>
-.temporizador {
-  font-size: 24px;
-  font-weight: bold;
-  color: white;
-  padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.table-container {
-  margin-top: 20px;
-}
-
-.table {
-  width: auto;
-  border-collapse: collapse;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.table thead {
-  background-color: transparent;
-}
-
-.table th,
-.table td {
-  padding: 8px 10px;
-  text-align: left;
-  color: black;
-}
-
-.table tbody tr:nth-child(even) {
-  background-color: transparent;
-}
-
-.table tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
 </style>

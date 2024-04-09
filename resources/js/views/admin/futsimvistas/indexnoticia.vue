@@ -2,9 +2,9 @@
     <div class="grid">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card cardFondo">
                     <div class="d-flex justify-content-between pb-2 mb-2">
-                        <h5 class="card-title">Todas las noticias</h5>
+                        <h2>Todas las noticias(Admin)</h2>
                         <div>
                             <router-link :to="{ name: 'futsimvistas.createnoticia' }" class="botonGeneral">Nueva
                                 Noticia</router-link>
@@ -15,7 +15,7 @@
                     <table class="table table-hover table-sm">
                         <thead class="bg-dark text-light">
                             <tr>
-                                <th width="50" class="text-center">#</th>
+                                <th width="50" class="text-center">ID</th>
                                 <th>Titulo</th>
                                 <th>Subtitulo</th>
                                 <th>Contenido</th>
@@ -30,18 +30,17 @@
                                 <td>{{ noticia.subtitulo }}</td>
                                 <td>{{ noticia.contenido }}</td>
                                 <td>{{ noticia.publicado }}</td>
-                                <td>            
-                                    <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia" class="imgJugador">
+                                <td>
+                                    <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia"
+                                        class="imgJugador">
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-danger"
-                                        @click="deleteNoticia(noticia.id, index)">Delete</button>
-                                    <button class="btn btn-success"
-                                        @click="mostrarFormularioComentario(noticia.id)">Comentar</button>
-                                    
-                                        <button class="btn btn-success" @click="detallenoticia(noticia.id)">Ver noticia</button>
+                                    <i class="pi pi-fw pi-trash"
+                                        @click="deleteNoticia(noticia.id, index)"></i>
+                                    <i class="pi pi-fw pi-comment"
+                                        @click="mostrarFormularioComentario(noticia.id)"></i>
                                     <!-- Mostrar comentarios solo para la noticia actual -->
-                                    <table v-if="comentariosPorNoticia[noticia.id]" class="table table-hover table-sm">
+                                    <table v-if="comentariosPorNoticia[noticia.id]" class="table">
                                         <thead class="bg-dark text-light">
                                             <tr>
                                                 <th width="50" class="text-center">#</th>
@@ -54,7 +53,7 @@
                                             <tr v-for="(comentario, index) in comentariosPorNoticia[noticia.id]"
                                                 :key="comentario.id">
                                                 <td class="text-center">{{ comentario.id }}</td>
-                                                <td>{{ comentario.comentario }}</td>
+                                                <td class="chat-message-text">{{ comentario.comentario }}</td>
                                                 <td>{{ comentario.id_usuario }}</td>
                                                 <td>{{ comentario.time }}</td>
                                             </tr>
@@ -85,7 +84,7 @@ onMounted(() => {
             noticias.value = response.data;
         });
 
-        axios.get('/api/comentarios')
+    axios.get('/api/comentarios')
         .then(response => {
             // Organizar comentarios por noticia
             comentariosPorNoticia.value = groupComentariosPorNoticia(response.data);
@@ -167,25 +166,20 @@ const crearComentario = (nuevoComentario) => {
             if (!comentariosPorNoticia.value[nuevoComentario.id_noticia]) {
                 comentariosPorNoticia.value[nuevoComentario.id_noticia] = [];
             }
-            
+
             comentariosPorNoticia.value[nuevoComentario.id_noticia].push(response.data.data);
             // console.log(response.data);
             // console.log( comentariosPorNoticia.value[nuevoComentario.id_noticia]);
             swal({
-                    icon: 'success',
-                    title: 'Comentado correctamente :-)'
-                });
+                icon: 'success',
+                title: 'Comentado correctamente :-)'
+            });
         })
         .catch(error => {
             strSuccess.value = "";
             strError.value = error.response.data.message;
         });
 };
-const detallenoticia = (idNoticia) => {
-    // Use router.push to navigate to the individual news page
-    console.log(idNoticia);
-    router.push({ name: 'futsimvistas.indexnoticiaindividual', params: { id: idNoticia } });
-}
 
 </script>
 
