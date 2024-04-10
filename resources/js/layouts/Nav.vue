@@ -1,5 +1,5 @@
 <template>
-    <div class="layout-topbar" >
+    <div class="layout-topbar margenlateral">
         <router-link to="/" class="layout-topbar-logo">
             <img src="/images/FUTSIM.svg" alt="logo" class="logo" />
             <button class="button" data-text="Awesome">
@@ -7,55 +7,58 @@
                 <span aria-hidden="true" class="hover-text">&nbsp;FUTSIM&nbsp;</span>
             </button>
         </router-link>
-        
+
 
         <button class="p-link layout-topbar-menu-button layout-topbar-button" @click="onTopBarMenuButton()">
             <i class="pi pi-ellipsis-v"></i>
         </button>
 
-        
+
         <div class="layout-topbar-menu" :class="topbarMenuClasses">
             <template v-if="!user?.name">
-                <li>
-                    <router-link class="nav-link" to="/login">{{ $t('login') }}</router-link>
-                </li>
-                <li>
-                    <router-link class="nav-link" to="/register">{{ $t('register') }}</router-link>
-                </li>
+                
+                    <router-link class="nav-link" to="/login" style="margin-right: 30px;"><i class="pi pi-sw pi-sign-in pi-Lateral"></i></router-link>
+                
+                
+                    <router-link class="nav-link" to="/register"><i class="pi pi-sw pi-address-book pi-Lateral"></i></router-link>
+                
             </template>
         </div>
+        <template v-if="user?.name">
+            <div class="layout-topbar-menu" :class="topbarMenuClasses">
+                <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
+                    data-bs-toggle="dropdown">
 
-        <div class="layout-topbar-menu" :class="topbarMenuClasses">
-            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
-                data-bs-toggle="dropdown">
 
 
+                    <i class="pi pi-user"></i>
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
 
-                <i class="pi pi-user"></i>
-                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
+                        <li>
+                            <router-link :to="{ name: 'profile.index' }" class="dropdown-item">Perfil</router-link>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
+                                href="javascript:void(0)" @click="logout">Cerrar sessión</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
+                                href="javascript:void(0)" @click="logout">Cerrar sessión</a>
+                        </li>
+                    </ul>
 
-                    <li>
-                        <router-link :to="{ name: 'profile.index' }" class="dropdown-item">Perfil</router-link>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
-                            href="javascript:void(0)" @click="logout">Cerrar sessión</a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
-                            href="javascript:void(0)" @click="logout">Cerrar sessión</a>
-                    </li>
-                </ul>
+                    <span class="nav-link dropdown-toggle ms-3 me-2" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Hola {{ user.name }}
+                    </span>
+                </button>
 
-                <span class="nav-link dropdown-toggle ms-3 me-2" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Hola {{ user.name }}
-                </span>
-            </button>
-        </div>
+            </div>
+        </template>
+
     </div>
 </template>
 <script setup>
@@ -94,26 +97,3 @@ const topbarMenuClasses = computed(() => {
     padding: 1em;
 }
 </style>
-<!-- <script setup>
-import { useStore } from "vuex";
-import useAuth from "@/composables/auth";
-import { computed } from "vue";
-import LocaleSwitcher from "../components/LocaleSwitcher.vue";
-
-const store = useStore();
-const user = computed(() => store.getters["auth/user"])
-const { processing, logout } = useAuth();
-
-
-</script>
-
-<style lang="scss" scoped>
-.layout-topbar-button-c,
-.layout-topbar-button-c:hover {
-    width: auto;
-    background-color: rgb(255, 255, 255, 0);
-    border: 0;
-    border-radius: 0%;
-    padding: 1em;
-}
-</style> -->
