@@ -19,8 +19,8 @@
           <div v-if="comentariosPorNoticia[noticia.id]" class="p-mt-2 comentarios-container">
             <div v-for="(comentario, index) in comentariosPorNoticia[noticia.id]" :key="comentario.id"
               class="chat-message">
-              <div class="chat-message-text">{{ comentario.comentario }}</div>
-              <div class="chat-message-time">{{comentario.user.name}} - {{ new Date(comentario.time).toLocaleString() }}</div>
+              <p class="chat-message-text">{{ comentario.comentario }}</p>
+              <p class="chat-message-time">{{comentario.user.name}} - {{ new Date(comentario.time).toLocaleString() }}</p>
             </div>
 
           </div>
