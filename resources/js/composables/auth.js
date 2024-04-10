@@ -54,9 +54,14 @@ export default function useAuth() {
                     icon: 'success',
                     title: 'Login correcto',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
+                    customClass: {
+                        popup: 'my-custom-success-popup-class',
+                        title: 'my-custom-success-title-class',
+                        content: 'my-custom-success-content-class',
+                    }
                 })
-                await router.push({ name: 'admin.index' })
+                await router.push({ name: 'home' })
             })
             .catch(error => {
                 if (error.response?.data) {
@@ -78,9 +83,14 @@ export default function useAuth() {
                 // await loginUser()
                 swal({
                     icon: 'success',
-                    title: 'Registration successfully',
+                    title: 'Registrado Correctamente',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
+                    customClass: {
+                        popup: 'my-custom-success-popup-class',
+                        title: 'my-custom-success-title-class',
+                        content: 'my-custom-success-content-class',
+                    }
                 })
                 await router.push({ name: 'auth.login' })
             })
@@ -178,7 +188,7 @@ export default function useAuth() {
             })
     }
 
-    const getAbilities = async() => {
+    const getAbilities = async () => {
         await axios.get('/api/abilities')
             .then(response => {
                 const permissions = response.data

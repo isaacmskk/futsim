@@ -5,22 +5,26 @@
         <div class="card-body">
           <h2>RANKING</h2>
 
-          <table class="table table-hover table-sm">
-            <thead class="bg-dark text-light">
-              <tr>
-                <th>Posicion</th>
-                <th>Username</th>
-                <th>Puntos</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(usuario, index) in ranking" :key="usuario.id_usuario">
-                <td class="text-center">{{ usuario.posicion }}</td>
-                <td class="text-center">{{ usuario.name }}</td>
-                <td class="text-center">{{ usuario.total_puntos }}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="p-datatable">
+            <div class="p-datatable-wrapper">
+              <table class="p-datatable-table">
+                <thead>
+                  <tr>
+                    <th>Posición</th>
+                    <th>Usuario</th>
+                    <th>Puntos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(usuario, index) in ranking" :key="usuario.id_usuario">
+                    <td>{{ usuario.posicion }}</td>
+                    <td>{{ usuario.name }}</td>
+                    <td>{{ usuario.total_puntos }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -49,5 +53,39 @@ const cargarRanking = () => {
 </script>
 
 <style>
-/* Estilos CSS según sea necesario */
+/* Estilos CSS */
+/* Estilos específicos de PrimeVue */
+.p-datatable .p-datatable-wrapper {
+  overflow: auto;
+  max-height: 400px; /* Ajusta la altura máxima según tu diseño */
+  color: white;
+
+}
+
+.p-datatable .p-datatable-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  padding: 12px 20px;
+  text-align: left;
+  font-weight: bold;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #ccc;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.p-datatable .p-datatable-tbody > tr:hover {
+  background-color: #f0f0f0;
+}
 </style>

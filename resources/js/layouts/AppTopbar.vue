@@ -1,5 +1,5 @@
 <template>
-    <div class="layout-topbar">
+    <div class="layout-topbar margenNavEscondido">
         <router-link to="/" class="layout-topbar-logo">
             <img src="/images/FUTSIM.SVG" alt="logo" class="logo" />
             <button class="button" data-text="Awesome">
@@ -15,37 +15,6 @@
         <button class="p-link layout-topbar-menu-button layout-topbar-button" @click="onTopBarMenuButton()">
             <i class="pi pi-ellipsis-v"></i>
         </button>
-
-        <!-- <div class="layout-topbar-menu" :class="topbarMenuClasses">
-            <router-link :to="{ name: 'futsimvistas.indexnoticia' }" class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
-                <i class="pi pi-megaphone"> Noticias</i>
-            </router-link>
-
-        </div>
-        <div class="layout-topbar-menu" :class="topbarMenuClasses">
-            <router-link :to="{ name: 'jugadoresadmin.indexjugador' }" class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
-                <i class="pi pi-user-plus"> Jugadores</i>
-            </router-link>
-
-        </div>
-        <div class="layout-topbar-menu" :class="topbarMenuClasses">
-            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
-                data-bs-toggle="dropdown">
-
-
-                <i class="pi pi-user"></i>
-
-            </button>
-        </div>
-        <div class="layout-topbar-menu" :class="topbarMenuClasses">
-            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
-                data-bs-toggle="dropdown">
-
-
-                <i class="pi pi-user"></i>
-
-            </button>
-        </div> -->
         <div class="layout-topbar-menu" :class="topbarMenuClasses">
             <template v-if="!user?.name">
                 <li>
@@ -68,20 +37,17 @@
                         <router-link :to="{ name: 'profile.index' }" class="dropdown-item">Perfil</router-link>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">Preferencias</a>
-                    </li>
-                    <li>
                         <hr class="dropdown-divider">
                     </li>
                     <li>
                         <a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
-                            href="javascript:void(0)" @click="logout">Cerrar sessión</a>
+                            href="javascript:void(0)" @click="logout">Cerrar sesión</a>
                     </li>
                 </ul>
 
                 <span class="nav-link dropdown-toggle ms-3 me-2" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    Hola, {{ user.name }}
+                    {{ user.name }}
                 </span>
             </button>
         </div>

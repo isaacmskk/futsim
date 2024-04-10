@@ -85,7 +85,15 @@
         }
     }
 }
-
+.dropdown-item{
+    color:black!important;
+    font-family: Tahoma!important;
+    font-weight:500;
+}
+.dropdown-menu,
+dropdown-menu-end, border-0,shadow-sm, show {
+    background-color: black!important;
+}
 @media (max-width: 991px) {
     .layout-topbar {
         justify-content: space-between;
