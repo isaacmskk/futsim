@@ -1,14 +1,15 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center my-5">
+    <div class="layout-wrapper margenlateral">
+        <div class="row justify-content-center my-5 girdHome">
             <div class="col-md-6">
-                <div class="card border-0 shadow-sm">
+                <div class="card cardFondo border-0 shadow-sm">
+                    <h2>Iniciar Sesión</h2>
                     <div class="card-body">
                         <form @submit.prevent="submitLogin">
                             <div class="">
                                 <!-- Email -->
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">{{ $t('email') }}</label>
+                                    <h4 for="email" class="form-label">{{ $t('email') }}</h4>
                                     <input v-model="loginForm.email" id="email" type="email" class="form-control" required autofocus autocomplete="username">
                                     <!-- Validation Errors -->
                                     <div class="text-danger mt-1">
@@ -19,9 +20,9 @@
                                 </div>
                                 <!-- Password -->
                                 <div class="mb-4">
-                                    <label for="password" class="form-label">
+                                    <h4 for="password" class="form-label">
                                         {{ $t('password') }}
-                                    </label>
+                                    </h4>
                                     <input v-model="loginForm.password" id="password" type="password" class="form-control" required autocomplete="current-password">
                                     <!-- Validation Errors -->
                                     <div class="text-danger-600 mt-1">
@@ -33,19 +34,19 @@
                                 <!-- Remember me -->
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" v-model="loginForm.remember" id="flexCheckIndeterminate">
-                                    <label class="form-check-label" for="flexCheckIndeterminate">
+                                    <h4 class="form-check-label" for="flexCheckIndeterminate">
                                         {{ $t('remember_me') }}
-                                    </label>
+                                    </h4>
                                 </div>
 
                                 <!-- Buttons -->
                                 <div class="flex items-center justify-end mt-4">
-                                    <button class="btn btn-primary" :class="{ 'opacity-25': processing }" :disabled="processing">
+                                    <button class="botonGeneral" :class="{ 'opacity-25': processing }" :disabled="processing" style="margin-bottom: 10px;">
                                         {{ $t('login') }}
                                     </button>
                                 </div>
                             </div>
-                            <router-link :to="{name: 'auth.forgot-password'}">{{ $t('forgot_password')}}</router-link>
+                            <router-link :to="{name: 'auth.forgot-password'}" style="color:azure;">{{ $t('forgot_password')}}</router-link>
                         </form>
                     </div>
                 </div>

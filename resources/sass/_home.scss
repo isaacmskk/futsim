@@ -1,0 +1,160 @@
+.margenlateral {
+    padding-left: 175px;
+    padding-right: 175px;
+}
+
+.girdHome {
+    padding-top: 90px;
+}
+
+.paddingDivs{
+    padding-bottom: 30px;
+}
+
+
+.carruselHome {
+    border-radius: 12px;
+    max-height: 435px;
+}
+
+.cardHomes {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+    padding-bottom: 0rem !important;
+    padding-top: 0rem !important;
+}
+
+
+.divExplicacionHome {
+    background-color: #cacaca53;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+}
+
+
+.h2HomeSecciones {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 1px;
+    margin: 0px !important;
+}
+
+.h3HomeSecciones {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 1px;
+    margin: 0px !important;
+}
+
+.h4HomeSecciones {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 40px;
+    margin: 0px !important;
+}
+
+.pHomeSecciones {
+    padding: 15px;
+    color: white;
+}
+
+.iconosHome {
+    font-size: 12rem !important;
+    color: white;
+    padding: 20px;
+}
+
+.imgSecc2 {
+    background-image: url(../../public/images/Plantillas.jpg);
+    min-height: 262.4px;
+    background-repeat: no-repeat;
+    background-size: 100% auto !important;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+
+}
+
+.imgSecc3 {
+    background-image: url(../../public/images/Jugar.png);
+    min-height: 262.4px;
+    background-repeat: no-repeat;
+    background-size: 100% auto !important;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background-position: bottom;
+}
+
+
+.noticiaHome{
+    background-image: url(../../public/images/Jugar.png);
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% auto !important;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    background-position: bottom;
+}
+
+.paddingsNoticia{
+    padding-top:0px!important; 
+    padding-bottom: 0px!important; 
+    padding-left:11px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .margenlateral {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.carruselHome {
+    border-radius: 12px;
+    max-height: 150px;
+}
+
+.paddingBottom{
+    padding-bottom: 30px;
+
+}
+
+.marginPequeño{
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.marginGrande{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.iconosHome {
+    font-size: 7rem !important;
+}
+
+.imgSecc2 {
+    min-height: 100px;
+
+}
+
+.imgSecc3 {
+    min-height: 100px;
+}
+
+.noticiaHome{
+    min-height: 100px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 12px;
+}
+
+.paddingsNoticia{
+    padding-top:0px!important; 
+    padding-bottom: 0px!important; 
+    padding-left:11px;
+    padding-right:10px;
+}
+}
