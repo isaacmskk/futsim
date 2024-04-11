@@ -1,10 +1,10 @@
 <template>
+            <h2>Todas las plantillas</h2>
+
   <div class="grid" v-for="plantilla in plantillasTodas" :key="plantilla.id" style="margin-bottom: 20px;">
     <div class="col-12">
       <div class="card cardFondo">
         <div class="card-body">
-
-          <h2>Todas las plantillas</h2>
           <div class="card-body">
             <tbody class="row">
               <h3>{{ plantilla.nombre }}</h3>

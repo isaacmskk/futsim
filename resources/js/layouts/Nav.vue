@@ -31,14 +31,11 @@
 
 
 
-                    <i class="pi pi-user"></i>
+                    <i class="pi pi-angle-down"></i>
                     <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
 
                         <li>
                             <router-link :to="{ name: 'profile.index' }" class="dropdown-item">Perfil</router-link>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
                         </li>
                         <li>
                             <a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
@@ -46,7 +43,7 @@
                         </li>
                     </ul>
 
-                    <span class="nav-link dropdown-toggle ms-3 me-2" href="#" role="button" data-bs-toggle="dropdown"
+                    <span class="nav-link ms-3 me-2" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         {{ user.name }}
                     </span>

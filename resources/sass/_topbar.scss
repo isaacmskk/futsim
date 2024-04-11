@@ -86,13 +86,26 @@
     }
 }
 .dropdown-item{
+    color:white!important;
+    font-family: Tahoma!important;
+    font-weight:500;
+    text-align: left!important;
+
+}
+.dropdown-item:hover{
     color:black!important;
     font-family: Tahoma!important;
     font-weight:500;
+    background-color: #37ff8b;
+
 }
-.dropdown-menu,
-dropdown-menu-end, border-0,shadow-sm, show {
-    background-color: black!important;
+.dropdown-menu{
+    background-color: #18181b!important;
+    border-radius: 2px;
+    border-color: #37ff8b;
+    position: fixed!important;
+    margin-right: -22px!important;
+
 }
 @media (max-width: 991px) {
     .layout-topbar {

@@ -1,10 +1,11 @@
 <template>
+                                <h2>Todas las noticias</h2>
+
     <div class="row">
         <div class="grid">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                            <h2>Todas las noticias</h2>
                         <tbody class="row">
                             <select v-model="categoriaSeleccionada" @change="filtrarNoticias">
                                 <option value="">Todas las categorías</option>

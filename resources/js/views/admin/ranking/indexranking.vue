@@ -1,9 +1,9 @@
 <template>
+  <h2>RANKING</h2>
   <div class="grid">
     <div class="col-12">
       <div class="card cardFondo">
         <div class="card-body">
-          <h2>RANKING</h2>
 
           <div class="p-datatable">
             <div class="p-datatable-wrapper">
@@ -57,7 +57,8 @@ const cargarRanking = () => {
 /* Estilos específicos de PrimeVue */
 .p-datatable .p-datatable-wrapper {
   overflow: auto;
-  max-height: 400px; /* Ajusta la altura máxima según tu diseño */
+  max-height: 400px;
+  /* Ajusta la altura máxima según tu diseño */
   color: white;
 
 }
@@ -68,7 +69,7 @@ const cargarRanking = () => {
   table-layout: auto;
 }
 
-.p-datatable .p-datatable-thead > tr > th {
+.p-datatable .p-datatable-thead>tr>th {
   padding: 12px 20px;
   text-align: left;
   font-weight: bold;
@@ -76,16 +77,16 @@ const cargarRanking = () => {
   border-bottom: 1px solid #ccc;
 }
 
-.p-datatable .p-datatable-tbody > tr > td {
+.p-datatable .p-datatable-tbody>tr>td {
   padding: 10px 20px;
   border-bottom: 1px solid #ddd;
 }
 
-.p-datatable .p-datatable-tbody > tr:nth-child(even) {
+.p-datatable .p-datatable-tbody>tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-.p-datatable .p-datatable-tbody > tr:hover {
+.p-datatable .p-datatable-tbody>tr:hover {
   background-color: #f0f0f0;
 }
 </style>

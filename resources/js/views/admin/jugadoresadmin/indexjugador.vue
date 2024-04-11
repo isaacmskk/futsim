@@ -1,10 +1,10 @@
 <template>
+    <h2>Todos los jugadores(Admin)</h2>
     <div class="grid">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between pb-2 mb-2">
-                        <h2>Todos los jugadores(Admin)</h2>
                         <div>
                             <router-link :to="{ name: 'jugadoresadmin.createjugador' }" class="botonGeneral">Nuevo
                                 Jugador</router-link>
@@ -24,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                             <tr v-for="(jugador, index) in jugadores">
                                 <td class="text-center">{{ jugador.id }}</td>
                                 <td>{{ jugador.nombre }}</td>
@@ -32,12 +32,13 @@
                                 <td>{{ jugador.posicion }}</td>
                                 <td>{{ jugador.nacionalidad }}</td>
                                 <td>{{ jugador.valoracion }}</td>
-                                <td>            
-                                    <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
+                                <td>
+                                    <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
+                                        class="imgJugador">
                                 </td>
                                 <td class="text-center">
                                     <i class="pi pi-fw pi-trash" @click="deleteJugador(jugador.id, index)"></i>
-                                    <i class="pi pi-fw pi-pencil" @click="updateJugador(jugador.id, index)"></i> 
+                                    <i class="pi pi-fw pi-pencil" @click="updateJugador(jugador.id, index)"></i>
                                 </td>
                             </tr>
                         </tbody>
@@ -98,59 +99,59 @@ const deleteJugador = (id, index) => {
 
 const updateJugador = (id, index) => {
 
-const currentData = jugadores.value[index];
+    const currentData = jugadores.value[index];
 
-swal({
-    title: 'Editar publicación',
-    html:
-        '<input id="swal-input1" class="swal2-input" placeholder="" value="' + currentData.id + '">' +
-        '<input id="swal-input2" class="swal2-input" placeholder="" value="' + currentData.nombre + '">' +
-        '<input id="swal-input3" class="swal2-input" placeholder="" value="' + currentData.apellido + '">' +
-        '<input id="swal-input4" class="swal2-input" placeholder="" value="' + currentData.posicion + '">' +
-        '<input id="swal-input5" class="swal2-input" placeholder="" value="' + currentData.nacionalidad + '">' +
-        '<input id="swal-input6" class="swal2-input" placeholder="" value="' + currentData.valoracion + '">',
+    swal({
+        title: 'Editar publicación',
+        html:
+            '<input id="swal-input1" class="swal2-input" placeholder="" value="' + currentData.id + '">' +
+            '<input id="swal-input2" class="swal2-input" placeholder="" value="' + currentData.nombre + '">' +
+            '<input id="swal-input3" class="swal2-input" placeholder="" value="' + currentData.apellido + '">' +
+            '<input id="swal-input4" class="swal2-input" placeholder="" value="' + currentData.posicion + '">' +
+            '<input id="swal-input5" class="swal2-input" placeholder="" value="' + currentData.nacionalidad + '">' +
+            '<input id="swal-input6" class="swal2-input" placeholder="" value="' + currentData.valoracion + '">',
 
-    focusConfirm: false,
-    preConfirm: () => {
-        return [
-            document.getElementById('swal-input1').value,
-            document.getElementById('swal-input2').value,
-            document.getElementById('swal-input3').value,
-            document.getElementById('swal-input4').value,
-            document.getElementById('swal-input5').value,
-            document.getElementById('swal-input6').value,
+        focusConfirm: false,
+        preConfirm: () => {
+            return [
+                document.getElementById('swal-input1').value,
+                document.getElementById('swal-input2').value,
+                document.getElementById('swal-input3').value,
+                document.getElementById('swal-input4').value,
+                document.getElementById('swal-input5').value,
+                document.getElementById('swal-input6').value,
 
 
-        ]
-    }
-}).then(result => {
-    if (result.isConfirmed) {
-        const updatedData = {
-            id: result.value[0],
-            nombre: result.value[1],
-            apellido: result.value[2],
-            posicion: result.value[3],
-            nacionalidad: result.value[4],
-            valoracion: result.value[5],
-            carta: result.value[6]
+            ]
+        }
+    }).then(result => {
+        if (result.isConfirmed) {
+            const updatedData = {
+                id: result.value[0],
+                nombre: result.value[1],
+                apellido: result.value[2],
+                posicion: result.value[3],
+                nacionalidad: result.value[4],
+                valoracion: result.value[5],
+                carta: result.value[6]
 
-        };
+            };
 
-        axios.put('/api/jugadores/update/' + id, updatedData)
-            .then(response => {
-                jugadores.value.splice(index, 1, updatedData);
-                swal({
-                    icon: 'success',
-                    title: 'Jugador actualizado correctamente'
+            axios.put('/api/jugadores/update/' + id, updatedData)
+                .then(response => {
+                    jugadores.value.splice(index, 1, updatedData);
+                    swal({
+                        icon: 'success',
+                        title: 'Jugador actualizado correctamente'
+                    });
+                }).catch(error => {
+                    swal({
+                        icon: 'error',
+                        title: 'No se ha podido actualizar el jugador'
+                    });
                 });
-            }).catch(error => {
-                swal({
-                    icon: 'error',
-                    title: 'No se ha podido actualizar el jugador'
-                });
-            });
-    }
-});
+        }
+    });
 };
 
 </script>

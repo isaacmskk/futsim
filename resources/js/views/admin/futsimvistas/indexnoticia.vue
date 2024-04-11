@@ -1,10 +1,11 @@
 <template>
+    <h2>Todas las noticias(Admin)</h2>
+
     <div class="grid">
         <div class="col-12">
             <div class="card">
                 <div class="card cardFondo">
                     <div class="d-flex justify-content-between pb-2 mb-2">
-                        <h2>Todas las noticias(Admin)</h2>
                         <div>
                             <router-link :to="{ name: 'futsimvistas.createnoticia' }" class="botonGeneral">Nueva
                                 Noticia</router-link>
@@ -35,12 +36,10 @@
                                         class="imgJugador">
                                 </td>
                                 <td class="text-center">
-                                    <i class="pi pi-fw pi-trash"
-                                        @click="deleteNoticia(noticia.id, index)"></i>
-                                    <i class="pi pi-fw pi-comment"
-                                        @click="mostrarFormularioComentario(noticia.id)"></i>
+                                    <i class="pi pi-fw pi-trash" @click="deleteNoticia(noticia.id, index)"></i>
+                                    <i class="pi pi-fw pi-comment" @click="mostrarFormularioComentario(noticia.id)"></i>
                                     <!-- Mostrar comentarios solo para la noticia actual -->
-                                    <table v-if="comentariosPorNoticia[noticia.id]" class="table">
+                                    <table v-if="comentariosPorNoticia[noticia.id]" class="tablecoments">
                                         <thead class="bg-dark text-light">
                                             <tr>
                                                 <th width="50" class="text-center">#</th>
