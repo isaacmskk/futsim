@@ -1,10 +1,9 @@
 <template>
+  <h2>Mis Plantillas</h2>
   <div v-for="(plantilla, index) in plantillasUsuario" :key="plantilla.id" style="margin-bottom: 20px;">
     <div class="col-12">
       <div class="card cardFondo">
         <div class="card-body">
-
-          <h2>Mis Plantillas</h2>
 
           <div class="card-body">
             <h3>{{ plantilla.nombre }}</h3>

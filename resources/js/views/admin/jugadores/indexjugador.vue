@@ -1,25 +1,32 @@
 <template>
+
+  <h2>Todos los jugadores</h2>
   <div class="grid">
     <div class="col-12">
       <div class="card cardFondo">
         <div class="card-body">
-          <div class="d-flex justify-content-between pb-2 mb-2">
-            <h2>Todos los jugadores</h2>
-            <div>
-              <button v-if="jugadoresSeleccionados.length === 4" class="botonGeneral" @click="mostrarPromptNombrePlantilla">Crear Plantilla</button>
+          <div class="justify-content-between pb-2 mb-2">
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <button class="botonGeneral" @click="ordenarPorValoracion('desc')">
+                  <i class="pi pi-fw pi-sort-amount-down-alt pi-Lateral asc-desc"></i>
+                </button>
+
+                <button class="botonGeneral" @click="ordenarPorValoracion('asc')">
+                  <i class="pi pi-fw pi-sort-amount-up pi-Lateral asc-desc"></i>
+
+                </button>
+              </div>
+
+              <div class="col-12 col-lg-6" >
+
+                <button v-if="jugadoresSeleccionados.length === 4" class="botonGeneral"
+                  @click="mostrarPromptNombrePlantilla">Crear Plantilla</button>
+              </div>
             </div>
-          </div>
-          <div>
-            <!-- Agregar botones para ordenar -->
-            <button class="botonGeneral" @click="ordenarPorValoracion('desc')">
-              <i class="pi pi-fw pi-sort-amount-down-alt pi-Lateral asc-desc"></i>
-            </button>
 
-            <button class="botonGeneral" @click="ordenarPorValoracion('asc')">
-              <i class="pi pi-fw pi-sort-amount-up pi-Lateral asc-desc"></i>
-
-            </button>
           </div>
+
           <tbody class="row">
             <tr v-for="(jugador, index) in jugadores" :key="index"
               class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
@@ -111,8 +118,8 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
     fichaje: new Date().toISOString().slice(0, 19).replace('T', ' ') // Formatear la fecha y hora correctamente
   };
   console.log(data);
-axios.post("/api/plantillas", data)
-  .then(response => {
+  axios.post("/api/plantillas", data)
+    .then(response => {
       const plantillaId = response.data.data.id;
       router.push({ name: 'plantillas.detalleplantillas', params: { idPlantilla: plantillaId } });
       swal.fire({
