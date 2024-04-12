@@ -20,6 +20,7 @@
           <thead>
             <tr>
               <th>{{ nombrePlantilla1 }}</th>
+              <th>Valoración</th>
             </tr>
           </thead>
           <tbody>
@@ -94,6 +95,10 @@ let segundos = ref(0);
 let golesEquipo1 = ref(0);
 let golesEquipo2 = ref(0);
 let intervalo;
+const valoracionesPlantilla1 = ref([]);
+const valoracionesPlantilla2 = ref([]);
+const sumaValoraciones1 = ref(0);
+const sumaValoraciones2 = ref(0);
 
 onMounted(() => {
   const plantillaId = route.params.plantillaId;
@@ -105,6 +110,18 @@ onMounted(() => {
       nombrePlantilla2.value = response.data.nombrePlantilla2;
       jugadoresPlantilla1.value = response.data.jugadoresPlantilla1;
       jugadoresPlantilla2.value = response.data.jugadoresPlantilla2;
+
+      // Calcular la suma de las valoraciones de la plantilla 1
+      valoracionesPlantilla1.value = response.data.jugadoresPlantilla1.map(jugador => jugador.valoracion);
+      sumaValoraciones1.value = valoracionesPlantilla1.value.reduce((acc, val) => acc + val, 0);
+
+      // Calcular la suma de las valoraciones de la plantilla 2
+      valoracionesPlantilla2.value = response.data.jugadoresPlantilla2.map(jugador => jugador.valoracion);
+      sumaValoraciones2.value = valoracionesPlantilla2.value.reduce((acc, val) => acc + val, 0);
+
+      console.log('Suma de valoraciones plantilla 1:', sumaValoraciones1.value);
+      console.log('Suma de valoraciones plantilla 2:', sumaValoraciones2.value);
+      // Llamar a la función avanzarTiempo para iniciar el partido
     } else {
       console.error('No se recibieron datos de jugadores correctamente');
     }
@@ -112,6 +129,7 @@ onMounted(() => {
     console.error('Error al obtener jugadores de las plantillas:', error);
   });
 });
+
 
 const jugarPartido = () => {
   juegoIniciado.value = true;
@@ -135,15 +153,20 @@ const avanzarTiempo = (router) => {
 
     tiempo.value = `${String(minutos.value).padStart(2, '0')}:${String(segundos.value).padStart(2, '0')}`;
 
-    if (Math.random() < 0.0006) {
+    // Ajustar la probabilidad en función de la suma de las valoraciones de cada equipo
+    const probabilidadEquipo1 = sumaValoraciones1.value * 0.000001;
+    const probabilidadEquipo2 = sumaValoraciones2.value * 0.000001;
+
+    // Comprobar si se marca gol para cada equipo según la probabilidad ajustada
+    if (Math.random() < probabilidadEquipo1) {
       golesEquipo1.value++;
       mostrarGol(nombrePlantilla1.value);
     }
-    if (Math.random() < 0.0006) {
+    if (Math.random() < probabilidadEquipo2) {
       golesEquipo2.value++;
       mostrarGol(nombrePlantilla2.value);
     }
-  }, 1);
+  }, 0.2);
 };
 
 const pausarPartido = () => {
@@ -175,7 +198,7 @@ const terminarPartido = () => {
   Swal.fire({
     title: '¡Fin del partido!',
     text: `¡El partido ha terminado! ${resultadoMensaje}`,
-    text:`${resultadoMensaje}`,
+    text: `${resultadoMensaje}`,
     icon: 'info',
     confirmButtonText: 'Aceptar',
     customClass: {
@@ -210,14 +233,27 @@ const mostrarGol = (equipo) => {
 const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
   const plantillaId1 = route.params.plantillaId;
   const plantillaId2 = route.params.plantillaSeleccionadaId;
+
+  // Calcular la diferencia de valoración entre las dos plantillas
+  const diferenciaValoracion = sumaValoraciones1.value - sumaValoraciones2.value;
+
+  // Definir un factor de ajuste basado en la diferencia de valoración
+  let factorAjuste = 1;
+  if (diferenciaValoracion > 0) {
+    factorAjuste = 1 + diferenciaValoracion * 0.009; // Cuanto mayor es la diferencia, mayor es el factor de ajuste
+  } else if (diferenciaValoracion < 0) {
+    factorAjuste = 1 / (1 - diferenciaValoracion * 0.009); // Cuanto menor es la diferencia, mayor es el factor de ajuste
+  }
+
   let puntosequipo = 0;
   if (golesEquipo1 < golesEquipo2) {
-    puntosequipo = 3
+    puntosequipo = 100 * factorAjuste; // Se suman más puntos si se pierde contra un rival más valorado
   } else if (golesEquipo1 > golesEquipo2) {
-    puntosequipo = 0
+    puntosequipo = -50 / factorAjuste; // Se restan menos puntos si se gana contra un rival más valorado
   } else {
-    puntosequipo = 1
+    puntosequipo = 15 * factorAjuste;
   }
+console.log(factorAjuste);
   console.log(puntosequipo)
   axios.post(`/api/partidos/${plantillaId1}/${plantillaId2}/${golesEquipo1}/${golesEquipo2}/${puntosequipo}`, {
     id_plantilla1: plantillaId1,
@@ -232,7 +268,7 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
     console.error('Error al guardar el partido:', error);
   });
 };
+
 </script>
 
-<style>
-</style>
+<style></style>

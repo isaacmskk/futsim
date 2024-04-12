@@ -1,7 +1,7 @@
 <template>
     <div class=" layout-wrapper margenlateral">
-        <div class="grid girdHome row paddingDivs">
-            <div class="col-12">
+        <div class="layout-wrapper-ancho grid girdHome paddingDivs">
+            <div class="col-12 ">
                 <div id="carouselExampleInterval" class="carousel slide carruselHome" data-bs-ride="carousel">
                     <div class="carousel-inner carruselHome">
                         <div class="carousel-item active" data-bs-interval="10000">
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="grid paddingDivs">
+        <div class="layout-wrapper-ancho grid paddingDivs">
             <div class="row ">
                 <div class="col-12 col-lg-3 marginPequeño paddingBottom">
                     <router-link :to="{ name: 'jugadores.indexjugador' }"
@@ -65,7 +65,7 @@
 
             </div>
         </div>
-        <div class="grid paddingDivs">
+        <div class="layout-wrapper-ancho grid paddingDivs">
             <div class="row">
                 <div class="col-12 col-lg-9 paddingBottom">
                     <router-link :to="{ name: 'plantillas.indexplantillas' }"
@@ -85,9 +85,9 @@
                     </router-link>
 
                 </div>
-                <div class="col-12 col-lg-3 marginPequeño ">
+                <div class="col-12 col-lg-3 marginPequeño">
                     <router-link :to="{ name: 'ranking.indexranking' }"
-                        class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">
+                        class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown" role="button">
                         <div class="card cardFondoPequeño cardHomes">
                             <div class="card-body cardHomes">
                                 <div>
@@ -105,7 +105,7 @@
                 </div>
             </div>
         </div>
-        <div class="grid  row paddingDivs" >
+        <div class="layout-wrapper-ancho grid  paddingDivs" >
             <div class="col-12" style="margin-bottom: 30px;">
                 <router-link :to="{ name: 'noticias.indexnoticia' }"
                     class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button">

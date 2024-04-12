@@ -1,12 +1,6 @@
 <template>
-    <div class="layout-topbar margenNavEscondido2">
-        <router-link to="/" class="layout-topbar-logo">
-            <img src="/images/FUTSIM.SVG" alt="logo" class="logo" />
-            <button class="button" data-text="Awesome">
-                <span class="actual-text">&nbsp;FUTSIM&nbsp;</span>
-                <span aria-hidden="true" class="hover-text">&nbsp;FUTSIM&nbsp;</span>
-            </button>
-        </router-link>
+    <div class="layout-topbar margenNavEscondido">
+        
 
         <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
             <i class="pi pi-bars"></i>
@@ -15,6 +9,14 @@
         <button class="p-link layout-topbar-menu-button layout-topbar-button" @click="onTopBarMenuButton()">
             <i class="pi pi-ellipsis-v"></i>
         </button>
+
+        <router-link to="/" class="layout-topbar-logo layout-topbar-logo-responsive">
+            <img src="/images/FUTSIM.SVG" alt="logo" class="logo" />
+            <button class="button" data-text="Awesome">
+                <span class="actual-text">&nbsp;FUTSIM&nbsp;</span>
+                <span aria-hidden="true" class="hover-text">&nbsp;FUTSIM&nbsp;</span>
+            </button>
+        </router-link>
         <div class="layout-topbar-menu" :class="topbarMenuClasses">
             <template v-if="!user?.name">
                 <li>
