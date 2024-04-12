@@ -7,8 +7,8 @@
 
           <div class="card-body">
             <h3>{{ plantilla.nombre }}</h3>
-            <button class="btn btn-danger" @click="deletePlantilla(plantilla.id, index)">Delete</button>
-            <button class="botonGeneral" @click="updateJugador(plantilla.id, index)">Editar nombre</button>
+            <i class="pi pi-fw pi-trash" @click="deletePlantilla(plantilla.id, index)"></i>
+            <button class="botonGeneral" @click="updatePlantilla(plantilla.id, index)">Editar nombre</button>
             <tbody class="row">
               <div v-if="plantillasUsuario.length === 0" class="d-flex justify-content-between pb-2 mb-2">
                 <p>No tienes plantillas creadas.</p>
@@ -87,7 +87,7 @@ const deletePlantilla = (id, index) => {
   })
 }
 
-const updateJugador = (id, index) => {
+const updatePlantilla = (id, index) => {
   const currentData = plantillasUsuario.value[index];
 
   swal({

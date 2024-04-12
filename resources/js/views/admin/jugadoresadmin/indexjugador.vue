@@ -21,6 +21,7 @@
                                 <th>Nacionalidad</th>
                                 <th>Valoracion</th>
                                 <th>Carta</th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody>

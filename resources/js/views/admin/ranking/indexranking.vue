@@ -1,10 +1,9 @@
 <template>
-  <h2>RANKING</h2>
+  <h2>Ranking</h2>
   <div class="grid">
     <div class="col-12">
       <div class="card cardFondo">
         <div class="card-body">
-
           <div class="p-datatable">
             <div class="p-datatable-wrapper">
               <table class="p-datatable-table">

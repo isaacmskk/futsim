@@ -22,6 +22,7 @@
                                 <th>Contenido</th>
                                 <th>Publicado</th>
                                 <th>foto</th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,34 +32,12 @@
                                 <td>{{ noticia.subtitulo }}</td>
                                 <td>{{ noticia.contenido }}</td>
                                 <td>{{ noticia.publicado }}</td>
+
                                 <td>
                                     <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia"
                                         class="imgJugador">
                                 </td>
-                                <td class="text-center">
-                                    <i class="pi pi-fw pi-trash" @click="deleteNoticia(noticia.id, index)"></i>
-                                    <i class="pi pi-fw pi-comment" @click="mostrarFormularioComentario(noticia.id)"></i>
-                                    <!-- Mostrar comentarios solo para la noticia actual -->
-                                    <table v-if="comentariosPorNoticia[noticia.id]" class="tablecoments">
-                                        <thead class="bg-dark text-light">
-                                            <tr>
-                                                <th width="50" class="text-center">#</th>
-                                                <th>Comentario</th>
-                                                <th>ID Usuario</th>
-                                                <th>Fecha y Hora</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="(comentario, index) in comentariosPorNoticia[noticia.id]"
-                                                :key="comentario.id">
-                                                <td class="text-center">{{ comentario.id }}</td>
-                                                <td class="chat-message-text">{{ comentario.comentario }}</td>
-                                                <td>{{ comentario.id_usuario }}</td>
-                                                <td>{{ comentario.time }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
+                                <td> <i class="pi pi-fw pi-trash" @click="deleteNoticia(noticia.id, index)"></i></td>
                             </tr>
                         </tbody>
                     </table>
@@ -107,79 +86,47 @@ const groupComentariosPorNoticia = (comentarios) => {
 
 const deleteNoticia = (id, index) => {
     swal({
-        title: 'Quieres eliminar la noticia?',
-        text: 'Esta acción no es reversible!',
+        title: '¿Quieres eliminar esta noticia?',
+        text: 'Esta acción no es reversible',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sí, eliminar',
         confirmButtonColor: '#ef4444',
-        timer: 20000,
+        cancelButtonText: 'No, cancelar',
+        cancelButtonColor: '#6b7280',
         timerProgressBar: true,
-        reverseButtons: true
-    })
-        .then(result => {
+        reverseButtons: true,
+        customClass: {
+            popup: 'my-custom-popup-class',
+            confirmButton: 'my-custom-confirm-button-class',
+            cancelButton: 'my-custom-cancel-button-class',
+        }
+    }).then(result => {
             axios.delete('/api/noticias/' + id)
                 .then(response => {
                     noticias.value.splice(index, 1)
                     swal({
                         icon: 'success',
-                        title: 'Noticia eliminada correctamente'
+                        title: 'Noticia eliminada correctamente',
+                        customClass: {
+                            popup: 'my-custom-success-popup-class',
+                            title: 'my-custom-success-title-class',
+                        }
                     })
 
                 }).catch(error => {
                     swal({
                         icon: 'error',
-                        title: 'No se ha podido eliminar la noticia'
+                        title: 'No se ha podido eliminar la noticia',
+                        customClass: {
+                            popup: 'my-custom-error-popup-class',
+                            title: 'my-custom-error-title-class',
+                        }
                     })
-
                 });
 
         })
 }
-const mostrarFormularioComentario = (idNoticia) => {
-    swal({
-        title: 'Agregar Comentario',
-        html:
-            '<input id="swal-comentario" class="swal2-input" placeholder="Comentario">',
-        focusConfirm: false,
-        preConfirm: () => {
-            return {
-                comentario: document.getElementById('swal-comentario').value
-            };
-        }
-    }).then(result => {
-        if (result.isConfirmed) {
-            const nuevoComentario = {
-                id_noticia: idNoticia,
-                comentario: result.value.comentario
-            };
-            crearComentario(nuevoComentario);
-        }
-    });
-};
-const crearComentario = (nuevoComentario) => {
-    axios.post('/api/comentarios', nuevoComentario)
-        .then(response => {
-
-            // Agregar el nuevo comentario a la lista local de comentarios
-            if (!comentariosPorNoticia.value[nuevoComentario.id_noticia]) {
-                comentariosPorNoticia.value[nuevoComentario.id_noticia] = [];
-            }
-
-            comentariosPorNoticia.value[nuevoComentario.id_noticia].push(response.data.data);
-            // console.log(response.data);
-            // console.log( comentariosPorNoticia.value[nuevoComentario.id_noticia]);
-            swal({
-                icon: 'success',
-                title: 'Comentado correctamente :-)'
-            });
-        })
-        .catch(error => {
-            strSuccess.value = "";
-            strError.value = error.response.data.message;
-        });
-};
-
 </script>
 
 <style></style>
