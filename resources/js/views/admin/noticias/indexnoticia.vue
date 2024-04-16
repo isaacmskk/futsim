@@ -4,7 +4,7 @@
     <div class="row">
         <div class="grid">
             <div class="col-12">
-                <div class="card">
+                <div class="card cardFondo">
                     <div class="card-body">
                         <tbody class="row">
                             <select v-model="categoriaSeleccionada" @change="filtrarNoticias">
@@ -13,7 +13,7 @@
                                 categoria.categoria }}</option>
                             </select>
                             <tr v-for="(noticia, index) in noticias" :key="noticia.id"
-                                class="card col-12 col-lg-4 text-center">
+                                class="col-12 col-lg-4 text-center">
                                 <button @click="detallenoticia(noticia.id)" class="button">
                                     <td>
                                         <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia"

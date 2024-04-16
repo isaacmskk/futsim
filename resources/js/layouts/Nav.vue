@@ -54,7 +54,7 @@
                         </li>
                     </ul>
 
-                    <span class="nav-link ms-3 me-2" href="#" role="button" data-bs-toggle="dropdown"
+                    <span class="nombreUsuario ms-2" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         {{ user.name }}
                     </span>
