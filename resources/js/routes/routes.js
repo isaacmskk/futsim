@@ -42,6 +42,7 @@ const PartidosList = () => import('../views/admin/partidos/indexpartido.vue');
 
 /*LISTAR RANKING*/
 const RankingList = () => import('../views/admin/ranking/indexranking.vue');
+const EditUser = () => import('../views/admin/user/edituser.vue');
 
 function requireLogin(to, from, next) {
     let isLogin = false;
@@ -392,6 +393,24 @@ export default [
                         component: RankingList,
                         meta: {
                             breadCrumb: 'Ranking',
+                            linked: false,
+                        }
+                    }
+                ]
+            },
+            {
+                name: 'edituser',
+                path: 'user',
+                meta: {
+                    breadCrumb: 'Editar Usuario',
+                },
+                children: [
+                    {
+                        name: 'user.editaruser',
+                        path: '/admin/user',
+                        component: EditUser,
+                        meta: {
+                            breadCrumb: 'Editar Usuario',
                             linked: false,
                         }
                     }

@@ -4,24 +4,26 @@
     <div class="col-12">
       <div class="card cardFondo">
         <div class="card-body">
-          <div class="p-datatable">
-            <div class="p-datatable-wrapper">
-              <table class="p-datatable-table">
-                <thead>
-                  <tr>
-                    <th>Posición</th>
-                    <th>Usuario</th>
-                    <th>Puntos</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(usuario, index) in ranking" :key="usuario.id_usuario">
-                    <td>{{ usuario.posicion }}</td>
-                    <td>{{ usuario.name }}</td>
-                    <td>{{ usuario.total_puntos }}</td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="table-container">
+            <div class="fila header">
+              <div class="cell">Posición</div>
+              <div class="cell">Usuario</div>
+              <div class="cell">Puntos</div>
+            </div>
+            <div class="fila" v-for="(usuario, index) in ranking" :key="usuario.id"
+              :class="{ 'logged-user': usuario.isLoggedUser }" style="
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;">
+              <div class="cell">
+                <div :class="{ 'gold': index === 0, 'silver': index === 1, 'bronze': index === 2, 'white': index > 2 }" class="position-number">{{ usuario.posicion }}</div>
+                <div class="medallas" v-if="index < 3">
+                  <i v-if="index === 0" class="fas fa-regular fa-medal gold"></i>
+                  <i v-else-if="index === 1" class="fas fa-regular fa-medal silver"></i>
+                  <i v-else class="fas fa-regular fa-medal bronze"></i>
+                </div>
+              </div>
+              <div class="cell" :class="{ 'gold': index === 0, 'silver': index === 1, 'bronze': index === 2, 'white': index > 2 }">{{ usuario.name }}</div>
+              <div class="cell" :class="{ 'gold': index === 0, 'silver': index === 1, 'bronze': index === 2, 'white': index > 2 }">{{ usuario.total_puntos }}</div>
             </div>
           </div>
         </div>
@@ -29,6 +31,7 @@
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref, onMounted } from 'vue';
@@ -50,42 +53,72 @@ const cargarRanking = () => {
     });
 };
 </script>
+<style scoped>
+.gold {
+  color: gold;
+}
 
-<style>
-/* Estilos CSS */
-/* Estilos específicos de PrimeVue */
-.p-datatable .p-datatable-wrapper {
-  overflow: auto;
-  max-height: 400px;
-  /* Ajusta la altura máxima según tu diseño */
+.silver {
+  color: silver;
+}
+
+.bronze {
+  color: #cd7f32;
+}
+
+.white {
   color: white;
-
 }
 
-.p-datatable .p-datatable-table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: auto;
+.table-container {
+  border: 2px solid #37ff8aed;
+  border-radius: 8px;
+  /* overflow: hidden; */
 }
 
-.p-datatable .p-datatable-thead>tr>th {
-  padding: 12px 20px;
-  text-align: left;
+.fila {
+  background: #18181b7c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Centra verticalmente el contenido */
+}
+
+.fila.header {
+  color: #18181b;
+  background: #37ff8aed;
   font-weight: bold;
-  background-color: #f2f2f2;
-  border-bottom: 1px solid #ccc;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  
+  margin-bottom: -0px; /* Margen inferior negativo */
 }
 
-.p-datatable .p-datatable-tbody>tr>td {
-  padding: 10px 20px;
-  border-bottom: 1px solid #ddd;
+.cell {
+  flex: 1;
+  /* Ajusta el tamaño de todas las celdas */
+  font-size: 18px;
+  line-height: 1.2;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
 }
 
-.p-datatable .p-datatable-tbody>tr:nth-child(even) {
-  background-color: #f9f9f9;
+.medallas{
+  display: inline-flex;
 }
 
-.p-datatable .p-datatable-tbody>tr:hover {
-  background-color: #f0f0f0;
+.logged-user {
+  /* background-color: #37ff8aed; */
+}
+
+.logged-user .cell {
+  color: #37ff8aed !important;
+  font-weight: 550 !important;
+}
+
+.position-number {
+  font-size: inherit;
+  display: inline-block;
 }
 </style>

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -47,6 +48,12 @@ class UserController extends Controller
 
         return UserResource::collection($users);
     }
+    public function getCurrentUser()
+{
+    $user = auth()->user();
+    return new UserResource($user);
+}
+
 
     /**
      * Store a newly created resource in storage.

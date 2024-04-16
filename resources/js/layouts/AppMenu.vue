@@ -41,7 +41,7 @@ const model = ref([
         items: [
             { label: 'Crear Jugadores', icon: 'pi pi-fw pi-user-plus pi-Lateral', to: '/admin/jugadoresadmin/jugadores', permision: 'user-list' },
             { label: 'Crear Noticias', icon: 'pi pi-fw pi-megaphone pi-Lateral', to: '/admin/futsimvistas/noticias', permision: 'role-list'},
-            { label: 'Personal', icon: 'pi pi-fw pi-cog pi-Lateral', to: '/admin/permissions', permision:'all' }
+            { label: 'Personal', icon: 'pi pi-fw pi-cog pi-Lateral', to: '/admin/user', permision:'all' }
         ]
     },
 ]);

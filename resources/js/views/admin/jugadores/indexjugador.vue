@@ -171,4 +171,7 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
 .asc-desc {
   color: #37ff8bb3;
 }
+.asc-desc:hover{
+  color: black;
+}
 </style>

@@ -2,16 +2,16 @@
     <h2>Todos los jugadores(Admin)</h2>
     <div class="grid">
         <div class="col-12">
-            <div class="card">
+            <div class="card cardFondo">
                 <div class="card-body">
                     <div class="d-flex justify-content-between pb-2 mb-2">
-                        <div>
+                        <div class="col-12 col-lg-6">
                             <router-link :to="{ name: 'jugadoresadmin.createjugador' }" class="botonGeneral">Nuevo
                                 Jugador</router-link>
                         </div>
                     </div>
 
-                    <table class="table table-hover table-sm">
+                    <table class="col-12 col-lg-6 table table-hover table-sm">
                         <thead class="bg-dark text-light">
                             <tr>
                                 <th width="50" class="text-center">ID</th>
@@ -27,7 +27,7 @@
                         <tbody>
 
                             <tr v-for="(jugador, index) in jugadores">
-                                <td class="text-center">{{ jugador.id }}</td>
+                                <td class="col-12 col-lg-6">{{ jugador.id }}</td>
                                 <td>{{ jugador.nombre }}</td>
                                 <td>{{ jugador.apellido }}</td>
                                 <td>{{ jugador.posicion }}</td>
@@ -37,7 +37,7 @@
                                     <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
                                         class="imgJugador">
                                 </td>
-                                <td class="text-center">
+                                <td class="col-12 col-lg-6">
                                     <i class="pi pi-fw pi-trash" @click="deleteJugador(jugador.id, index)"></i>
                                     <i class="pi pi-fw pi-pencil" @click="updateJugador(jugador.id, index)"></i>
                                 </td>
@@ -74,9 +74,15 @@ const deleteJugador = (id, index) => {
         showCancelButton: true,
         confirmButtonText: 'Sí, eliminar',
         confirmButtonColor: '#ef4444',
-        timer: 20000,
+        cancelButtonText: 'No, cancelar',
+        cancelButtonColor: '#6b7280',
         timerProgressBar: true,
-        reverseButtons: true
+        reverseButtons: true,
+        customClass: {
+            popup: 'my-custom-popup-class',
+            confirmButton: 'my-custom-confirm-button-class',
+            cancelButton: 'my-custom-cancel-button-class',
+        }
     })
         .then(result => {
             axios.delete('/api/jugadores/' + id)
@@ -84,13 +90,21 @@ const deleteJugador = (id, index) => {
                     jugadores.value.splice(index, 1)
                     swal({
                         icon: 'success',
-                        title: 'Jugador eliminado correctamente'
+                        title: 'Jugador eliminado correctamente',
+                        customClass: {
+                            popup: 'my-custom-success-popup-class',
+                            title: 'my-custom-success-title-class',
+                        }
                     })
 
                 }).catch(error => {
                     swal({
                         icon: 'error',
-                        title: 'No se ha podido eliminar el jugador'
+                        title: 'No se ha podido eliminar el jugador',
+                        customClass: {
+                            popup: 'my-custom-error-popup-class',
+                            title: 'my-custom-error-title-class',
+                        }
                     })
 
                 });
@@ -103,7 +117,7 @@ const updateJugador = (id, index) => {
     const currentData = jugadores.value[index];
 
     swal({
-        title: 'Editar publicación',
+        title: 'Editar Jugador',
         html:
             '<input id="swal-input1" class="swal2-input" placeholder="" value="' + currentData.id + '">' +
             '<input id="swal-input2" class="swal2-input" placeholder="" value="' + currentData.nombre + '">' +

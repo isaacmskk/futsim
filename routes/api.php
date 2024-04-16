@@ -61,6 +61,8 @@ Route::post('/partidos/{plantillaId}/{plantillaSeleccionadaId}/{golesEquipo1}/{g
 
 Route::get('ranking', [RankingController::class, 'index']);
 
+Route::get('user', [UserController::class, 'index']);
+Route::get('user/current', [UserController::class, 'getCurrentUser']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
 Route::apiResource('users', UserController::class);
