@@ -92,6 +92,17 @@
   font-size: 1rem!important;
 }
 
+.layout-topbar .layout-topbar-button { 
+  color:white;
+}
+
+.nombreUsuario{
+  font-weight: 500;
+}
+
+.layout-topbar .layout-topbar-button:hover { 
+  color:#37FF8B;
+}
 
 /*LOGIN*/
 .Btn {
@@ -112,7 +123,6 @@
   border: 2px solid var(--green);
 }
 
-/* plus sign */
 .sign {
   width: 100%;
   transition-duration: .3s;
@@ -124,12 +134,10 @@
 .sign svg {
   width: 17px;
 }
-// 18181b
 .sign svg path {
   fill: #37FF8B;
 }
 
-/* text */
 .text {
   position: absolute;
   right: 0%;
@@ -141,7 +149,6 @@
   transition-duration: .3s;
   font-family: Tahoma!important;
 }
-/* hover effect on button width */
 .Btn:hover {
   width: 125px;
   border-radius: 1em;
@@ -155,14 +162,12 @@
   transition-duration: .3s;
   padding-left: 20px;
 }
-/* hover effect button's text */
 .Btn:hover .text {
   opacity: 1;
   width: 70%;
   transition-duration: .3s;
   padding-right: 10px;
 }
-/* button click effect*/
 .Btn:active {
   transform: translate(2px ,2px);
 }

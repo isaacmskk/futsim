@@ -3,7 +3,7 @@
         
 
         <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
-            <i class="pi pi-bars"></i>
+            <i class="pi pi-list"></i>
         </button>
 
         <button class="p-link layout-topbar-menu-button layout-topbar-button" @click="onTopBarMenuButton()">
@@ -45,7 +45,7 @@
                     </li>
                 </ul>
 
-                <span class="nav-link ms-3 me-2" href="#" role="button" data-bs-toggle="dropdown"
+                <span class="nombreUsuario ms-2" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     {{ user.name }}
                 </span>
