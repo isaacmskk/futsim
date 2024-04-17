@@ -71,17 +71,13 @@ const deleteJugador = (id, index) => {
         title: 'Quieres eliminar el jugador?',
         text: 'Esta acción no es reversible!',
         icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, eliminar',
+        confirmButtonText: 'Eliminar',
         confirmButtonColor: '#ef4444',
-        cancelButtonText: 'No, cancelar',
-        cancelButtonColor: '#6b7280',
         timerProgressBar: true,
         reverseButtons: true,
         customClass: {
             popup: 'my-custom-popup-class',
             confirmButton: 'my-custom-confirm-button-class',
-            cancelButton: 'my-custom-cancel-button-class',
         }
     })
         .then(result => {
@@ -119,7 +115,7 @@ const updateJugador = (id, index) => {
     swal({
         title: 'Editar Jugador',
         html:
-            '<input id="swal-input1" class="swal2-input" placeholder="" value="' + currentData.id + '">' +
+            '<input id="swal-input1" class="swal2-input" placeholder="" value="' + currentData.id + '" type="hidden">' +
             '<input id="swal-input2" class="swal2-input" placeholder="" value="' + currentData.nombre + '">' +
             '<input id="swal-input3" class="swal2-input" placeholder="" value="' + currentData.apellido + '">' +
             '<input id="swal-input4" class="swal2-input" placeholder="" value="' + currentData.posicion + '">' +

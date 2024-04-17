@@ -1,26 +1,27 @@
 <template>
-                                <h2>Todas las noticias</h2>
+    <h2>Todas las noticias</h2>
 
     <div class="row">
         <div class="grid">
             <div class="col-12">
                 <div class="card cardFondo">
-                    <div class="card-body">
+                    <div class="card-body" style="padding-left:0px; padding-right: 0px;">
                         <tbody class="row">
                             <select v-model="categoriaSeleccionada" @change="filtrarNoticias">
                                 <option value="">Todas las categorías</option>
                                 <option v-for="categoria in categorias" :value="categoria.categoria">{{
-                                categoria.categoria }}</option>
+                                    categoria.categoria }}</option>
                             </select>
                             <tr v-for="(noticia, index) in noticias" :key="noticia.id"
                                 class="col-12 col-lg-4 text-center">
-                                <button @click="detallenoticia(noticia.id)" class="button">
-                                    <td>
-                                        <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia"
-                                            class="imgNoticias">
-                                    </td>
-                                    <h3>{{ noticia.titulo }}</h3>
-                                </button>
+                                <div >
+                                    <button @click="detallenoticia(noticia.id)" class="button">
+                                            <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia"
+                                                class="imgNoticias" style="margin-top: 20px;">
+                                        <h3>{{ noticia.titulo }}</h3>
+                                    </button>
+                                </div>
+
                             </tr>
                         </tbody>
                     </div>

@@ -3,8 +3,6 @@
   <div v-for="(plantilla, index) in plantillasUsuario" :key="plantilla.id" style="margin-bottom: 20px;">
     <div class="col-12">
       <div class="card cardFondo">
-        <div class="card-body">
-
           <div class="card-body">
             <div class="">
               <h3>{{ plantilla.nombre }}</h3>
@@ -25,7 +23,6 @@
               </div>
             </tbody>
           </div>
-        </div>
       </div>
     </div>
   </div>
