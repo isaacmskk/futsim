@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -96,23 +97,36 @@ class UserController extends Controller
      * @param User $user
      * @return UserResource
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(Request $request, $id)
     {
-        $role = Role::find($request->role_id);
-
+        $user = User::findOrFail($id);
+    
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$user->id, // Asegura que el correo electrónico sea único excepto para el usuario actual
+            'password' => 'nullable|min:6', // La contraseña es opcional y debe tener al menos 6 caracteres si se proporciona
+            'role_id' => 'array', // Puede ser un array de IDs de roles
+            'role_id.*' => 'exists:roles,id', // Cada ID de rol debe existir en la tabla roles
+        ]);
+    
         $user->name = $request->name;
         $user->email = $request->email;
-        if(!empty($request->password)) {
-            $user->password = Hash::make($request->password) ?? $user->password;
+        
+        if ($request->has('password')) {
+            $user->password = Hash::make($request->password);
         }
-
+    
         if ($user->save()) {
-            if ($role) {
-                $user->syncRoles($role);
+            if ($request->has('role_id')) {
+                $user->syncRoles($request->role_id); // Sincroniza los roles del usuario con los nuevos roles proporcionados
             }
             return new UserResource($user);
+        } else {
+            return response()->json(['error' => 'Error al actualizar el usuario'], 500);
         }
     }
+    
+    
 
     /**
      * Remove the specified resource from storage.

@@ -54,8 +54,8 @@
                                     </router-link>
                                 </div>
                             </div>
-                            <router-link :to="{ name: 'auth.forgot-password' }" style="color:white;">{{
-                                $t('forgot_password')}}</router-link>
+                            <!-- <router-link :to="{ name: 'auth.forgot-password' }" style="color:white;">{{
+                                $t('forgot_password')}}</router-link> -->
 
                         </form>
                     </div>

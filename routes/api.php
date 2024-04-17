@@ -63,6 +63,7 @@ Route::get('ranking', [RankingController::class, 'index']);
 
 Route::get('user', [UserController::class, 'index']);
 Route::get('user/current', [UserController::class, 'getCurrentUser']);
+Route::put('user/update/{id}', [UserController::class, 'update']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
 Route::apiResource('users', UserController::class);
