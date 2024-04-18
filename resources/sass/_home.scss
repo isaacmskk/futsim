@@ -90,13 +90,13 @@
 
 
 .noticiaHome{
-    background-image: url(../../public/images/Jugar.png);
+    background-image: url(../../public/images/1.png);
     min-height: 100%;
     background-repeat: no-repeat;
     background-size: 100% auto !important;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
-    background-position: bottom;
+    background-position: top;
 }
 
 .paddingsNoticia{
@@ -147,7 +147,7 @@
 }
 
 .noticiaHome{
-    min-height: 100px;
+    min-height: 150px;
     border-bottom-left-radius: 0px;
     border-top-right-radius: 12px;
 }

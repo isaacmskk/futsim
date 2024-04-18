@@ -67,45 +67,29 @@ onMounted(() => {
 });
 
 const deleteJugador = (id, index) => {
-    swal({
-        title: 'Quieres eliminar el jugador?',
-        text: 'Esta acción no es reversible!',
-        icon: 'warning',
-        confirmButtonText: 'Eliminar',
-        confirmButtonColor: '#ef4444',
-        timerProgressBar: true,
-        reverseButtons: true,
-        customClass: {
-            popup: 'my-custom-popup-class',
-            confirmButton: 'my-custom-confirm-button-class',
-        }
-    })
-        .then(result => {
-            axios.delete('/api/jugadores/' + id)
-                .then(response => {
-                    jugadores.value.splice(index, 1)
-                    swal({
-                        icon: 'success',
-                        title: 'Jugador eliminado correctamente',
-                        customClass: {
-                            popup: 'my-custom-success-popup-class',
-                            title: 'my-custom-success-title-class',
-                        }
-                    })
+    axios.delete('/api/jugadores/' + id)
+        .then(response => {
+            jugadores.value.splice(index, 1)
+            swal({
+                icon: 'success',
+                title: 'Jugador eliminado correctamente',
+                customClass: {
+                    popup: 'my-custom-success-popup-class',
+                    title: 'my-custom-success-title-class',
+                }
+            })
 
-                }).catch(error => {
-                    swal({
-                        icon: 'error',
-                        title: 'No se ha podido eliminar el jugador',
-                        customClass: {
-                            popup: 'my-custom-error-popup-class',
-                            title: 'my-custom-error-title-class',
-                        }
-                    })
+        }).catch(error => {
+            swal({
+                icon: 'error',
+                title: 'No se ha podido eliminar el jugador',
+                customClass: {
+                    popup: 'my-custom-error-popup-class',
+                    title: 'my-custom-error-title-class',
+                }
+            })
 
-                });
-
-        })
+        });
 }
 
 const updateJugador = (id, index) => {

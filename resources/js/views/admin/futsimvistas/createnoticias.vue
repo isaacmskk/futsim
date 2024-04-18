@@ -64,6 +64,9 @@
 import axios from "axios";
 import { ref, reactive, onMounted } from "vue";
 import DropZone from "@/components/DropZone.vue";
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const noticia = reactive({
     id: '',
@@ -105,6 +108,9 @@ function addNoticia() {
             console.log(response);
             strSuccess.value = response.data.success;
             strError.value = "";
+            router.push({
+                name: 'futsimvistas.indexnoticia'
+            });
         }).catch(error => {
             console.log(error);
             strSuccess.value = "";

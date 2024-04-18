@@ -30,18 +30,16 @@ class UserController extends Controller
         if (!in_array($orderDirection, ['asc', 'desc'])) {
             $orderDirection = 'desc';
         }
-        $users = User::
-        when(request('search_id'), function ($query) {
-            $query->where('id', request('search_id'));
-        })
+        $users = User::when(request('search_id'), function ($query) {
+                $query->where('id', request('search_id'));
+            })
             ->when(request('search_title'), function ($query) {
-                $query->where('name', 'like', '%'.request('search_title').'%');
+                $query->where('name', 'like', '%' . request('search_title') . '%');
             })
             ->when(request('search_global'), function ($query) {
-                $query->where(function($q) {
+                $query->where(function ($q) {
                     $q->where('id', request('search_global'))
-                        ->orWhere('name', 'like', '%'.request('search_global').'%');
-
+                        ->orWhere('name', 'like', '%' . request('search_global') . '%');
                 });
             })
             ->orderBy($orderColumn, $orderDirection)
@@ -49,11 +47,21 @@ class UserController extends Controller
 
         return UserResource::collection($users);
     }
+    public function getUserRoles(Request $request)
+    {
+        // Obtener el usuario autenticado
+        $user = $request->user();
+
+        // Obtener los roles del usuario
+        $roles = $user->getRoleNames();
+
+        return response()->json(['roles' => $roles]);
+    }
     public function getCurrentUser()
-{
-    $user = auth()->user();
-    return new UserResource($user);
-}
+    {
+        $user = auth()->user();
+        return new UserResource($user);
+    }
 
 
     /**
@@ -100,22 +108,26 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-    
+
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$user->id, // Asegura que el correo electrónico sea único excepto para el usuario actual
+            'email' => 'required|email|unique:users,email,' . $user->id, // Asegura que el correo electrónico sea único excepto para el usuario actual
+            'apellido' => 'required',
             'password' => 'nullable|min:6', // La contraseña es opcional y debe tener al menos 6 caracteres si se proporciona
             'role_id' => 'array', // Puede ser un array de IDs de roles
             'role_id.*' => 'exists:roles,id', // Cada ID de rol debe existir en la tabla roles
         ]);
-    
+
         $user->name = $request->name;
         $user->email = $request->email;
-        
+        $user->apellido = $request->apellido;
+
+        // $user->password = $request->password;
+
         if ($request->has('password')) {
             $user->password = Hash::make($request->password);
         }
-    
+
         if ($user->save()) {
             if ($request->has('role_id')) {
                 $user->syncRoles($request->role_id); // Sincroniza los roles del usuario con los nuevos roles proporcionados
@@ -125,8 +137,38 @@ class UserController extends Controller
             return response()->json(['error' => 'Error al actualizar el usuario'], 500);
         }
     }
-    
-    
+
+    public function password(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id, // Asegura que el correo electrónico sea único excepto para el usuario actual
+            'password' => 'required|min:6', // La contraseña es opcional y debe tener al menos 6 caracteres si se proporciona
+            'role_id' => 'array', // Puede ser un array de IDs de roles
+            'role_id.*' => 'exists:roles,id', // Cada ID de rol debe existir en la tabla roles
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        // $user->password = $request->password;
+
+        if ($request->has('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        if ($user->save()) {
+            if ($request->has('role_id')) {
+                $user->syncRoles($request->role_id); // Sincroniza los roles del usuario con los nuevos roles proporcionados
+            }
+            return new UserResource($user);
+        } else {
+            return response()->json(['error' => 'Error al actualizar el usuario'], 500);
+        }
+    }
+
+
 
     /**
      * Remove the specified resource from storage.
