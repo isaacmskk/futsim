@@ -120,9 +120,9 @@
                             <div class="col-12 col-lg-6" style="padding:0px!important">
                                 <div>
                                     
-                                    <h3 class="h3HomeSecciones">El Barça se prepara </h3>
-                                    <h4 class="h4HomeSecciones">El FCB se prepara para jugar contra su proximo rival en Champions, un PSG que viene espectacular con Mbappe!</h4>
-                                    <p class="pHomeSecciones">El FCB se prepara para jugar contra su proximo rival en Champions, un PSG que viene espectacular con Mbappe!El FCB se prepara para jugar contra su proximo rival en Champions, un PSG que viene espectacular con Mbappe!El FCB se prepara para jugar contra su proximo rival en Champions, un PSG que viene espectacular con Mbappe!El FCB se prepara para jugar contra su proximo rival en Champions, un PSG que viene espectacular con Mbappe!</p>
+                                    <h3 class="h3HomeSecciones">Cubarsí, titular por aplastamiento</h3>
+                                    <h4 class="h4HomeSecciones">El central cada vez está más afianzado en el centro de la defensa del Barcelona</h4>
+                                    <p class="pHomeSecciones">Han pasado prácticamente tres meses desde el debut de Pau Cubarsí con el Barcelona. Fue en un partido de Copa ante Unionistas. Pocos conocían entonces a este chaval de la cantera azulgrana, ahora ya todos saben su nombre. Porque Cubarsí ha llegado para quedarse. Se ha hecho con un hueco en el once titular y ha debutado con la selección española. Un ascenso meteórico. Nadie le ha regalado nada...</p>
                                 </div>
                             </div>
                         </div>

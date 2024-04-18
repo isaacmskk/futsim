@@ -85,47 +85,29 @@ const groupComentariosPorNoticia = (comentarios) => {
 };
 
 const deleteNoticia = (id, index) => {
-    swal({
-        title: '¿Quieres eliminar esta noticia?',
-        text: 'Esta acción no es reversible',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, eliminar',
-        confirmButtonColor: '#ef4444',
-        cancelButtonText: 'No, cancelar',
-        cancelButtonColor: '#6b7280',
-        timerProgressBar: true,
-        reverseButtons: true,
-        customClass: {
-            popup: 'my-custom-popup-class',
-            confirmButton: 'my-custom-confirm-button-class',
-            cancelButton: 'my-custom-cancel-button-class',
-        }
-    }).then(result => {
-            axios.delete('/api/noticias/' + id)
-                .then(response => {
-                    noticias.value.splice(index, 1)
-                    swal({
-                        icon: 'success',
-                        title: 'Noticia eliminada correctamente',
-                        customClass: {
-                            popup: 'my-custom-success-popup-class',
-                            title: 'my-custom-success-title-class',
-                        }
-                    })
 
-                }).catch(error => {
-                    swal({
-                        icon: 'error',
-                        title: 'No se ha podido eliminar la noticia',
-                        customClass: {
-                            popup: 'my-custom-error-popup-class',
-                            title: 'my-custom-error-title-class',
-                        }
-                    })
-                });
+    axios.delete('/api/noticias/' + id)
+        .then(response => {
+            noticias.value.splice(index, 1)
+            swal({
+                icon: 'success',
+                title: 'Noticia eliminada correctamente',
+                customClass: {
+                    popup: 'my-custom-success-popup-class',
+                    title: 'my-custom-success-title-class',
+                }
+            })
 
-        })
+        }).catch(error => {
+            swal({
+                icon: 'error',
+                title: 'No se ha podido eliminar la noticia',
+                customClass: {
+                    popup: 'my-custom-error-popup-class',
+                    title: 'my-custom-error-title-class',
+                }
+            })
+        });
 }
 </script>
 
