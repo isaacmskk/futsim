@@ -25,7 +25,6 @@ const JugadorList = () => import('../views/admin/jugadores/indexjugador.vue');
 /*GESTIONAR NOTICIAS*/
 const NoticiasListAdmin = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 const NoticiasCreate = () => import('../views/admin/futsimvistas/createnoticias.vue');
-const NoticiasIndividualAdmin = () => import('../views/admin/futsimvistas/indexnoticiaindividual.vue');
 const NoticiasIndividual = () => import('../views/admin/noticias/indexnoticiaindividual.vue');
 const NoticiasList = () => import('../views/admin/noticias/indexnoticia.vue');
 
@@ -53,6 +52,28 @@ function requireLogin(to, from, next) {
     } else {
         next('/login')
     }
+}
+import axios from 'axios';
+
+function requireAdmin(to, from, next) {
+    axios.get('/api/user/rol', {
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+    })
+    .then(response => {
+        const roles = response.data.roles;
+        if (roles.includes('admin')) {
+            next();
+        } else {
+            // Redirigir o devolver una respuesta de acceso denegado
+            next('/');
+        }
+    })
+    .catch(error => {
+        console.error('Error al obtener los roles del usuario:', error);
+        next('/');
+    });
 }
 
 function guest(to, from, next) {
@@ -231,16 +252,20 @@ export default [
                     }
                 ]
             },
-            {
+            {   
+                beforeEnter: requireAdmin,
                 name: 'jugadoresadmin',
                 path: 'jugadoresadmin',
-                meta: { breadCrumb: 'Jugadores' },
+                meta: { breadCrumb: 'Jugadores',
+                requiresAuth: true,
+                requiresAdmin: true},
                 children: [
                     {
                         name: 'jugadoresadmin.indexjugador',
                         path: 'jugadores',
                         component: JugadorListAdmin,
-                        meta: { breadCrumb: 'Listar Jugadores' }
+                        meta: { breadCrumb: 'Listar Jugadores'}
+
                     },
                     {
                         name: 'jugadoresadmin.createjugador',
@@ -272,6 +297,7 @@ export default [
                 ]
             },
             {
+                beforeEnter: requireAdmin,
                 name: 'NoticiasAdmin',
                 path: 'futsimvistas',
                 meta: { breadCrumb: 'Noticias' },
@@ -290,14 +316,7 @@ export default [
                         path: 'noticias/createnoticia',
                         component: NoticiasCreate,
                         meta: { breadCrumb: 'Listar Noticias' }
-                    },
-                    {
-                        name: 'noticias.indexnoticiaindividual',
-                        path: 'noticias/noticiaindividual/:id',
-                        component: NoticiasIndividualAdmin,
-                        meta: { breadCrumb: 'Listar Noticias' }
                     }
-
                 ]
             }, {
                 name: 'Noticias',
@@ -359,7 +378,7 @@ export default [
                             breadCrumb: 'Mis Plantillas',
                             linked: false,
                         }
-                    }, 
+                    },
                     {
                         name: 'plantillas.indexplantillas',
                         path: '/admin/plantillas',
