@@ -6,25 +6,26 @@
     <div class="card-body" v-if="userData">
       <div class="col-12" style="display: inline-flex;">
         <div class="col-6">
-          <p class="pSecciones">Nombre: </p>
+          <p class="pSecciones">Nombre <i class="pi pi-fw pi-address-book iconosUsuario" ></i></p>
           <div class="cajaContenidos">
             <p>{{ userData.name }}</p>
           </div>
 
-          <p class="pSecciones">Email: </p>
+          <p class="pSecciones">Email <i class="pi pi-fw pi-at" ></i></p>
           <div class="cajaContenidos">
             <p>{{ userData.email }}</p>
 
           </div>
         </div>
         <div class="col-6">
-          <p class="pSecciones">Apellido: </p>
+          <p class="pSecciones">Apellido <i class="pi pi-fw pi-address-book" ></i></p>
           <div class="cajaContenidos">
             <p>{{ userData.apellido }}</p>
 
           </div>
 
-          <p class="pSecciones">Password: </p>
+          <p class="pSecciones">Password <i class="pi pi-fw pi-lock" ></i> <button class="botonPassword" @click="updatePassword(userData.id, index)">Cambia tu password</button></p>
+          
           <div class="cajaContenidos">
             <p>***************</p>
           </div>
@@ -33,7 +34,6 @@
       </div>
 
       <i class="pi pi-fw pi-pencil" @click="updateUser(userData.id, index)"></i>
-      <i class="pi pi-fw pi-lock" @click="updatePassword(userData.id, index)"></i>
     </div>
     <div v-else>
       <p>Cargando...</p>
@@ -180,8 +180,8 @@ const updatePassword = (id, index) => {
 <style>
 .cajaContenidos {
   text-align: center;
-  width: fit-content;
-  min-width: 300px;
+  /* width: fit-content; */
+  /* min-width: 300px; */
   padding: 10px;
   --green: #37FF8B;
   padding: 0.7em 1.2em;
@@ -196,6 +196,7 @@ const updatePassword = (id, index) => {
   color: white;
   box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
   font-weight: bold;
+  margin-right: 40px;
 
 }
 
@@ -206,6 +207,20 @@ const updatePassword = (id, index) => {
     color: var(--surface-900);
     font-size: 18px;
     padding-top: 10px;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
+
+.botonPassword{
+  border-radius: 4px!important;
+  border: 2px solid var(--green);
+  background-color: #37ff8a00;
+  color: #37FF8B;
+  
+}
+
+.botonPassword:hover{
+  background-color: #37ff8a2c;
+  color: white;
+}
+
 </style>
