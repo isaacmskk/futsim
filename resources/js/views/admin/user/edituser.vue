@@ -4,36 +4,38 @@
   <div class="card cardFondo">
     <!-- {{ userData }} -->
     <div class="card-body" v-if="userData">
-      <div class="col-12" style="display: inline-flex;">
+      <div class="col-12 divContenidoUser">
         <div class="col-6">
-          <p class="pSecciones">Nombre <i class="pi pi-fw pi-address-book iconosUsuario" ></i></p>
+          <p class="pSecciones">Nombre <i class="pi pi-fw pi-address-book iconosUsuario"></i></p>
           <div class="cajaContenidos">
             <p>{{ userData.name }}</p>
           </div>
 
-          <p class="pSecciones">Email <i class="pi pi-fw pi-at" ></i></p>
+          <p class="pSecciones">Email <i class="pi pi-fw pi-at"></i></p>
           <div class="cajaContenidos">
             <p>{{ userData.email }}</p>
 
           </div>
         </div>
         <div class="col-6">
-          <p class="pSecciones">Apellido <i class="pi pi-fw pi-address-book" ></i></p>
+          <p class="pSecciones">Apellido <i class="pi pi-fw pi-address-book"></i></p>
           <div class="cajaContenidos">
             <p>{{ userData.apellido }}</p>
 
           </div>
 
-          <p class="pSecciones">Password <i class="pi pi-fw pi-lock" ></i> <button class="botonPassword" @click="updatePassword(userData.id, index)">Cambia tu password</button></p>
-          
+          <p class="pSecciones" style="margin-bottom: 4px;">Password <i class="pi pi-fw pi-lock"></i> <button class="botonPassword"
+              @click="updatePassword(userData.id, index)">Cambia tu password</button></p>
+
           <div class="cajaContenidos">
             <p>***************</p>
           </div>
 
         </div>
       </div>
-
-      <i class="pi pi-fw pi-pencil" @click="updateUser(userData.id, index)"></i>
+      <div class="col-12" style="text-align: center; padding-top: 50px;">
+        <button class="botonGeneral" @click="updateUser(userData.id, index)">Edita Usuario</button>
+      </div>
     </div>
     <div v-else>
       <p>Cargando...</p>
@@ -178,6 +180,10 @@ const updatePassword = (id, index) => {
 </script>
 
 <style>
+.divContenidoUser {
+  display: inline-flex;
+}
+
 .cajaContenidos {
   text-align: center;
   /* width: fit-content; */
@@ -200,27 +206,46 @@ const updatePassword = (id, index) => {
 
 }
 
-.pSecciones{
-  font-family: Tahoma!important;
-    font-weight: 500;
-    line-height: 1.2;
-    color: var(--surface-900);
-    font-size: 18px;
-    padding-top: 10px;
-    /* font-weight: bold; */
+.pSecciones {
+  font-family: Tahoma !important;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--surface-900);
+  font-size: 18px;
+  padding-top: 10px;
+  /* font-weight: bold; */
 }
 
-.botonPassword{
-  border-radius: 4px!important;
+
+
+.botonPassword {
+  border-radius: 4px !important;
   border: 2px solid var(--green);
   background-color: #37ff8a00;
   color: #37FF8B;
-  
+  padding: 5px;
+  padding-left: 0px;
+  margin-left: 225px;
+
 }
 
-.botonPassword:hover{
+.botonPassword:hover {
   background-color: #37ff8a2c;
   color: white;
+  padding-left: 5px;
 }
 
+@media only screen and (max-width: 600px) {
+  .pSecciones {
+    font-size: 16px;
+  }
+
+  .botonPassword {
+    font-size: 16px;
+    margin-left: 0px;
+
+  }
+
+
+}
 </style>

@@ -8,17 +8,17 @@
           <div class="justify-content-between pb-2 mb-2">
             <div class="row">
               <div class="col-12 col-lg-6">
-                <button class="botonGeneral" @click="ordenarPorValoracion('desc')">
-                  <i class="pi pi-fw pi-sort-amount-down-alt pi-Lateral asc-desc"></i>
+                <button class="itemIconos espacioASCDESC" @click="ordenarPorValoracion('desc')">
+                  <i class="pi pi-fw pi-sort-amount-down-alt asc-desc"></i>
                 </button>
 
-                <button class="botonGeneral" @click="ordenarPorValoracion('asc')">
-                  <i class="pi pi-fw pi-sort-amount-up pi-Lateral asc-desc"></i>
+                <button class="itemIconos espacioASCDESC" @click="ordenarPorValoracion('asc')">
+                  <i class="pi pi-fw pi-sort-amount-up asc-desc"></i>
 
                 </button>
               </div>
 
-              <div class="col-12 col-lg-6" >
+              <div class="col-12 col-lg-6">
 
                 <button v-if="jugadoresSeleccionados.length === 4" class="botonGeneral"
                   @click="mostrarPromptNombrePlantilla">Crear Plantilla</button>
@@ -169,9 +169,21 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
 }
 
 .asc-desc {
-  color: #37ff8bb3;
+  font-size: 2rem;
+
 }
-.asc-desc:hover{
-  color: black;
+
+.espacioASCDESC:hover {
+  border: 2px solid #37ff8a00;
+  font-weight: bold;
+  color: black !important;
+  box-shadow: inset 0 500px 10px rgba(27, 253, 156, 1), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+}
+
+.espacioASCDESC {
+  
+  border: 2px solid #37ff8b;
+  padding: 10px;
+  border-radius: 50%;
 }
 </style>

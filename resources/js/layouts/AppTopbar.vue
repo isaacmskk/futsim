@@ -2,7 +2,7 @@
     <div class="layout-topbar margenNavEscondido">
         
 
-        <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+        <button class="p-link layout-menu-button layout-topbar-button itemIconos" @click="onMenuToggle()">
             <i class="pi pi-list"></i>
         </button>
 
