@@ -54,6 +54,26 @@ function requireLogin(to, from, next) {
     }
 }
 
+function requireAdmin(to, from, next) {
+    axios.get('/api/user/rol', {
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+    })
+        .then(response => {
+            const roles = response.data.roles;
+            if (roles.includes('admin')) {
+                next();
+            } else {
+                // Redirigir o devolver una respuesta de acceso denegado
+                next('/');
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener los roles del usuario:', error);
+            next('/');
+        });
+}
 function guest(to, from, next) {
     let isLogin;
     isLogin = !!store.state.auth.authenticated;
@@ -231,6 +251,7 @@ export default [
                 ]
             },
             {
+                beforeEnter:requireAdmin,
                 name: 'jugadoresadmin',
                 path: 'jugadoresadmin',
                 meta: { breadCrumb: 'Jugadores' },
@@ -271,6 +292,7 @@ export default [
                 ]
             },
             {
+                beforeEnter:requireAdmin,
                 name: 'NoticiasAdmin',
                 path: 'futsimvistas',
                 meta: { breadCrumb: 'Noticias' },
@@ -352,7 +374,7 @@ export default [
                             breadCrumb: 'Mis Plantillas',
                             linked: false,
                         }
-                    }, 
+                    },
                     {
                         name: 'plantillas.indexplantillas',
                         path: '/admin/plantillas',
