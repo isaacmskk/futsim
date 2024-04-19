@@ -21,27 +21,27 @@ const model = ref([
     {
         label: 'Jugar',
         items: [
-            { label: 'Jugadores', icon: 'pi pi-fw pi-users pi-Lateral', to: '/admin/jugadores', permision: 'all' },
-            { label: 'Plantillas', icon: 'pi pi-fw pi-sitemap pi-Lateral', to: '/admin/plantillas/misplantillas', permision:'all' },
-            { label: 'Partidos', icon: 'pi pi-fw pi-bolt pi-Lateral', to: '/admin/plantillas', permision:'all' }
+            { label: 'Jugadores', icon: 'pi pi-fw pi-users pi-Lateral', to: '/app/jugadores', permision: 'all' },
+            { label: 'Plantillas', icon: 'pi pi-fw pi-sitemap pi-Lateral', to: '/app/plantillas/misplantillas', permision:'all' },
+            { label: 'Partidos', icon: 'pi pi-fw pi-bolt pi-Lateral', to: '/app/plantillas', permision:'all' }
         ]
     },
     {
         label: 'Ranking',
-        items: [{ label: 'Ranking', icon: 'pi pi-fw pi-trophy pi-Lateral', to: '/admin/ranking', permision: 'all'}]
+        items: [{ label: 'Ranking', icon: 'pi pi-fw pi-trophy pi-Lateral', to: '/app/ranking', permision: 'all'}]
     },
     {
         label: 'Noticias',
         items: [
-            { label: 'Noticias', icon: 'pi pi-fw pi-id-card pi-Lateral', to: '/admin/noticias', permision:'all'  }
+            { label: 'Noticias', icon: 'pi pi-fw pi-id-card pi-Lateral', to: '/app/noticias', permision:'all'  }
         ]
     },
     {
         label: 'Panel Usuario',
         items: [
-            { label: 'Crear Jugadores', icon: 'pi pi-fw pi-user-plus pi-Lateral', to: '/admin/jugadoresadmin/jugadores', permision: 'user-list' },
-            { label: 'Crear Noticias', icon: 'pi pi-fw pi-megaphone pi-Lateral', to: '/admin/futsimvistas/noticias', permision: 'role-list'},
-            { label: 'Personal', icon: 'pi pi-fw pi-cog pi-Lateral', to: '/admin/user', permision:'all' }
+            { label: 'Crear Jugadores', icon: 'pi pi-fw pi-user-plus pi-Lateral', to: '/app/jugadoresadmin/jugadores', permision: 'user-list' },
+            { label: 'Crear Noticias', icon: 'pi pi-fw pi-megaphone pi-Lateral', to: '/app/noticiasadmin/noticias', permision: 'role-list'},
+            { label: 'Personal', icon: 'pi pi-fw pi-cog pi-Lateral', to: '/app/user', permision:'all' }
         ]
     },
 ]);

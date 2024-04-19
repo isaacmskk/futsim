@@ -1,39 +1,45 @@
 <template>
     <h2>Todas las noticias</h2>
-
     <div class="row">
         <div class="grid">
-            <div class="col-12">
-                <div class="card cardFondo">
-                    <div class="card-body" style="padding-left:0px; padding-right: 0px;">
-                        <tbody class="row">
-                            <select v-model="categoriaSeleccionada" @change="filtrarNoticias">
+            <!-- <div class="col-12"> -->
+            <div class="card cardFondo">
+                <div class="card-body" style="padding-left:0px; padding-right: 0px;">
+                    <div class="col-12 centrarfiltros">
+                        <div class=" col-6 text-center">
+                            <select class="searchcategoria" v-model="categoriaSeleccionada" @change="filtrarNoticias">
                                 <option value="">Todas las categorías</option>
-                                <option v-for="categoria in categorias" :value="categoria.categoria">{{
-                                    categoria.categoria }}</option>
+                                <option class="estilooption" v-for="categoria in categorias"
+                                    :value="categoria.categoria">{{
+                                        categoria.categoria }}</option>
                             </select>
-                            <div class="mb-4">
-                                <input v-model="search_global" @input="filtrarPorTitulo" type="text" placeholder="Search..."
-                                    class="form-control w-25">
+                        </div>
+
+                        <div class="col-6 text-center">
+                            <input v-model="search_global" @input="filtrarPorTitulo" type="text" class="searchbar"
+                                placeholder="Buscar...">
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <tr v-for="(noticia, index) in filteredNoticias" :key="noticia.id"
+                            class="col-12 col-lg-4 text-center">
+                            <div>
+                                <button @click="detallenoticia(noticia.id)" class="button">
+                                    <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia"
+                                        class="imgNoticias" style="margin-top: 20px;">
+                                    <h3>{{ noticia.titulo }}</h3>
+                                </button>
                             </div>
-                            <tr v-for="(noticia, index) in filteredNoticias" :key="noticia.id"
-                                class="col-12 col-lg-4 text-center">
-                                <div>
-                                    <button @click="detallenoticia(noticia.id)" class="button">
-                                        <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia"
-                                            class="imgNoticias" style="margin-top: 20px;">
-                                        <h3>{{ noticia.titulo }}</h3>
-                                    </button>
-                                </div>
-                            </tr>
-                        </tbody>
+                        </tr>
                     </div>
                 </div>
             </div>
+            <!-- </div> -->
+
         </div>
     </div>
 </template>
-
 <script setup>
 import axios from "axios";
 import { ref, onMounted, inject, computed } from "vue"
@@ -110,4 +116,73 @@ const filtrarPorTitulo = () => {
 
 </script>
 
-<style></style>
+<style>
+.searchbar {
+    --green: #37FF8B;
+    color: black !important;
+    ;
+    font-size: 15px;
+    padding: 0.7em 2.7em;
+    position: relative;
+    font-family: Tahoma;
+    border-radius: 1em;
+    line-height: 1.4em;
+    border: 2px;
+    font-weight: bold;
+    box-shadow: inset 0 500px 10px rgba(27, 253, 156, 1);
+    width: 270px;
+
+}
+
+.searchcategoria {
+    --green: #37FF8B;
+    color: white !important;
+    font-size: 15px;
+    padding: 0.7em 2.7em;
+    position: relative;
+    font-family: Tahoma;
+    border-radius: 1em;
+    line-height: 1.4em;
+    border: 2px solid var(--green);
+    font-weight: bold;
+    width: 270px;
+    background-color: #18181b;
+
+}
+
+.estilooption {
+    --green: #37FF8B;
+    color: white !important;
+    font-size: 15px;
+    padding: 0.7em 2.7em;
+    position: relative;
+    font-family: Tahoma;
+    border-radius: 1em;
+    line-height: 1.4em;
+    border: 2px solid var(--green);
+    width: auto;
+    background-color: #18181b;
+}
+
+
+.searchcategoria option {
+    background-color: #18181b;
+    color: white;
+    padding: 0.7em 2.7em;
+    font-family: Tahoma;
+    font-size: 15px;
+
+}
+
+.centrarfiltros {
+    display: inline-flex;
+}
+
+
+@media (max-width: 600px) {
+
+    .centrarfiltros {
+        display: inline;
+    }
+}
+</style>

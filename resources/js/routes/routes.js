@@ -23,14 +23,10 @@ const JugadorUpdateAdmin = () => import('../views/admin/jugadoresadmin/indexjuga
 const JugadorList = () => import('../views/admin/jugadores/indexjugador.vue');
 
 /*GESTIONAR NOTICIAS*/
-const NoticiasListAdmin = () => import('../views/admin/futsimvistas/indexnoticia.vue');
-const NoticiasCreate = () => import('../views/admin/futsimvistas/createnoticias.vue');
+const NoticiasListAdmin = () => import('../views/admin/noticiasadmin/indexnoticia.vue');
+const NoticiasCreate = () => import('../views/admin/noticiasadmin/createnoticias.vue');
 const NoticiasIndividual = () => import('../views/admin/noticias/indexnoticiaindividual.vue');
 const NoticiasList = () => import('../views/admin/noticias/indexnoticia.vue');
-
-/*GESTIONAR COMENTARIOS*/
-const ComentariosList = () => import('../views/admin/futsimvistas/indexnoticia.vue');
-const ComentariosCreate = () => import('../views/admin/futsimvistas/indexnoticia.vue');
 
 /*GESTIONAR PLANTILLAS*/
 const PlantillasList = () => import('../views/admin/plantillas/indexplantillas.vue');
@@ -142,7 +138,7 @@ export default [
         ]
     },
     {
-        path: '/admin',
+        path: '/app',
         component: AuthenticatedLayout,
         // redirect: {
         //     name: 'admin.index'
@@ -285,20 +281,39 @@ export default [
                 children: [
                     {
                         name: 'jugadores.indexjugador',
-                        path: '/admin/jugadores',
+                        path: '/app/jugadores',
                         component: JugadorList,
                         meta: { breadCrumb: 'Listar Jugadores' }
                     }
                 ]
             },
             {
-                beforeEnter:requireAdmin,
-                name: 'NoticiasAdmin',
-                path: 'futsimvistas',
+                name: 'Noticias',
+                path: 'noticias',
                 meta: { breadCrumb: 'Noticias' },
                 children: [
                     {
-                        name: 'futsimvistas.indexnoticia',
+                        name: 'noticias.indexnoticia',
+                        path: '/app/noticias',
+                        component: NoticiasList,
+                        meta: { breadCrumb: 'Listar Noticias' }
+                    },
+                    {
+                        name: 'noticias.indexnoticiaindividual',
+                        path: '/app/noticiaindividual/:id',
+                        component: NoticiasIndividual,
+                        meta: { breadCrumb: 'Listar Noticias' }
+                    }
+                ]
+            },
+            {
+                beforeEnter:requireAdmin,
+                name: 'noticiasadmin',
+                path: 'noticiasadmin',
+                meta: { breadCrumb: 'Noticias' },
+                children: [
+                    {
+                        name: 'noticiasadmin.indexnoticia',
                         path: 'noticias',
                         component: NoticiasListAdmin,
                         meta: {
@@ -307,56 +322,12 @@ export default [
                         }
                     },
                     {
-                        name: 'futsimvistas.createnoticia',
+                        name: 'noticiasadmin.createnoticia',
                         path: 'noticias/createnoticia',
                         component: NoticiasCreate,
                         meta: { breadCrumb: 'Listar Noticias' }
                     }
 
-                ]
-            }, {
-                name: 'Noticias',
-                path: 'noticias',
-                meta: { breadCrumb: 'Noticias' },
-                children: [
-                    {
-                        name: 'noticias.indexnoticia',
-                        path: '/admin/noticias',
-                        component: NoticiasList,
-                        meta: { breadCrumb: 'Listar Noticias' }
-                    },
-                    {
-                        name: 'noticias.indexnoticiaindividual',
-                        path: 'noticiaindividual/:id',
-                        component: NoticiasIndividual,
-                        meta: { breadCrumb: 'Listar Noticias' }
-                    }
-                ]
-            },
-            {
-                name: 'Comentarios',
-                path: 'futsimvistas',
-                meta: { breadCrumb: 'Noticias' },
-                children: [
-                    {
-                        name: 'futsimvistas.indexnoticia',
-                        path: 'noticias',
-                        component: ComentariosList,
-                        meta: {
-                            breadCrumb: 'Listar Noticias',
-                            linked: false,
-                        }
-                    },
-                    {
-                        name: 'futsimvistas.createcomentario',
-                        path: 'noticias/indexnoticia/:id_noticia',
-                        component: ComentariosCreate,
-                        props: true,
-                        meta: {
-                            breadCrumb: 'Listar Noticias',
-                            linked: false,
-                        }
-                    }
                 ]
             },
             {
@@ -368,7 +339,7 @@ export default [
                 children: [
                     {
                         name: 'plantillas.detalleplantillas',
-                        path: '/admin/plantillas/misplantillas',
+                        path: '/app/plantillas/misplantillas',
                         component: PlantillasListDetalles,
                         meta: {
                             breadCrumb: 'Mis Plantillas',
@@ -377,7 +348,7 @@ export default [
                     },
                     {
                         name: 'plantillas.indexplantillas',
-                        path: '/admin/plantillas',
+                        path: '/app/plantillas',
                         component: PlantillasList,
                         meta: {
                             breadCrumb: 'Plantillas Rivales',
@@ -388,7 +359,7 @@ export default [
             },
             {
                 name: 'partidos.indexpartido',
-                path: '/admin/partidos/:plantillaId/:plantillaSeleccionadaId',
+                path: '/app/partidos/:plantillaId/:plantillaSeleccionadaId',
                 component: PartidosList,
                 meta: {
                     breadCrumb: 'Partidos',
@@ -404,7 +375,7 @@ export default [
                 children: [
                     {
                         name: 'ranking.indexranking',
-                        path: '/admin/ranking',
+                        path: '/app/ranking',
                         component: RankingList,
                         meta: {
                             breadCrumb: 'Ranking',
@@ -422,7 +393,7 @@ export default [
                 children: [
                     {
                         name: 'user.editaruser',
-                        path: '/admin/user',
+                        path: '/app/user',
                         component: EditUser,
                         meta: {
                             breadCrumb: 'Editar Usuario',

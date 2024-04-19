@@ -7,7 +7,7 @@
                 <div class="card cardFondo">
                     <div class="d-flex justify-content-between pb-2 mb-2">
                         <div>
-                            <router-link :to="{ name: 'futsimvistas.createnoticia' }" class="botonGeneral">Nueva
+                            <router-link :to="{ name: 'noticiasadmin.createnoticia' }" class="botonGeneral">Nueva
                                 Noticia</router-link>
                         </div>
 
