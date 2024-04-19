@@ -1,22 +1,20 @@
 <template>
-            <h2>Todas las plantillas</h2>
+  <h2>Todas las plantillas</h2>
 
   <div class="grid" v-for="plantilla in plantillasTodas" :key="plantilla.id" style="margin-bottom: 20px;">
     <div class="col-12">
       <div class="card cardFondo">
         <div class="card-body">
-          <div class="card-body">
-            <tbody class="row">
-              <h3>{{ plantilla.nombre }}</h3>
-              <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
-                class="col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
-                <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
-              </div>
-            </tbody>
-            <div class="text-center">
-              <button class="botonGeneral" @click="mostrarPlantillasUsuario(plantilla.id)">Seleccionar
-                Plantilla</button>
+          <tbody class="row">
+            <h3>{{ plantilla.nombre }}</h3>
+            <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
+              class="col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
+              <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
             </div>
+          </tbody>
+          <div class="text-center">
+            <button class="botonGeneral" @click="mostrarPlantillasUsuario(plantilla.id)">Seleccionar
+              Plantilla</button>
           </div>
         </div>
       </div>

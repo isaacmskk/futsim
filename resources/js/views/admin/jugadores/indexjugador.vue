@@ -181,7 +181,8 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
 }
 
 .espacioASCDESC {
-  
+  background: linear-gradient(to right, #18181b 1%, #18181b 100%);
+
   border: 2px solid #37ff8b;
   padding: 10px;
   border-radius: 50%;
