@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="col-12" style="text-align: center; padding-top: 50px;">
-        <button class="botonGeneral" @click="updateUser(userData.id, index)">Edita Usuario</button>
+        <button class="botonGeneral" @click="updateUser(userData.id, index)">Editar Usuario</button>
       </div>
     </div>
     <div v-else>
@@ -81,8 +81,15 @@ const updateUser = (id, index) => {
       '<input id="swal-input1" class="swal2-input" placeholder="Nombre"  value="' + currentData.name + '">' +
       '<input id="swal-input2" class="swal2-input" placeholder="Email" value="' + currentData.email + '">' +
       '<input id="swal-input3" class="swal2-input" placeholder="Apellido" value="' + currentData.apellido + '">',
+      
 
     focusConfirm: false,
+    customClass: {
+      popup: 'my-custom-popup-class',
+      confirmButton: '',
+      cancelButton: '',
+      container: 'my-custom-container-class'
+    },
     preConfirm: () => {
       return [
         document.getElementById('swal-input1').value,
@@ -110,12 +117,20 @@ const updateUser = (id, index) => {
 
           swal({
             icon: 'success',
-            title: 'Usuario actualizado correctamente'
+            title: 'Usuario actualizado correctamente',
+            customClass: {
+                    popup: 'my-custom-success-popup-class',
+                    title: 'my-custom-success-title-class',
+                }
           });
         }).catch(error => {
           swal({
             icon: 'error',
-            title: 'No se ha podido actualizar el usuario'
+            title: 'No se ha podido actualizar el usuario',
+            customClass: {
+                    popup: 'my-custom-error-popup-class',
+                    title: 'my-custom-error-title-class',
+                }
           });
         });
     }
@@ -135,6 +150,12 @@ const updatePassword = (id, index) => {
       '<input id="swal-input4" class="swal2-input" placeholder="*******" value="">',
 
     focusConfirm: false,
+    customClass: {
+      popup: 'my-custom-popup-class',
+      confirmButton: '',
+      cancelButton: '',
+      container: 'my-custom-container-class'
+    },
     preConfirm: () => {
       return [
         document.getElementById('swal-input1').value,
@@ -165,12 +186,20 @@ const updatePassword = (id, index) => {
 
           swal({
             icon: 'success',
-            title: 'Contraseña actualizada'
+            title: 'Contraseña actualizada',
+            customClass: {
+                    popup: 'my-custom-success-popup-class',
+                    title: 'my-custom-success-title-class',
+                }
           });
         }).catch(error => {
           swal({
             icon: 'error',
-            title: 'No se ha podido modificar la contraseña'
+            title: 'No se ha podido modificar la contraseña',
+            customClass: {
+                    popup: 'my-custom-error-popup-class',
+                    title: 'my-custom-error-title-class',
+                }
           });
         });
     }

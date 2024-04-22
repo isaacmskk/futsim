@@ -3,26 +3,32 @@
   <div v-for="(plantilla, index) in plantillasUsuario" :key="plantilla.id" style="margin-bottom: 20px;">
     <div class="col-12">
       <div class="card cardFondo">
-          <div class="card-body">
-            <div class="">
-              <h3>{{ plantilla.nombre }}</h3>
-              <i class="pi pi-fw pi-trash" @click="deletePlantilla(plantilla.id, index)"></i>
-              <i class="pi pi-fw pi-pencil" @click="updatePlantilla(plantilla.id, index)"></i>
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h3>{{ plantilla.nombre }}</h3>
+            <div>
+              <button class="btn-icon btn-green-border itemeditar estiloedit">
+                <i class="pi pi-fw pi-pencil tamano" @click="updatePlantilla(plantilla.id, index)"></i>
+              </button>
+              <button class="btn-icon btn-green-border itemeliminar estiloeliminar">
+                <i class="pi pi-fw pi-trash tamano" @click="deletePlantilla(plantilla.id, index)"></i>
+              </button>
             </div>
-            <tbody class="row">
-              <div v-if="plantillasUsuario.length === 0" class="d-flex justify-content-between pb-2 mb-2">
-                <p>No tienes plantillas creadas.</p>
-              </div>
-
-              <div v-if="plantilla.jugadores.length === 0">
-                <p>No tienes jugadores asociados a esta plantilla.</p>
-              </div>
-              <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
-                class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
-                <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
-              </div>
-            </tbody>
           </div>
+          <tbody class="row">
+            <div v-if="plantillasUsuario.length === 0" class="d-flex justify-content-between pb-2 mb-2">
+              <p>No tienes plantillas creadas.</p>
+            </div>
+
+            <div v-if="plantilla.jugadores.length === 0">
+              <p>No tienes jugadores asociados a esta plantilla.</p>
+            </div>
+            <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
+              class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
+              <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
+            </div>
+          </tbody>
+        </div>
       </div>
     </div>
   </div>
@@ -143,8 +149,85 @@ const updatePlantilla = (id, index) => {
 </script>
 
 <style>
-.botonesderecha {
-  display: flex;
-  justify-content: end;
+.btn-icon {
+  background-color: transparent;
+  border: 1px solid transparent; /* Se define un borde transparente por defecto */
+  cursor: pointer;
+  padding: 0;
+}
+
+.tamano {
+  font-size: 2rem !important; /* Ajusta el tamaño de las íconos */
+}
+.estiloeliminar:hover {
+  border: 2px solid #37ff8a00;
+  font-weight: bold;
+  color: white !important;
+  box-shadow: inset 0 500px 10px #e10017, 0 0 9px 3px rgba(27, 253, 156, 0.2);
+}
+
+.estiloeliminar {
+  background: linear-gradient(to right, #18181b 1%, #18181b 100%);
+
+  border: 2px solid #37ff8b;
+  padding: 10px;
+  border-radius: 50%;
+}
+.estiloedit:hover {
+  border: 2px solid #37ff8a00;
+  font-weight: bold;
+  color: white !important;
+  box-shadow: inset 0 500px 10px #bb00b4, 0 0 9px 3px rgba(27, 253, 156, 0.2);
+}
+
+.estiloedit {
+  background: linear-gradient(to right, #18181b 1%, #18181b 100%);
+
+  border: 2px solid #37ff8b;
+  padding: 10px;
+  border-radius: 50%;
+}
+.pi-trash:hover{
+    font-size: 30px!important;
+    color:white;
+  }
+  .pi-pencil:hover{
+    font-size: 30px!important;
+    color:white;
+  }
+
+  .itemeditar {
+  border: 0px solid #37ff8b;
+  background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%, transparent 60%, rgba(27, 253, 156, 0.1) 100%);
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 155, 0.271);
+  margin-right: 10px;
+  color:white;
+}
+
+.itemeditar:hover {
+  border: 0px solid #37ff8b;
+  background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%, transparent 60%, rgba(27, 253, 156, 0.1) 100%);
+  margin-right: 10px;
+  font-weight: bold;
+  color: black;
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 155, 0.271);
+  color: #37ff8b!important;
+}
+.itemeliminar {
+  border: 2px solid #37ff8b;
+  background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%, transparent 60%, rgba(27, 253, 156, 0.1) 100%);
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 155, 0.271);
+  margin-right: 10px;
+  color:white;
+}
+
+.itemeliminar:hover {
+  border: 2px solid #37ff8b;
+  background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%, transparent 60%, rgba(27, 253, 156, 0.1) 100%);
+  margin-right: 10px;
+  font-weight: bold;
+  color: black;
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 155, 0.271);
+  color: #37ff8b!important;
 }
 </style>
