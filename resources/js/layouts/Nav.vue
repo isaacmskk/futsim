@@ -45,7 +45,7 @@
                     <i class="pi pi-angle-down"></i>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="padding: 0px!important;">
                         <li>
-                            <router-link :to="{ name: 'profile.index' }" class="dropdown-item">Perfil</router-link>
+                            <router-link class="dropdown-item" to="/app/user" >Perfil</router-link>
                         </li>
 
                         <li>

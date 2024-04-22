@@ -36,7 +36,7 @@
                 <i class="pi pi-angle-down"></i>
                 <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="padding: 0px!important;">
                     <li>
-                        <router-link :to="{ name: 'profile.index' }" class="dropdown-item">Perfil</router-link>
+                        <router-link :to="{ name: 'user.editaruser' }" class="dropdown-item">Perfil</router-link>
                     </li>
                     
                     <li>

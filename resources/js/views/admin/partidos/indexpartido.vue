@@ -99,7 +99,17 @@ const valoracionesPlantilla1 = ref([]);
 const valoracionesPlantilla2 = ref([]);
 const sumaValoraciones1 = ref(0);
 const sumaValoraciones2 = ref(0);
+const puntosUsuario = ref(0);
 
+onMounted(() => {
+  axios.get(`/api/ranking/puntosTotales`)
+    .then(response => {
+      puntosUsuario.value = response.data.total_puntos;
+    })
+    .catch(error => {
+      console.error('Error al obtener los puntos del usuario:', error);
+    });
+});
 onMounted(() => {
   const plantillaId = route.params.plantillaId;
   const plantillaSeleccionadaId = route.params.plantillaSeleccionadaId;
@@ -208,7 +218,7 @@ const terminarPartido = () => {
     }
   }).then(() => {
     guardarResultadosPartido(golesEquipo1.value, golesEquipo2.value);
-    router.push('/admin/ranking');
+    router.push('/app/ranking');
   });
 };
 
@@ -244,17 +254,30 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
   } else if (diferenciaValoracion < 0) {
     factorAjuste = 1 / (1 - diferenciaValoracion * 0.009); // Cuanto menor es la diferencia, mayor es el factor de ajuste
   }
-
   let puntosequipo = 0;
-  if (golesEquipo1 < golesEquipo2) {
-    puntosequipo = 100 * factorAjuste; // Se suman más puntos si se pierde contra un rival más valorado
-  } else if (golesEquipo1 > golesEquipo2) {
-    puntosequipo = -50 / factorAjuste; // Se restan menos puntos si se gana contra un rival más valorado
-  } else {
-    puntosequipo = 15 * factorAjuste;
+
+  if (puntosUsuario.value <= puntosequipo) {
+    if (golesEquipo1 < golesEquipo2) {
+      puntosequipo = 100 * factorAjuste; // Se suman más puntos si se pierde contra un rival más valorado
+    } else if (golesEquipo1 > golesEquipo2) {
+      puntosequipo = 0; // Se restan menos puntos si se gana contra un rival más valorado
+    } else {
+      puntosequipo = 15 * factorAjuste;
+    }
+  }else{
+    if (golesEquipo1 < golesEquipo2) {
+      puntosequipo = 100 * factorAjuste; // Se suman más puntos si se pierde contra un rival más valorado
+    } else if (golesEquipo1 > golesEquipo2) {
+      puntosequipo = -50 / factorAjuste; // Se restan menos puntos si se gana contra un rival más valorado
+    } else {
+      puntosequipo = 15 * factorAjuste;
+    }
   }
-console.log(factorAjuste);
-  console.log(puntosequipo)
+  if(puntosUsuario.value <= puntosequipo){
+    puntosequipo = 0;
+  }
+  console.log(factorAjuste);
+  console.log(puntosequipo);
   axios.post(`/api/partidos/${plantillaId1}/${plantillaId2}/${golesEquipo1}/${golesEquipo2}/${puntosequipo}`, {
     id_plantilla1: plantillaId1,
     usuario1: '',
@@ -272,4 +295,3 @@ console.log(factorAjuste);
 </script>
 
 <style></style>
-

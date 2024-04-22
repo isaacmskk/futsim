@@ -60,6 +60,7 @@ Route::get('/partidos/{plantillaId}/{plantillaSeleccionadaId}', [PartidosControl
 Route::post('/partidos/{plantillaId}/{plantillaSeleccionadaId}/{golesEquipo1}/{golesEquipo2}/{puntosequipo}', [PartidosController::class, 'store']);
 
 Route::get('ranking', [RankingController::class, 'index']);
+Route::get('ranking/puntosTotales', [RankingController::class, 'puntosTotalesUsuario']);
 
 Route::get('user', [UserController::class, 'index']);
 Route::get('user/current', [UserController::class, 'getCurrentUser']);

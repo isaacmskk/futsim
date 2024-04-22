@@ -31,4 +31,17 @@ class RankingController extends Controller
 
         return response()->json($usuarios);
     }
+
+    public function puntosTotalesUsuario()
+    {
+        // Obtener el ID del usuario logueado actualmente
+        $userId = Auth::id();
+
+        // Obtener los puntos totales del usuario
+        $puntosTotales = DB::table('usuario_partidos')
+            ->where('id_usuario', $userId)
+            ->sum('resultado');
+
+        return response()->json(['total_puntos' => $puntosTotales]);
+    }
 }
