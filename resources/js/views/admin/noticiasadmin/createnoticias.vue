@@ -109,7 +109,7 @@ function addNoticia() {
             strSuccess.value = response.data.success;
             strError.value = "";
             router.push({
-                name: 'futsimvistas.indexnoticia'
+                name: 'noticiasadmin.indexnoticia'
             });
         }).catch(error => {
             console.log(error);

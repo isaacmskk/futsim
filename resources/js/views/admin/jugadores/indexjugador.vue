@@ -151,25 +151,5 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
 </script>
 
 <style>
-.imgJugadorSeleccion {
-  cursor: pointer;
-  transition: box-shadow 0.3s ease;
-  /* Transición para el efecto de sombra */
-  border-radius: 14px;
-}
 
-.imgJugadorSeleccion:hover {
-  box-shadow: 0px 0px 15px 5px rgba(55, 255, 139, 0.7);
-  /* Sombras difuminadas */
-}
-
-.seleccionado {
-  box-shadow: 0px 0px 15px 5px rgba(55, 255, 139, 0.7);
-  /* Sombras difuminadas para jugador seleccionado */
-}
-
-.asc-desc {
-  font-size: 2rem;
-
-}
 </style>

@@ -38,8 +38,16 @@
                                         class="imgJugador">
                                 </td>
                                 <td class="col-12 col-lg-6">
-                                    <i class="pi pi-fw pi-trash" @click="deleteJugador(jugador.id, index)"></i>
-                                    <i class="pi pi-fw pi-pencil" @click="updateJugador(jugador.id, index)"></i>
+                                    <button class="itemEditar espacioEditar">
+                                        <i class="pi pi-fw pi-pencil tamano"
+                                            @click="updateJugador(jugador.id, index)"></i>
+
+                                    </button>
+                                    <button class="itemEliminar espacioEliminar">
+                                        <i class="pi pi-fw pi-trash tamano"
+                                            @click="deleteJugador(jugador.id, index)"></i>
+
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -107,6 +115,12 @@ const updateJugador = (id, index) => {
             '<input id="swal-input6" class="swal2-input" placeholder="" value="' + currentData.valoracion + '">',
 
         focusConfirm: false,
+        customClass: {
+            popup: 'my-custom-popup-class',
+            confirmButton: '',
+            cancelButton: '',
+            container: 'my-custom-container-class'
+        },
         preConfirm: () => {
             return [
                 document.getElementById('swal-input1').value,
@@ -137,12 +151,20 @@ const updateJugador = (id, index) => {
                     jugadores.value.splice(index, 1, updatedData);
                     swal({
                         icon: 'success',
-                        title: 'Jugador actualizado correctamente'
+                        title: 'Jugador actualizado correctamente',
+                        customClass: {
+                            popup: 'my-custom-success-popup-class',
+                            title: 'my-custom-success-title-class',
+                        }
                     });
                 }).catch(error => {
                     swal({
                         icon: 'error',
-                        title: 'No se ha podido actualizar el jugador'
+                        title: 'No se ha podido actualizar el jugador',
+                        customClass: {
+                            popup: 'my-custom-error-popup-class',
+                            title: 'my-custom-error-title-class',
+                        }
                     });
                 });
         }

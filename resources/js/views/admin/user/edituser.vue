@@ -24,8 +24,8 @@
 
           </div>
 
-          <p class="pSecciones" style="margin-bottom: 4px;">Password <i class="pi pi-fw pi-lock"></i> <button class="botonPassword"
-              @click="updatePassword(userData.id, index)">Cambia tu password</button></p>
+          <p class="pSecciones" style="margin-bottom: 4px;">Password <i class="pi pi-fw pi-lock"></i> <button
+              class="botonPassword" @click="updatePassword(userData.id, index)">Cambia tu password</button></p>
 
           <div class="cajaContenidos">
             <p>***************</p>
@@ -81,7 +81,7 @@ const updateUser = (id, index) => {
       '<input id="swal-input1" class="swal2-input" placeholder="Nombre"  value="' + currentData.name + '">' +
       '<input id="swal-input2" class="swal2-input" placeholder="Email" value="' + currentData.email + '">' +
       '<input id="swal-input3" class="swal2-input" placeholder="Apellido" value="' + currentData.apellido + '">',
-      
+
 
     focusConfirm: false,
     customClass: {
@@ -119,18 +119,18 @@ const updateUser = (id, index) => {
             icon: 'success',
             title: 'Usuario actualizado correctamente',
             customClass: {
-                    popup: 'my-custom-success-popup-class',
-                    title: 'my-custom-success-title-class',
-                }
+              popup: 'my-custom-success-popup-class',
+              title: 'my-custom-success-title-class',
+            }
           });
         }).catch(error => {
           swal({
             icon: 'error',
             title: 'No se ha podido actualizar el usuario',
             customClass: {
-                    popup: 'my-custom-error-popup-class',
-                    title: 'my-custom-error-title-class',
-                }
+              popup: 'my-custom-error-popup-class',
+              title: 'my-custom-error-title-class',
+            }
           });
         });
     }
@@ -188,18 +188,18 @@ const updatePassword = (id, index) => {
             icon: 'success',
             title: 'Contraseña actualizada',
             customClass: {
-                    popup: 'my-custom-success-popup-class',
-                    title: 'my-custom-success-title-class',
-                }
+              popup: 'my-custom-success-popup-class',
+              title: 'my-custom-success-title-class',
+            }
           });
         }).catch(error => {
           swal({
             icon: 'error',
             title: 'No se ha podido modificar la contraseña',
             customClass: {
-                    popup: 'my-custom-error-popup-class',
-                    title: 'my-custom-error-title-class',
-                }
+              popup: 'my-custom-error-popup-class',
+              title: 'my-custom-error-title-class',
+            }
           });
         });
     }
@@ -251,15 +251,14 @@ const updatePassword = (id, index) => {
   border-radius: 4px !important;
   border: 2px solid var(--green);
   background-color: #37ff8a00;
-  color: #37FF8B;
+  color: #ff37f5;
   padding: 5px;
-  padding-left: 0px;
   margin-left: 225px;
 
 }
 
 .botonPassword:hover {
-  background-color: #37ff8a2c;
+  background-color: #ff37eb2c;
   color: white;
   padding-left: 5px;
 }
@@ -272,9 +271,8 @@ const updatePassword = (id, index) => {
   .botonPassword {
     font-size: 16px;
     margin-left: 0px;
-
+    padding-left: 0px;
   }
-
 
 }
 </style>

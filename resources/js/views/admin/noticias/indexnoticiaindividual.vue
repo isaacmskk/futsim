@@ -14,7 +14,7 @@
         </div>
         <div class="col-12 col-lg-6">
           <div class="text-center">
-            <button @click="mostrarFormularioComentario(noticia.id)" class="botoncomentar">Comentar</button>
+            <button @click="mostrarFormularioComentario(noticia.id)" class="botonGeneral">Comentar</button>
           </div>
           <div v-if="comentariosPorNoticia[noticia.id]" class="p-mt-2 comentarios-container">
             <div v-for="(comentario, index) in comentariosPorNoticia[noticia.id]" :key="comentario.id"

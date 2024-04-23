@@ -37,7 +37,13 @@
                                     <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia"
                                         class="imgJugador">
                                 </td>
-                                <td> <i class="pi pi-fw pi-trash" @click="deleteNoticia(noticia.id, index)"></i></td>
+                                <td>
+                                    <button class="itemEliminar espacioEliminar">
+                                        <i class="pi pi-fw pi-trash tamano"
+                                            @click="deleteNoticia(noticia.id, index)"></i>
+                                    </button>
+                                </td>
+
                             </tr>
                         </tbody>
                     </table>
