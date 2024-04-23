@@ -256,22 +256,17 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
   }
   let puntosequipo = 0;
 
-if (golesEquipo1 < golesEquipo2) {
+  if (golesEquipo1 < golesEquipo2) {
   puntosequipo = 100 * factorAjuste; // Se suman más puntos si se pierde contra un rival más valorado
 } else if (golesEquipo1 > golesEquipo2) {
   // Calcula la cantidad de puntos que se restarían al equipo en caso de derrota
-  let puntosRestarDerrota = 50 / factorAjuste; // Ajusta según sea necesario
+  let puntosRestarDerrota = Math.min(50 / factorAjuste, puntosUsuario.value); // Ajusta según sea necesario, considerando los puntos actuales del usuario
   
-  // Verifica si restar estos puntos llevaría al usuario a un valor negativo
-  if (puntosUsuario.value + puntosRestarDerrota < 0) {
-    // Ajusta la cantidad de puntos que se restarán para que el usuario termine con 0 puntos en lugar de un valor negativo
-    puntosequipo = 0;
-  } else {
-    puntosequipo = -puntosRestarDerrota; // Resta menos puntos si se gana contra un rival más valorado
-  }
+  puntosequipo = -puntosRestarDerrota; // Resta menos puntos si se gana contra un rival más valorado
 } else {
   puntosequipo = 15 * factorAjuste; // Se asignan puntos por empate
 }
+
 
   console.log(factorAjuste);
   console.log(puntosequipo);
