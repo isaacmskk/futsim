@@ -30,26 +30,26 @@
 
         <div class="layout-topbar-menu" :class="topbarMenuClasses">
 
-            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
-                data-bs-toggle="dropdown">
-
-                <i class="pi pi-angle-down"></i>
-                <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="padding: 0px!important;">
-                    <li>
-                        <router-link :to="{ name: 'user.editaruser' }" class="dropdown-item">Perfil</router-link>
-                    </li>
-                    
-                    <li>
-                        <a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
-                            href="javascript:void(0)" @click="logout">Cerrar sesión</a>
-                    </li>
-                </ul>
-
-                <span class="nombreUsuario ms-2" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    {{ user.name }}
-                </span>
-            </button>
+            <template v-if="user?.name">
+            <div class="layout-topbar-menu" :class="topbarMenuClasses">
+                <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown" role="button">
+                    <i class="pi pi-angle-down"></i>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="padding: 0px!important;">
+                        <li>
+                            <router-link class="dropdown-item" to="/app/user">Perfil</router-link>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
+                                href="javascript:void(0)" @click="logout">Cerrar sesión</a>
+                        </li>
+                    </ul>
+                    <span class="nombreUsuario ms-2" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{ user.name }}
+                    </span>
+                </button>
+            </div>
+        </template>
         </div>
     </div>
 </template>

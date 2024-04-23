@@ -393,7 +393,7 @@ export default [
                 children: [
                     {
                         name: 'user.editaruser',
-                        path: '/app/user',
+                        path: '',
                         component: EditUser,
                         meta: {
                             breadCrumb: 'Editar Usuario',
