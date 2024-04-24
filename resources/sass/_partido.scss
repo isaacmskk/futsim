@@ -6,33 +6,53 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.table-container {
-  margin-top: 20px;
+/*PARTIDO*/
+
+
+
+
+.imgJugadoresPartido{
+  width: 140px;
+  height: 200px;
+  margin: auto;
 }
 
-.table {
-  width: auto;
-  border-collapse: collapse;
-  border-radius: 8px;
-  overflow: hidden;
+
+
+.cardFondoPartido1{
+  background-color: rgba(0, 255, 255, 0)!important;
 }
 
-.table thead {
-  background-color: transparent;
+.cardFondoPartido2{
+  background-color: rgba(0, 255, 255, 0)!important;
 }
 
-.table th,
-.table td {
-  padding: 8px 10px;
-  text-align: left;
-  color: black;
+
+
+.fondoPartidoGlobal{
+  background-image: url(../../public/images/fondoPartido.jpg)!important;
+  background-repeat: no-repeat;
+  background-size: 100% 100%!important;
+  border-radius: 14px;
+  display: inline-flex;
+
 }
 
-.table tbody tr:nth-child(even) {
-  background-color: transparent;
+.paddingNombrePlantillas{
+  padding: 20px;
 }
 
-.table tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
+@media only screen and (max-width: 600px) {
+  .fondoPartidoGlobal{
+    background-image: url(../../public/images/fondoPartido.jpg)!important;
+    background-repeat: no-repeat;
+    background-size: 100% 100%!important;
+    border-radius: 14px;
+    display: inline-flex;
+  }
+
+  .ordenaCratas{
+    flex-direction: column-reverse;
+  }
   
+}

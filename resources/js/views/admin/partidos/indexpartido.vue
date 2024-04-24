@@ -2,74 +2,61 @@
   <div class="d-flex justify-content-between pb-2 mb-2">
     <h2 class="card-title">Partido {{ nombrePlantilla1 }} vs {{ nombrePlantilla2 }}</h2>
   </div>
-  <div class="grid" v-if="jugadoresPlantilla1.length > 0 && jugadoresPlantilla2.length > 0">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h3>{{ nombrePlantilla1 }}</h3>
-          <div class="row">
-            <div v-for="jugador in jugadoresPlantilla1" :key="jugador.id"
-              class="col-12 col-lg-3 cartJugadores text-center">
-              <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
-            </div>
+  <div class="grid girdPartido fondoPartidoGlobal" v-if="jugadoresPlantilla1.length > 0 && jugadoresPlantilla2.length > 0">
+    <div class="col-5">
+      <div class="cardFondoPartido1">
+        <div class="card-body text-center">
+          <h3 class="paddingNombrePlantillas">{{ nombrePlantilla1 }}</h3>
+          <div v-for="jugador in jugadoresPlantilla1" :key="jugador.id" class="row ordenaCratas">
+            <td class="col-12 col-lg-2">
+              <p class="pJugadoresPartido">{{ jugador.valoracion }}</p>
+            </td>
+            <td class="col-12 col-lg-6">
+              <p class="pJugadoresPartido">{{ jugador.nombre }} {{ jugador.apellido }}</p>
+            </td>
+            <td class="col-12 col-lg-4"> <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
+                class="imgJugadoresPartido"></td>
           </div>
         </div>
       </div>
-      <div class="table-container">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>{{ nombrePlantilla1 }}</th>
-              <th>Valoración</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="jugador in jugadoresPlantilla1" :key="jugador.id">
-              <td>{{ jugador.nombre }}</td>
-              <td>{{ jugador.valoracion }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div>
-      <button v-if="!juegoIniciado" class="botonGeneral" @click="jugarPartido">Jugar</button>
     </div>
 
-    <div v-if="juegoIniciado" class="temporizador">
-      <p>{{ tiempo }}</p>
-      <div class="resultados">
-        <p>{{ golesEquipo1 }} - {{ golesEquipo2 }}</p>
+
+    <div class="col-2" style="align-items: center; display:flex;">
+      <div>
+        <button v-if="!juegoIniciado" class="botonGeneral" @click="jugarPartido">Jugar</button>
       </div>
-    </div>
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h3>{{ nombrePlantilla2 }}</h3>
-          <div class="row">
-            <div v-for="jugador in jugadoresPlantilla2" :key="jugador.id"
-              class="col-12 col-lg-3 cartJugadores text-center">
-              <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
-            </div>
-          </div>
+      <div v-if="juegoIniciado" class="temporizador">
+        <p>{{ tiempo }}</p>
+        <div class="resultados">
+          <p>{{ golesEquipo1 }} - {{ golesEquipo2 }}</p>
         </div>
       </div>
-      <div class="table-container">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>{{ nombrePlantilla2 }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="jugador in jugadoresPlantilla2" :key="jugador.id">
-              <td>{{ jugador.nombre }}</td>
-              <td>{{ jugador.valoracion }}</td>
-            </tr>
-          </tbody>
-        </table>
+    </div>
+
+
+
+    <div class="col-5">
+      <div class="cardFondoPartido2">
+        <div class="card-body text-center">
+          <h3 class="paddingNombrePlantillas">{{ nombrePlantilla2 }}</h3>
+          <!-- <div class=""> -->
+          <div v-for="jugador in jugadoresPlantilla2" :key="jugador.id" class="row">
+            <td class="col-12 col-lg-4"> <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
+                class="imgJugadoresPartido"></td>
+            <td class="col-12 col-lg-6">
+              <p class="pJugadoresPartido">{{ jugador.nombre }} {{ jugador.apellido }}</p>
+            </td>
+            <td class="col-12 col-lg-2">
+              <p class="pJugadoresPartido">{{ jugador.valoracion }}</p>
+            </td>
+            
+          </div>
+          <!-- </div> -->
+        </div>
       </div>
     </div>
+
   </div>
   <div v-else>
     <p>No se han seleccionado plantillas.</p>
@@ -257,15 +244,15 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
   let puntosequipo = 0;
 
   if (golesEquipo1 < golesEquipo2) {
-  puntosequipo = 100 * factorAjuste; // Se suman más puntos si se pierde contra un rival más valorado
-} else if (golesEquipo1 > golesEquipo2) {
-  // Calcula la cantidad de puntos que se restarían al equipo en caso de derrota
-  let puntosRestarDerrota = Math.min(50 / factorAjuste, puntosUsuario.value); // Ajusta según sea necesario, considerando los puntos actuales del usuario
-  
-  puntosequipo = -puntosRestarDerrota; // Resta menos puntos si se gana contra un rival más valorado
-} else {
-  puntosequipo = 15 * factorAjuste; // Se asignan puntos por empate
-}
+    puntosequipo = 100 * factorAjuste; // Se suman más puntos si se pierde contra un rival más valorado
+  } else if (golesEquipo1 > golesEquipo2) {
+    // Calcula la cantidad de puntos que se restarían al equipo en caso de derrota
+    let puntosRestarDerrota = Math.min(50 / factorAjuste, puntosUsuario.value); // Ajusta según sea necesario, considerando los puntos actuales del usuario
+
+    puntosequipo = -puntosRestarDerrota; // Resta menos puntos si se gana contra un rival más valorado
+  } else {
+    puntosequipo = 15 * factorAjuste; // Se asignan puntos por empate
+  }
 
 
   console.log(factorAjuste);
@@ -286,4 +273,15 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
 
 </script>
 
-<style></style>
+<style>
+.girdPartido{
+  width: 100%;
+}
+
+
+
+
+.pJugadoresPartido{
+  color: white;
+}
+</style>

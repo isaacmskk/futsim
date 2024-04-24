@@ -19,7 +19,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <h4 for="apellido" class="form-label">{{ $t('apellido') }}</h4>
+                                    <h4 for="apellido" class="form-label">{{ $t('Apellido') }}</h4>
                                     <input v-model="registerForm.apellido" id="apellido" type="text" class="form-control" autofocus>
                                     <!-- Validation Errors -->
                                     <div class="text-danger mt-1">
@@ -45,7 +45,7 @@
                                     </h4>
                                     <input v-model="registerForm.password" id="password" type="password" class="form-control" autocomplete="current-password">
                                     <!-- Validation Errors -->
-                                    <div class="text-danger-600 mt-1">
+                                    <div class="text-danger mt-1">
                                         <div v-for="message in validationErrors?.password">
                                             {{ message }}
                                         </div>
