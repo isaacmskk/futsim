@@ -1,187 +1,249 @@
 /*IMAGENES JUGADOR*/
-.imgJugador{
-    width: 240px;
-    height: 350px;
-    margin: auto;
+.imgJugador {
+  width: 240px;
+  height: 350px;
+  margin: auto;
 }
 
-.cartJugadores{
-    padding: auto;
+.cartJugadores {
+  padding: auto;
 }
 
-.card:last-child{
-    margin-bottom: auto!important;
+.card:last-child {
+  margin-bottom: auto !important;
 }
 
-.cardFondoPequeño{
-  
-  background-image: url(../../public/images/fondoDivs.svg)!important;
+.cardFondoPequeño {
+
+  background-image: url(../../public/images/fondoDivs.svg) !important;
   background-repeat: no-repeat;
-  background-size: 100% auto!important;
+  background-size: 100% auto !important;
 }
 
-.cardFondo{
-  background-image: url(../../public/images/fondoDivs.svg)!important;
+.cardFondo {
+  background-image: url(../../public/images/fondoDivs.svg) !important;
   background-repeat: no-repeat;
-  background-size: 50% auto!important;
+  background-size: 50% auto !important;
 }
 
 /*CHECK PARA SELECCIONAR JUGADORES*/
 ._checkbox {
- display: none;
+  display: none;
 }
 
 .labeljugadores {
- position: absolute;
- top: 50%;
- right: 0;
- left: 0;
- width: 30px;
- height: 30px;
- margin: 195px auto;
- transform: translateY(-50%);
- border-radius: 50%;
- cursor: pointer;
- transition: 0.2s ease transform, 0.2s ease background-color, 0.2s ease box-shadow;
- overflow: hidden;
- z-index: 1;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  margin: 195px auto;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s ease transform, 0.2s ease background-color, 0.2s ease box-shadow;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .labeljugadores:before {
- content: "";
- position: absolute;
- top: 50%;
- right: 0;
- left: 0;
- width: 24px;
- height: 23px;
- margin: 0 auto;
- background-color: #fff;
- transform: translateY(-50%);
- border-radius: 50%;
- box-shadow: inset 0 7px 10px #ffbeb8;
- transition: 0.2s ease width, 0.2s ease height;
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  width: 24px;
+  height: 23px;
+  margin: 0 auto;
+  background-color: #fff;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  box-shadow: inset 0 7px 10px #ffbeb8;
+  transition: 0.2s ease width, 0.2s ease height;
 }
 
 .labeljugadores:hover:before {
- transform: translateY(-50%) scale(1.1);
- box-shadow: inset 0 7px 10px #ff9d96;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: inset 0 7px 10px #ff9d96;
 }
 
 .labeljugadores:active {
- transform: translateY(-50%) scale(0.9);
+  transform: translateY(-50%) scale(0.9);
 }
 
 .tick_mark {
- position: absolute;
- top: 0px;
- right: 0;
- left: 0;
- width: 15px;
- height: 18px;
- margin: 0 auto;
- margin-left: 5px;
- transform: rotateZ(-40deg);
+  position: absolute;
+  top: 0px;
+  right: 0;
+  left: 0;
+  width: 15px;
+  height: 18px;
+  margin: 0 auto;
+  margin-left: 5px;
+  transform: rotateZ(-40deg);
 }
 
-.tick_mark:before, .tick_mark:after {
- content: "";
- position: absolute;
- background-color: #fff;
- border-radius: 2px;
- opacity: 0;
- transition: 0.2s ease transform, 0.2s ease opacity;
+.tick_mark:before,
+.tick_mark:after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  border-radius: 2px;
+  opacity: 0;
+  transition: 0.2s ease transform, 0.2s ease opacity;
 }
 
 .tick_mark:before {
- left: 0;
- bottom: 0;
- width: 4px;
- height: 10px;
- box-shadow: -2px 0 5px rgba(0,0,0,0.23);
- transform: translateY(-68px)
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  height: 10px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.23);
+  transform: translateY(-68px)
 }
 
 .tick_mark:after {
- left: 0;
- bottom: 0;
- width: 100%;
- height: 4px;
- box-shadow: 0 3px 5px rgba(0,0,0,0.23);
- transform: translateX(78px)
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.23);
+  transform: translateX(78px)
 }
 
-._checkbox:checked + .labeljugadores {
- background-color: #37FF8B;
+._checkbox:checked+.labeljugadores {
+  background-color: #37FF8B;
 }
 
-._checkbox:checked + .labeljugadores:before {
- width: 0;
- height: 0;
+._checkbox:checked+.labeljugadores:before {
+  width: 0;
+  height: 0;
 }
 
-._checkbox:checked + .labeljugadores .tick_mark:before, ._checkbox:checked + .labeljugadores .tick_mark:after {
- transform: translate(0);
- opacity: 1;
+._checkbox:checked+.labeljugadores .tick_mark:before,
+._checkbox:checked+.labeljugadores .tick_mark:after {
+  transform: translate(0);
+  opacity: 1;
 }
 
 /*BOTON CREAR PLANTILLAS*/
 .botonGeneral {
-    --green: #37FF8B;
-    font-size: 15px;
-    padding: 0.7em 2.7em;
-    letter-spacing: 0.06em;
-    position: relative;
-    font-family: inherit;
-    border-radius: 1em;
-    overflow: hidden;
-    transition: all 0.5s;
-    line-height: 1.4em;
-    border: 2px solid var(--green);
-    background: linear-gradient(to right, #18181b 1%, #18181b 100%);
-    color: var(--green);
-    box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgb(27, 253, 155);
-    font-weight: bold;
-  }
-  
-  .botonGeneral:hover {
-    font-weight: bold;
-    color: black;
-    box-shadow: inset 0 500px 10px rgba(27, 253, 156, 1), 0 0 9px 3px rgba(27, 253, 156, 0.2);
-    // margin-top: 5px;
-  }
-  
-  .botonGeneral:hover:before {
-    transform: translateX(11em);
-  }
-  .botonde{
-    background-color: none;
+  --green: #37FF8B;
+  font-size: 15px;
+  padding: 0.7em 2.7em;
+  letter-spacing: 0.06em;
+  position: relative;
+  font-family: inherit;
+  border-radius: 1em;
+  overflow: hidden;
+  transition: all 0.5s;
+  line-height: 1.4em;
+  border: 2px solid var(--green);
+  background: linear-gradient(to right, #18181b 1%, #18181b 100%);
+  color: var(--green);
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgb(27, 253, 155);
+  font-weight: bold;
+}
+
+.colocarbotoncrearplantilla {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.botonGeneral:hover {
+  font-weight: bold;
+  color: black;
+  box-shadow: inset 0 500px 10px rgba(27, 253, 156, 1), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+  // margin-top: 5px;
+}
+
+.botonGeneral:hover:before {
+  transform: translateX(11em);
+}
+
+.botoncrearplantilla {
+  --green: #37FF8B;
+  font-size: 15px;
+  padding: 0.7em 2.7em;
+  letter-spacing: 0.06em;
+  position: relative;
+  font-family: inherit;
+  border-radius: 1em;
+  overflow: hidden;
+  transition: all 0.5s;
+  line-height: 1.4em;
+  border: 2px solid var(--green);
+  background: linear-gradient(to right, #18181b 1%, #18181b 100%);
+  color: var(--green);
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgb(27, 253, 155);
+  font-weight: bold;
+}
+
+.colocarbotoncrearplantilla {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.botoncrearplantilla:hover {
+  font-weight: bold;
+  color: black;
+  box-shadow: inset 0 500px 10px rgba(27, 253, 156, 1), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+  // margin-top: 5px;
+}
+
+.botoncrearplantilla:hover:before {
+  transform: translateX(11em);
+}
+
+.botonde {
+  background-color: none;
+}
+
+.imgJugadorSeleccion {
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  /* Transición para el efecto de sombra */
+  border-radius: 14px;
+}
+
+.imgJugadorSeleccion:hover {
+  box-shadow: 0px 0px 15px 5px rgba(55, 255, 139, 0.7);
+  /* Sombras difuminadas */
+}
+
+.seleccionado {
+  box-shadow: 0px 0px 15px 5px rgba(55, 255, 139, 0.7);
+  /* Sombras difuminadas para jugador seleccionado */
+}
+
+.asc-desc {
+  font-size: 2rem !important;
+
+}
+
+@media only screen and (max-width: 600px) {
+  .colocarbotoncrearplantilla {
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: flex-end;
   }
 
-  .imgJugadorSeleccion {
-    cursor: pointer;
-    transition: box-shadow 0.3s ease;
-    /* Transición para el efecto de sombra */
-    border-radius: 14px;
+  .botonGeneral {
+    height: 45px;
+    width: 200px !important;
+    font-size: 12px;
+    font-weight: bold;
   }
-  
-  .imgJugadorSeleccion:hover {
-    box-shadow: 0px 0px 15px 5px rgba(55, 255, 139, 0.7);
-    /* Sombras difuminadas */
-  }
-  
-  .seleccionado {
-    box-shadow: 0px 0px 15px 5px rgba(55, 255, 139, 0.7);
-    /* Sombras difuminadas para jugador seleccionado */
-  }
-  
+
   .asc-desc {
-    font-size: 2rem!important;
-  
+    font-size: 1.5rem !important;
   }
-
-  @media only screen and (max-width: 600px) {
-    .botonGeneral {
-      margin-top: 15px;
-    }
+  .imgJugador{
+    width: 160px;
+    height: 240px;
+    margin: auto;
   }
+}

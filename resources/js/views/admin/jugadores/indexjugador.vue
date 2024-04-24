@@ -7,7 +7,7 @@
         <div class="card-body">
           <div class="justify-content-between pb-2 mb-2">
             <div class="row">
-              <div class="col-12 col-lg-6">
+              <div class="col-6 col-lg-6">
                 <button class="itemIconos espacioASCDESC" @click="ordenarPorValoracion('desc')">
                   <i class="pi pi-fw pi-sort-amount-down-alt asc-desc"></i>
                 </button>
@@ -18,7 +18,7 @@
                 </button>
               </div>
 
-              <div class="col-12 col-lg-6">
+              <div class="col-6 col-lg-6 colocarbotoncrearplantilla">
 
                 <button v-if="jugadoresSeleccionados.length === 4" class="botonGeneral"
                   @click="mostrarPromptNombrePlantilla">Crear Plantilla</button>
@@ -29,7 +29,7 @@
 
           <tbody class="row">
             <tr v-for="(jugador, index) in jugadores" :key="index"
-              class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
+              class="col-6 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
               <td class="p-2">
                 <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
                   class="imgJugador imgJugadorSeleccion" @click="toggleSeleccion(jugador)"

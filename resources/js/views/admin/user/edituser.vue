@@ -11,7 +11,7 @@
             <p>{{ userData.name }}</p>
           </div>
 
-          <p class="pSecciones">Email <i class="pi pi-fw pi-at"></i></p>
+          <p class="pSecciones2">Email <i class="pi pi-fw pi-at"></i></p>
           <div class="cajaContenidos">
             <p>{{ userData.email }}</p>
 
@@ -21,16 +21,12 @@
           <p class="pSecciones">Apellido <i class="pi pi-fw pi-address-book"></i></p>
           <div class="cajaContenidos">
             <p>{{ userData.apellido }}</p>
-
           </div>
-
           <p class="pSecciones" style="margin-bottom: 4px;">Password <i class="pi pi-fw pi-lock"></i> <button
               class="botonPassword" @click="updatePassword(userData.id, index)">Cambia tu password</button></p>
-
           <div class="cajaContenidos">
             <p>***************</p>
           </div>
-
         </div>
       </div>
       <div class="col-12" style="text-align: center; padding-top: 50px;">
@@ -234,8 +230,7 @@ const updatePassword = (id, index) => {
   margin-right: 40px;
 
 }
-
-.pSecciones {
+.pSecciones, .pSecciones2 {
   font-family: Tahoma !important;
   font-weight: 500;
   line-height: 1.2;
@@ -244,7 +239,6 @@ const updatePassword = (id, index) => {
   padding-top: 10px;
   /* font-weight: bold; */
 }
-
 
 
 .botonPassword {
@@ -273,6 +267,15 @@ const updatePassword = (id, index) => {
     margin-left: 0px;
     padding-left: 0px;
   }
-
+  .pSecciones2 {
+  font-family: Tahoma !important;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--surface-900);
+  font-size: 18px;
+  padding-top: 10px;
+  height: 49px;
+  /* font-weight: bold; */
+}
 }
 </style>

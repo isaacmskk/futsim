@@ -4,54 +4,36 @@
         <div class="col-12">
             <div class="card cardFondo">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between pb-2 mb-2">
+                    <div class="justify-content-between pb-2 mb-2">
                         <div class="col-12 col-lg-6">
                             <router-link :to="{ name: 'jugadoresadmin.createjugador' }" class="botonGeneral">Nuevo
                                 Jugador</router-link>
                         </div>
                     </div>
 
-                    <table class="col-12 col-lg-6 table table-hover table-sm">
-                        <thead class="bg-dark text-light">
-                            <tr>
-                                <th width="50" class="text-center">ID</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Posicion</th>
-                                <th>Nacionalidad</th>
-                                <th>Valoracion</th>
-                                <th>Carta</th>
-                                <th> </th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="row">
+                        <tr v-for="(jugador, index) in jugadores" class="card col-12 col-lg-4 cartJugadores text-center"
+                            style="background-color: #00000000!important; color: white;">
+                            <td>{{ jugador.id }}</td>
 
-                            <tr v-for="(jugador, index) in jugadores">
-                                <td class="col-12 col-lg-6">{{ jugador.id }}</td>
-                                <td>{{ jugador.nombre }}</td>
-                                <td>{{ jugador.apellido }}</td>
-                                <td>{{ jugador.posicion }}</td>
-                                <td>{{ jugador.nacionalidad }}</td>
-                                <td>{{ jugador.valoracion }}</td>
-                                <td>
-                                    <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
-                                        class="imgJugador">
-                                </td>
-                                <td class="col-12 col-lg-6">
-                                    <button class="itemEditar espacioEditar">
-                                        <i class="pi pi-fw pi-pencil tamano"
-                                            @click="updateJugador(jugador.id, index)"></i>
+                            <td class="p-2">
+                                <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
+                            </td>
+                            <td><p class="nombre">{{ jugador.nombre }} {{ jugador.apellido }}</p></td>
+                            <td><p>{{ jugador.posicion }}</p></td>
+                            <td><p>{{ jugador.nacionalidad }}</p></td>
+                            <td><p>{{ jugador.valoracion }}</p></td>
 
-                                    </button>
-                                    <button class="itemEliminar espacioEliminar">
-                                        <i class="pi pi-fw pi-trash tamano"
-                                            @click="deleteJugador(jugador.id, index)"></i>
-
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            <td class="col-12 col-lg-12">
+                                <button class="itemEditar espacioEditar">
+                                    <i class="pi pi-fw pi-pencil tamano" @click="updateJugador(jugador.id, index)"></i>
+                                </button>
+                                <button class="itemEliminar espacioEliminar">
+                                    <i class="pi pi-fw pi-trash tamano" @click="deleteJugador(jugador.id, index)"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </div>
                 </div>
             </div>
         </div>
@@ -173,5 +155,8 @@ const updateJugador = (id, index) => {
 
 </script>
 
-
-<style></style>
+<style>
+.nombre {
+    min-height: 49px; /* Ajusta este valor según tus necesidades */
+}
+</style>

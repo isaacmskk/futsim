@@ -1,8 +1,8 @@
 <template>
+    <h2>Añade una noticia nueva</h2>
     <div class="card">
         <div class="card cardFondo">
             <div class="d-flex justify-content-between pb-2 mb-2">
-                <h2>Añade una noticia nueva</h2>
             </div>
 
 
@@ -75,7 +75,7 @@ const noticia = reactive({
     contenido: '',
     publicado: '',
     thumbnail: '',
-    categoria_id: '' 
+    categoria_id: ''
 });
 
 const categorias = ref([]);
@@ -122,7 +122,7 @@ function addNoticia() {
 
 
 <style>
-label{
+label {
     color: rgb(171, 168, 168);
 }
 </style>

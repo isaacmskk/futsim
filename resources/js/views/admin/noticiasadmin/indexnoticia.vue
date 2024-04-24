@@ -1,52 +1,48 @@
 <template>
     <h2>Todas las noticias(Admin)</h2>
-
     <div class="grid">
+
         <div class="col-12">
-            <div class="card">
-                <div class="card cardFondo">
-                    <div class="d-flex justify-content-between pb-2 mb-2">
-                        <div>
+            <div class="card cardFondo">
+                <div class="card-body">
+
+                    <div class="justify-content-between pb-2 mb-2">
+                        <div class="col-12 col-lg-6">
                             <router-link :to="{ name: 'noticiasadmin.createnoticia' }" class="botonGeneral">Nueva
                                 Noticia</router-link>
                         </div>
 
                     </div>
+                    <div class="row">
+                        <tr v-for="(noticia, index) in noticias" :key="noticia.id"
+                            class="card col-12 col-lg-4 text-center"
+                            style="background-color: #00000000!important; color: white;">
+                            <td class="text-center">{{ noticia.id }}</td>
+                            <td class="">
+                                <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia"
+                                    class="imgNoticias">
+                            </td>
+                            <td>
+                                <p>{{ noticia.titulo }}</p>
+                            </td>
+                            <td>
+                                <p>{{ noticia.subtitulo }}</p>
+                            </td>
+                            <td>
+                                <p>{{ noticia.contenido }}</p>
+                            </td>
+                            <td>
+                                <p>{{ noticia.publicado }}</p>
+                            </td>
 
-                    <table class="table table-hover table-sm">
-                        <thead class="bg-dark text-light">
-                            <tr>
-                                <th width="50" class="text-center">ID</th>
-                                <th>Titulo</th>
-                                <th>Subtitulo</th>
-                                <th>Contenido</th>
-                                <th>Publicado</th>
-                                <th>foto</th>
-                                <th> </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(noticia, index) in noticias" :key="noticia.id">
-                                <td class="text-center">{{ noticia.id }}</td>
-                                <td>{{ noticia.titulo }}</td>
-                                <td>{{ noticia.subtitulo }}</td>
-                                <td>{{ noticia.contenido }}</td>
-                                <td>{{ noticia.publicado }}</td>
+                            <td>
+                                <button class="itemEliminar espacioEliminar">
+                                    <i class="pi pi-fw pi-trash tamano" @click="deleteNoticia(noticia.id, index)"></i>
+                                </button>
+                            </td>
 
-                                <td>
-                                    <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia"
-                                        class="imgJugador">
-                                </td>
-                                <td>
-                                    <button class="itemEliminar espacioEliminar">
-                                        <i class="pi pi-fw pi-trash tamano"
-                                            @click="deleteNoticia(noticia.id, index)"></i>
-                                    </button>
-                                </td>
-
-                            </tr>
-                        </tbody>
-                    </table>
+                        </tr>
+                    </div>
                 </div>
             </div>
         </div>

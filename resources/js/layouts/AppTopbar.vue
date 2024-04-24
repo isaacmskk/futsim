@@ -1,6 +1,6 @@
 <template>
     <div class="layout-topbar margenNavEscondido">
-        
+
 
         <button class="p-link layout-menu-button layout-topbar-button itemIconos" @click="onMenuToggle()">
             <i class="pi pi-list"></i>
@@ -28,9 +28,7 @@
             </template>
         </div>
 
-        <div class="layout-topbar-menu" :class="topbarMenuClasses">
-
-            <template v-if="user?.name">
+        <template v-if="user?.name">
             <div class="layout-topbar-menu" :class="topbarMenuClasses">
                 <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown" role="button">
                     <i class="pi pi-angle-down"></i>
@@ -50,7 +48,7 @@
                 </button>
             </div>
         </template>
-        </div>
+
     </div>
 </template>
 
