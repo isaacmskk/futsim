@@ -2,8 +2,9 @@
   <div class="d-flex justify-content-between pb-2 mb-2">
     <h2 class="card-title">Partido {{ nombrePlantilla1 }} vs {{ nombrePlantilla2 }}</h2>
   </div>
-  <div class="grid girdPartido fondoPartidoGlobal" v-if="jugadoresPlantilla1.length > 0 && jugadoresPlantilla2.length > 0">
-    <div class="col-5">
+  <div class="grid girdPartido fondoPartidoGlobal"
+    v-if="jugadoresPlantilla1.length > 0 && jugadoresPlantilla2.length > 0">
+    <div class="col-6 col-lg-5">
       <div class="cardFondoPartido1">
         <div class="card-body text-center">
           <h3 class="paddingNombrePlantillas">{{ nombrePlantilla1 }}</h3>
@@ -22,9 +23,9 @@
     </div>
 
 
-    <div class="col-2" style="align-items: center; display:flex;">
+    <div class="col-2 botonGeneralpartidocolocar" style="display: flex; justify-content: center; align-items: center;">
       <div>
-        <button v-if="!juegoIniciado" class="botonGeneral" @click="jugarPartido">Jugar</button>
+        <button v-if="!juegoIniciado" class="botonGeneralpartido" @click="jugarPartido">Jugar</button>
       </div>
       <div v-if="juegoIniciado" class="temporizador">
         <p>{{ tiempo }}</p>
@@ -36,7 +37,8 @@
 
 
 
-    <div class="col-5">
+
+    <div class="col-6 col-lg-5">
       <div class="cardFondoPartido2">
         <div class="card-body text-center">
           <h3 class="paddingNombrePlantillas">{{ nombrePlantilla2 }}</h3>
@@ -50,7 +52,7 @@
             <td class="col-12 col-lg-2">
               <p class="pJugadoresPartido">{{ jugador.valoracion }}</p>
             </td>
-            
+
           </div>
           <!-- </div> -->
         </div>
@@ -274,14 +276,52 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
 </script>
 
 <style>
-.girdPartido{
+.girdPartido {
   width: 100%;
 }
 
 
 
 
-.pJugadoresPartido{
+.pJugadoresPartido {
   color: white;
+}
+
+.botonGeneralpartido {
+  --green: #37FF8B;
+  font-size: 15px;
+  padding: 0.7em 2.7em;
+  letter-spacing: 0.06em;
+  position: relative;
+  font-family: inherit;
+  border-radius: 1em;
+  overflow: hidden;
+  transition: all 0.5s;
+  line-height: 1.4em;
+  border: 2px solid var(--green);
+  background: linear-gradient(to right, #18181b 1%, #18181b 100%);
+  color: var(--green);
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgb(27, 253, 155);
+  font-weight: bold;
+}
+
+.botonGeneralpartido:hover {
+  font-weight: bold;
+  color: black;
+  box-shadow: inset 0 500px 10px rgba(27, 253, 156, 1), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+  margin-top: 5px;
+}
+
+.botonGeneralpartido:hover:before {
+  transform: translateX(11em);
+}
+
+@media only screen and (max-width: 600px) {
+  .botonGeneralpartido {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>

@@ -30,7 +30,7 @@
 
         <template v-if="user?.name">
             <div class="layout-topbar-menu" :class="topbarMenuClasses">
-                <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown" role="button">
+                <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown">
                     <i class="pi pi-angle-down"></i>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="padding: 0px!important;">
                         <li>
