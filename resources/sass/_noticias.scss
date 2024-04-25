@@ -1,40 +1,48 @@
-.imgNoticias{
-    width: 352.7px;
-    height: 225px;
-    border-radius: 14px;
+.imgNoticias {
+  width: 338.7px;
+  height: 225px;
+  border-radius: 14px;
 }
 
-.button{
-    padding: 0px;
-    margin: 0px;
-    border: 0px;
-    background-color:#18181b;
+.imgNoticiasAdmin {
+  width: 352.7px;
+  height: 225px;
+  border-radius: 14px;
 }
 
-.card:last-child{
-    margin-bottom: auto!important;
+.button {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  background-color: #18181b;
+}
+
+.card:last-child {
+  margin-bottom: auto !important;
 }
 
 .card {
-    background: var(--surface-card);
-    border: 0px solid var(--surface-border)!important;
-    padding: 1rem!important;
-    margin-bottom: 2rem!important;
-    box-shadow: var(--card-shadow)!important;
-    border-radius: 12px!important;
+  background: var(--surface-card);
+  border: 0px solid var(--surface-border) !important;
+  padding: 1rem !important;
+  margin-bottom: 2rem !important;
+  box-shadow: var(--card-shadow) !important;
+  border-radius: 12px !important;
 }
 
 /*BOTON CREAR NOTICIAS*/
 
-  .tablecoments{
-    word-wrap: break-word;
-    width: 100px!important;
-  }
-  .pi-trash{
-    font-size: 30px!important;
-    color:#e10017;
-  }
-  .pi-pencil{
-    font-size: 30px!important;
-    color:#bb00b4;
-  }
+.tablecoments {
+  word-wrap: break-word;
+  width: 100px !important;
+}
+
+.pi-trash {
+  font-size: 30px !important;
+  color: #e10017;
+}
+
+.pi-pencil {
+  font-size: 30px !important;
+  color: #bb00b4;
+}

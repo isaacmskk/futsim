@@ -1,13 +1,12 @@
 <template>
     <h2>Todas las noticias(Admin)</h2>
     <div class="grid">
-
         <div class="col-12">
             <div class="card cardFondo">
                 <div class="card-body">
 
-                    <div class="justify-content-between pb-2 mb-2">
-                        <div class="col-12 col-lg-6">
+                    <div class="pb-2 mb-2">
+                        <div class="col-12">
                             <router-link :to="{ name: 'noticiasadmin.createnoticia' }" class="botonGeneral">Nueva
                                 Noticia</router-link>
                         </div>
@@ -47,6 +46,7 @@
             </div>
         </div>
     </div>
+
 </template>
 
 <script setup>

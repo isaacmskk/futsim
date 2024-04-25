@@ -12,7 +12,7 @@
                     </div>
 
                     <div class="row">
-                        <tr v-for="(jugador, index) in jugadores" class="card col-12 col-lg-4 cartJugadores text-center"
+                        <tr v-for="(jugador, index) in jugadores" class="card col-6 col-lg-3 cartJugadores text-center"
                             style="background-color: #00000000!important; color: white;">
                             <td>{{ jugador.id }}</td>
 

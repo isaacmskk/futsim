@@ -25,7 +25,7 @@
               <p>No tienes jugadores asociados a esta plantilla.</p>
             </div>
             <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
-              class="card col-12 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
+              class="col-6 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
               <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
             </div>
           </tbody>

@@ -1,10 +1,9 @@
 <template>
     <h2>Todas las noticias</h2>
-    <div class="row">
-        <div class="grid">
-            <!-- <div class="col-12"> -->
+    <div class="grid">
+        <div class="col-12">
             <div class="card cardFondo">
-                <div class="card-body" style="padding-left:0px; padding-right: 0px;">
+                <div class="card-body">
                     <div class="col-12 centrarfiltros">
                         <div class=" col-6 text-center">
                             <select class="searchcategoria" v-model="categoriaSeleccionada" @change="filtrarNoticias">
@@ -35,9 +34,8 @@
                     </div>
                 </div>
             </div>
-            <!-- </div> -->
-
         </div>
+
     </div>
 </template>
 <script setup>
