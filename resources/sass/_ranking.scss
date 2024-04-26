@@ -62,3 +62,9 @@
     font-size: inherit;
     display: inline-block;
   }
+
+  @media (max-width: 600px) {
+    .cell {
+        font-size: 15px;
+    }
+  }

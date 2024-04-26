@@ -54,8 +54,10 @@
     color: #37ff8bb3;
     font-family: 'Tahoma' !important;
     width: 420px!important;
-    height: 80px;
+    height: auto;
     font-size: 20px;
+    word-wrap: break-word;
+
 }
 
 .my-custom-success-popup-class2 .icon {
@@ -95,7 +97,7 @@
 
   /* Estilos para botón de confirmar el eliminar plantilla*/
   .my-custom-confirm-button-class {
-    background-color: #37ff8bb3!important;
+    background-color: #6b728000!important;
     color: white;
     border: 1px solid #dc3545!important;
     font-family: 'Tahoma' !important;
@@ -116,7 +118,7 @@
   
   /* Estilos para botón de OK en la alerta de éxito */
   .my-custom-success-popup-class .swal2-confirm {
-    background-color: #37ff8bb3;
+    background-color: transparent;
     border: 1px solid #37ff8bb3;
   }
   .my-custom-success-popup-class .swal2-confirm:hover {

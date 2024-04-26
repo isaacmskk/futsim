@@ -1,6 +1,6 @@
 <template>
 
-  <h2>Todos los jugadores</h2>
+  <h2>Jugadores</h2>
   <div class="grid">
     <div class="col-12">
       <div class="card cardFondo">

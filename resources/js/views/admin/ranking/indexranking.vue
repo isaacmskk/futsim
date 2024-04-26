@@ -56,4 +56,6 @@ const cargarRanking = () => {
     });
 };
 </script>
-<style scoped></style>
+<style scoped>
+
+</style>

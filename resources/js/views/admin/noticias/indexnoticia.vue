@@ -1,5 +1,5 @@
 <template>
-    <h2>Todas las noticias</h2>
+    <h2>Noticias</h2>
     <div class="grid">
         <div class="col-12">
             <div class="card cardFondo">
@@ -115,72 +115,5 @@ const filtrarPorTitulo = () => {
 </script>
 
 <style>
-.searchbar {
-    --green: #37FF8B;
-    color: black !important;
-    ;
-    font-size: 15px;
-    padding: 0.7em 2.7em;
-    position: relative;
-    font-family: Tahoma;
-    border-radius: 1em;
-    line-height: 1.4em;
-    border: 2px;
-    font-weight: bold;
-    box-shadow: inset 0 500px 10px rgba(27, 253, 156, 1);
-    width: 270px;
 
-}
-
-.searchcategoria {
-    --green: #37FF8B;
-    color: white !important;
-    font-size: 15px;
-    padding: 0.7em 2.7em;
-    position: relative;
-    font-family: Tahoma;
-    border-radius: 1em;
-    line-height: 1.4em;
-    border: 2px solid var(--green);
-    font-weight: bold;
-    width: 270px;
-    background-color: #18181b;
-
-}
-
-.estilooption {
-    --green: #37FF8B;
-    color: white !important;
-    font-size: 15px;
-    padding: 0.7em 2.7em;
-    position: relative;
-    font-family: Tahoma;
-    border-radius: 1em;
-    line-height: 1.4em;
-    border: 2px solid var(--green);
-    width: auto;
-    background-color: #18181b;
-}
-
-
-.searchcategoria option {
-    background-color: #18181b;
-    color: white;
-    padding: 0.7em 2.7em;
-    font-family: Tahoma;
-    font-size: 15px;
-
-}
-
-.centrarfiltros {
-    display: inline-flex;
-}
-
-
-@media (max-width: 600px) {
-
-    .centrarfiltros {
-        display: inline;
-    }
-}
 </style>

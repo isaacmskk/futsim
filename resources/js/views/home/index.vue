@@ -55,14 +55,12 @@
                                     <h2 class="h2HomeSecciones">Mis Plantillas</h2>
                                 </div>
                                 <div class="divExplicacionHome">
-                                    <p class="pHomeSecciones">Crea tu plantilla con tus jugadores!</p>
+                                    <p class="pHomeSecciones">Gestiona y edita tus plantillas a tu gusto!</p>
                                 </div>
                             </div>
                         </div>
                     </router-link>
                 </div>
-                <!-- </div> -->
-
             </div>
         </div>
         <div class="layout-wrapper-ancho grid paddingDivs">
@@ -76,9 +74,7 @@
                                     <h2 class="h2HomeSecciones">Jugar</h2>
                                 </div>
                                 <div class="divExplicacionHome">
-                                    <p class="pHomeSecciones">Quieres probarte? Juega ya contra rivales o contra tus
-                                        propios
-                                        amigos.</p>
+                                    <p class="pHomeSecciones">¿Quieres probarte? Juega ya contra otros rivales o contra tus propios amigos!</p>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +91,7 @@
                                 </div>
                                 <div class="text-center"><i class="pi pi-fw pi-trophy iconosHome"></i></div>
                                 <div class="divExplicacionHome">
-                                    <p class="pHomeSecciones">Crea tu plantilla con tus jugadores!</p>
+                                    <p class="pHomeSecciones">Consigue ser el mejor de todos!</p>
                                 </div>
 
                             </div>
@@ -139,13 +135,7 @@
         </div>
         <footer style="padding-bottom: 20px;">
             <div class="row">
-                <div class="col-12 col-lg-4 text-center" style="padding-top: 25px;">
-                    <h4 class="font-medium ml-2">Copyright©</h4>
-
-                </div>
-
-                <div class="col-12 col-lg-4 text-center redesCentro">
-                    <!-- <div class="redes"> -->
+                <div class="col-12 col-lg-6 text-center redesCentro">
                     <a class="socialContainer containerOne" href="https://www.instagram.com/">
                         <svg viewBox="0 0 16 16" class="socialSvg instagramSvg">
                             <path
@@ -176,11 +166,9 @@
                             </path>
                         </svg>
                     </a>
-                    <!-- </div> -->
                 </div>
-                <div class="col-12 col-lg-4 text-center" style="padding-top: 25px;">
-                    <h4 class="font-medium ml-2">FUTSIM</h4>
-
+                <div class="col-12 col-lg-6 text-center" style="padding-top: 25px;">
+                    <h4 class="font-medium ml-2">CopyrightÂ©2024  FUTSIM</h4>
                 </div>
             </div>
         </footer>

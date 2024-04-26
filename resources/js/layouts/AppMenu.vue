@@ -41,7 +41,7 @@ const model = ref([
         items: [
             { label: 'Crear Jugadores', icon: 'pi pi-fw pi-user-plus pi-Lateral', to: '/app/jugadoresadmin/jugadores', permision: 'user-list' },
             { label: 'Crear Noticias', icon: 'pi pi-fw pi-megaphone pi-Lateral', to: '/app/noticiasadmin/noticias', permision: 'role-list'},
-            { label: 'Personal', icon: 'pi pi-fw pi-cog pi-Lateral', to: '/app/user', permision:'all' }
+            { label: 'Perfil', icon: 'pi pi-fw pi-cog pi-Lateral', to: '/app/user', permision:'all' }
         ]
     },
 ]);

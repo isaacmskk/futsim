@@ -43,11 +43,11 @@
                                 </div>
 
                                 <!-- Buttons -->
-                                <div class="flex items-center justify-end mt-4 mb-4">
+                                <div class="flex items-center justify-end mt-4 mb-4" >
                                     <button class="botonGeneral">
                                         {{ $t('login') }}
                                     </button>
-                                    <router-link to="/register">
+                                    <router-link to="/register" style="margin-left: 20px;">
                                         <button class="botonGeneral mButton">
                                             Registrate
                                         </button>
@@ -72,3 +72,14 @@ import useAuth from '@/composables/auth'
 const { loginForm, validationErrors, processing, submitLogin } = useAuth();
 
 </script>
+<style>
+@media only screen and (max-width: 600px) {
+    .botonGeneral {
+        height: 45px;
+        width: 150px !important;
+        font-size: 12px;
+        font-weight: bold;
+        /* margin-left: 20px; */
+    }
+}
+</style>

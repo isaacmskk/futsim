@@ -1,11 +1,11 @@
 <template>
-    <h2>Todas las noticias(Admin)</h2>
+    <h2>Noticias(Admin)</h2>
     <div class="grid">
         <div class="col-12">
             <div class="card cardFondo">
                 <div class="card-body">
 
-                    <div class="pb-2 mb-2">
+                    <div class="pb-2 mb-2"style="padding-top: 14px!important;">
                         <div class="col-12">
                             <router-link :to="{ name: 'noticiasadmin.createnoticia' }" class="botonGeneral">Nueva
                                 Noticia</router-link>
@@ -16,22 +16,19 @@
                         <tr v-for="(noticia, index) in noticias" :key="noticia.id"
                             class="card col-12 col-lg-4 text-center"
                             style="background-color: #00000000!important; color: white;">
-                            <td class="text-center">{{ noticia.id }}</td>
+                            <td class="text-center pNoticias1">{{ noticia.id }}</td>
                             <td class="">
                                 <img :src="`${noticia.media[0]?.original_url}`" alt="Imagen Noticia"
                                     class="imgNoticias">
                             </td>
                             <td>
-                                <p>{{ noticia.titulo }}</p>
+                                <p class="pNoticias2">{{ noticia.titulo }}</p>
                             </td>
                             <td>
-                                <p>{{ noticia.subtitulo }}</p>
+                                <p class="pNoticias3">{{ noticia.subtitulo }}</p>
                             </td>
                             <td>
-                                <p>{{ noticia.contenido }}</p>
-                            </td>
-                            <td>
-                                <p>{{ noticia.publicado }}</p>
+                                <p class="pNoticias4">{{ noticia.publicado }}</p>
                             </td>
 
                             <td>

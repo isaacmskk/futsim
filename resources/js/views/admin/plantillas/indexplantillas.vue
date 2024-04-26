@@ -1,5 +1,5 @@
 <template>
-  <h2>Todas las plantillas</h2>
+  <h2>Partidos</h2>
 
   <div class="grid" v-for="plantilla in plantillasTodas" :key="plantilla.id" style="margin-bottom: 20px;">
     <div class="col-12">

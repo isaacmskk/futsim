@@ -52,7 +52,7 @@ export default function useAuth() {
                 await loginUser()
                 swal({
                     icon: 'success',
-                    title: 'Login correcto',
+                    title: 'Sesión Iniciada',
                     showConfirmButton: false,
                     timer: 1500,
                     customClass: {
@@ -83,7 +83,7 @@ export default function useAuth() {
                 // await loginUser()
                 swal({
                     icon: 'success',
-                    title: 'Registrado Correctamente',
+                    title: 'Registro Completado',
                     showConfirmButton: false,
                     timer: 1500,
                     customClass: {

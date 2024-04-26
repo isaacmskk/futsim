@@ -1,10 +1,10 @@
 <template>
-    <h2>Todos los jugadores(Admin)</h2>
+    <h2>Jugadores(Admin)</h2>
     <div class="grid">
         <div class="col-12">
             <div class="card cardFondo">
                 <div class="card-body">
-                    <div class="justify-content-between pb-2 mb-2">
+                    <div class="justify-content-between pb-2 mb-2" style="padding-top: 14px!important;">
                         <div class="col-12 col-lg-6">
                             <router-link :to="{ name: 'jugadoresadmin.createjugador' }" class="botonGeneral">Nuevo
                                 Jugador</router-link>

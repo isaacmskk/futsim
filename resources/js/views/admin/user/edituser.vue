@@ -1,6 +1,6 @@
 <template>
 
-  <h2>Cambiar Datos Usuario</h2>
+  <h2>Perfil Usuario</h2>
   <div class="card cardFondo">
     <!-- {{ userData }} -->
     <div class="card-body" v-if="userData">
