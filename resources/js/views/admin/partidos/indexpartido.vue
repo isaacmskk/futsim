@@ -7,15 +7,15 @@
     <div class="col-6 col-lg-5">
       <div class="cardFondoPartido1">
         <div class="card-body text-center">
-          <h3 class="paddingNombrePlantillas">{{ nombrePlantilla1 }}</h3>
-          <div v-for="jugador in jugadoresPlantilla1" :key="jugador.id" class="row ordenaCratas">
-            <td class="col-12 col-lg-2">
-              <p class="pJugadoresPartido">{{ jugador.valoracion }}</p>
+          <!-- <h3 class="paddingNombrePlantillas"></h3> -->
+          <div v-for="jugador in jugadoresPlantilla1" :key="jugador.id" class="row ordenaCratas paddingNombrePlantillas">
+            <!-- <td class="col-12 col-lg-2 posicionJugadores">
+              <p class="pJugadoresPartido"></p>
+            </td> -->
+            <td class="col-12 col-lg-7 posicionJugadores nombreJugadoresRivales" >
+              <p class="pJugadoresPartido">{{ jugador.valoracion }}     {{ jugador.nombre }} {{ jugador.apellido }}</p>
             </td>
-            <td class="col-12 col-lg-6">
-              <p class="pJugadoresPartido">{{ jugador.nombre }} {{ jugador.apellido }}</p>
-            </td>
-            <td class="col-12 col-lg-4"> <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
+            <td class="col-12 col-lg-5"> <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
                 class="imgJugadoresPartido"></td>
           </div>
         </div>
@@ -23,14 +23,14 @@
     </div>
 
 
-    <div class="col-2 botonGeneralpartidocolocar" style="display: flex; justify-content: center; align-items: center;">
-      <div>
-        <button v-if="!juegoIniciado" class="botonGeneralpartido" @click="jugarPartido">Jugar</button>
+    <div class="col-lg-2 botonGeneralpartido text-center" style="display: flex; justify-content: center; align-items: center;">
+      <div class="posicionMarcador">
+        <button v-if="!juegoIniciado" class="botonGeneral" @click="jugarPartido">Jugar</button>
       </div>
-      <div v-if="juegoIniciado" class="temporizador">
+      <div v-if="juegoIniciado" class="temporizador temporizadorMarcador posicionMarcador">
         <p>{{ tiempo }}</p>
-        <div class="resultados">
-          <p>{{ golesEquipo1 }} - {{ golesEquipo2 }}</p>
+        <div>
+          <p>{{ nombrePlantilla1.substring(0, 3).toUpperCase() }} {{ golesEquipo1 }} - {{ golesEquipo2 }} {{ nombrePlantilla2.substring(0, 3).toUpperCase() }}</p>
         </div>
       </div>
     </div>
@@ -41,17 +41,17 @@
     <div class="col-6 col-lg-5">
       <div class="cardFondoPartido2">
         <div class="card-body text-center">
-          <h3 class="paddingNombrePlantillas">{{ nombrePlantilla2 }}</h3>
+          <!-- <h3 class="paddingNombrePlantillas"></h3> -->
           <!-- <div class=""> -->
-          <div v-for="jugador in jugadoresPlantilla2" :key="jugador.id" class="row">
-            <td class="col-12 col-lg-4"> <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
+          <div v-for="jugador in jugadoresPlantilla2" :key="jugador.id" class="row paddingNombrePlantillas">
+            <td class="col-12 col-lg-5" style="display: flex; justify-content: left; align-items: center;"> <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
                 class="imgJugadoresPartido"></td>
-            <td class="col-12 col-lg-6">
-              <p class="pJugadoresPartido">{{ jugador.nombre }} {{ jugador.apellido }}</p>
+            <td class="col-12 col-lg-7 posicionJugadores nombreJugadoresLocales">
+              <p class="pJugadoresPartido">{{ jugador.nombre }}  {{ jugador.apellido }}     {{ jugador.valoracion }}</p>
             </td>
-            <td class="col-12 col-lg-2">
-              <p class="pJugadoresPartido">{{ jugador.valoracion }}</p>
-            </td>
+            <!-- <td class="col-12 col-lg-2 posicionJugadores">
+              <p class="pJugadoresPartido"></p>
+            </td> -->
 
           </div>
           <!-- </div> -->
@@ -276,52 +276,4 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
 </script>
 
 <style>
-.girdPartido {
-  width: 100%;
-}
-
-
-
-
-.pJugadoresPartido {
-  color: white;
-}
-
-.botonGeneralpartido {
-  --green: #37FF8B;
-  font-size: 15px;
-  padding: 0.7em 2.7em;
-  letter-spacing: 0.06em;
-  position: relative;
-  font-family: inherit;
-  border-radius: 1em;
-  overflow: hidden;
-  transition: all 0.5s;
-  line-height: 1.4em;
-  border: 2px solid var(--green);
-  background: linear-gradient(to right, #18181b 1%, #18181b 100%);
-  color: var(--green);
-  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgb(27, 253, 155);
-  font-weight: bold;
-}
-
-.botonGeneralpartido:hover {
-  font-weight: bold;
-  color: black;
-  box-shadow: inset 0 500px 10px rgba(27, 253, 156, 1), 0 0 9px 3px rgba(27, 253, 156, 0.2);
-  margin-top: 5px;
-}
-
-.botonGeneralpartido:hover:before {
-  transform: translateX(11em);
-}
-
-@media only screen and (max-width: 600px) {
-  .botonGeneralpartido {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
 </style>

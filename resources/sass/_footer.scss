@@ -88,3 +88,15 @@
     align-items: center;
     justify-content: center;
 }
+
+
+.espacioFooter{
+  padding-top: 30px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .espacioFooter{
+    padding-top: 90px;
+  }
+}

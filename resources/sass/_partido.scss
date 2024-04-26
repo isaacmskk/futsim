@@ -2,7 +2,7 @@
   font-size: 24px;
   font-weight: bold;
   color: white;
-  padding: 10px 20px;
+  // padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -11,48 +11,145 @@
 
 
 
-.imgJugadoresPartido{
-  width: 140px;
-  height: 200px;
+.imgJugadoresPartido {
+
+  width: 170px;
+  height: 250px;
   margin: auto;
 }
 
 
 
-.cardFondoPartido1{
-  background-color: rgba(0, 255, 255, 0)!important;
+.cardFondoPartido1 {
+  background-color: rgba(0, 255, 255, 0) !important;
 }
 
-.cardFondoPartido2{
-  background-color: rgba(0, 255, 255, 0)!important;
+.cardFondoPartido2 {
+  background-color: rgba(0, 255, 255, 0) !important;
 }
 
 
 
-.fondoPartidoGlobal{
-  background-image: url(../../public/images/fondoPartido.jpg)!important;
+.fondoPartidoGlobal {
+  background-image: url(../../public/images/fondoPartido.jpg) !important;
   background-repeat: no-repeat;
-  background-size: 100% 100%!important;
+  background-size: 100% 100% !important;
   border-radius: 14px;
   display: inline-flex;
 
 }
 
-.paddingNombrePlantillas{
+.paddingNombrePlantillas {
   padding: 20px;
 }
 
+
+
+
+.girdPartido {
+  width: 100%;
+}
+
+
+
+
+.pJugadoresPartido {
+  color: #37FF8B;
+  font-family: Tahoma !important;
+  font-size: 15px;
+  font-weight: bold;
+
+}
+
+.posicionJugadores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.temporizadorMarcador {
+  --green: #37FF8B;
+  font-size: 15px;
+  padding: 0.7em 1.7em;
+  letter-spacing: 0.06em;
+  // position: relative;
+  font-family: Tahoma !important;
+  border-radius: 1em;
+  overflow: hidden;
+  transition: all 0.5s;
+  line-height: 1.4em;
+  border: 2px solid var(--green);
+  background: linear-gradient(to right, #18181b 1%, #18181b 100%);
+  color: var(--green);
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgb(27, 253, 155);
+  font-weight: bold;
+}
+
+// .botonGeneralpartido:hover {
+//   font-weight: bold;
+//   color: black;
+//   box-shadow: inset 0 500px 10px rgba(27, 253, 156, 1), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+//   margin-top: 5px;
+// }
+
+// .botonGeneralpartido:hover:before {
+//   transform: translateX(11em);
+// }
+
+.nombreJugadoresRivales{
+  display: flex; 
+  justify-content: left; 
+  padding-left: 60px;
+}
+
+
+.nombreJugadoresLocales{
+  display: flex; 
+  justify-content: right; 
+  padding-right: 60px;
+}
+
 @media only screen and (max-width: 600px) {
-  .fondoPartidoGlobal{
-    background-image: url(../../public/images/fondoPartido.jpg)!important;
+  .fondoPartidoGlobal {
+    background-image: url(../../public/images/fondoPartido.jpg) !important;
     background-repeat: no-repeat;
-    background-size: 100% 100%!important;
+    background-size: 100% 100% !important;
     border-radius: 14px;
     display: inline-flex;
   }
 
-  .ordenaCratas{
+  .ordenaCratas {
     flex-direction: column-reverse;
   }
+
+  .pJugadoresPartido {
+    font-weight: normal;
+  }
+
+  .posicionMarcador {
+    display: block;
+    text-align: center;
+    position: fixed;
+    bottom: 165px;
+    // right:20px;
+    // z-index: 100;
+  }
+
+  .imgJugadoresPartido {
+    width: 140px;
+    height: 200px;
+    margin: auto;
+  }
+
+
+  .nombreJugadoresRivales{
+    justify-content: center; 
+    padding: 0px;
+  }
   
+  
+  .nombreJugadoresLocales{
+    justify-content: center; 
+    padding: 0px;
+  }
 }
