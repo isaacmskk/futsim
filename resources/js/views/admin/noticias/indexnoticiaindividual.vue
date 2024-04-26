@@ -14,7 +14,7 @@
         </div>
         <div class="col-12 col-lg-6">
           <div class="text-center">
-            <button @click="mostrarFormularioComentario(noticia.id)" class="botonGeneral">Comentar</button>
+            <button @click="mostrarFormularioComentario(noticia.id)" class="botonGeneral" style="margin-bottom: 15px!important;">Comentar</button>
           </div>
           <div v-if="comentariosPorNoticia[noticia.id]" class="p-mt-2 comentarios-container">
             <div v-for="(comentario, index) in comentariosPorNoticia[noticia.id]" :key="comentario.id"
@@ -68,7 +68,7 @@ const groupComentariosPorNoticia = (comentarios) => {
 const mostrarFormularioComentario = (idNoticia) => {
   swal({
     title: 'Agregar Comentario',
-    html: '<textarea id="swal-comentario" class="swal2-textarea" style = "width: 295px">',
+    html: '<textarea id="swal-comentario" class="swal2-textarea" style = "width: 295px" maxlength="255">',
     focusConfirm: false,
     preConfirm: () => {
       return {

@@ -14,15 +14,15 @@
                     <div class="row">
                         <tr v-for="(jugador, index) in jugadores" class="card col-6 col-lg-3 cartJugadores text-center"
                             style="background-color: #00000000!important; color: white;">
-                            <td>{{ jugador.id }}</td>
+                            <td class="text-center pNoticias1">{{ jugador.id }}</td>
 
                             <td class="p-2">
                                 <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
                             </td>
-                            <td><p class="nombre">{{ jugador.nombre }} {{ jugador.apellido }}</p></td>
-                            <td><p>{{ jugador.posicion }}</p></td>
-                            <td><p>{{ jugador.nacionalidad }}</p></td>
-                            <td><p>{{ jugador.valoracion }}</p></td>
+                            <td><p class="pNoticias4">{{ jugador.nombre }} {{ jugador.apellido }}</p></td>
+                            <td><p class="pNoticias4">{{ jugador.posicion }}</p></td>
+                            <td><p class="pNoticias4">{{ jugador.nacionalidad }}</p></td>
+                            <td><p class="pNoticias4">{{ jugador.valoracion }}</p></td>
 
                             <td class="col-12 col-lg-12">
                                 <button class="itemEditar espacioEditar">
@@ -156,7 +156,4 @@ const updateJugador = (id, index) => {
 </script>
 
 <style>
-.nombre {
-    min-height: 49px; /* Ajusta este valor según tus necesidades */
-}
 </style>

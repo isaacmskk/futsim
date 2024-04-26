@@ -76,7 +76,7 @@ const { loginForm, validationErrors, processing, submitLogin } = useAuth();
 @media only screen and (max-width: 600px) {
     .botonGeneral {
         height: 45px;
-        width: 150px !important;
+        width: 170px !important;
         font-size: 12px;
         font-weight: bold;
         /* margin-left: 20px; */

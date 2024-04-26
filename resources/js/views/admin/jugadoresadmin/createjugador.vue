@@ -49,7 +49,7 @@
                 </div>
 
 
-                <button type="submit" class="botonGeneral">Añadir Jugador</button>
+                <button type="submit" class="botonGeneral">Añadir</button>
 
 
             </form>

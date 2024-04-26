@@ -35,7 +35,7 @@
                         <div class="card cardFondoPequeño cardHomes">
                             <div class="card-body cardHomes">
                                 <div>
-                                    <h2 class="h2HomeSecciones">Jugadores</h2>
+                                    <h2 class="h2HomeSecciones">Crear Plantilla</h2>
                                 </div>
                                 <div class="text-center"><i class="pi pi-fw pi-users iconosHome"></i></div>
                                 <div class="divExplicacionHome">
@@ -168,7 +168,7 @@
                     </a>
                 </div>
                 <div class="col-12 col-lg-6 text-center" style="padding-top: 25px;">
-                    <h4 class="font-medium ml-2">CopyrightÂ©2024  FUTSIM</h4>
+                    <h4 class="font-medium ml-2">Copyright©2024  FUTSIM</h4>
                 </div>
             </div>
         </footer>

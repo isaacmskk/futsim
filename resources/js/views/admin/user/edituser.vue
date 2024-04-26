@@ -75,8 +75,8 @@ const updateUser = (id, index) => {
     title: 'Editar Usuario',
     html:
       '<input id="swal-input1" class="swal2-input" placeholder="Nombre"  value="' + currentData.name + '">' +
-      '<input id="swal-input2" class="swal2-input" placeholder="Email" value="' + currentData.email + '">' +
-      '<input id="swal-input3" class="swal2-input" placeholder="Apellido" value="' + currentData.apellido + '">',
+      '<input id="swal-input3" class="swal2-input" placeholder="Apellido" value="' + currentData.apellido + '">' +
+      '<input id="swal-input2" class="swal2-input" placeholder="Email" value="' + currentData.email + '">',
 
 
     focusConfirm: false,
@@ -99,8 +99,8 @@ const updateUser = (id, index) => {
     if (result.isConfirmed) {
       const updatedData = {
         name: result.value[0],
-        email: result.value[1],
-        apellido: result.value[2],
+        apellido: result.value[1],
+        email: result.value[2],
 
 
       };

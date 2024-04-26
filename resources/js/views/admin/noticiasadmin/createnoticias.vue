@@ -53,7 +53,7 @@
                     <label>FOTO</label><span class="text-danger">*</span>
                     <DropZone v-model="noticia.thumbnail" class="" />
                 </div>
-                <button type="submit" class="botonGeneral">Añadir Noticia</button>
+                <button type="submit" class="botonGeneral">Añadir</button>
             </form>
         </div>
     </div>
