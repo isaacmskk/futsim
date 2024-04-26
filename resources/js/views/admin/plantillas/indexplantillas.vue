@@ -6,15 +6,19 @@
       <div class="card cardFondo">
         <div class="card-body">
           <tbody class="row">
-            <h3>{{ plantilla.nombre }}</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <h3 style="margin-right: 10px;">{{ plantilla.nombre }}</h3>
+              <div>
+                <p class="nameuserplantilla" style="font-size: 24px; color: white; display: inline;">{{ plantilla.user.name }}</p>
+              </div>
+            </div>
             <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
               class="col-6 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
               <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
             </div>
           </tbody>
           <div class="text-center">
-            <button class="botonGeneral" @click="mostrarPlantillasUsuario(plantilla.id)">Seleccionar
-              Plantilla</button>
+            <button class="botonGeneral" @click="mostrarPlantillasUsuario(plantilla.id)">Jugar</button>
           </div>
         </div>
       </div>
@@ -88,5 +92,10 @@ const mostrarPlantillasUsuario = (plantillaId) => {
 </script>
 
 <style>
-/* Estilos opcionales */
+@media (max-width: 600px) {
+  .nameuserplantilla{
+  font-size: 20px!important;
+}
+}
+
 </style>

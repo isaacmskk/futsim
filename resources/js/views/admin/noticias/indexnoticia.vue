@@ -7,7 +7,7 @@
                     <div class="col-12 centrarfiltros">
                         <div class=" col-6 text-center">
                             <select class="searchcategoria" v-model="categoriaSeleccionada" @change="filtrarNoticias">
-                                <option value="">Todas las categorías</option>
+                                <option value="">Categorías</option>
                                 <option class="estilooption" v-for="categoria in categorias"
                                     :value="categoria.categoria">{{
                                         categoria.categoria }}</option>

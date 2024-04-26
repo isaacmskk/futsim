@@ -126,7 +126,16 @@
 
 @media (max-width: 600px) {
   .centrarfiltros {
-      display: block;
-      margin-left: 50px;
+      display: inline-flex;
+      justify-content: center!important;
+      align-items: center!important;
+  }
+  .searchcategoria{
+    width: 160px!important;
+    font-size: 12px!important;
+  }
+  .searchbar{
+    width: 160px!important;
+    font-size: 12px!important;
   }
 }
