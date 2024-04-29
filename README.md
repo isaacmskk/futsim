@@ -1,4 +1,9 @@
-# Manual Instalación
+# Introducción
+
+Este fichero documenta todos los resultados de las diferentes categorías del proyecto en parejas encargado para este curso. Implementamos VUE y LARAVEL para crear una web de fútbol interactiva con los usuarios que acceden a la misma, aparte de realizar diferentes acciones programadas.
+
+## Manual de Instalación
+
 ### Clonar Repositorio 
 
 ```bash
@@ -11,10 +16,9 @@ git clone https://github.com/isaacmskk/futsim/
 composer install
 ```
 
-### Copiar el fichero .env.example  a .env edita las credenciales y la url
-Cambios:
+### Configuración del archivo .env
+Copiar el fichero .env.example  a .env edita las credenciales y la url
 ```bash
-
 APP_URL=http://localhost:8000
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -61,22 +65,25 @@ php artisan serve
 npm run dev
 ```
 
-Proyecto Laravel 10 + vue3
+### Requisitos del Sistema
 
-- ✅ Laravel 10
-- ✅ Vue 3
-- ✅ VueRouter + Vuex
-- ✅ Iniciar sesión
-- ✅ Restablecimiento de contraseña
-- ✅ Login
-- ✅ Panel de administración
-- ✅ Gestión de perfiles
-- ✅ Gestión de usuarios
-- ✅ Gestión de roles
-- ✅ Gestión de permisos
-- ✅ Cambio de contraseña
-- ✅ Gestión de Noticias
-- ✅ Blog de Frontend
-- ✅ Boostrap 5
+- PHP 7.4 o superior
+- MySQL 5.7 o superior
+- Node.js 14 o superior
+
+### Instrucciones Adicionales de Configuración
+- Configurar el servidor web para que apunte al directorio de la aplicación.
+- Configurar la base de datos según las credenciales proporcionadas en el archivo .env.
+
+### Ejecutar Pruebas
+Para ejecutar las pruebas automatizadas, ejecute el siguiente comando:
+```bash
+php artisan test
+
+```
+### Información de Contacto
+Para preguntas o comentarios sobre el proyecto, puede contactar a los autores:
+- Unai Tejeda: puldgamer@gmail.com
+- Isaac Montes: isaacmskk@gmail.com
 
 
