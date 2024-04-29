@@ -1,11 +1,10 @@
 # Características
 
-Ejemplo proyecto Laravel 10 + vue3 PAra DAW
+Proyecto Laravel 10 + vue3
 
 - ✅ Laravel 10
 - ✅ Vue 3
 - ✅ VueRouter + Vuex
-- ✅ Vue i18n Multi Idioma
 - ✅ Iniciar sesión
 - ✅ Restablecimiento de contraseña
 - ✅ Login
@@ -15,7 +14,6 @@ Ejemplo proyecto Laravel 10 + vue3 PAra DAW
 - ✅ Gestión de roles
 - ✅ Gestión de permisos
 - ✅ Cambio de contraseña
-- ✅ Verificación de correo electrónico
 - ✅ Gestión de Posts
 - ✅ Blog de Frontend
 - ✅ Boostrap 5
@@ -25,7 +23,7 @@ Ejemplo proyecto Laravel 10 + vue3 PAra DAW
 ### Clonar Repositorio 
 
 ```bash
-git clone ....
+git clone https://github.com/isaacmskk/futsim/
 ```
 
 ### Instalar vía Composer
@@ -35,7 +33,14 @@ composer install
 ```
 
 ### Copiar el fichero .env.example  a .env edita las credenciales y la url
-
+Cambios:
+APP_URL=http://localhost:8000
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=futsim
+DB_USERNAME=root
+DB_PASSWORD=
 
 ### Generar Application Key
 
@@ -54,7 +59,11 @@ php artisan migrate
 ```bash
 php artisan db:seed
 ```
+### Creacion de un link para la media
 
+```bash
+ php artisan storage:link
+```
 ### Instalar las dependencias de Node
 
 ```bash
@@ -62,8 +71,10 @@ npm install
 
 npm run dev
 ```
-### Lanzar a producción
+### Encender los servicios de web
 
 ```bash
-npm run build or yarn build
+php artisan serve
+
+npm run dev
 ```
