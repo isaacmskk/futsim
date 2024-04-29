@@ -4,13 +4,25 @@
         <div class="col-12">
             <div class="card cardFondo">
                 <div class="card-body">
-                    <div class="justify-content-between pb-2 mb-2" style="padding-top: 14px!important;">
-                        <div class="col-12 col-lg-6">
+                    <div class="row">
+                        <div class="col-0 col-lg-4">
+
+                        </div>
+                        <div class="col-6 col-lg-4 text-center" style="padding-top: 14px!important;">
+                            <!-- Aplicar la clase text-center al contenedor div -->
                             <router-link :to="{ name: 'jugadoresadmin.createjugador' }" class="botonGeneral">Nuevo
                                 Jugador</router-link>
                         </div>
-                    </div>
 
+                        <div class="col-6 col-lg-4 text-end">
+                            <button class="itemIconos espacioASCDESC" @click="ordenarPorValoracion('desc')">
+                                <i class="pi pi-fw pi-sort-amount-down-alt asc-desc"></i>
+                            </button>
+                            <button class="itemIconos espacioASCDESC" @click="ordenarPorValoracion('asc')">
+                                <i class="pi pi-fw pi-sort-amount-up asc-desc"></i>
+                            </button>
+                        </div>
+                    </div>
                     <div class="row">
                         <tr v-for="(jugador, index) in jugadores" class="card col-6 col-lg-3 cartJugadores text-center"
                             style="background-color: #00000000!important; color: white;">
@@ -19,10 +31,18 @@
                             <td class="p-2">
                                 <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugador">
                             </td>
-                            <td><p class="pNoticias4">{{ jugador.nombre }} {{ jugador.apellido }}</p></td>
-                            <td><p class="pNoticias4">{{ jugador.posicion }}</p></td>
-                            <td><p class="pNoticias4">{{ jugador.nacionalidad }}</p></td>
-                            <td><p class="pNoticias4">{{ jugador.valoracion }}</p></td>
+                            <td>
+                                <p class="pNoticias2">{{ jugador.nombre }} {{ jugador.apellido }}</p>
+                            </td>
+                            <td>
+                                <p class="pNoticias4">{{ jugador.posicion }}</p>
+                            </td>
+                            <td>
+                                <p class="pNoticias4">{{ jugador.nacionalidad }}</p>
+                            </td>
+                            <td>
+                                <p class="pNoticias3">{{ jugador.valoracion }}</p>
+                            </td>
 
                             <td class="col-12 col-lg-12">
                                 <button class="itemEditar espacioEditar">
@@ -46,7 +66,22 @@ import { ref, onMounted, inject } from "vue"
 const jugadores = ref();
 const swal = inject('$swal');
 
+const ordenarPorValoracion = (tipo) => {
+    // Lógica para ordenar los jugadores por valoración ascendente o descendente
+    if (tipo === 'desc') {
+        jugadores.value.sort((a, b) => a.valoracion - b.valoracion);
+    } else if (tipo === 'asc') {
+        jugadores.value.sort((a, b) => b.valoracion - a.valoracion);
+    }
+};
 
+onMounted(() => {
+    axios.get("/api/jugadores").then((response) => {
+        jugadores.value = response.data;
+        jugadoresFiltrados.value = response.data;
+        console.log(response.data);
+    });
+});
 onMounted(() => {
     // console.log('Mi vista esta montada'); 
     axios.get('/api/jugadores')
@@ -156,4 +191,13 @@ const updateJugador = (id, index) => {
 </script>
 
 <style>
+@media only screen and (max-width: 600px) {
+    .botonGeneral {
+        height: 45px;
+        width: 170px !important;
+        font-size: 12px;
+        font-weight: bold;
+        /* margin-left: 20px; */
+    }
+}
 </style>

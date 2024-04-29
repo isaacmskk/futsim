@@ -4,16 +4,28 @@
         <div class="col-12">
             <div class="card cardFondo">
                 <div class="card-body">
+                    <div class="row pb-2 mb-2 ordenfiltrado">
+                        <div class="col-6 col-lg-4 text-start">
+                            <input v-model="search_global" @input="filtrarPorTitulo" type="text" class="searchbar"
+                                placeholder="Buscar...">
+                        </div>
 
-                    <div class="pb-2 mb-2"style="padding-top: 14px!important;">
-                        <div class="col-12">
+                        <div class="col-6 col-lg-4 text-center" style="padding-top: 14px!important;">
                             <router-link :to="{ name: 'noticiasadmin.createnoticia' }" class="botonGeneral">Nueva
                                 Noticia</router-link>
                         </div>
 
+                        <div class="col-12 col-lg-4 text-start">
+                            <select class="searchcategoria" v-model="categoriaSeleccionada" @change="filtrarNoticias">
+                                <option value="">Categorías</option>
+                                <option class="estilooption" v-for="categoria in categorias"
+                                    :value="categoria.categoria">{{
+                                        categoria.categoria }}</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="row">
-                        <tr v-for="(noticia, index) in noticias" :key="noticia.id"
+                        <tr v-for="(noticia, index) in filteredNoticias" :key="noticia.id"
                             class="card col-12 col-lg-4 text-center"
                             style="background-color: #00000000!important; color: white;">
                             <td class="text-center pNoticias1">{{ noticia.id }}</td>
@@ -43,18 +55,20 @@
             </div>
         </div>
     </div>
-
 </template>
 
 <script setup>
 import axios from "axios";
-import { ref, onMounted, inject } from "vue"
+import { ref, onMounted, inject, computed } from "vue"
 import { useRouter } from 'vue-router';
 
 const noticias = ref();
 const swal = inject('$swal');
 const comentariosPorNoticia = ref({});
 const router = useRouter();
+const categorias = ref([]);
+const categoriaSeleccionada = ref('');
+const search_global = ref('')
 onMounted(() => {
     axios.get('/api/noticias')
         .then(response => {
@@ -68,6 +82,13 @@ onMounted(() => {
         });
 });
 
+onMounted(() => {
+    // Obtener todas las categorías
+    axios.get('/api/categorias')
+        .then(response => {
+            categorias.value = response.data;
+        });
+});
 
 
 // Función para organizar comentarios por noticia
@@ -108,6 +129,67 @@ const deleteNoticia = (id, index) => {
             })
         });
 }
+
+const filtrarNoticias = () => {
+    if (categoriaSeleccionada.value === '') {
+        // Si no se selecciona ninguna categoría, obtener todas las noticias
+        axios.get('/api/noticias')
+            .then(response => {
+                noticias.value = response.data;
+            });
+    } else {
+        // Si se selecciona una categoría, filtrar las noticias por esa categoría
+        axios.get(`/api/noticias/filtrar/${categoriaSeleccionada.value}`)
+            .then(response => {
+                noticias.value = response.data;
+            });
+    }
+};
+
+const filteredNoticias = computed(() => {
+    if (!search_global.value) {
+        return noticias.value;
+    } else {
+        return noticias.value.filter(noticia =>
+            noticia.titulo.toLowerCase().includes(search_global.value.toLowerCase())
+        );
+    }
+});
+
+const filtrarPorTitulo = () => {
+    // Esta función se activa cada vez que cambia el contenido del campo de búsqueda
+    // Filtra las noticias por título utilizando el término de búsqueda
+    if (categoriaSeleccionada.value === '') {
+        filteredNoticias.value = noticias.value.filter(noticia =>
+            noticia.titulo.toLowerCase().includes(search_global.value.toLowerCase())
+        );
+    } else {
+        axios.get(`/api/noticias/filtrar/${categoriaSeleccionada.value}`)
+            .then(response => {
+                filteredNoticias.value = response.data.filter(noticia =>
+                    noticia.titulo.toLowerCase().includes(search_global.value.toLowerCase())
+                );
+            });
+    }
+};
 </script>
 
-<style></style>
+<style>
+@media (max-width: 600px) {
+    .centrarfiltros {
+        display: inline-flex;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .searchcategoria {
+        width: 160px !important;
+        font-size: 12px !important;
+    }
+
+    .searchbar {
+        width: 160px !important;
+        font-size: 12px !important;
+    }
+}
+</style>

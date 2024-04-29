@@ -34,7 +34,7 @@
       </div>
     </div>
     <div v-else>
-      <p>Cargando...</p>
+      <p style="color: white;">Cargando...</p>
     </div>
 
 
