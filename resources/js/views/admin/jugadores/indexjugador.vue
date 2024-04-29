@@ -5,9 +5,21 @@
     <div class="col-12">
       <div class="card cardFondo">
         <div class="card-body">
-          <div class="justify-content-between pb-2 mb-2">
+          <div class=" pb-2 mb-2">
             <div class="row">
-              <div class="col-6 col-lg-6">
+              <div class="col-12 col-lg-4">
+                <h3>Selecciona 4 jugadores</h3>
+              </div>
+
+              
+
+              <div class="col-6 col-lg-4 text-center">
+
+                <button v-if="jugadoresSeleccionados.length === 4" class="botonGeneral"
+                  @click="mostrarPromptNombrePlantilla">Crear Plantilla</button>
+              </div>
+
+              <div class="col-6 col-lg-4 colocarbotoncrearplantilla">
                 <button class="itemIconos espacioASCDESC" @click="ordenarPorValoracion('desc')">
                   <i class="pi pi-fw pi-sort-amount-down-alt asc-desc"></i>
                 </button>
@@ -16,12 +28,6 @@
                   <i class="pi pi-fw pi-sort-amount-up asc-desc"></i>
 
                 </button>
-              </div>
-
-              <div class="col-6 col-lg-6 colocarbotoncrearplantilla">
-
-                <button v-if="jugadoresSeleccionados.length === 4" class="botonGeneral"
-                  @click="mostrarPromptNombrePlantilla">Crear Plantilla</button>
               </div>
             </div>
 
@@ -157,7 +163,6 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
         width: 170px !important;
         font-size: 12px;
         font-weight: bold;
-        /* margin-left: 20px; */
     }
 }
 </style>
