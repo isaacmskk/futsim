@@ -15,7 +15,7 @@
                                 Noticia</router-link>
                         </div>
 
-                        <div class="col-12 col-lg-4 text-start">
+                        <div class="col-12 col-lg-4 text-end">
                             <select class="searchcategoria" v-model="categoriaSeleccionada" @change="filtrarNoticias">
                                 <option value="">Categorías</option>
                                 <option class="estilooption" v-for="categoria in categorias"
@@ -185,11 +185,15 @@ const filtrarPorTitulo = () => {
     .searchcategoria {
         width: 160px !important;
         font-size: 12px !important;
+        margin-right: 500px;
     }
 
     .searchbar {
         width: 160px !important;
         font-size: 12px !important;
+    }
+    .botonGeneral{
+        padding-bottom: 10px;
     }
 }
 </style>

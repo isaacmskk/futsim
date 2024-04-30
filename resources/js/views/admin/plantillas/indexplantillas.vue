@@ -10,6 +10,8 @@
               <h3 style="margin-right: 10px;">{{ plantilla.nombre }}</h3>
               <div>
                 <p class="nameuserplantilla" style="font-size: 24px; color: white; display: inline;">{{ plantilla.user.name }}</p>
+                <i class="pi pi-fw pi-user tamano"></i>
+
               </div>
             </div>
             <div v-for="jugador in plantilla.jugadores" :key="jugador.id"
