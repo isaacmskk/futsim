@@ -49,7 +49,7 @@
                 </div>
 
 
-                <button type="submit" class="botonGeneral">Añadir</button>
+                <button type="submit" class="botonGeneral" style="margin-top: 20px;">Añadir</button>
 
 
             </form>

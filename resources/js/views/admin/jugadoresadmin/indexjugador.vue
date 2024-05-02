@@ -8,10 +8,15 @@
                         <div class="col-0 col-lg-4">
 
                         </div>
-                        <div class="col-6 col-lg-4 text-center" style="padding-top: 14px!important;">
+                        <div class="col-6 col-lg-4 text-center" >
                             <!-- Aplicar la clase text-center al contenedor div -->
-                            <router-link :to="{ name: 'jugadoresadmin.createjugador' }" class="botonGeneral">Nuevo
-                                Jugador</router-link>
+                            <router-link :to="{ name: 'jugadoresadmin.createjugador' }">
+                                <button class="botonGeneral botonGeneralAdmin">
+
+                                    Nuevo
+                                    jugador
+                                </button>
+                            </router-link>
                         </div>
 
                         <div class="col-6 col-lg-4 text-end">
@@ -192,12 +197,12 @@ const updateJugador = (id, index) => {
 
 <style>
 @media only screen and (max-width: 600px) {
-    .botonGeneral {
-        height: 45px;
-        width: 170px !important;
-        font-size: 12px;
-        font-weight: bold;
-        /* margin-left: 20px; */
+    .botonGeneralAdmin {
+        height: 55px !important;
+        width: 230px !important;
+        /* font-size: 12px; */
+        font-weight: bold !important;
+
     }
 }
 </style>

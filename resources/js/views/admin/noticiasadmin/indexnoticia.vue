@@ -4,15 +4,18 @@
         <div class="col-12">
             <div class="card cardFondo">
                 <div class="card-body">
-                    <div class="row pb-2 mb-2 ordenfiltrado">
-                        <div class="col-6 col-lg-4 text-start">
+                    <div class="row pb-2 mb-2">
+                        <div class="col-12 col-lg-4 text-start">
                             <input v-model="search_global" @input="filtrarPorTitulo" type="text" class="searchbar"
                                 placeholder="Buscar...">
                         </div>
 
-                        <div class="col-6 col-lg-4 text-center" style="padding-top: 14px!important;">
-                            <router-link :to="{ name: 'noticiasadmin.createnoticia' }" class="botonGeneral">Nueva
-                                Noticia</router-link>
+                        <div class="col-12 col-lg-4 text-center">
+                            <router-link :to="{ name: 'noticiasadmin.createnoticia' }" >
+                                <button class="botonGeneral botonGeneralAdmin">
+                                    Nueva
+                                Noticia
+                                </button></router-link>
                         </div>
 
                         <div class="col-12 col-lg-4 text-end">
@@ -183,17 +186,25 @@ const filtrarPorTitulo = () => {
     }
 
     .searchcategoria {
-        width: 160px !important;
-        font-size: 12px !important;
-        margin-right: 500px;
+        height: 55px;
+        width: 100% !important;
+        font-size: 15px !important;
+        margin-top: 20px;
     }
 
     .searchbar {
-        width: 160px !important;
-        font-size: 12px !important;
+        height: 55px;
+        width: 100% !important;
+        font-size: 15px !important;
+        margin-bottom: 20px;
     }
-    .botonGeneral{
-        padding-bottom: 10px;
+
+    .botonGeneralAdmin {
+        height: 55px !important;
+        width: 230px !important;
+        /* font-size: 12px; */
+        font-weight: bold !important;
+
     }
 }
 </style>

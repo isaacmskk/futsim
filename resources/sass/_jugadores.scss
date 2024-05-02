@@ -163,45 +163,6 @@
   transform: translateX(11em);
 }
 
-.botoncrearplantilla {
-  --green: #37FF8B;
-  font-size: 15px;
-  padding: 0.7em 2.7em;
-  letter-spacing: 0.06em;
-  position: relative;
-  font-family: Tahoma!important;
-  border-radius: 1em;
-  overflow: hidden;
-  transition: all 0.5s;
-  line-height: 1.4em;
-  border: 2px solid var(--green);
-  background: linear-gradient(to right, #18181b 1%, #18181b 100%);
-  color: var(--green);
-  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgb(27, 253, 155);
-  font-weight: bold;
-}
-
-.colocarbotoncrearplantilla {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
-
-.botoncrearplantilla:hover {
-  font-weight: bold;
-  color: black;
-  box-shadow: inset 0 500px 10px rgba(27, 253, 156, 1), 0 0 9px 3px rgba(27, 253, 156, 0.2);
-  // margin-top: 5px;
-}
-
-.botoncrearplantilla:hover:before {
-  transform: translateX(11em);
-}
-
-.botonde {
-  background-color: none;
-}
-
 .imgJugadorSeleccion {
   cursor: pointer;
   transition: box-shadow 0.3s ease;
@@ -226,21 +187,24 @@
 
 @media only screen and (max-width: 600px) {
   .colocarbotoncrearplantilla {
-    display: inline-flex;
+    display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    align-items: center;
+
   }
 
   .botonGeneral {
-    height: 45px;
-    width: 200px !important;
-    font-size: 12px;
+    height: 55px;
+    width: 230px !important;
+    // font-size: 12px;
     font-weight: bold;
   }
 
   .asc-desc {
     font-size: 1.5rem !important;
   }
+
   .imgJugador{
     width: 160px;
     height: 240px;

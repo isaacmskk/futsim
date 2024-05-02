@@ -3,8 +3,8 @@
         <div class="row justify-content-center my-5 girdHome">
             <div class="col-md-6">
                 <div class="card cardFondo border-0 shadow-sm">
-                    <h2>Iniciar Sesión</h2>
                     <div class="card-body">
+                        <h2>Iniciar Sesión</h2>
                         <form @submit.prevent="submitLogin">
                             <div class="">
                                 <!-- Email -->

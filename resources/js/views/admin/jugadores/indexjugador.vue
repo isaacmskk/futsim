@@ -13,13 +13,13 @@
 
               
 
-              <div class="col-6 col-lg-4 text-center">
+              <div class="col-6 col-lg-4 text-center ">
 
                 <button v-if="jugadoresSeleccionados.length === 4" class="botonGeneral"
                   @click="mostrarPromptNombrePlantilla">Crear Plantilla</button>
               </div>
 
-              <div class="col-6 col-lg-4 colocarbotoncrearplantilla">
+              <div class="col-6 col-lg-4 colocarbotoncrearplantilla" style="height: 55px;">
                 <button class="itemIconos espacioASCDESC" @click="ordenarPorValoracion('desc')">
                   <i class="pi pi-fw pi-sort-amount-down-alt asc-desc"></i>
                 </button>
@@ -157,12 +157,4 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
 </script>
 
 <style>
-@media only screen and (max-width: 600px) {
-    .botonGeneral {
-        height: 45px;
-        width: 170px !important;
-        font-size: 12px;
-        font-weight: bold;
-    }
-}
 </style>

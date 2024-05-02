@@ -4,12 +4,12 @@
         <div class="col-12">
             <div class="card cardFondo">
                 <div class="card-body">
-                    <div class="col-12 centrarfiltros">
-                        <div class="col-6 text-center">
+                    <div class="row col-12 centrarfiltros">
+                        <div class="col-12 col-lg-6 text-center">
                             <input v-model="search_global" @input="filtrarPorTitulo" type="text" class="searchbar"
                                 placeholder="Buscar...">
                         </div>
-                        <div class=" col-6 text-center">
+                        <div class="col-12 col-lg-6 text-center">
                             <select class="searchcategoria" v-model="categoriaSeleccionada" @change="filtrarNoticias">
                                 <option value="">Categorías</option>
                                 <option class="estilooption" v-for="categoria in categorias"
