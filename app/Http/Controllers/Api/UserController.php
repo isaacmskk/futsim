@@ -31,8 +31,8 @@ class UserController extends Controller
             $orderDirection = 'desc';
         }
         $users = User::when(request('search_id'), function ($query) {
-                $query->where('id', request('search_id'));
-            })
+            $query->where('id', request('search_id'));
+        })
             ->when(request('search_title'), function ($query) {
                 $query->where('name', 'like', '%' . request('search_title') . '%');
             })
@@ -111,7 +111,7 @@ class UserController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $user->id, // Asegura que el correo electrónico sea único excepto para el usuario actual
+            'email' => '', // Asegura que el correo electrónico sea único excepto para el usuario actual
             'apellido' => 'required',
             'password' => 'nullable|min:6', // La contraseña es opcional y debe tener al menos 6 caracteres si se proporciona
             'role_id' => 'array', // Puede ser un array de IDs de roles

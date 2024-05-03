@@ -14,10 +14,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Laravel Vue 3 Stater</title>
+    <title>FUTSIM</title>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="icon" href="images/FUTSIM.svg">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <script>
         window.config = @json($config);

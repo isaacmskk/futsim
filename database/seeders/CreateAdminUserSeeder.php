@@ -40,8 +40,7 @@ class CreateAdminUserSeeder extends Seeder
             'exercise-delete'
         ];
         $role2->syncPermissions($permissions);
-        Category::create(['name' => 'Vue.js']);
-        Category::create(['name' => 'Cat 2']);
+      
 
         $permissions = Permission::pluck('id','id')->all();
 
