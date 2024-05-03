@@ -211,8 +211,6 @@ const updatePassword = (id, index) => {
 
 .cajaContenidos {
   text-align: center;
-  /* width: fit-content; */
-  /* min-width: 300px; */
   padding: 10px;
   --green: #37FF8B;
   padding: 0.7em 1.2em;
@@ -227,7 +225,9 @@ const updatePassword = (id, index) => {
   color: white;
   box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
   font-weight: bold;
-  margin-right: 40px;
+  margin-right: 20px;
+  margin-left: 20px;
+
 
 }
 .pSecciones, .pSecciones2 {
@@ -237,7 +237,7 @@ const updatePassword = (id, index) => {
   color: var(--surface-900);
   font-size: 18px;
   padding-top: 10px;
-  /* font-weight: bold; */
+  margin-left: 20px;
 }
 
 

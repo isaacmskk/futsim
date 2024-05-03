@@ -115,4 +115,8 @@ const filtrarPorTitulo = () => {
 
 </script>
 
-<style></style>
+<style>
+::placeholder {
+    color: #18181b;
+  }
+  </style>

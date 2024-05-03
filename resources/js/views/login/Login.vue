@@ -43,20 +43,17 @@
                                 </div>
 
                                 <!-- Buttons -->
-                                <div class="flex items-center justify-end mt-4 mb-4" >
-                                    <button class="botonGeneral">
+                                <div class="flex items-center justify-end mt-4 mb-4 text-center" >
+                                    <button class="botonGeneral botonGeneralAdmin">
                                         {{ $t('login') }}
                                     </button>
-                                    <router-link to="/register" style="margin-left: 20px;">
-                                        <button class="botonGeneral mButton">
+                                    <router-link to="/register" >
+                                        <button class="botonGeneral mButton botonGeneralAdmin botonRegistro">
                                             Registrate
                                         </button>
                                     </router-link>
                                 </div>
                             </div>
-                            <!-- <router-link :to="{ name: 'auth.forgot-password' }" style="color:white;">{{
-                                $t('forgot_password')}}</router-link> -->
-
                         </form>
                     </div>
                 </div>
@@ -73,13 +70,14 @@ const { loginForm, validationErrors, processing, submitLogin } = useAuth();
 
 </script>
 <style>
-@media only screen and (max-width: 600px) {
-    .botonGeneral {
-        height: 45px;
-        width: 170px !important;
-        font-size: 12px;
-        font-weight: bold;
-        /* margin-left: 20px; */
-    }
+.botonRegistro{
+    margin-left: 20px;
+}
+
+@media (max-width: 600px) {
+.botonRegistro{
+    margin-left: 0px;
+    margin-top: 20px;
+}
 }
 </style>

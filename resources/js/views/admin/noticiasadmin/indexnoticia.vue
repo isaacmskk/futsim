@@ -178,33 +178,8 @@ const filtrarPorTitulo = () => {
 </script>
 
 <style>
-@media (max-width: 600px) {
-    .centrarfiltros {
-        display: inline-flex;
-        justify-content: center !important;
-        align-items: center !important;
-    }
-
-    .searchcategoria {
-        height: 55px;
-        width: 100% !important;
-        font-size: 15px !important;
-        margin-top: 20px;
-    }
-
-    .searchbar {
-        height: 55px;
-        width: 100% !important;
-        font-size: 15px !important;
-        margin-bottom: 20px;
-    }
-
-    .botonGeneralAdmin {
-        height: 55px !important;
-        width: 230px !important;
-        /* font-size: 12px; */
-        font-weight: bold !important;
-
-    }
-}
+::placeholder {
+    color: #18181b; /* Cambia el color del marcador de posición según tu preferencia */
+  }
+  
 </style>
