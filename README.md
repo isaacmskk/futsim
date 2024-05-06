@@ -86,4 +86,7 @@ Para preguntas o comentarios sobre el proyecto, puede contactar a los autores:
 - Unai Tejeda: puldgamer@gmail.com
 - Isaac Montes: isaacmskk@gmail.com
 
+### Documentación
 
+- Manual de usuario:
+- Memoria final:
