@@ -75,8 +75,8 @@ const updateUser = (id, index) => {
     title: 'Editar Usuario',
     html:
       '<input id="swal-input1" class="swal2-input" placeholder="Nombre"  value="' + currentData.name + '">' +
-      '<input id="swal-input3" class="swal2-input" placeholder="Apellido" value="' + currentData.apellido + '">' +
-      '<input id="swal-input2" class="swal2-input" placeholder="Email" value="' + currentData.email + '">',
+      '<input id="swal-input2" class="swal2-input" placeholder="Apellido" value="' + currentData.apellido + '">' +
+      '<input id="swal-input3" class="swal2-input" placeholder="Email" value="' + currentData.email + '">',
 
 
     focusConfirm: false,
@@ -108,8 +108,8 @@ const updateUser = (id, index) => {
       axios.put('/api/user/update/' + id, updatedData)
         .then(response => {
           userData.value.name = updatedData.name;
-          userData.value.email = updatedData.email;
           userData.value.apellido = updatedData.apellido;
+          userData.value.email = updatedData.email;
 
           swal({
             icon: 'success',
