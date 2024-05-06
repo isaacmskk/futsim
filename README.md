@@ -88,5 +88,5 @@ Para preguntas o comentarios sobre el proyecto, puede contactar a los autores:
 
 ### Documentación
 
-- Manual de usuario:
+- [Manual de usuario](https://github.com/isaacmskk/futsim/blob/main/documentos/ManualUsuario_FUTSIM_IsaacMontes-UnaiTejeda.pdf)
 - Memoria final:
