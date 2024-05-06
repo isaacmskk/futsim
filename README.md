@@ -86,4 +86,7 @@ Para preguntas o comentarios sobre el proyecto, puede contactar a los autores:
 - Unai Tejeda: puldgamer@gmail.com
 - Isaac Montes: isaacmskk@gmail.com
 
+### Documentación
 
+- [Manual de usuario](https://github.com/isaacmskk/futsim/blob/main/documentos/ManualUsuario_FUTSIM_IsaacMontes-UnaiTejeda.pdf)
+- Memoria final:
