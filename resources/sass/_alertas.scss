@@ -9,6 +9,35 @@
     margin-left: -15px;
     
   }
+/* Estilos para el equipo 1 */
+.my-custom-success-popup-class-team1 {
+  display: flex;
+  align-items: center; /* Alinea verticalmente los elementos */
+  justify-content: space-between; /* Distribuye el espacio entre los elementos */
+  border-radius: 15px;
+  border: 2px solid red;
+  background-color: #18181b!important;
+  color: red;
+  font-family: 'Tahoma' !important;
+  width: 420px!important;
+  height: auto;
+  font-size: 20px;
+  word-wrap: break-word;}
+
+/* Estilos para el equipo 2 */
+.my-custom-success-popup-class-team2 {
+  display: flex;
+  align-items: center; /* Alinea verticalmente los elementos */
+  justify-content: space-between; /* Distribuye el espacio entre los elementos */
+  border-radius: 15px;
+  border: 2px solid #37ff8bb3;
+  background-color: #18181b!important;
+  color: #37ff8bb3;
+  font-family: 'Tahoma' !important;
+  width: 420px!important;
+  height: auto;
+  font-size: 20px;
+  word-wrap: break-word;}
 
   /*Estilo para confirmar el nombre de la plantilla*/
   .my-custom-popup-class .swal2-confirm {

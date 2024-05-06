@@ -213,20 +213,35 @@ const terminarPartido = () => {
 
 
 const mostrarGol = (equipo) => {
+  let mensaje;
+  let claseSwal;
+  let iconoSwal;
+  if (equipo === nombrePlantilla1.value) {
+    mensaje = `<i class="pi pi-fw pi-trophy"></i> ¡Gol de ${nombrePlantilla1.value}!`;
+    claseSwal = 'my-custom-success-popup-class-team1'; // Clase para el equipo 1
+    iconoSwal = 'error'; // Icono de error para el equipo 1
+  } else if (equipo === nombrePlantilla2.value) {
+    mensaje = `<i class="pi pi-fw pi-trophy"></i> ¡Gol de ${nombrePlantilla2.value}!`;
+    claseSwal = 'my-custom-success-popup-class-team2'; // Clase para el equipo 2
+    iconoSwal = 'success'; // Icono de éxito para el equipo 2
+  }
   Swal.fire({
-    title: `<i class="pi pi-fw pi-trophy"></i> ¡Gol de ${equipo}!`, // Aquí agregamos el icono dentro del título
-    icon: 'success',
+    title: mensaje,
+    icon: iconoSwal, // Icono específico para cada equipo
     timer: 2000,
     timerProgressBar: true,
     toast: true,
-    position: 'top', // Centra la alerta en la pantalla
+    position: 'top',
     showConfirmButton: false,
     customClass: {
-      popup: 'my-custom-success-popup-class2',
-      title: 'my-custom-title-class' // Agregamos una clase de estilo personalizada para el título
+      popup: claseSwal,
+      title: 'my-custom-title-class'
     }
   });
 };
+
+
+
 
 
 const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
@@ -276,4 +291,5 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
 </script>
 
 <style>
+
 </style>
