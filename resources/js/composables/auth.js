@@ -54,6 +54,7 @@ export default function useAuth() {
                     icon: 'success',
                     title: 'Sesión Iniciada',
                     showConfirmButton: false,
+                    allowOutsideClick: false,
                     timer: 1500,
                     customClass: {
                         popup: 'my-custom-success-popup-class',
@@ -86,6 +87,7 @@ export default function useAuth() {
                     title: 'Registro Completado',
                     showConfirmButton: false,
                     timer: 1500,
+                    allowOutsideClick: false,
                     customClass: {
                         popup: 'my-custom-success-popup-class',
                         title: 'my-custom-success-title-class',

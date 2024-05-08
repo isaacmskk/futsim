@@ -55,6 +55,7 @@ const deletePlantilla = (id, index) => {
     text: 'Esta acción no es reversible',
     icon: 'warning',
     showCancelButton: true,
+    allowOutsideClick: false,
     confirmButtonText: 'Sí, eliminar',
     confirmButtonColor: '#ef4444',
     cancelButtonText: 'No, cancelar',
@@ -101,6 +102,8 @@ const updatePlantilla = (id, index) => {
     html:
       '<input id="swal-input1" class="swal2-input" placeholder="Nombre de la plantilla" value="' + currentData.nombre + '">',
     showCancelButton: true,
+    allowOutsideClick: false,
+
     confirmButtonText: 'Guardar',
     cancelButtonText: 'Cancelar',
 
@@ -124,6 +127,7 @@ const updatePlantilla = (id, index) => {
           swal({
             icon: 'success',
             title: 'Nombre de la plantilla actualizado correctamente',
+            allowOutsideClick: false,
             customClass: {
               popup: 'my-custom-success-popup-class',
               title: 'my-custom-success-title-class',
@@ -136,6 +140,7 @@ const updatePlantilla = (id, index) => {
           swal({
             icon: 'error',
             title: 'No se ha podido actualizar el nombre de la plantilla',
+            allowOutsideClick: false,
             customClass: {
               popup: 'my-custom-error-popup-class',
               title: 'my-custom-error-title-class',

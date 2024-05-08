@@ -9,18 +9,20 @@
             <h3>{{ noticia.titulo }}</h3>
             <h4>{{ noticia.subtitulo }}</h4>
             <p class="noticia-content">{{ noticia.contenido }}</p>
-            
+
           </div>
         </div>
         <div class="col-12 col-lg-6">
           <div class="text-center">
-            <button @click="mostrarFormularioComentario(noticia.id)" class="botonGeneral" style="margin-bottom: 15px!important;">Comentar</button>
+            <button @click="mostrarFormularioComentario(noticia.id)" class="botonGeneral"
+              style="margin-bottom: 15px!important;">Comentar</button>
           </div>
           <div v-if="comentariosPorNoticia[noticia.id]" class="p-mt-2 comentarios-container">
             <div v-for="(comentario, index) in comentariosPorNoticia[noticia.id]" :key="comentario.id"
               class="chat-message">
               <p class="chat-message-text">{{ comentario.comentario }}</p>
-              <p class="chat-message-time">{{comentario.user.name}} - {{ new Date(comentario.time).toLocaleString() }}</p>
+              <p class="chat-message-time">{{ comentario.user.name }} - {{ new Date(comentario.time).toLocaleString() }}
+              </p>
             </div>
 
           </div>
@@ -70,6 +72,7 @@ const mostrarFormularioComentario = (idNoticia) => {
     title: 'Agregar Comentario',
     html: '<textarea id="swal-comentario" class="swal2-textarea" style = "width: 295px" maxlength="255">',
     focusConfirm: false,
+    allowOutsideClick: false,
     preConfirm: () => {
       return {
         comentario: document.getElementById('swal-comentario').value
@@ -103,10 +106,10 @@ const crearComentario = (nuevoComentario) => {
         .then(response => {
           comentariosPorNoticia.value = groupComentariosPorNoticia(response.data);
         });
-        swal({
+      swal({
         icon: 'success',
         title: 'Comentado correctamente',
-
+        allowOutsideClick: false,
         customClass: {
           popup: 'my-custom-success-popup-class',
           title: 'my-custom-success-title-class',
@@ -119,6 +122,7 @@ const crearComentario = (nuevoComentario) => {
       swal({
         icon: 'error',
         title: 'No se ha podido agregar el comentario',
+        allowOutsideClick: false,
         customClass: {
           popup: 'my-custom-error-popup-class',
           title: 'my-custom-error-title-class',
@@ -130,5 +134,4 @@ const crearComentario = (nuevoComentario) => {
 
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

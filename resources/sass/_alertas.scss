@@ -96,7 +96,7 @@
 
 
   .my-custom-success-title-class {
-    color: #37ff8bb3;
+    color: white;
   }
   
   /* Modificar color del tick */
@@ -172,4 +172,7 @@
 .my-custom-container-class .swal2-select {
   color: white;
   background-color: #18181b;
+}
+.swal2-html-container{
+  color: white;
 }

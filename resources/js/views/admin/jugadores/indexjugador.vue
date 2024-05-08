@@ -100,6 +100,7 @@ const mostrarPromptNombrePlantilla = () => {
     input: 'text',
     inputLabel: 'Introduce el nombre de la plantilla',
     showCancelButton: true,
+    allowOutsideClick: false,
     confirmButtonText: 'Crear',
     cancelButtonText: 'Cancelar',
     inputValidator: (value) => {
@@ -132,6 +133,7 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
         title: '¡Éxito!',
         text: 'Jugadores guardados en la base de datos.',
         icon: 'success',
+        allowOutsideClick: false,
         customClass: {
           popup: 'my-custom-success-popup-class',
           title: 'my-custom-success-title-class',
@@ -145,6 +147,7 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
         title: 'Error',
         text: 'Hubo un problema al guardar los jugadores.',
         icon: 'error',
+        allowOutsideClick: false,
         customClass: {
           popup: 'my-custom-error-popup-class',
           title: 'my-custom-error-title-class',

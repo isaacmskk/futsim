@@ -174,6 +174,7 @@ const pausarPartido = () => {
     title: '¡Descanso!',
     text: '¿Reanudar el partido?',
     confirmButtonText: 'Sí',
+    allowOutsideClick: false,
     customClass: {
       popup: 'my-custom-popup-class',
     },
@@ -200,10 +201,10 @@ const terminarPartido = () => {
     text: `${resultadoMensaje}`,
     icon: 'info',
     confirmButtonText: 'Aceptar',
+    allowOutsideClick: false,
     customClass: {
       popup: 'my-custom-success-popup-class',
       title: 'my-custom-success-title-class',
-      content: 'my-custom-success-content-class',
     }
   }).then(() => {
     guardarResultadosPartido(golesEquipo1.value, golesEquipo2.value);

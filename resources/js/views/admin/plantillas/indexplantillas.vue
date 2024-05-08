@@ -64,6 +64,7 @@ const mostrarPlantillasUsuario = (plantillaId) => {
       return acc;
     }, {}),
     showCancelButton: true,
+    allowOutsideClick: false,
     confirmButtonText: 'Seleccionar',
     cancelButtonText: 'Cancelar',
     customClass: {

@@ -8,7 +8,7 @@
                         <div class="col-0 col-lg-4">
 
                         </div>
-                        <div class="col-6 col-lg-4 text-center" >
+                        <div class="col-6 col-lg-4 text-center">
                             <!-- Aplicar la clase text-center al contenedor div -->
                             <router-link :to="{ name: 'jugadoresadmin.createjugador' }">
                                 <button class="botonGeneral botonGeneralAdmin">
@@ -103,6 +103,7 @@ const deleteJugador = (id, index) => {
             swal({
                 icon: 'success',
                 title: 'Jugador eliminado correctamente',
+                allowOutsideClick: false,
                 customClass: {
                     popup: 'my-custom-success-popup-class',
                     title: 'my-custom-success-title-class',
@@ -135,7 +136,7 @@ const updateJugador = (id, index) => {
             '<input id="swal-input4" class="swal2-input" placeholder="" value="' + currentData.posicion + '">' +
             '<input id="swal-input5" class="swal2-input" placeholder="" value="' + currentData.nacionalidad + '">' +
             '<input id="swal-input6" class="swal2-input" placeholder="" value="' + currentData.valoracion + '">',
-
+        allowOutsideClick: false,
         focusConfirm: false,
         customClass: {
             popup: 'my-custom-popup-class',
