@@ -70,6 +70,8 @@ import axios from "axios";
 import { ref, onMounted, inject } from "vue"
 const jugadores = ref();
 const swal = inject('$swal');
+const jugadoresFiltrados = ref([]);
+
 
 const ordenarPorValoracion = (tipo) => {
     // Lógica para ordenar los jugadores por valoración ascendente o descendente
