@@ -185,32 +185,6 @@ const pausarPartido = () => {
   });
 };
 
-const terminarPartido = () => {
-  let resultadoMensaje = '';
-  if (golesEquipo1.value > golesEquipo2.value) {
-    resultadoMensaje = `Has Perdido`;
-  } else if (golesEquipo1.value < golesEquipo2.value) {
-    resultadoMensaje = `Has Ganado`;
-  } else {
-    resultadoMensaje = 'Has Empatado';
-  }
-
-  Swal.fire({
-    title: '¡Fin del partido!',
-    text: `¡El partido ha terminado! ${resultadoMensaje}`,
-    text: `${resultadoMensaje}`,
-    icon: 'info',
-    confirmButtonText: 'Aceptar',
-    allowOutsideClick: false,
-    customClass: {
-      popup: 'my-custom-success-popup-class',
-      title: 'my-custom-success-title-class',
-    }
-  }).then(() => {
-    guardarResultadosPartido(golesEquipo1.value, golesEquipo2.value);
-    router.push('/app/ranking');
-  });
-};
 
 
 const mostrarGol = (equipo) => {
@@ -241,40 +215,66 @@ const mostrarGol = (equipo) => {
   });
 };
 
-
-
-
-
-const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
-  const plantillaId1 = route.params.plantillaId;
-  const plantillaId2 = route.params.plantillaSeleccionadaId;
-
-  // Calcular la diferencia de valoración entre las dos plantillas
+const calcularPuntos = () => {
   const diferenciaValoracion = sumaValoraciones1.value - sumaValoraciones2.value;
-
-  // Definir un factor de ajuste basado en la diferencia de valoración
   let factorAjuste = 1;
   if (diferenciaValoracion > 0) {
-    factorAjuste = 1 + diferenciaValoracion * 0.009; // Cuanto mayor es la diferencia, mayor es el factor de ajuste
+    factorAjuste = 1 + diferenciaValoracion * 0.009;
   } else if (diferenciaValoracion < 0) {
-    factorAjuste = 1 / (1 - diferenciaValoracion * 0.009); // Cuanto menor es la diferencia, mayor es el factor de ajuste
+    factorAjuste = 1 / (1 - diferenciaValoracion * 0.009);
   }
   let puntosequipo = 0;
 
-  if (golesEquipo1 < golesEquipo2) {
-    puntosequipo = 100 * factorAjuste; // Se suman más puntos si se pierde contra un rival más valorado
-  } else if (golesEquipo1 > golesEquipo2) {
-    // Calcula la cantidad de puntos que se restarían al equipo en caso de derrota
-    let puntosRestarDerrota = Math.min(50 / factorAjuste, puntosUsuario.value); // Ajusta según sea necesario, considerando los puntos actuales del usuario
-
-    puntosequipo = -puntosRestarDerrota; // Resta menos puntos si se gana contra un rival más valorado
+  if (golesEquipo1.value < golesEquipo2.value) {
+    puntosequipo = 100 * factorAjuste;
+  } else if (golesEquipo1.value > golesEquipo2.value) {
+    let puntosRestarDerrota = Math.min(50 / factorAjuste, puntosUsuario.value);
+    puntosequipo = -puntosRestarDerrota;
   } else {
-    puntosequipo = 15 * factorAjuste; // Se asignan puntos por empate
+    puntosequipo = 15 * factorAjuste;
   }
 
+  return puntosequipo;
+};
 
-  console.log(factorAjuste);
-  console.log(puntosequipo);
+const terminarPartido = () => {
+  let resultadoMensaje = '';
+  let puntosMensaje = '';
+
+  if (golesEquipo1.value > golesEquipo2.value) {
+    resultadoMensaje = `Has Perdido`;
+    puntosMensaje = `Has perdido ${Math.round(calcularPuntos())} puntos`;
+  } else if (golesEquipo1.value < golesEquipo2.value) {
+    resultadoMensaje = `Has Ganado`;
+    puntosMensaje = `Has ganado ${Math.round(calcularPuntos())} puntos`;
+  } else {
+    resultadoMensaje = 'Has Empatado';
+    puntosMensaje = `Has obtenido ${Math.round(calcularPuntos())} puntos`;
+  }
+
+  Swal.fire({
+    title: '¡Fin del partido!',
+    text: `${resultadoMensaje}. ${puntosMensaje}`,
+    icon: 'info',
+    confirmButtonText: 'Aceptar',
+    allowOutsideClick: false,
+    customClass: {
+      popup: 'my-custom-success-popup-class',
+      title: 'my-custom-success-title-class',
+    }
+  }).then(() => {
+    const puntosequipo = calcularPuntos();
+    guardarResultadosPartido(golesEquipo1.value, golesEquipo2.value, puntosequipo);
+    router.push('/app/ranking');
+  });
+};
+
+
+
+const guardarResultadosPartido = (golesEquipo1, golesEquipo2, puntosequipo) => {
+  const plantillaId1 = route.params.plantillaId;
+  const plantillaId2 = route.params.plantillaSeleccionadaId;
+
   axios.post(`/api/partidos/${plantillaId1}/${plantillaId2}/${golesEquipo1}/${golesEquipo2}/${puntosequipo}`, {
     id_plantilla1: plantillaId1,
     usuario1: '',
@@ -288,6 +288,7 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2) => {
     console.error('Error al guardar el partido:', error);
   });
 };
+
 
 </script>
 
