@@ -19,8 +19,9 @@ class partidos extends Model
         'id_plantilla2'
 
     ];
-    public function usuarioPartidos()
-    {
-        return $this->hasMany(usuario_partido::class, 'id_partido');
-    }
+    public function usuarios()
+{
+    return $this->belongsToMany(User::class, 'usuario_partidos', 'id_partido', 'id_usuario')
+                ->withPivot('resultado'); // Puedes incluir cualquier otra columna de la tabla pivot que necesites
+}
 }

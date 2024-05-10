@@ -39,6 +39,12 @@
 
     </div>
 </template>
+<!-- Se importan las bibliotecas necesarias y se configuran algunas variables reactivas.
+Se usa onMounted para cargar las noticias y categorías desde una API cuando el componente se monta.
+Se define una función detallenoticia para redirigir a la página de detalles de una noticia individual cuando se hace clic en ella.
+Se define una función filtrarNoticias para filtrar las noticias por categoría.
+Se define una propiedad computada filteredNoticias para filtrar las noticias por título según el término de búsqueda ingresado.
+Se define una función filtrarPorTitulo para activar el filtro de búsqueda cuando cambia el contenido del campo de búsqueda. -->
 <script setup>
 import axios from "axios";
 import { ref, onMounted, inject, computed } from "vue"
@@ -116,7 +122,5 @@ const filtrarPorTitulo = () => {
 </script>
 
 <style>
-::placeholder {
-    color: #18181b;
-  }
+
   </style>

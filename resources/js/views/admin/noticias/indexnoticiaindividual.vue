@@ -31,6 +31,11 @@
     </div>
   </div>
 </template>
+<!--
+Se utiliza onMounted para cargar la noticia y los comentarios relacionados desde una API cuando el componente se monta.
+Se define una función groupComentariosPorNoticia para agrupar los comentarios por el ID de la noticia a la que pertenecen.
+Se define una función mostrarFormularioComentario que muestra un diálogo para agregar un comentario cuando se hace clic en el botón "Comentar".
+Se define una función crearComentario para enviar un nuevo comentario a la API y actualizar la lista de comentarios localmente. -->
 <script setup>
 import axios from "axios";
 import { ref, onMounted, inject } from "vue";

@@ -36,13 +36,15 @@
     <div v-else>
       <p style="color: white;">Cargando...</p>
     </div>
-
-
-
   </div>
 
 </template>
-
+<!--
+  Esta función muestra el cuadro de diálogo SweetAlert2 con el formulario de edición y envía una solicitud HTTP PUT para actualizar la información del usuario en el servidor.
+También se define una función updatePassword que se activa cuando el usuario hace clic en el botón "Cambia tu contraseña". 
+Esta función muestra el cuadro de diálogo SweetAlert2 con un campo para la nueva contraseña y envía una solicitud HTTP PUT para actualizar la contraseña del usuario en el servidor.
+En el script, se importan las bibliotecas necesarias y se configuran algunas variables reactivas.
+Se utiliza el ciclo de vida onMounted para cargar la información del usuario cuando el componente se monta. -->
 <script setup>
 import { ref, onMounted, inject } from 'vue';
 import axios from 'axios';
@@ -203,79 +205,3 @@ const updatePassword = (id, index) => {
 };
 
 </script>
-
-<style>
-.divContenidoUser {
-  display: inline-flex;
-}
-
-.cajaContenidos {
-  text-align: center;
-  padding: 10px;
-  --green: #37FF8B;
-  padding: 0.7em 1.2em;
-  letter-spacing: 0.06em;
-  position: relative;
-  font-family: inherit;
-  border-radius: 1em;
-  overflow: hidden;
-  transition: all 0.5s;
-  line-height: 1.4em;
-  border: 2px solid var(--green);
-  color: white;
-  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
-  font-weight: bold;
-  margin-right: 20px;
-  margin-left: 20px;
-
-
-}
-.pSecciones, .pSecciones2 {
-  font-family: Tahoma !important;
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--surface-900);
-  font-size: 18px;
-  padding-top: 10px;
-  margin-left: 20px;
-}
-
-
-.botonPassword {
-  border-radius: 4px !important;
-  border: 2px solid var(--green);
-  background-color: #37ff8a00;
-  color: #ff37f5;
-  padding: 5px;
-  margin-left: 225px;
-
-}
-
-.botonPassword:hover {
-  background-color: #ff37eb2c;
-  color: white;
-  padding-left: 5px;
-}
-
-@media only screen and (max-width: 600px) {
-  .pSecciones {
-    font-size: 16px;
-  }
-
-  .botonPassword {
-    font-size: 16px;
-    margin-left: 0px;
-    padding-left: 0px;
-  }
-  .pSecciones2 {
-  font-family: Tahoma !important;
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--surface-900);
-  font-size: 18px;
-  padding-top: 10px;
-  height: 49px;
-  /* font-weight: bold; */
-}
-}
-</style>

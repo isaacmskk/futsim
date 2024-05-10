@@ -34,7 +34,10 @@
     </div>
   </div>
 </template>
-
+<!-- Se utiliza onMounted para cargar las plantillas del usuario desde una API cuando el componente se monta.
+Se definen funciones para eliminar y actualizar plantillas.
+Para eliminar una plantilla, se muestra un mensaje de confirmación al usuario antes de realizar la acción.
+Para editar una plantilla, se muestra un cuadro de diálogo que permite al usuario cambiar el nombre de la plantilla. -->
 <script setup>
 import axios from 'axios';
 import { ref, onMounted, inject } from "vue"
@@ -154,7 +157,4 @@ const updatePlantilla = (id, index) => {
 
 </script>
 
-<style>
-
-
-</style>
+<style></style>

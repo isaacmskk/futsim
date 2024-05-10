@@ -57,5 +57,9 @@ class User extends Authenticatable
     return $this->hasMany(plantillas::class, 'id_usuario');
 }
 
-
+public function partidos()
+{
+    return $this->belongsToMany(Partidos::class, 'usuario_partidos', 'id_partido', 'id_usuario')
+                ->withPivot('resultado'); // Puedes incluir cualquier otra columna de la tabla pivot que necesites
+}
 }

@@ -10,32 +10,23 @@
               <div class="col-12 col-lg-4">
                 <h3>Selecciona 4 jugadores</h3>
               </div>
-
-              
-
               <div class="col-6 col-lg-4 text-center ">
-
                 <button v-if="jugadoresSeleccionados.length === 4" class="botonGeneral"
                   @click="mostrarPromptNombrePlantilla">Crear Plantilla</button>
               </div>
-
               <div class="col-6 col-lg-4 colocarbotoncrearplantilla" style="height: 55px;">
                 <button class="itemIconos espacioASCDESC" @click="ordenarPorValoracion('desc')">
                   <i class="pi pi-fw pi-sort-amount-down-alt asc-desc"></i>
                 </button>
-
                 <button class="itemIconos espacioASCDESC" @click="ordenarPorValoracion('asc')">
                   <i class="pi pi-fw pi-sort-amount-up asc-desc"></i>
-
                 </button>
               </div>
             </div>
-
           </div>
-
           <tbody class="row">
-            <tr v-for="(jugador, index) in jugadores" :key="index"
-              class="col-6 col-lg-3 cartJugadores text-center" style="background-color: #00000000!important;">
+            <tr v-for="(jugador, index) in jugadores" :key="index" class="col-6 col-lg-3 cartJugadores text-center"
+              style="background-color: #00000000!important;">
               <td class="p-2">
                 <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
                   class="imgJugador imgJugadorSeleccion" @click="toggleSeleccion(jugador)"
@@ -49,6 +40,13 @@
   </div>
 </template>
 
+<!-- Se importan las bibliotecas necesarias y se configuran algunas variables reactivas.
+Se define una función ordenarPorValoracion para ordenar los jugadores por su valoración.
+Se usa onMounted para cargar los jugadores desde una API cuando el componente se monta.
+Se define una función toggleSeleccion para seleccionar/deseleccionar jugadores y asegurarse de que no se seleccionen más de cuatro.
+Se define una función mostrarPromptNombrePlantilla que muestra un diálogo para ingresar el nombre de la plantilla cuando se seleccionan cuatro jugadores.
+Se define una función guardarJugadoresSeleccionados para guardar los jugadores seleccionados en la base de datos mediante una solicitud POST a una API. -->
+
 <script setup>
 import axios from "axios";
 import { ref, onMounted, inject } from "vue";
@@ -60,9 +58,7 @@ const jugadoresSeleccionados = ref([]);
 const swal = inject("$swal");
 const jugadoresFiltrados = ref([]);
 
-// Definir la función ordenarPorValoracion para ordenar los jugadores por su valoración
 const ordenarPorValoracion = (tipo) => {
-  // Lógica para ordenar los jugadores por valoración ascendente o descendente
   if (tipo === 'desc') {
     jugadores.value.sort((a, b) => a.valoracion - b.valoracion);
   } else if (tipo === 'asc') {
@@ -159,5 +155,4 @@ const guardarJugadoresSeleccionados = (nombrePlantilla) => {
 
 </script>
 
-<style>
-</style>
+<style></style>

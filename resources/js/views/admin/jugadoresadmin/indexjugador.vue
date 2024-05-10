@@ -9,7 +9,6 @@
 
                         </div>
                         <div class="col-6 col-lg-4 text-center">
-                            <!-- Aplicar la clase text-center al contenedor div -->
                             <router-link :to="{ name: 'jugadoresadmin.createjugador' }">
                                 <button class="botonGeneral botonGeneralAdmin">
 
@@ -64,7 +63,8 @@
         </div>
     </div>
 </template>
-
+<!-- Se definen las funciones deleteJugador y updateJugador para eliminar y actualizar jugadores respectivamente. 
+    Estas funciones hacen uso de una biblioteca (swal) para mostrar diálogos de confirmación y entrada de datos para realizar estas acciones. -->
 <script setup>
 import axios from "axios";
 import { ref, onMounted, inject } from "vue"
@@ -90,7 +90,6 @@ onMounted(() => {
     });
 });
 onMounted(() => {
-    // console.log('Mi vista esta montada'); 
     axios.get('/api/jugadores')
         .then(response => {
             jugadores.value = response.data;
@@ -199,13 +198,4 @@ const updateJugador = (id, index) => {
 </script>
 
 <style>
-@media only screen and (max-width: 600px) {
-    .botonGeneralAdmin {
-        height: 55px !important;
-        width: 230px !important;
-        /* font-size: 12px; */
-        font-weight: bold !important;
-
-    }
-}
 </style>

@@ -9,7 +9,8 @@
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <h3 style="margin-right: 10px;">{{ plantilla.nombre }}</h3>
               <div>
-                <p class="nameuserplantilla" style="font-size: 24px; color: white; display: inline;">{{ plantilla.user.name }}</p>
+                <p class="nameuserplantilla" style="font-size: 24px; color: white; display: inline;">{{
+                  plantilla.user.name }}</p>
                 <i class="pi pi-fw pi-user tamano"></i>
 
               </div>
@@ -27,7 +28,10 @@
     </div>
   </div>
 </template>
-
+<!--
+Se utiliza onMounted para cargar todas las plantillas de partidos disponibles y las plantillas de partidos del usuario autenticado cuando el componente se monta.
+Se define una función mostrarPlantillasUsuario que muestra un cuadro de diálogo con una lista desplegable de las plantillas del usuario cuando se hace clic en el botón "Jugar". 
+Esta función maneja la lógica para seleccionar una plantilla y redirigir a la página de inicio de un nuevo partido. -->
 <script setup>
 import axios from 'axios';
 import { ref, onMounted, inject } from 'vue';
@@ -94,11 +98,4 @@ const mostrarPlantillasUsuario = (plantillaId) => {
 
 </script>
 
-<style>
-@media (max-width: 600px) {
-  .nameuserplantilla{
-  font-size: 20px!important;
-}
-}
-
-</style>
+<style></style>

@@ -123,6 +123,9 @@
   color: white;
   font-size: 14px;
 }
+::placeholder {
+  color: #18181b!important;
+}
 
 @media (max-width: 600px) {
   .centrarfiltros {

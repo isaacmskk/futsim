@@ -7,13 +7,10 @@
     <div class="col-6 col-lg-5">
       <div class="cardFondoPartido1">
         <div class="card-body text-center">
-          <!-- <h3 class="paddingNombrePlantillas"></h3> -->
-          <div v-for="jugador in jugadoresPlantilla1" :key="jugador.id" class="row ordenaCratas paddingNombrePlantillas">
-            <!-- <td class="col-12 col-lg-2 posicionJugadores">
-              <p class="pJugadoresPartido"></p>
-            </td> -->
-            <td class="col-12 col-lg-7 posicionJugadores nombreJugadoresRivales" >
-              <p class="pJugadoresPartido">{{ jugador.valoracion }}     {{ jugador.nombre }} {{ jugador.apellido }}</p>
+          <div v-for="jugador in jugadoresPlantilla1" :key="jugador.id"
+            class="row ordenaCratas paddingNombrePlantillas">
+            <td class="col-12 col-lg-7 posicionJugadores nombreJugadoresRivales">
+              <p class="pJugadoresPartido">{{ jugador.valoracion }} {{ jugador.nombre }} {{ jugador.apellido }}</p>
             </td>
             <td class="col-12 col-lg-5"> <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
                 class="imgJugadoresPartido"></td>
@@ -23,14 +20,16 @@
     </div>
 
 
-    <div class="col-lg-2 botonGeneralpartido text-center" style="display: flex; justify-content: center; align-items: center;">
+    <div class="col-lg-2 botonGeneralpartido text-center"
+      style="display: flex; justify-content: center; align-items: center;">
       <div class="posicionMarcador">
         <button v-if="!juegoIniciado" class="botonGeneral" @click="jugarPartido">Jugar</button>
       </div>
       <div v-if="juegoIniciado" class="temporizador temporizadorMarcador posicionMarcador">
         <p>{{ tiempo }}</p>
         <div>
-          <p>{{ nombrePlantilla1.substring(0, 3).toUpperCase() }} {{ golesEquipo1 }} - {{ golesEquipo2 }} {{ nombrePlantilla2.substring(0, 3).toUpperCase() }}</p>
+          <p>{{ nombrePlantilla1.substring(0, 3).toUpperCase() }} {{ golesEquipo1 }} - {{ golesEquipo2 }} {{
+            nombrePlantilla2.substring(0, 3).toUpperCase() }}</p>
         </div>
       </div>
     </div>
@@ -41,20 +40,13 @@
     <div class="col-6 col-lg-5">
       <div class="cardFondoPartido2">
         <div class="card-body text-center">
-          <!-- <h3 class="paddingNombrePlantillas"></h3> -->
-          <!-- <div class=""> -->
           <div v-for="jugador in jugadoresPlantilla2" :key="jugador.id" class="row paddingNombrePlantillas">
-            <td class="col-12 col-lg-5" style="display: flex; justify-content: left; align-items: center;"> <img :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador"
-                class="imgJugadoresPartido"></td>
+            <td class="col-12 col-lg-5" style="display: flex; justify-content: left; align-items: center;"> <img
+                :src="`${jugador.media[0]?.original_url}`" alt="Imagen Jugador" class="imgJugadoresPartido"></td>
             <td class="col-12 col-lg-7 posicionJugadores nombreJugadoresLocales">
-              <p class="pJugadoresPartido">{{ jugador.nombre }}  {{ jugador.apellido }}     {{ jugador.valoracion }}</p>
+              <p class="pJugadoresPartido">{{ jugador.nombre }} {{ jugador.apellido }} {{ jugador.valoracion }}</p>
             </td>
-            <!-- <td class="col-12 col-lg-2 posicionJugadores">
-              <p class="pJugadoresPartido"></p>
-            </td> -->
-
           </div>
-          <!-- </div> -->
         </div>
       </div>
     </div>
@@ -64,6 +56,10 @@
     <p>No se han seleccionado plantillas.</p>
   </div>
 </template>
+<!-- Se utiliza onMounted para cargar los detalles del partido, incluyendo los nombres de los equipos y la alineación de jugadores, desde una API cuando el componente se monta.
+Se definen funciones para jugar el partido, avanzar el tiempo, pausar el partido, mostrar goles, calcular puntos y terminar el partido.
+Se utiliza Swal.fire de la biblioteca SweetAlert2 para mostrar mensajes emergentes de manera interactiva al usuario.
+Se define una función para guardar los resultados del partido en la base de datos. -->
 
 <script setup>
 import { ref, onMounted } from 'vue';
@@ -292,6 +288,4 @@ const guardarResultadosPartido = (golesEquipo1, golesEquipo2, puntosequipo) => {
 
 </script>
 
-<style>
-
-</style>
+<style></style>

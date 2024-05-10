@@ -206,7 +206,7 @@
     font-size: 1.5rem !important;
   }
 
-  .imgJugador{
+  .imgJugador {
     width: 160px;
     height: 240px;
     margin: auto;
@@ -215,5 +215,13 @@
   .cartJugadores {
     padding: auto;
     margin-top: 15px;
+  }
+
+  .botonGeneralAdmin {
+    height: 55px !important;
+    width: 230px !important;
+    /* font-size: 12px; */
+    font-weight: bold !important;
+
   }
 }

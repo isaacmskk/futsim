@@ -21,12 +21,8 @@ class PartidosController extends Controller
     public function obtenerJugadoresPorPlantilla($plantillaId, $plantillaSeleccionadaId)
     {
         // Obtener los IDs de los jugadores asociados a ambas plantillas
-        $jugadoresPlantilla1Ids = plantilla_jugadores::where('id_plantilla', $plantillaId)
-            ->pluck('id_jugador');
-
-        $jugadoresPlantilla2Ids = plantilla_jugadores::where('id_plantilla', $plantillaSeleccionadaId)
-            ->pluck('id_jugador');
-        $idUsuarioPlantilla2 = plantillas::findOrFail($plantillaSeleccionadaId)->id_usuario;
+        $jugadoresPlantilla1Ids = plantillas::findOrFail($plantillaId)->jugadores()->pluck('jugadores.id');
+        $jugadoresPlantilla2Ids = plantillas::findOrFail($plantillaSeleccionadaId)->jugadores()->pluck('jugadores.id');
 
         // Obtener los jugadores asociados a ambas plantillas
         $jugadoresPlantilla1 = Jugadores::with('media')->whereIn('id', $jugadoresPlantilla1Ids)->get();
@@ -35,15 +31,16 @@ class PartidosController extends Controller
         // Obtener el nombre de las plantillas seleccionadas
         $nombrePlantilla1 = plantillas::findOrFail($plantillaId)->nombre;
         $nombrePlantilla2 = plantillas::findOrFail($plantillaSeleccionadaId)->nombre;
+
         // Devolver los jugadores y los nombres de las plantillas en formato JSON
         return response()->json([
             'nombrePlantilla1' => $nombrePlantilla1,
             'nombrePlantilla2' => $nombrePlantilla2,
             'jugadoresPlantilla1' => $jugadoresPlantilla1,
             'jugadoresPlantilla2' => $jugadoresPlantilla2,
-
         ]);
-    }public function store($plantillaId, $plantillaSeleccionadaId, $golesEquipo1, $golesEquipo2,$puntosequipo)
+    }
+    public function store($plantillaId, $plantillaSeleccionadaId, $golesEquipo1, $golesEquipo2, $puntosequipo)
     {
         $usuarioActual = Auth::user();
         $usuarioRival = plantillas::findOrFail($plantillaId)->user;
@@ -60,17 +57,11 @@ class PartidosController extends Controller
 
         // Guardar el partido en la base de datos
         $partido->save();
-    
-        // Guardar el resultado en la tabla usuario_partido
-        usuario_partido::create([
-            'id_partido' => $partido->id,
-            'id_usuario' => $usuarioActual->id,
-            'resultado' => $puntos,
+        $partido->usuarios()->sync([
+            $usuarioActual->id => ['resultado' => $puntos],
         ]);
-    
+
         // Devolver una respuesta JSON con el partido creado
         return response()->json($partido, 201);
     }
-    
-    
 }

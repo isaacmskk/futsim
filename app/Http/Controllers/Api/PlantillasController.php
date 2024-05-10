@@ -58,7 +58,7 @@ class PlantillasController extends Controller
 
     public function obtenerJugadoresSeleccionados($idPlantilla)
     {
-        $jugadoresSeleccionados = plantilla_jugadores::where('id_plantilla', $idPlantilla)
+        $jugadoresSeleccionados = plantillas::where('id_plantilla', $idPlantilla)
             ->join('jugadores', 'plantilla_jugadores.id_jugador', '=', 'jugadores.id')
             ->select('jugadores.*')
             ->get();

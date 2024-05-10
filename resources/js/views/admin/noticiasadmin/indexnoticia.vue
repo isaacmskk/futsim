@@ -177,9 +177,5 @@ const filtrarPorTitulo = () => {
 };
 </script>
 
-<style>
-::placeholder {
-    color: #18181b; /* Cambia el color del marcador de posición según tu preferencia */
-  }
-  
+<style>  
 </style>
