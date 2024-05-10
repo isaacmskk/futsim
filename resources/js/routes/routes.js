@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie'
 import store from "../store";
 
 const AuthenticatedLayout = () => import('../layouts/Authenticated.vue')
@@ -61,7 +60,6 @@ function requireAdmin(to, from, next) {
             if (roles.includes('admin')) {
                 next();
             } else {
-                // Redirigir o devolver una respuesta de acceso denegado
                 next('/');
             }
         })
@@ -83,11 +81,7 @@ function guest(to, from, next) {
 
 export default [
     {
-        // redirect: {
-        //     name: 'admin.index'
-        // },
         path: '/',
-        // redirect: { name: 'login' },
         component: GuestLayout,
         children: [
 
@@ -140,9 +134,6 @@ export default [
     {
         path: '/app',
         component: AuthenticatedLayout,
-        // redirect: {
-        //     name: 'admin.index'
-        // },
         beforeEnter: requireLogin,
         meta: { breadCrumb: 'Dashboard' },
         children: [
@@ -247,7 +238,7 @@ export default [
                 ]
             },
             {
-                beforeEnter:requireAdmin,
+                beforeEnter: requireAdmin,
                 name: 'jugadoresadmin',
                 path: 'jugadoresadmin',
                 meta: { breadCrumb: 'Jugadores' },
@@ -307,7 +298,7 @@ export default [
                 ]
             },
             {
-                beforeEnter:requireAdmin,
+                beforeEnter: requireAdmin,
                 name: 'noticiasadmin',
                 path: 'noticiasadmin',
                 meta: { breadCrumb: 'Noticias' },

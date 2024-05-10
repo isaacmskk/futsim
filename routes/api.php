@@ -1,12 +1,8 @@
 <?php
 //fichero api.php
-use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PermissionController;
-use App\Http\Controllers\Api\PostController;
-use App\Http\Controllers\Api\ExerciseController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RoleController;
-use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\JugadoresController;
 use App\Http\Controllers\Api\NoticiasController;
@@ -18,7 +14,6 @@ use App\Http\Controllers\Api\CategoriasController;
 use App\Http\Controllers\api\RankingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
 Route::post('forget-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('forget.password.post');
