@@ -1,11 +1,18 @@
 <?php
 
+/**
+ * Modelo para las categorías.
+ * 
+ * Este modelo representa las categorías que pueden asignarse a las noticias,
+ * proporcionando un identificador único para cada categoría y su nombre.
+ */
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categorias extends Model
+class categorias extends Model
 {
     use HasFactory;
 

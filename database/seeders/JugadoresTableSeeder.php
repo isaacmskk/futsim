@@ -1,4 +1,5 @@
 <?php
+// Seeder para agregar datos de ejemplo a la tabla de jugadores
 
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
@@ -8,6 +9,7 @@ class JugadoresTableSeeder extends Seeder
 {
     public function run()
     {
+        // Datos de ejemplo para los jugadores
         $jugadores =  [
             [
                 'nombre' => 'Alphonso',
@@ -43,6 +45,7 @@ class JugadoresTableSeeder extends Seeder
             ]
         ];
 
+        // Crear jugadores en la base de datos
         foreach ($jugadores as $jugador) {
             $nuevoJugador = Jugadores::create([
                 'nombre' => $jugador['nombre'],

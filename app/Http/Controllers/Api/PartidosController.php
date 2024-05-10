@@ -1,4 +1,10 @@
 <?php
+/**
+ * Controlador para gestionar los partidos en la API.
+ * 
+ * Este controlador maneja las operaciones relacionadas con los partidos, incluyendo la obtención de jugadores por plantilla
+ * y el almacenamiento de nuevos partidos con detalles como goles y puntajes.
+ */
 
 namespace App\Http\Controllers\api;
 

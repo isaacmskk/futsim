@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Controlador para gestionar las plantillas en la API.
+ * 
+ * Este controlador maneja las operaciones relacionadas con las plantillas, incluyendo la obtención de todas las plantillas,
+ * la creación, visualización, actualización y eliminación de plantillas, así como la gestión de los jugadores asociados a cada plantilla.
+ */
+
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;

@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Modelo para los usuarios del sistema.
+ * 
+ * Este modelo gestiona la información de los usuarios, incluyendo su nombre, apellido,
+ * dirección de correo electrónico, contraseña y otros atributos relevantes. También define
+ * las relaciones con otras entidades, como las plantillas asociadas a un usuario.
+ */
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -56,10 +64,10 @@ class User extends Authenticatable
 {
     return $this->hasMany(plantillas::class, 'id_usuario');
 }
-
 public function partidos()
 {
     return $this->belongsToMany(Partidos::class, 'usuario_partidos', 'id_partido', 'id_usuario')
-                ->withPivot('resultado'); // Puedes incluir cualquier otra columna de la tabla pivot que necesites
+                ->withPivot('resultado');
 }
+
 }
