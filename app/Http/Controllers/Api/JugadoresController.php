@@ -1,6 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\api;
+/**
+ * Controlador para administrar jugadores en la API.
+ * 
+ * Este controlador maneja las operaciones CRUD para los jugadores, incluyendo la creación, 
+ * lectura, actualización y eliminación de jugadores. También se encarga de manejar las 
+ * imágenes asociadas a los jugadores.
+ */
+
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,18 +22,28 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class JugadoresController extends Controller implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
+
+    /**
+     * Obtiene todos los jugadores con sus imágenes asociadas.
+     */
     public function index()
     {
-        $jugadores = jugadores::with('media')->get();
+        $jugadores = Jugadores::with('media')->get();
         return $jugadores;
     }
 
+    /**
+     * Obtiene un jugador específico por su ID.
+     */
     public function show($id)
     {
-        $jugador = jugadores::find($id);
+        $jugador = Jugadores::find($id);
         return response()->json($jugador);
     }
 
+    /**
+     * Crea un nuevo jugador.
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -47,10 +65,12 @@ class JugadoresController extends Controller implements HasMedia
         return response()->json(['success' => true, 'data' => $nuevoJugador]);
     }
 
-
+    /**
+     * Actualiza un jugador existente por su ID.
+     */
     public function update($id, Request $request)
     {
-        $jugador = jugadores::find($id);
+        $jugador = Jugadores::find($id);
 
         $request->validate([
             'posicion',
@@ -62,15 +82,17 @@ class JugadoresController extends Controller implements HasMedia
         $dataToUpdate = $request->all();
         $jugador->update($dataToUpdate);
 
-
         return response()->json(['success' => true, 'data' => $jugador]);
     }
 
+    /**
+     * Elimina un jugador existente por su ID.
+     */
     public function destroy($id)
     {
-        $jugador = jugadores::find($id);
+        $jugador = Jugadores::find($id);
         $jugador->delete();
 
-        return response()->json(['success' => true, 'data' => 'Tarea eliminida']);
+        return response()->json(['success' => true, 'data' => 'Jugador eliminado']);
     }
 }

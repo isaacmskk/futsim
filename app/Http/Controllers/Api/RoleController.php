@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Controlador para gestionar roles en la API.
+ * 
+ * Este controlador maneja las operaciones CRUD para los roles, incluyendo la creación,
+ * lectura, actualización y eliminación de roles. También proporciona una lista de roles.
+ */
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;

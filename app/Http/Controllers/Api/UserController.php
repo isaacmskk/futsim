@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Controlador para gestionar usuarios en la API.
+ * 
+ * Este controlador maneja las operaciones CRUD para los usuarios, incluyendo la creación,
+ * lectura, actualización y eliminación de usuarios. También proporciona métodos para obtener
+ * roles de usuario y el usuario actual.
+ */
+
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;

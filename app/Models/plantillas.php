@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Modelo para las plantillas de jugadores.
+ * 
+ * Este modelo gestiona la información de las plantillas de jugadores, incluyendo su nombre,
+ * el ID del usuario propietario y la relación con los jugadores asociados.
+ */
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

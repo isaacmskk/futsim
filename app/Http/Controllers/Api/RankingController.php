@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Controlador para gestionar el ranking en la API.
+ * 
+ * Este controlador maneja las operaciones relacionadas con el ranking de usuarios,
+ * incluyendo la obtención del ranking completo y los puntos totales de un usuario específico.
+ */
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;

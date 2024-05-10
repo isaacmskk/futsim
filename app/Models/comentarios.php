@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Modelo para los comentarios.
+ * 
+ * Este modelo representa los comentarios realizados por los usuarios en las noticias.
+ * Contiene información sobre el comentario, el usuario que lo realizó, la noticia asociada y la fecha y hora de creación.
+ */
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,6 +22,10 @@ class comentarios extends Model
         'time',
         'id_noticia'
     ];
+
+    /**
+     * Define la relación con el modelo User, indicando que un comentario pertenece a un usuario.
+     */
 
     public function user()
     {

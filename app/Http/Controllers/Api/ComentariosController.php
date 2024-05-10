@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Controlador para manejar los comentarios en la API.
+ */
+
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
